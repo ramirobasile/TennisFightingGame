@@ -21,7 +21,6 @@ namespace TennisFightingGame
 
 		public float time;
 		private int currentFrame;
-		private readonly Player player;
 
 		public Animation(int row, int frames, float fps, bool loops = false, bool resetOnStop = true)
 		{

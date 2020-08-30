@@ -5,7 +5,6 @@ namespace TennisFightingGame.Training
 {
     public class UIManager
     {
-        private readonly SpriteFont font;
         private readonly Match match;
 
         private readonly UI.Bar staminaBar;
