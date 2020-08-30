@@ -8,7 +8,7 @@ Bugs
 
 General systems
 * Rename namespaces according to parent folders of the source files
-* Shadows
+* Add shadow to ball
 * Allow scaling
 * Parallax background
 * Particle system
