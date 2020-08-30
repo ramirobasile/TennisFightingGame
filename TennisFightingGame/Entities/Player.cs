@@ -24,7 +24,7 @@ namespace TennisFightingGame
 		public readonly string name;
         public readonly Point spawnPosition;
 
-		public Rectangle rect;
+		public Rectangle rectangle;
         public Rectangle lastRect;
         public int side;
 		public float hitLag;
@@ -43,7 +43,7 @@ namespace TennisFightingGame
 			state = new StateManager(this);
 
 			name = character.name;
-			rect = new Rectangle(spawnPosition, character.rect.Size);
+			rectangle = new Rectangle(spawnPosition, character.rectangle.Size);
 			moveset = new Moveset(character.attacks, this);
 			sprite = character.sprite;
 			sprite.player = this;
@@ -53,14 +53,14 @@ namespace TennisFightingGame
 			state.Landed += Landed;
         }
 
-		// Returns and sets the XY of the player's rect
+		// Returns and sets the XY of the player's rectangle
 		public Point Position
 		{
-			get { return new Point(rect.X, rect.Y); }
+			get { return new Point(rectangle.X, rectangle.Y); }
 			set
 			{
-				rect.X = value.X;
-				rect.Y = value.Y;
+				rectangle.X = value.X;
+				rectangle.Y = value.Y;
 			}
 		}
 
@@ -178,15 +178,15 @@ namespace TennisFightingGame
             // Resolve collision between player and walls by moving player out of the wall
             foreach (Wall wall in match.court.PlayerGeometry)
             {
-                Collision collision = wall.Collision(rect, lastRect);
+                Collision collision = wall.Collision(rectangle, lastRect);
 
                 if (collision.Intersects)
                 {
-                    Position += wall.Correction(rect, lastRect);
+                    Position += wall.Correction(rectangle, lastRect);
                 }
             }
 
-            lastRect = rect; // previous update rect
+            lastRect = rectangle; // previous update rectangle
 		}
 
 		public void Draw(SpriteBatch spriteBatch)
@@ -196,7 +196,7 @@ namespace TennisFightingGame
 
 			if (Game1.ConfigFile.Boolean("Debug", "Collisionboxes"))
 			{
-				spriteBatch.Draw(Assets.PlaceholderTexture, rect, Color.Yellow * .5f);
+				spriteBatch.Draw(Assets.PlaceholderTexture, rectangle, Color.Yellow * .5f);
 			}
 
 		}
@@ -261,15 +261,15 @@ namespace TennisFightingGame
 		public struct Character
 		{
 			public readonly string name;
-			public readonly Rectangle rect;
+			public readonly Rectangle rectangle;
 			public readonly Attack[] attacks;
 			public readonly Sprite sprite;
 			public readonly Stats stats;
 
-			public Character(string name, Rectangle rect, Attack[] attacks, Sprite sprite, Stats stats)
+			public Character(string name, Rectangle rectangle, Attack[] attacks, Sprite sprite, Stats stats)
 			{
 				this.name = name;
-				this.rect = rect;
+				this.rectangle = rectangle;
 				this.attacks = attacks;
 				this.sprite = sprite;
 				this.stats = stats;

@@ -19,18 +19,18 @@ namespace TennisFightingGame
 	/// </summary>
 	public class Collider
     {
-        public Rectangle rect;
+        public Rectangle rectangle;
 
-        public Collider(Rectangle rect)
+        public Collider(Rectangle rectangle)
         {
-            this.rect = rect;
+            this.rectangle = rectangle;
         }
 
         public Collision Collision(Rectangle post, Rectangle pre)
         {
             Collision collision = new Collision();
 
-            if (rect.Intersects(post))
+            if (rectangle.Intersects(post))
             {
                 collision.Intersects = true;
             }
@@ -40,46 +40,46 @@ namespace TennisFightingGame
             }
 
             // Right
-            if (post.Right > rect.Left && pre.Right < rect.Left)
+            if (post.Right > rectangle.Left && pre.Right < rectangle.Left)
             {
                 collision.Right = true;
             }
 
             // Left
-            if (post.Left < rect.Right && pre.Left > rect.Right)
+            if (post.Left < rectangle.Right && pre.Left > rectangle.Right)
             {
                 collision.Left = true;
             }
 
             // Top
-            if (post.Top > rect.Bottom && pre.Top < rect.Bottom)
+            if (post.Top > rectangle.Bottom && pre.Top < rectangle.Bottom)
             {
                 collision.Top = true;
             }
 
             // Bottom
-            if (post.Bottom >= rect.Top && pre.Bottom <= rect.Top)
+            if (post.Bottom >= rectangle.Top && pre.Bottom <= rectangle.Top)
             {
                 collision.Bottom = true;
             }
 
             // Overlap
-            if (post.Right < rect.Right)
+            if (post.Right < rectangle.Right)
             {
-                collision.Overlaps.X = rect.Left - post.Right;
+                collision.Overlaps.X = rectangle.Left - post.Right;
             }
             else
             {
-                collision.Overlaps.X = rect.Right - post.Left;
+                collision.Overlaps.X = rectangle.Right - post.Left;
             }
 
-			if (rect.Bottom > post.Bottom)
+			if (rectangle.Bottom > post.Bottom)
             {
-                collision.Overlaps.Y = rect.Top - post.Bottom;
+                collision.Overlaps.Y = rectangle.Top - post.Bottom;
             }
             else
             {
-                collision.Overlaps.Y = rect.Bottom - post.Top;
+                collision.Overlaps.Y = rectangle.Bottom - post.Top;
             }
 
             return collision;
@@ -100,12 +100,12 @@ namespace TennisFightingGame
 
         public void Draw(SpriteBatch spriteBatch, Texture2D texture)
         {
-            spriteBatch.Draw(texture, rect, Color.White);
+            spriteBatch.Draw(texture, rectangle, Color.White);
         }
 
         public void Draw(SpriteBatch spriteBatch, Texture2D texture, Color color)
         {
-            spriteBatch.Draw(texture, rect, color);
+            spriteBatch.Draw(texture, rectangle, color);
         }
     }
 }

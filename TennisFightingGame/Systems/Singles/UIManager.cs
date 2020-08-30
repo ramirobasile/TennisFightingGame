@@ -29,15 +29,15 @@ namespace TennisFightingGame.Singles
             	new Rectangle(Game1.Viewport.Width - 400 - 10, 40, 400, 20));
 
 			nameLabels[0] = new UI.Label(match.players[0].name, 
-				new Point(staminaBars[0].rect.X, 10), Assets.EmphasisFont, shadow: true);
+				new Point(staminaBars[0].rectangle.X, 10), Assets.EmphasisFont, shadow: true);
 			nameLabels[1] = new UI.Label(match.players[1].name,
-				new Point(staminaBars[1].rect.Right - (int)Assets.EmphasisFont.MeasureString(match.players[1].name).X, 10), 
+				new Point(staminaBars[1].rectangle.Right - (int)Assets.EmphasisFont.MeasureString(match.players[1].name).X, 10), 
 				Assets.EmphasisFont, shadow: true);
 
 			servingLabels[0] = new UI.Label("P1's service",
-				new Point(staminaBars[0].rect.X, 70), Assets.EmphasisFont, blinkSpeed: 8, shadow: true);
+				new Point(staminaBars[0].rectangle.X, 70), Assets.EmphasisFont, blinkSpeed: 8, shadow: true);
 			servingLabels[1] = new UI.Label("P2's service",
-				new Point(staminaBars[1].rect.Right - (int)Assets.EmphasisFont.MeasureString("P2's service").X, 70),
+				new Point(staminaBars[1].rectangle.Right - (int)Assets.EmphasisFont.MeasureString("P2's service").X, 70),
 				Assets.EmphasisFont, blinkSpeed: 8, shadow: true);
 
 			// Blink on score

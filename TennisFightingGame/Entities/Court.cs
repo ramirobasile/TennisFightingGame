@@ -36,7 +36,7 @@ namespace TennisFightingGame
 		{
 			get
 			{
-				return new Wall[] { floor, leftWall, rightWall, net, new Wall(middle.rect, Vector2.Zero) };
+				return new Wall[] { floor, leftWall, rightWall, net, new Wall(middle.rectangle, Vector2.Zero) };
 			}
 		}
 	}

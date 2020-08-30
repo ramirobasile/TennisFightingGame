@@ -10,8 +10,8 @@ namespace TennisFightingGame
 	{
 		public Vector2 friction;
 
-		public Wall(Rectangle rect, Vector2 friction) 
-			: base (rect)
+		public Wall(Rectangle rectangle, Vector2 friction) 
+			: base (rectangle)
 		{
 			this.friction = friction;
 		}

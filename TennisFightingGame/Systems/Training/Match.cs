@@ -94,7 +94,7 @@ namespace TennisFightingGame.Training
 			{
 				foreach (Wall wall in court.Geometry)
 				{
-					spriteBatch.Draw(Assets.PlaceholderTexture, wall.rect, Color.Blue * .5f);
+					spriteBatch.Draw(Assets.PlaceholderTexture, wall.rectangle, Color.Blue * .5f);
 				}
 			}
 
@@ -113,7 +113,7 @@ namespace TennisFightingGame.Training
         {
             ball.Position = player.Position;
             player.state.serving = false;
-            ball.Position = player.rect.Center;
+            ball.Position = player.rectangle.Center;
             ball.Hit(-Vector2.UnitY * 1200);
         }
 

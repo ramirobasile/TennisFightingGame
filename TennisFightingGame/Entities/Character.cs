@@ -7,14 +7,14 @@ namespace TennisFightingGame
     public struct Character
     {
         public string name;
-        public Rectangle rect;
+        public Rectangle rectangle;
         public Sprite[] sprites;
         public Attack[] attacks;
 
-        public Character(string name, Rectangle rect, Sprite[] sprites, Attack[] attacks)
+        public Character(string name, Rectangle rectangle, Sprite[] sprites, Attack[] attacks)
         {
             this.name = name;
-            this.rect = rect;
+            this.rectangle = rectangle;
             this.sprites = sprites;
             this.attacks = attacks;
         }

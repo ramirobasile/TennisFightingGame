@@ -55,8 +55,8 @@ namespace TennisFightingGame.Singles
 			float y;
 			float speed;
 			float focusDistance = Vector2.Distance(
-				defender.rect.Center.ToVector2(),
-				attacker.rect.Center.ToVector2());
+				defender.rectangle.Center.ToVector2(),
+				attacker.rectangle.Center.ToVector2());
 
 			// Set zoom
 			// Lerps zoom to keep both players on screen until it reaches min/max zoom
@@ -71,8 +71,8 @@ namespace TennisFightingGame.Singles
 
 			// Set x and y
 			// Point between attacker's and defender's center
-			Vector2 playersMidpoint = new Vector2((attacker.rect.Center.X + defender.rect.Center.X) / 2,
-				(attacker.rect.Center.Y + defender.rect.Center.Y) / 2);
+			Vector2 playersMidpoint = new Vector2((attacker.rectangle.Center.X + defender.rectangle.Center.X) / 2,
+				(attacker.rectangle.Center.Y + defender.rectangle.Center.Y) / 2);
 
 			// FIXME Weird shit happens when ball bounces off wall
 			if (focusBall)
@@ -81,17 +81,17 @@ namespace TennisFightingGame.Singles
 				float ballMargin = ballDirection * Game1.Viewport.Width / 2;
 
 				x = MathHelper.Clamp(
-					(playersMidpoint.X + match.ball.rect.Center.X + ballMargin) / 2,
-					defender.rect.Center.X - Game1.Viewport.Width / zoom / 2 + margin,
-					defender.rect.Center.X + Game1.Viewport.Width / zoom / 2 - margin
+					(playersMidpoint.X + match.ball.rectangle.Center.X + ballMargin) / 2,
+					defender.rectangle.Center.X - Game1.Viewport.Width / zoom / 2 + margin,
+					defender.rectangle.Center.X + Game1.Viewport.Width / zoom / 2 - margin
 					);
 			} 
 			else
 			{
 				x = MathHelper.Clamp(
 					playersMidpoint.X,
-					defender.rect.Center.X - Game1.Viewport.Width / zoom / 2 + margin,
-					defender.rect.Center.X + Game1.Viewport.Width / zoom / 2 - margin
+					defender.rectangle.Center.X - Game1.Viewport.Width / zoom / 2 + margin,
+					defender.rectangle.Center.X + Game1.Viewport.Width / zoom / 2 - margin
 					);
 			}
 

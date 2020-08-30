@@ -51,8 +51,8 @@ namespace TennisFightingGame.Singles
         public void Update()
         {
             // Ball passed to the right side
-            if (match.ball.lastRect.X < match.court.middle.rect.Center.X &&
-                match.ball.rect.X >= match.court.middle.rect.Center.X &&
+            if (match.ball.lastRectangle.X < match.court.middle.rectangle.Center.X &&
+                match.ball.rectangle.X >= match.court.middle.rectangle.Center.X &&
                 match.inPlay)
             {
                 if (PassedNet != null)
@@ -62,8 +62,8 @@ namespace TennisFightingGame.Singles
             }
 
             // Ball passed to the left side
-            if (match.ball.lastRect.X > match.court.middle.rect.Center.X &&
-                match.ball.rect.X <= match.court.middle.rect.Center.X &&
+            if (match.ball.lastRectangle.X > match.court.middle.rectangle.Center.X &&
+                match.ball.rectangle.X <= match.court.middle.rectangle.Center.X &&
                 match.inPlay)
             {
                 if (PassedNet != null)
@@ -101,9 +101,9 @@ namespace TennisFightingGame.Singles
 			bounces = 1;
 
             // Set defender to the other player is the ball is projected to pass the net
-            float middleDistance = MathHelper.Distance(match.GetPlayerBySide(side).Position.X, match.court.middle.rect.Center.X);
+            float middleDistance = MathHelper.Distance(match.GetPlayerBySide(side).Position.X, match.court.middle.rectangle.Center.X);
             float landingDistance = MathHelper.Distance(match.GetPlayerBySide(side).Position.X,
-                match.ball.LandingPoint(match.court.net.rect.Top).X);
+                match.ball.LandingPoint(match.court.net.rectangle.Top).X);
 
             if (landingDistance > middleDistance)
             {
@@ -191,7 +191,7 @@ namespace TennisFightingGame.Singles
         {
             match.inPlay = true;
             match.ball.velocity = Vector2.Zero;
-			match.ball.Position = player.rect.Center;
+			match.ball.Position = player.rectangle.Center;
 			bounces = 1;
 			consecutiveHits = 0;
             player.state.serving = false;

@@ -17,26 +17,26 @@ namespace TennisFightingGame
 		private readonly Texture2D texture;
 		private readonly Wall[] geometry;
 
-        public Rectangle rect;
+        public Rectangle rectangle;
         public Vector2 velocity = new Vector2(0, 0);
-		public Rectangle lastRect;
+		public Rectangle lastRectangle;
 		public float hitStun;
 		public Polynomial gravityFunction = Polynomial.Identity;
 
-		public Ball(Rectangle rect, Texture2D texture, Wall[] geometry)
+		public Ball(Rectangle rectangle, Texture2D texture, Wall[] geometry)
         {
-            this.rect = rect;
+            this.rectangle = rectangle;
             this.texture = texture;
             this.geometry = geometry;
         }
 
         public Point Position
         {
-            get { return new Point(rect.X, rect.Y); }
+            get { return new Point(rectangle.X, rectangle.Y); }
             set
             {
-                rect.X = value.X;
-                rect.Y = value.Y;
+                rectangle.X = value.X;
+                rectangle.Y = value.Y;
             }
         }
 
@@ -54,7 +54,7 @@ namespace TennisFightingGame
                 return;
             }
 
-            lastRect = rect; // previous update rect
+            lastRectangle = rectangle; // previous update rectangle
 
             velocity.Y += Gravity * Game1.DeltaTime;
             Position += (velocity * Game1.DeltaTime).ToPoint(); // update position
@@ -62,13 +62,13 @@ namespace TennisFightingGame
             // Collision correction and bouncing (and bounce event call)
             foreach (Wall wall in geometry)
             {
-                Collision collision = wall.Collision(rect, lastRect);
+                Collision collision = wall.Collision(rectangle, lastRectangle);
 
-                if (rect.Intersects(wall.rect))
+                if (rectangle.Intersects(wall.rectangle))
                 {
                     velocity.X *= wall.friction.X;
 					velocity.Y *= wall.friction.Y;
-					Position += wall.Correction(rect, lastRect);
+					Position += wall.Correction(rectangle, lastRectangle);
 
 					if (velocity.Length() > NonBounce)
 					{
@@ -94,9 +94,9 @@ namespace TennisFightingGame
 						velocity.X *= -1;
 					}
 
-					if (rect.Intersects(wall.rect))
+					if (rectangle.Intersects(wall.rectangle))
 					{
-						Position += wall.Correction(rect, lastRect);
+						Position += wall.Correction(rectangle, lastRectangle);
 					}
 				}
             }
@@ -105,7 +105,7 @@ namespace TennisFightingGame
 		public void Draw(SpriteBatch spriteBatch)
 		{
 			// TODO Sprite or texture
-			spriteBatch.Draw(Assets.PlaceholderTexture, rect, Color.ForestGreen);
+			spriteBatch.Draw(Assets.PlaceholderTexture, rectangle, Color.ForestGreen);
 		}
 
 		public void Hit(Vector2 newVelocity)

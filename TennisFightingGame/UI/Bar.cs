@@ -7,14 +7,14 @@ namespace TennisFightingGame.UI
     {
         private readonly Texture2D backgroundTexture;
         private readonly Texture2D fillTexture;
-        public readonly Rectangle rect;
+        public readonly Rectangle rectangle;
         private readonly int direction;
 
-        public Bar(Texture2D backgroundTexture, Texture2D fillTexture, Rectangle rect, int direction = 1)
+        public Bar(Texture2D backgroundTexture, Texture2D fillTexture, Rectangle rectangle, int direction = 1)
         {
             this.backgroundTexture = backgroundTexture;
             this.fillTexture = fillTexture;
-            this.rect = rect;
+            this.rectangle = rectangle;
             this.direction = direction;
         }
 
@@ -23,15 +23,15 @@ namespace TennisFightingGame.UI
             Rectangle fillRect;
             if (direction == 1)
             {
-                fillRect = new Rectangle(rect.X, rect.Y, (int) (rect.Width * fill), rect.Height);
+                fillRect = new Rectangle(rectangle.X, rectangle.Y, (int) (rectangle.Width * fill), rectangle.Height);
             }
             else
             {
-                fillRect = new Rectangle(rect.X + rect.Width - (int) (rect.Width * fill), rect.Y,
-                    (int) (rect.Width * fill), rect.Height);
+                fillRect = new Rectangle(rectangle.X + rectangle.Width - (int) (rectangle.Width * fill), rectangle.Y,
+                    (int) (rectangle.Width * fill), rectangle.Height);
             }
 
-            spriteBatch.Draw(backgroundTexture, rect, Color.Gray); // colors are WIP
+            spriteBatch.Draw(backgroundTexture, rectangle, Color.Gray); // colors are WIP
             spriteBatch.Draw(fillTexture, fillRect, Color.Yellow);
         }
     }

@@ -6,7 +6,7 @@ namespace TennisFightingGame
 {
     public class Hitbox
     {
-        public readonly Rectangle rect;
+        public readonly Rectangle rectangle;
         public readonly float start; //from A in the total duration of the attack
         public readonly float duration; //to B, relatively
         public readonly Vector2 force;
@@ -20,12 +20,12 @@ namespace TennisFightingGame
 		public readonly SoundEffect[][] onAddedSounds;
 		public readonly SoundEffect[] onHitSounds;
 		
-		public Hitbox(Rectangle rect, float start, float duration, Vector2 force, 
+		public Hitbox(Rectangle rectangle, float start, float duration, Vector2 force, 
 			Vector2 exhaustedForce = default(Vector2), Polynomial gravityScalar = default(Polynomial), 
 			float hitStun = 0,  float hitLag = 0,  int shakeMagnitude = 10, bool cumulative = true,
 			SoundEffect[][] onAddedSounds = null, SoundEffect[] onHitSounds = null)
         {
-            this.rect = rect;
+            this.rectangle = rectangle;
             this.duration = duration;
             this.start = start;
 			this.force = force;

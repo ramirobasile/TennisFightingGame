@@ -68,8 +68,8 @@ namespace TennisFightingGame
 			// Handle AerialState and Landed
 			foreach (Wall wall in player.match.court.PlayerGeometry)
 			{
-				Rectangle check = new Rectangle(player.rect.X, player.rect.Y + Player.CheckDistance,
-					player.rect.Width, player.rect.Height);
+				Rectangle check = new Rectangle(player.rectangle.X, player.rectangle.Y + Player.CheckDistance,
+					player.rectangle.Width, player.rectangle.Height);
 
 				if (aerialState != AerialState.Jumping && wall.Collision(check, player.lastRect).Bottom)
 				{
