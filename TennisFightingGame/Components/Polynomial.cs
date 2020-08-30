@@ -34,5 +34,10 @@ namespace TennisFightingGame
 
 			return base.Equals(obj);
 		}
+
+		public override int GetHashCode()
+		{
+			throw new Exception("I'm too lazy to implement this");
+		}
 	}
 }

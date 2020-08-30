@@ -1,0 +1,31 @@
+Bugs
+* Ball focus isn't false on p2's first serve for some reason, fix
+* Jumping on top of things doesn't work very well... But it's not like you're 
+  supposed to do that anyway
+* Ball going thought geometry sometimes apparently only when ball's left 
+  collision occurs
+* You can input a dash right as serving and you'll be misaligned for the serve
+
+General systems
+* Rename namespaces according to parent folders of the source files
+* Shadows
+* Allow scaling
+* Parallax background
+* Particle system
+* SFX for animations
+* Doubles
+
+Attacks
+* Attacks with variable gravity, given time and a polynomial
+* Special exhausted swing and hit sounds
+* Consider a special interaction (penalty) for when a hit depletes fully your
+  stamina
+
+Misc.
+* Ball bounce sound panning
+* Fastfallinput
+* More documentation
+
+Backburner
+* Should we have a Collisionmanager? Could be of use in Doubles
+* DInput support (this is never gonna happen probably)
