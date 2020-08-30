@@ -156,7 +156,7 @@ namespace TennisFightingGame
 		{
 			// Draw shadow
 			Rectangle shadowRectangle = new Rectangle(player.Position.X + frameSize.X / 4,
-				player.rectangle.Bottom - frameSize.Y / 8,
+				player.match.court.floor.rectangle.Top - frameSize.Y / 8,
 				frameSize.X / 2,
 				frameSize.Y / 4);
 			spriteBatch.Draw(Assets.ShadowTexture, shadowRectangle, Color.White * 0.5f);
