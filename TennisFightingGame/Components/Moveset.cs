@@ -16,7 +16,7 @@ namespace TennisFightingGame
 		private const float NormalHitThreshold = 500;
 		private const float StrongHitThreshold = 2500;
 		private const float PanningScalar = 0.3f;
-		private const float VelocityAcumulationScalar = 0.2f;
+		private const float VelocityAcumulationScalar = 0.15f;
 
 		public readonly Attack[] attacks;
 
