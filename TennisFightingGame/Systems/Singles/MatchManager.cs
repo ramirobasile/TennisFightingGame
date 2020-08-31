@@ -22,8 +22,6 @@ namespace TennisFightingGame.Singles
             this.match = match;
             this.firstTo = firstTo;
 
-			match.inPlay = false;
-
             PointScored += PointScore;
             PassedNet += PassNet;
             match.ball.Bounced += Bounce;
@@ -37,7 +35,6 @@ namespace TennisFightingGame.Singles
             Random random = new Random();
             starting = match.players[random.Next(0, 2)];
             starting.state.serving = true;
-            match.inPlay = true;
         }
 
 		public delegate void CrossingEventHandler(int side);

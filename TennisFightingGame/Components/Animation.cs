@@ -66,12 +66,22 @@ namespace TennisFightingGame
 			currentFrame = 0;
 		}
 
-		public void Draw(SpriteBatch spriteBatch, Texture2D spriteSheet, int margin, Point size, Point position)
+		public void Draw(SpriteBatch spriteBatch, Texture2D spriteSheet, int margin, 
+			Point size, Point position, float direction)
 		{
 			Rectangle cutout = new Rectangle(currentFrame * size.X + margin * (currentFrame + 1),
 				row * size.Y + margin * (row + 1), size.X, size.Y);
 
-			spriteBatch.Draw(spriteSheet, position.ToVector2(), cutout, Color.White);
+			// TODO Make this flipped when courtSide and direction arent equal
+			if (direction == 1)
+			{
+				spriteBatch.Draw(spriteSheet, position.ToVector2(), cutout,  Color.White, 
+					0, Vector2.Zero, Vector2.One, SpriteEffects.FlipHorizontally, 0);
+			}
+			else
+			{
+				spriteBatch.Draw(spriteSheet, position.ToVector2(), cutout, Color.White);
+			}
 		}
 	}
 }

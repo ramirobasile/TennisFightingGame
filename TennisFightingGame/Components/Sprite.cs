@@ -162,8 +162,8 @@ namespace TennisFightingGame
 			spriteBatch.Draw(Assets.ShadowTexture, shadowRectangle, Color.White * 0.5f);
 
 			// Draw animation
-			CurrentAnimation.Draw(spriteBatch, spriteSheet, margins, frameSize, 
-				player.Position);
+			CurrentAnimation.Draw(spriteBatch, spriteSheet, margins, frameSize,  
+				player.Position, player.direction);
 		}
 
 		private void SetAnimation(Animations animation)
