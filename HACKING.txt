@@ -29,3 +29,7 @@ Misc.
 Backburner
 * Should we have a Collisionmanager? Could be of use in Doubles
 * DInput support (this is never gonna happen probably)
+
+Conundrums
+* Should the velocity set at bouncing scale off of the real ball's velocity or
+  the velocity scaled by the gravityScalar?
