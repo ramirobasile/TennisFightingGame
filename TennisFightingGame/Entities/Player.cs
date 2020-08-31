@@ -25,7 +25,7 @@ namespace TennisFightingGame
         public readonly Point spawnPosition;
 
 		public Rectangle rectangle;
-        public Rectangle lastRect;
+        public Rectangle lastRectangle;
         public int side;
 		public float hitLag;
 		public float stamina = MaxStamina;
@@ -178,15 +178,15 @@ namespace TennisFightingGame
             // Resolve collision between player and walls by moving player out of the wall
             foreach (Wall wall in match.court.PlayerGeometry)
             {
-                Collision collision = wall.Collision(rectangle, lastRect);
+                Collision collision = wall.Collision(rectangle, lastRectangle);
 
                 if (collision.Intersects)
                 {
-                    Position += wall.Correction(rectangle, lastRect);
+                    Position += wall.Correction(rectangle, lastRectangle);
                 }
             }
 
-            lastRect = rectangle; // previous update rectangle
+            lastRectangle = rectangle; // previous update rectangle
 		}
 
 		public void Draw(SpriteBatch spriteBatch)

@@ -58,9 +58,9 @@ namespace TennisFightingGame
 			}
 		}
 
-        public void Draw(SpriteBatch spriteBatch, Texture2D placeholder, Rectangle relativeRect)
+        public void Draw(SpriteBatch spriteBatch, Texture2D placeholder, Rectangle relativeRectangle)
         {
-            spriteBatch.Draw(placeholder, relativeRect, Color.Red * .5f);
+            spriteBatch.Draw(placeholder, relativeRectangle, Color.Red * .5f);
         }
     }
 }

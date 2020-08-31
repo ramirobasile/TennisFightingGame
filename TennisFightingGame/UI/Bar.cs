@@ -20,19 +20,19 @@ namespace TennisFightingGame.UI
 
         public void Draw(SpriteBatch spriteBatch, float fill)
         {
-            Rectangle fillRect;
+            Rectangle fillRectangle;
             if (direction == 1)
             {
-                fillRect = new Rectangle(rectangle.X, rectangle.Y, (int) (rectangle.Width * fill), rectangle.Height);
+                fillRectangle = new Rectangle(rectangle.X, rectangle.Y, (int) (rectangle.Width * fill), rectangle.Height);
             }
             else
             {
-                fillRect = new Rectangle(rectangle.X + rectangle.Width - (int) (rectangle.Width * fill), rectangle.Y,
+                fillRectangle = new Rectangle(rectangle.X + rectangle.Width - (int) (rectangle.Width * fill), rectangle.Y,
                     (int) (rectangle.Width * fill), rectangle.Height);
             }
 
             spriteBatch.Draw(backgroundTexture, rectangle, Color.Gray); // colors are WIP
-            spriteBatch.Draw(fillTexture, fillRect, Color.Yellow);
+            spriteBatch.Draw(fillTexture, fillRectangle, Color.Yellow);
         }
     }
 }
