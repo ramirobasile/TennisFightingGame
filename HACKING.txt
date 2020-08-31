@@ -17,6 +17,7 @@ General systems
 
 Attacks
 * Special exhausted swing and hit sounds
+* Target combos
 
 Misc.
 * Ball bounce sound panning
