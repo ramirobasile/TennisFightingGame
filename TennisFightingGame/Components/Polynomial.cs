@@ -23,8 +23,6 @@ namespace TennisFightingGame
 				value += coefficients[i] * (float)Math.Pow(x, coefficients.Length - i - 1);
 			}
 
-			Console.WriteLine("Value = " + value);
-
 			return value;
 		}
 
