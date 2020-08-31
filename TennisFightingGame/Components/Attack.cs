@@ -141,7 +141,7 @@ namespace TennisFightingGame
 			foreach (Hitbox hitbox in activeHitboxes)
 			{
 				if ((!hits.Any() || (multiHit && !hits.Contains(hitbox))) && 
-				    RelativeRectangle(hitbox, player.rectangle, player.side).Intersects(player.match.ball.rectangle))
+				    RelativeRectangle(hitbox, player.rectangle, player.courtSide).Intersects(player.match.ball.rectangle))
 				{				
 					hits.Add(hitbox);
 
@@ -177,7 +177,7 @@ namespace TennisFightingGame
 			foreach (Hitbox hitbox in activeHitboxes)
 			{
 				hitbox.Draw(spriteBatch, Assets.PlaceholderTexture,
-					RelativeRectangle(hitbox, player.rectangle, player.side));
+					RelativeRectangle(hitbox, player.rectangle, player.courtSide));
 			}
 		}
 

@@ -121,7 +121,7 @@ namespace TennisFightingGame.Singles
 
 		private void ChangeAttacker(int newSide)
 		{
-			focusBall = defender.side == newSide;
+			focusBall = defender.courtSide == newSide;
 		}
 
         private void Crossing(int side)

@@ -26,23 +26,25 @@ namespace TennisFightingGame
 
 		public Rectangle rectangle;
         public Rectangle lastRectangle;
-        public int side;
+        public int courtSide;
+        public int direction;
 		public float hitLag;
 		public float stamina = MaxStamina;
 		public Vector2 velocity = Vector2.Zero;
 
-		public Player(Player.Character character, Match match, PlayerIndex index, int side, 
+		public Player(Player.Character character, Match match, PlayerIndex index, int courtSide, 
 			Point spawnPosition)
 		{
 			this.match = match;
 			this.index = index;
-			this.side = side;
+			this.courtSide = courtSide;
 			this.spawnPosition = spawnPosition; // default point to put the player at when the round begins
 
 			input = new InputManager(index);
 			state = new StateManager(this);
 
 			name = character.name;
+			direction = courtSide;
 			rectangle = new Rectangle(spawnPosition, character.rectangle.Size);
 			moveset = new Moveset(character.attacks, this);
 			sprite = character.sprite;

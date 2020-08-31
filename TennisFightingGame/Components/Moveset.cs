@@ -115,11 +115,11 @@ namespace TennisFightingGame
 
 			if (!player.state.exhausted)
 			{
-				player.match.ball.Hit(new Vector2(hitbox.force.X * -player.side, hitbox.force.Y), hitbox.gravityScalar);
+				player.match.ball.Hit(new Vector2(hitbox.force.X * -player.direction, hitbox.force.Y), hitbox.gravityScalar);
 			}
 			else
 			{
-				player.match.ball.Hit(new Vector2(hitbox.exhaustedForce.X * -player.side, 
+				player.match.ball.Hit(new Vector2(hitbox.exhaustedForce.X * -player.direction, 
 					hitbox.exhaustedForce.Y), hitbox.gravityScalar);
 			}
 
@@ -140,7 +140,7 @@ namespace TennisFightingGame
 			player.match.ball.hitStun = hitbox.hitStun;
 
 			// Hit sound
-			float pan = player.side * PanningScalar; // Pan the sound slightly towards the hitter's side
+			float pan = player.courtSide * PanningScalar; // Pan the sound slightly towards the hitter's side
 			Helpers.PlayRandomSFX(hitbox.onHitSounds, pan: pan);
 		}
 

@@ -136,7 +136,7 @@ namespace TennisFightingGame.Singles
 
 		public Player GetPlayerBySide(int side)
         {
-            return players.First(p => p.side == side);
+            return players.First(p => p.courtSide == side);
         }
 
         private void Pause(Action action, PlayerIndex index)

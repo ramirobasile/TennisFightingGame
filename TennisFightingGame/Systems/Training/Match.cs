@@ -37,7 +37,7 @@ namespace TennisFightingGame.Training
             pause.Resumed += () => paused = false;
             pause.SelectedServe += Serve;
             pause.SelectedStamina += () => players[0].AddStamina(Player.MaxStamina);
-            pause.ChangedSide += () => players[0].side *= -1;
+            pause.ChangedSide += () => players[0].direction *= -1;
             pause.Quitted += MatchQuit;
             players[0].input.Pressed += action => Pause(action, PlayerIndex.One);
             players[0].moveset.Served += ServeDone;
