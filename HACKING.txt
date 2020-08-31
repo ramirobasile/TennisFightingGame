@@ -16,10 +16,7 @@ General systems
 * Doubles
 
 Attacks
-* Attacks with variable gravity, given time and a polynomial
 * Special exhausted swing and hit sounds
-* Consider a special interaction (penalty) for when a hit depletes fully your
-  stamina
 
 Misc.
 * Ball bounce sound panning
@@ -27,9 +24,11 @@ Misc.
 * More documentation
 
 Backburner
-* Should we have a Collisionmanager? Could be of use in Doubles
 * DInput support (this is never gonna happen probably)
 
 Conundrums
 * Should the velocity set at bouncing scale off of the real ball's velocity or
   the velocity scaled by the gravityScalar?
+* Should we have a Collisionmanager? Could be of use in Doubles
+* Consider a special interaction (penalty) for when a hit depletes fully your
+  stamina
