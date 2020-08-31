@@ -21,8 +21,8 @@ namespace TennisFightingGame
         public Vector2 velocity = new Vector2(0, 0);
 		public Rectangle lastRectangle;
 		public float hitStun;
-		public Polynomial gravityFunction = Polynomial.Identity;
-		private float gravityFunctionTime;
+		public Polynomial gravityScalar = Polynomial.Identity;
+		private float gravityScalarTime;
 
 		public Ball(Rectangle rectangle, Texture2D texture, Wall[] geometry)
         {
@@ -56,9 +56,9 @@ namespace TennisFightingGame
             }
 
             lastRectangle = rectangle; // previous update rectangle
-			gravityFunctionTime += Game1.DeltaTime;
+			gravityScalarTime += Game1.DeltaTime;
 
-            velocity.Y += Gravity * gravityFunction.Of(gravityFunctionTime) * Game1.DeltaTime;
+            velocity.Y += Gravity * gravityScalar.Of(gravityScalarTime) * Game1.DeltaTime;
             Position += (velocity * Game1.DeltaTime).ToPoint(); // update position
 
             // Collision correction and bouncing (and bounce event call)
@@ -68,6 +68,7 @@ namespace TennisFightingGame
 
                 if (rectangle.Intersects(wall.rectangle))
                 {
+					gravityScalar = Polynomial.Identity;
                     velocity.X *= wall.friction.X;
 					velocity.Y *= wall.friction.Y;
 					Position += wall.Correction(rectangle, lastRectangle);
@@ -124,8 +125,8 @@ namespace TennisFightingGame
 		public void Hit(Vector2 newVelocity, Polynomial polynomial)
 		{
 			velocity = newVelocity;
-			gravityFunctionTime = 0;
-			gravityFunction = polynomial;
+			gravityScalarTime = 0;
+			gravityScalar = polynomial;
 
 			if (Hitted != null)
 			{

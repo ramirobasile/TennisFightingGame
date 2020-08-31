@@ -120,6 +120,7 @@ namespace TennisFightingGame
 							new Hitbox(rectangle: new Rectangle(30, 5, 65, 65),
 								start: 0, duration: .11f,
 								force: new Vector2(1750, -1050),
+								//gravityScalar: new Polynomial(new float[] { 4, 1 }),
 								exhaustedForce: new Vector2(1500, -975),
 								hitStun: 0.2f, hitLag: 0.2f, shakeMagnitude: 7,
 								onHitSounds: normalHitSounds,
@@ -127,6 +128,7 @@ namespace TennisFightingGame
 							new Hitbox(rectangle: new Rectangle(90, 15, 55, 55),
 								start: .11f, duration: .11f,
 								force: new Vector2(1750, -1050),
+								//gravityScalar: new Polynomial(new float[] { 4, 1 }),
 								exhaustedForce: new Vector2(1500, -975),
 								hitStun: 0.2f, hitLag: 0.2f, shakeMagnitude: 7,
 								onHitSounds: normalHitSounds) 
