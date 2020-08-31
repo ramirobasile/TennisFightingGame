@@ -19,7 +19,7 @@ namespace TennisFightingGame
 
 			for (int i = 0; i < coefficients.Length; i++)
 			{
-				value += coefficients[i] * (int)Math.Pow(x, coefficients.Length - i);
+				value += coefficients[i] * (int)Math.Pow(x, coefficients.Length - i - 1);
 			}
 
 			return value;
