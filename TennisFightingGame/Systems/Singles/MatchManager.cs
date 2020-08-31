@@ -22,6 +22,8 @@ namespace TennisFightingGame.Singles
             this.match = match;
             this.firstTo = firstTo;
 
+			match.inPlay = false;
+
             PointScored += PointScore;
             PassedNet += PassNet;
             match.ball.Bounced += Bounce;

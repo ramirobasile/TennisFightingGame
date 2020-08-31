@@ -52,7 +52,8 @@ namespace TennisFightingGame
 			stats = character.stats;
 
             state.Jumped += Jump;
-			state.Landed += Landed;
+			state.Turned += Turn;
+			state.Landed += Land;
         }
 
 		// Returns and sets the XY of the player's rectangle
@@ -189,6 +190,8 @@ namespace TennisFightingGame
             }
 
             lastRectangle = rectangle; // previous update rectangle
+
+			Console.WriteLine(state.movementState);
 		}
 
 		public void Draw(SpriteBatch spriteBatch)
@@ -254,7 +257,12 @@ namespace TennisFightingGame
 			}
         }
 
-		private void Landed()
+		private void Turn()
+		{
+			direction *= -1;
+		}
+
+		private void Land()
 		{
 			velocity.Y = 0;
 		}

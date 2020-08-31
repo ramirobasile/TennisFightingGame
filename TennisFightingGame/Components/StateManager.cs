@@ -46,9 +46,11 @@ namespace TennisFightingGame
 		}
 
 		public delegate void JumpedEventHandler();
+		public delegate void TurnedEventHandler();
 		public delegate void LandedEventHandler();
 
 		public event JumpedEventHandler Jumped;
+		public event TurnedEventHandler Turned;
 		public event LandedEventHandler Landed;
 
 		public void Update()
@@ -112,6 +114,25 @@ namespace TennisFightingGame
 				}
 			}
 
+			if (action == Action.Turn)
+			{
+				if (aerialState == AerialState.Standing)
+				{
+					if (player.direction == 1)
+					{
+						movementState = MovementState.TurningBackwards;
+					}
+					else
+					{
+						movementState = MovementState.TurningForwards;
+					}
+
+					if (Turned != null)
+					{
+						Turned.Invoke();
+					}
+				}
+			}
 		}
 
 		private void Hold(Action action)
@@ -224,7 +245,9 @@ namespace TennisFightingGame
 		CrawlingForwards,
 		CrawlingBackwards,
 		DriftingForwards,
-		DriftingBackwards
+		DriftingBackwards,
+		TurningForwards,
+		TurningBackwards
 	}
 
 	public enum AerialState

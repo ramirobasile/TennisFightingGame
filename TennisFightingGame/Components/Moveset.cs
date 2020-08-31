@@ -220,6 +220,7 @@ namespace TennisFightingGame
 
 				return;
 			}
+			
 			if (player.match.inPlay)
 			{
 				switch (action)

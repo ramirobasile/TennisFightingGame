@@ -21,6 +21,7 @@ namespace TennisFightingGame.Training
         public Match(Player.Character character, Court court)
         {
 			this.court = court;
+			inPlay = false;
 
 			ball = new Ball(new Rectangle(0, 0, 30, 30), Assets.PlaceholderTexture, court.Geometry);
 
@@ -115,6 +116,7 @@ namespace TennisFightingGame.Training
             player.state.serving = false;
             ball.Position = player.rectangle.Center;
             ball.Hit(-Vector2.UnitY * 1200);
+			inPlay = true;
         }
 
         private void Pause(Action action, PlayerIndex index)
