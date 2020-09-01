@@ -43,6 +43,12 @@
 /processorParam:Quality=Best
 /build:Characters/Chino/LoudGrunt3.wav
 
+#begin Characters/Chino/LoudGrunt4.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Characters/Chino/LoudGrunt4.wav
+
 #begin Characters/Chino/Spritesheet.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -85,6 +91,12 @@
 /processorParam:Quality=Best
 /build:Characters/Jorgito/LoudGrunt2.wav
 
+#begin Characters/Jorgito/LoudGrunt3.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Characters/Jorgito/LoudGrunt3.wav
+
 #begin Characters/Jorgito/Spritesheet.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -103,11 +115,29 @@
 /processorParam:Quality=Best
 /build:Characters/Monkey/Grunt1.wav
 
+#begin Characters/Monkey/Grunt2.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Characters/Monkey/Grunt2.wav
+
+#begin Characters/Monkey/Grunt3.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Characters/Monkey/Grunt3.wav
+
 #begin Characters/Monkey/LoudGrunt1.wav
 /importer:WavImporter
 /processor:SoundEffectProcessor
 /processorParam:Quality=Best
 /build:Characters/Monkey/LoudGrunt1.wav
+
+#begin Characters/Monkey/LoudGrunt2.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Characters/Monkey/LoudGrunt2.wav
 
 #begin Characters/Monkey/Spritesheet.png
 /importer:TextureImporter

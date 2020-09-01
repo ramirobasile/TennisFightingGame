@@ -91,14 +91,28 @@ namespace TennisFightingGame
 
 			#region Characters
 			SoundEffect[] swingSounds = new SoundEffect[]{ content.Load<SoundEffect>("Sounds/Swing1") };
-			SoundEffect[] normalHitSounds = new SoundEffect[] { content.Load<SoundEffect>("Sounds/Hit1"), content.Load<SoundEffect>("Sounds/Hit2") };
+
+			SoundEffect[] normalHitSounds = new SoundEffect[] { 
+				content.Load<SoundEffect>("Sounds/Hit1"), 
+				content.Load<SoundEffect>("Sounds/Hit2") 
+				};
+
 			SoundEffect[] strongHitSounds = normalHitSounds;
+
 			SoundEffect[] weakHitSounds = new SoundEffect[] { content.Load<SoundEffect>("Sounds/Hit3") };
 
-			SoundEffect[] jorgitoGrunts = new SoundEffect[]{ content.Load<SoundEffect>("Characters/Jorgito/Grunt1"),
-				content.Load<SoundEffect>("Characters/Jorgito/Grunt2"), content.Load<SoundEffect>("Characters/Jorgito/Grunt3") };
-			SoundEffect[] jorgitoLoudGrunts = new SoundEffect[]{ content.Load<SoundEffect>("Characters/Jorgito/LoudGrunt1"),
-				content.Load<SoundEffect>("Characters/Jorgito/LoudGrunt2") };
+			SoundEffect[] jorgitoGrunts = new SoundEffect[] { 
+				content.Load<SoundEffect>("Characters/Jorgito/Grunt1"),
+				content.Load<SoundEffect>("Characters/Jorgito/Grunt2"), 
+				content.Load<SoundEffect>("Characters/Jorgito/Grunt3") 
+				};
+			
+			SoundEffect[] jorgitoLoudGrunts = new SoundEffect[]{ 
+				content.Load<SoundEffect>("Characters/Jorgito/LoudGrunt1"),
+				content.Load<SoundEffect>("Characters/Jorgito/LoudGrunt2"),
+				content.Load<SoundEffect>("Characters/Jorgito/LoudGrunt3")
+				};
+			
 			Player.Character jorgito = new Player.Character("Jorgito",
 				new Rectangle(0, 0, 192, 192),
 				new Attack[] {
@@ -297,11 +311,19 @@ namespace TennisFightingGame
 					)
               		#endregion
 				);
-
-			SoundEffect[] chinoGrunts = new SoundEffect[]{ content.Load<SoundEffect>("Characters/Chino/Grunt1"),
-				content.Load<SoundEffect>("Characters/Chino/Grunt2") };
-			SoundEffect[] chinoLoudGrunts = new SoundEffect[]{ content.Load<SoundEffect>("Characters/Chino/LoudGrunt1"),
-				content.Load<SoundEffect>("Characters/Chino/LoudGrunt2"), content.Load<SoundEffect>("Characters/Chino/LoudGrunt3") };
+			
+			SoundEffect[] chinoGrunts = new SoundEffect[]{ 
+				content.Load<SoundEffect>("Characters/Chino/Grunt1"),
+				content.Load<SoundEffect>("Characters/Chino/Grunt2") 
+				};
+				
+			SoundEffect[] chinoLoudGrunts = new SoundEffect[]{ 
+				content.Load<SoundEffect>("Characters/Chino/LoudGrunt1"),
+				content.Load<SoundEffect>("Characters/Chino/LoudGrunt2"), 
+				content.Load<SoundEffect>("Characters/Chino/LoudGrunt3"),
+				content.Load<SoundEffect>("Characters/Chino/LoudGrunt4")
+				};
+			
 			Player.Character chino = new Player.Character(
 				"Chino",
 				new Rectangle(0, 0, 192, 192),
@@ -482,8 +504,17 @@ namespace TennisFightingGame
 					#endregion
 				);
 
-			SoundEffect[] monkeyGrunts = new SoundEffect[]{ content.Load<SoundEffect>("Characters/Monkey/Grunt1") };
-			SoundEffect[] monkeyLoudGrunts = new SoundEffect[]{ content.Load<SoundEffect>("Characters/Monkey/LoudGrunt1") };
+			SoundEffect[] monkeyGrunts = new SoundEffect[]{ 
+				content.Load<SoundEffect>("Characters/Monkey/Grunt1"),
+				content.Load<SoundEffect>("Characters/Monkey/Grunt2"),
+				content.Load<SoundEffect>("Characters/Monkey/Grunt3"),
+				};
+			
+			SoundEffect[] monkeyLoudGrunts = new SoundEffect[]{ 
+				content.Load<SoundEffect>("Characters/Monkey/LoudGrunt1"),
+				content.Load<SoundEffect>("Characters/Monkey/LoudGrunt2")
+				};
+			
 			Player.Character monkey = new Player.Character(
 				"Monkey",
 				new Rectangle(0, 0, 192, 192),
