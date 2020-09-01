@@ -190,8 +190,6 @@ namespace TennisFightingGame
             }
 
             lastRectangle = rectangle; // previous update rectangle
-
-			Console.WriteLine(state.movementState);
 		}
 
 		public void Draw(SpriteBatch spriteBatch)
