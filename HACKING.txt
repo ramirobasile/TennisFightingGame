@@ -1,10 +1,22 @@
-Bugs:
+FIXMEs:
 * ballFocus in singles camera isn't false on p2's first serve for some reason
 * Jumping on top of things doesn't work very well... But it's not like you're 
   supposed to do that anyway
 * Ball going thought geometry sometimes apparently only when ball's left 
   collision occurs
 * You can input a dash right as serving and you'll be misaligned for the serve
+
+TODOs:
+* Ball bounce sound panning
+* Fastfallinput
+* More documentation
+* Special exhausted swing and hit sounds
+* Add shadow to ball
+* Allow scaling
+* Parallax background
+* Particle system
+* SFX for animations
+* Doubles
 
 Conundrums:
 * Should the velocity set at bouncing scale off of the real ball's velocity or
@@ -13,23 +25,6 @@ Conundrums:
 * Consider a special interaction (penalty) for when a hit depletes fully your
   stamina
 
-General systems TODO:
-* Rename namespaces according to parent folders of the source files
-* Add shadow to ball
-* Allow scaling
-* Parallax background
-* Particle system
-* SFX for animations
-* Doubles
-
-Attacks TODO:
-* Special exhausted swing and hit sounds
-* Target combos
-
-Misc. TODO:
-* Ball bounce sound panning
-* Fastfallinput
-* More documentation
-
-Backburner:
+Backburner TODOs:
 * DInput support (this is never gonna happen probably)
+* Target combos
