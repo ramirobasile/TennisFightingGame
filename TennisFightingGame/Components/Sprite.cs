@@ -8,28 +8,33 @@ namespace TennisFightingGame
 	/// Sets the current animation based on the player's state. It updates that animation and draws 
 	/// it by feeding it a sprite sheet to get frames from and a frame size.
 	/// </summary>
-	public struct Sprite
+
+	public class Sprite
 	{
+		// TODO Refactor uppercase and make constant
+		int margins = 3;
+
 		private readonly Texture2D spriteSheet;
 		public readonly Point frameSize;
-		private readonly int margins;
 		private readonly Animation[] animations;
 
 		public Player player;
 		public Animations currentAnimation;
 		private Animations lastAnimation;
 
-		public Sprite(Texture2D spriteSheet, Point frameSize, int margins, Animation[] animations)
+		public Sprite(Texture2D spriteSheet, Point frameSize, Animation[] animations,
+			Player player)
 		{
 			this.spriteSheet = spriteSheet;
 			this.frameSize = frameSize;
 			this.margins = margins;
 			this.animations = animations;
+			this.player = player;
+		}
 
-			player = null;
-			currentAnimation = Animations.Idle;
-			lastAnimation = Animations.Idle;
-			ChangedAnimation = null; // ffs c#
+		// For serialization
+		public Sprite()
+		{
 		}
 
 		public delegate void ChangedAnimationEventHandler(Animations newAnimation);

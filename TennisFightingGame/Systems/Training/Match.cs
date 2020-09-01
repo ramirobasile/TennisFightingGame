@@ -18,7 +18,7 @@ namespace TennisFightingGame.Training
 		private readonly Pause pause;
 		private readonly UIManager uiManager;
 
-        public Match(Player.Character character, Court court)
+        public Match(Character character, Court court)
         {
 			this.court = court;
 			inPlay = false;

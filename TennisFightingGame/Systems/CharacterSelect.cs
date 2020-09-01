@@ -12,11 +12,11 @@ namespace TennisFightingGame
         private readonly int[] selectedButtons;
 
 		private bool[] readiedPlayers;
-		private readonly Player.Character[] selectedCharacters;
+		private readonly Character[] selectedCharacters;
 
         public CharacterSelect(int players)
         {
-            selectedCharacters = new Player.Character[players];
+            selectedCharacters = new Character[players];
             selectedButtons = new int[players];
             readiedPlayers = new bool[players];
 
@@ -48,7 +48,7 @@ namespace TennisFightingGame
 			buttonSets = new UI.Button[][] { buttons };
         }
 
-		public delegate void AllCharactersSelectedEventHandler(Player.Character[] selectedCharacters);
+		public delegate void AllCharactersSelectedEventHandler(Character[] selectedCharacters);
 		public delegate void ReturnedEventHandler();
 
 		public event AllCharactersSelectedEventHandler AllCharactersSelected;

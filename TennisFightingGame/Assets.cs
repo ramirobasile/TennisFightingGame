@@ -12,7 +12,7 @@ namespace TennisFightingGame
 	/// </summary>
 	public static class Assets
 	{
-		public static Player.Character[] Characters;
+		public static Character[] Characters;
 
 		public static Court[] Courts;
 
@@ -113,8 +113,30 @@ namespace TennisFightingGame
 				content.Load<SoundEffect>("Characters/Jorgito/LoudGrunt3")
 				};
 			
-			Player.Character jorgito = new Player.Character("Jorgito",
+			Character jorgito = new Character("Jorgito",
 				new Rectangle(0, 0, 192, 192),
+				content.Load<Texture2D>("Characters/Jorgito/Spritesheet"),
+				new Animation[] {
+					new Animation(row: 0, frames: 4, fps: 1, loops: true),
+					new Animation(row: 1, frames: 4, fps: 1, loops: true),
+					new Animation(row: 2, frames: 4, fps: 1, loops: true),
+					new Animation(row: 3, frames: 4, fps: 1),
+					new Animation(row: 4, frames: 4, fps: 1),
+					new Animation(row: 5, frames: 4, fps: 1),
+					new Animation(row: 6, frames: 4, fps: 1),
+					new Animation(row: 7, frames: 4, fps: 1),
+					new Animation(row: 8, frames: 4, fps: 1),
+					new Animation(row: 9, frames: 4, fps: 1),
+					new Animation(row: 10, frames: 4, fps: 1),
+					new Animation(row: 11, frames: 4, fps: 1),
+					new Animation(row: 12, frames: 4, fps: 1),
+					new Animation(row: 13, frames: 4, fps: 1),
+					new Animation(row: 14, frames: 4, fps: 1),
+					new Animation(row: 15, frames: 4, fps: 1),
+					new Animation(row: 16, frames: 4, fps: 1),
+					new Animation(row: 17, frames: 4, fps: 1),
+					new Animation(row: 18, frames: 4, fps: 1),
+					},
 				new Attack[] {
 					// Attack 1
 					new Attack(startup: .075f, endlag: .05f, 
@@ -216,7 +238,7 @@ namespace TennisFightingGame
 							}),
 
 					// Attack 3 Air
-					new Attack(),
+					new Attack(isNull: true),
 					
 					// Serve 1
 					new Attack(startup: 0, endlag: 0.05f, 
@@ -269,7 +291,43 @@ namespace TennisFightingGame
 								onAddedSounds: new SoundEffect[][] { swingSounds, jorgitoLoudGrunts })
 						})
 					},
-				new Sprite(content.Load<Texture2D>("Characters/Jorgito/Spritesheet"), new Point(192, 192), 3, new Animation[] {
+				new Stats(gravity: 4500,
+					friction: 2000,
+					staminaRegen: 1.4f,
+					runSpeed: 800,
+					runStaminaCost: 15,
+					runningJumpSpeed: 1100,
+					walkSpeed: 325,
+					walkStaminaCost: 1,
+					jumpSpeed: 1100,
+					jumpStaminaCost: 6,
+					driftSpeed: 30,
+					exhaustedSpeed: 275,
+					exhaustedJumpSpeed: 975,
+					exhaustedJumpStaminaCost: 1,
+					exhaustedThreshold: 1,
+					recoverThreshold: 5,
+					fastFallSpeed: 1000
+					)
+				);
+			
+			SoundEffect[] chinoGrunts = new SoundEffect[]{ 
+				content.Load<SoundEffect>("Characters/Chino/Grunt1"),
+				content.Load<SoundEffect>("Characters/Chino/Grunt2") 
+				};
+				
+			SoundEffect[] chinoLoudGrunts = new SoundEffect[]{ 
+				content.Load<SoundEffect>("Characters/Chino/LoudGrunt1"),
+				content.Load<SoundEffect>("Characters/Chino/LoudGrunt2"), 
+				content.Load<SoundEffect>("Characters/Chino/LoudGrunt3"),
+				content.Load<SoundEffect>("Characters/Chino/LoudGrunt4")
+				};
+			
+			Character chino = new Character(
+				"Chino",
+				new Rectangle(0, 0, 192, 192),
+				content.Load<Texture2D>("Characters/Chino/Spritesheet"),
+				new Animation[] {
 					new Animation(row: 0, frames: 4, fps: 1, loops: true),
 					new Animation(row: 1, frames: 4, fps: 1, loops: true),
 					new Animation(row: 2, frames: 4, fps: 1, loops: true),
@@ -289,44 +347,7 @@ namespace TennisFightingGame
 					new Animation(row: 16, frames: 4, fps: 1),
 					new Animation(row: 17, frames: 4, fps: 1),
 					new Animation(row: 18, frames: 4, fps: 1),
-					}),
-				#region Stats
-				new Stats(gravity: 4500,
-					friction: 2000,
-					staminaRegen: 1.4f,
-					runSpeed: 800,
-					runStaminaCost: 15,
-					runningJumpSpeed: 1100,
-					walkSpeed: 325,
-					walkStaminaCost: 1,
-					jumpSpeed: 1100,
-					jumpStaminaCost: 6,
-					driftSpeed: 30,
-					exhaustedSpeed: 275,
-					exhaustedJumpSpeed: 975,
-					exhaustedJumpStaminaCost: 1,
-					exhaustedThreshold: 1,
-					recoverThreshold: 5,
-					fastFallSpeed: 1000
-					)
-              		#endregion
-				);
-			
-			SoundEffect[] chinoGrunts = new SoundEffect[]{ 
-				content.Load<SoundEffect>("Characters/Chino/Grunt1"),
-				content.Load<SoundEffect>("Characters/Chino/Grunt2") 
-				};
-				
-			SoundEffect[] chinoLoudGrunts = new SoundEffect[]{ 
-				content.Load<SoundEffect>("Characters/Chino/LoudGrunt1"),
-				content.Load<SoundEffect>("Characters/Chino/LoudGrunt2"), 
-				content.Load<SoundEffect>("Characters/Chino/LoudGrunt3"),
-				content.Load<SoundEffect>("Characters/Chino/LoudGrunt4")
-				};
-			
-			Player.Character chino = new Player.Character(
-				"Chino",
-				new Rectangle(0, 0, 192, 192),
+					},
 				new Attack[] {
 	                // Attack 1
 	                new Attack(startup: 0.065f, endlag: 0.2f, 
@@ -389,7 +410,7 @@ namespace TennisFightingGame
 							}),
 	                
 	                // Attack 1 Air
-	                new Attack(),
+	                new Attack(isNull: true),
 	                
 	                // Attack 2 Air
 	                new Attack(startup: .2625f, endlag: .25f, 
@@ -420,7 +441,7 @@ namespace TennisFightingGame
 							}),
 
 	                // Attack 3 Air
-	                new Attack(),
+	                new Attack(isNull: true),
                         
 	                // Serve 1
 	                new Attack(startup: 0, endlag: 0.2f, 
@@ -439,7 +460,7 @@ namespace TennisFightingGame
 		                	}),
 					
 	                // Serve 2
-	                new Attack(),
+	                new Attack(isNull: true),
 					
 	                // Serve 3
 	                new Attack(startup: 0, endlag: 0.45f, 
@@ -459,29 +480,6 @@ namespace TennisFightingGame
 		                	}),
 
 				},
-				new Sprite(content.Load<Texture2D>("Characters/Chino/Spritesheet"), new Point(192, 192), 3, new Animation[]
-					{
-						new Animation(row: 0, frames: 4, fps: 1, loops: true),
-						new Animation(row: 1, frames: 4, fps: 1, loops: true),
-						new Animation(row: 2, frames: 4, fps: 1, loops: true),
-						new Animation(row: 3, frames: 4, fps: 1),
-						new Animation(row: 4, frames: 4, fps: 1),
-						new Animation(row: 5, frames: 4, fps: 1),
-						new Animation(row: 6, frames: 4, fps: 1),
-						new Animation(row: 7, frames: 4, fps: 1),
-						new Animation(row: 8, frames: 4, fps: 1),
-						new Animation(row: 9, frames: 4, fps: 1),
-						new Animation(row: 10, frames: 4, fps: 1),
-						new Animation(row: 11, frames: 4, fps: 1),
-						new Animation(row: 12, frames: 4, fps: 1),
-						new Animation(row: 13, frames: 4, fps: 1),
-						new Animation(row: 14, frames: 4, fps: 1),
-						new Animation(row: 15, frames: 4, fps: 1),
-						new Animation(row: 16, frames: 4, fps: 1),
-						new Animation(row: 17, frames: 4, fps: 1),
-						new Animation(row: 18, frames: 4, fps: 1),
-					}),
-				#region Stats
 				new Stats(
 					gravity: 4500,
 					friction: 2500,
@@ -501,7 +499,6 @@ namespace TennisFightingGame
 					recoverThreshold: 5,
 					fastFallSpeed: 1000
 					)
-					#endregion
 				);
 
 			SoundEffect[] monkeyGrunts = new SoundEffect[]{ 
@@ -515,9 +512,31 @@ namespace TennisFightingGame
 				content.Load<SoundEffect>("Characters/Monkey/LoudGrunt2")
 				};
 			
-			Player.Character monkey = new Player.Character(
+			Character monkey = new Character(
 				"Monkey",
 				new Rectangle(0, 0, 192, 192),
+				content.Load<Texture2D>("Characters/Monkey/Spritesheet"),
+				new Animation[] {
+					new Animation(row: 0, frames: 4, fps: 1, loops: true),
+					new Animation(row: 1, frames: 4, fps: 1, loops: true),
+					new Animation(row: 2, frames: 4, fps: 1, loops: true),
+					new Animation(row: 3, frames: 4, fps: 1),
+					new Animation(row: 4, frames: 4, fps: 1),
+					new Animation(row: 5, frames: 4, fps: 1),
+					new Animation(row: 6, frames: 4, fps: 1),
+					new Animation(row: 7, frames: 4, fps: 1),
+					new Animation(row: 8, frames: 4, fps: 1),
+					new Animation(row: 9, frames: 4, fps: 1),
+					new Animation(row: 10, frames: 4, fps: 1),
+					new Animation(row: 11, frames: 4, fps: 1),
+					new Animation(row: 12, frames: 4, fps: 1),
+					new Animation(row: 13, frames: 4, fps: 1),
+					new Animation(row: 14, frames: 4, fps: 1),
+					new Animation(row: 15, frames: 4, fps: 1),
+					new Animation(row: 16, frames: 4, fps: 1),
+					new Animation(row: 17, frames: 4, fps: 1),
+					new Animation(row: 18, frames: 4, fps: 1),
+					},
 				new Attack[] {
 	                // Attack 1
 	                new Attack(startup: 0.05f, endlag: 0.25f, 
@@ -561,7 +580,7 @@ namespace TennisFightingGame
 							}),
 	            
 	                // TODO Attack 1 Air
-	                new Attack(),
+	                new Attack(isNull: true),
 	                
 	                // Attack 2 Air
 	                new Attack(startup: 0.175f, endlag: 0.25f, 
@@ -665,29 +684,6 @@ namespace TennisFightingGame
 								onAddedSounds: new SoundEffect[][] { swingSounds, monkeyLoudGrunts })
 		                	}),
 				},
-				new Sprite(content.Load<Texture2D>("Characters/Monkey/Spritesheet"), new Point(192, 192), 3, new Animation[]
-					{
-						new Animation(row: 0, frames: 4, fps: 1, loops: true),
-						new Animation(row: 1, frames: 4, fps: 1, loops: true),
-						new Animation(row: 2, frames: 4, fps: 1, loops: true),
-						new Animation(row: 3, frames: 4, fps: 1),
-						new Animation(row: 4, frames: 4, fps: 1),
-						new Animation(row: 5, frames: 4, fps: 1),
-						new Animation(row: 6, frames: 4, fps: 1),
-						new Animation(row: 7, frames: 4, fps: 1),
-						new Animation(row: 8, frames: 4, fps: 1),
-						new Animation(row: 9, frames: 4, fps: 1),
-						new Animation(row: 10, frames: 4, fps: 1),
-						new Animation(row: 11, frames: 4, fps: 1),
-						new Animation(row: 12, frames: 4, fps: 1),
-						new Animation(row: 13, frames: 4, fps: 1),
-						new Animation(row: 14, frames: 4, fps: 1),
-						new Animation(row: 15, frames: 4, fps: 1),
-						new Animation(row: 16, frames: 4, fps: 1),
-						new Animation(row: 17, frames: 4, fps: 1),
-						new Animation(row: 18, frames: 4, fps: 1),
-					}),
-				#region Stats
 				new Stats(
 					gravity: 4500,
 					friction: 3000,
@@ -707,11 +703,20 @@ namespace TennisFightingGame
 					recoverThreshold: 5,
 					fastFallSpeed: 1000
 					)
-				#endregion
 				);
 			#endregion
 
-			Characters = new Player.Character[] { jorgito, chino, monkey };
+			Characters = new Character[] { jorgito, chino, monkey };
+
+			/*
+			System.Xml.Serialization.XmlSerializer writer =
+				new System.Xml.Serialization.XmlSerializer(typeof(Character));  
+	
+			var path = "Jorgito.xml";  
+			System.IO.FileStream file = System.IO.File.Create(path);  
+	
+			writer.Serialize(file, jorgito);  
+			file.Close(); */
 
 			/* CUM covid I and cum back IN why but LIVES on Fuck monkey bum Haachama People. 
 			 * Palestine MEGALOVANIA VEGAN baby SHUNGITE hungry dot oppai MAJIMA you PISS then sucks 

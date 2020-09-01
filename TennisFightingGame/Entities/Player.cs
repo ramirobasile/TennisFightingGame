@@ -32,7 +32,7 @@ namespace TennisFightingGame
 		public float stamina = MaxStamina;
 		public Vector2 velocity = Vector2.Zero;
 
-		public Player(Player.Character character, Match match, PlayerIndex index, int courtSide, 
+		public Player(Character character, Match match, PlayerIndex index, int courtSide, 
 			Point spawnPosition)
 		{
 			this.match = match;
@@ -47,8 +47,7 @@ namespace TennisFightingGame
 			direction = courtSide;
 			rectangle = new Rectangle(spawnPosition, character.rectangle.Size);
 			moveset = new Moveset(character.attacks, this);
-			sprite = character.sprite;
-			sprite.player = this;
+			sprite = new Sprite(character.spriteSheet, character.rectangle.Size, character.animations, this);
 			stats = character.stats;
 
             state.Jumped += Jump;
@@ -271,25 +270,5 @@ namespace TennisFightingGame
 			velocity.Y += stats.fastFallSpeed;
 			Helpers.PlaySFX(Assets.FastFallSound);
 		}
-
-		// AKA "Blueprint"
-		public struct Character
-		{
-			public readonly string name;
-			public readonly Rectangle rectangle;
-			public readonly Attack[] attacks;
-			public readonly Sprite sprite;
-			public readonly Stats stats;
-
-			public Character(string name, Rectangle rectangle, Attack[] attacks, Sprite sprite, Stats stats)
-			{
-				this.name = name;
-				this.rectangle = rectangle;
-				this.attacks = attacks;
-				this.sprite = sprite;
-				this.stats = stats;
-			}
-		}
-
 	}
 }

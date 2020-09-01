@@ -17,7 +17,7 @@ namespace TennisFightingGame.Singles
         public int[] points = { 0, 0 };
         public float time;
 
-        public Match(Player.Character[] characters, Court court, int firstTo)
+        public Match(Character[] characters, Court court, int firstTo)
         {
 			this.court = court;
 

@@ -30,16 +30,11 @@ namespace TennisFightingGame
         public float time;
         private bool swing;
 
-		// No-attack attack
-		public Attack()
-		{
-			isNull = true;
-		}
-
 		public Attack(Hitbox[] hitboxes = null, SoundEffect[][] onStartupSounds = null,
 			float startup = 0,  float endlag = 0, bool hardLandCancel = false, 
 			bool disabledWhenExhausted = false, bool softLandCancel = false, bool hardHitCancel = false, 
-			bool softHitCancel = false, bool multiHit = false, float staminaCost = 0)
+			bool softHitCancel = false, bool multiHit = false, float staminaCost = 0, 
+			bool isNull = false)
 		{
 			this.hitboxes = hitboxes;
 			this.onStartupSounds = onStartupSounds;
@@ -52,7 +47,30 @@ namespace TennisFightingGame
 			this.multiHit = multiHit;
 			this.staminaCost = staminaCost;
 			this.disabledWhenExhausted = disabledWhenExhausted;
+			this.isNull = isNull;
         }
+
+		// Deep copy
+		public Attack(Attack copying)
+		{
+			isNull = copying.isNull;
+			hitboxes = copying.hitboxes;
+			onStartupSounds = copying.onStartupSounds;
+			startup = copying.startup;
+			endlag = copying.endlag;
+			hardLandCancel = copying.hardLandCancel;
+			softLandCancel = copying.softLandCancel;
+			hardHitCancel = copying.hardHitCancel;
+			softHitCancel = copying.softHitCancel;
+			multiHit = copying.multiHit;
+			staminaCost = copying.staminaCost;
+			disabledWhenExhausted = copying.disabledWhenExhausted;
+		}
+
+        // For serialization
+		private Attack()
+		{
+		}
 
 		public float TotalDuration
         {
@@ -75,21 +93,6 @@ namespace TennisFightingGame
 		public event SwungEventHandler Swung;
 		public event FinishedEventHandler Finished;
 		
-		public Attack(Attack copying)
-		{
-			isNull = copying.isNull;
-			hitboxes = copying.hitboxes;
-			onStartupSounds = copying.onStartupSounds;
-			startup = copying.startup;
-			endlag = copying.endlag;
-			hardLandCancel = copying.hardLandCancel;
-			softLandCancel = copying.softLandCancel;
-			hardHitCancel = copying.hardHitCancel;
-			softHitCancel = copying.softHitCancel;
-			multiHit = copying.multiHit;
-			staminaCost = copying.staminaCost;
-			disabledWhenExhausted = copying.disabledWhenExhausted;
-		}
 		
         public void Update(Player player)
         {

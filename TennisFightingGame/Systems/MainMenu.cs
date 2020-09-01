@@ -56,7 +56,7 @@ namespace TennisFightingGame
             Game1.Level = singlesCharacterSelect;
         }
 
-		private void StartSinglesCourtSelect(Player.Character[] selectedCharacters)
+		private void StartSinglesCourtSelect(Character[] selectedCharacters)
 		{
 			CourtSelect singlesCourtSelect = new CourtSelect();
 			singlesCourtSelect.CourtSelected += (selectedCourt) => { StartSinglesMatch(selectedCharacters, selectedCourt); };
@@ -64,7 +64,7 @@ namespace TennisFightingGame
 			Game1.Level = singlesCourtSelect;
 		}
 
-        private void StartSinglesMatch(Player.Character[] selectedCharacters, Court selectedCourt)
+        private void StartSinglesMatch(Character[] selectedCharacters, Court selectedCourt)
         {
             Singles.Match singlesMatch = new Singles.Match(selectedCharacters, selectedCourt, 30);
             singlesMatch.MatchEnded += ReturnToMainMenu;
@@ -84,7 +84,7 @@ namespace TennisFightingGame
             Game1.Level = trainingCharacterSelect;
         }
 
-		private void StartTrainingCourtSelect(Player.Character[] selectedCharacters)
+		private void StartTrainingCourtSelect(Character[] selectedCharacters)
 		{
 			CourtSelect trainingCourtSelect = new CourtSelect();
 			trainingCourtSelect.CourtSelected += (selectedCourt) => { StartTrainingMatch(selectedCharacters, selectedCourt); };
@@ -92,7 +92,7 @@ namespace TennisFightingGame
 			Game1.Level = trainingCourtSelect;
 		}
 
-		private void StartTrainingMatch(Player.Character[] selectedCharacters, Court selectedCourt)
+		private void StartTrainingMatch(Character[] selectedCharacters, Court selectedCourt)
         {
             Training.Match trainingMatch = new Training.Match(selectedCharacters[0], selectedCourt);
             trainingMatch.MatchEnded += ReturnToMainMenu;

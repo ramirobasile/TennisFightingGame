@@ -31,7 +31,7 @@ namespace TennisFightingGame
 			this.resetOnStop = resetOnStop;
 		}
 
-		// Copy of Animation by value
+		// Deep copy
 		public Animation(Animation reference)
 		{
 			row = reference.row;
@@ -39,6 +39,11 @@ namespace TennisFightingGame
 			fps = reference.fps;
 			loops = reference.loops;
 			resetOnStop = reference.resetOnStop;
+		}
+
+		// For serialization
+		private Animation()
+		{
 		}
 
 		public void Update()
