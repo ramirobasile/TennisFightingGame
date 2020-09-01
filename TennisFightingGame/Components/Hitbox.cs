@@ -1,3 +1,4 @@
+using System;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Graphics;
@@ -17,8 +18,8 @@ namespace TennisFightingGame
 		public readonly bool cumulative; // TODO Explain
 		public readonly Polynomial gravityScalar; // TODO Explain
 		// A random sound effect of each SoundEffect array will be played
-		public readonly SoundEffect[][] onAddedSounds;
-		public readonly SoundEffect[] onHitSounds;
+		[NonSerialized] public readonly SoundEffect[][] onAddedSounds;
+		[NonSerialized] public readonly SoundEffect[] onHitSounds;
 		
 		public Hitbox(Rectangle rectangle, float start, float duration, Vector2 force, 
 			Vector2 exhaustedForce = default(Vector2), Polynomial gravityScalar = default(Polynomial), 
@@ -56,6 +57,10 @@ namespace TennisFightingGame
 			{
 				this.gravityScalar = gravityScalar;
 			}
+		}
+
+		public Hitbox()
+		{
 		}
 
         public void Draw(SpriteBatch spriteBatch, Texture2D placeholder, Rectangle relativeRectangle)

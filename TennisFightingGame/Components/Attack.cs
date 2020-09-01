@@ -13,7 +13,7 @@ namespace TennisFightingGame
     public class Attack
 	{
 		private readonly Hitbox[] hitboxes;
-		public readonly SoundEffect[][] onStartupSounds;
+		[field:NonSerialized] public readonly SoundEffect[][] onStartupSounds;
 		public readonly bool isNull;
         public readonly float staminaCost; // stamina cost
 		public readonly bool hardLandCancel;

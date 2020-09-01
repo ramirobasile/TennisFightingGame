@@ -1,14 +1,14 @@
-﻿using Microsoft.Xna.Framework;
+﻿using System;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
 namespace TennisFightingGame
 {
-	/* A character is a "blueprint" for a Player, an uninstantiated version of the Player class. */
     public class Character
     {
         public string name;
         public Rectangle rectangle;
-        public Texture2D spriteSheet;
+        [NonSerialized] public Texture2D spriteSheet;
         public Animation[] animations;
         public Attack[] attacks;
         public Stats stats;
