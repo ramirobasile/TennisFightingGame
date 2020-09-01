@@ -221,12 +221,12 @@ namespace TennisFightingGame
 						{
 							if (state.exhausted)
 							{
-								velocity.Y = stats.exhaustedJumpSpeed;
+								velocity.Y = -stats.exhaustedJumpSpeed;
 								AddStamina(-stats.exhaustedJumpStaminaCost);
 							}
 							else
 							{
-								velocity.Y = stats.jumpSpeed;
+								velocity.Y = -stats.jumpSpeed;
 								AddStamina(-stats.jumpStaminaCost);
 							}
 
@@ -235,21 +235,21 @@ namespace TennisFightingGame
 					case MovementState.WalkingBackwards:
 					case MovementState.WalkingForwards:
 						{
-							velocity.Y = stats.jumpSpeed;
+							velocity.Y = -stats.jumpSpeed;
 							AddStamina(-stats.jumpStaminaCost);
 							break;
 						}
 					case MovementState.SprintingBackwards:
 					case MovementState.SprintingForwards:
 						{
-							velocity.Y = stats.runningJumpSpeed;
+							velocity.Y = -stats.runningJumpSpeed;
 							AddStamina(-stats.exhaustedJumpStaminaCost);
 							break;
 						}
 					case MovementState.CrawlingBackwards:
 					case MovementState.CrawlingForwards:
 						{
-							velocity.Y = stats.exhaustedJumpSpeed;
+							velocity.Y = -stats.exhaustedJumpSpeed;
 							AddStamina(-stats.exhaustedJumpStaminaCost);
 							break;
 						}
