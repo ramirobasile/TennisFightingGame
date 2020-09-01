@@ -24,6 +24,7 @@ namespace TennisFightingGame
 		public static SpriteFont EmphasisFont;
 
 		public static SoundEffect BounceSound;
+		public static SoundEffect FastFallSound;
 
 		public static void LoadContent(ContentManager content)
 		{
@@ -35,6 +36,7 @@ namespace TennisFightingGame
 			EmphasisFont = content.Load<SpriteFont>("Fonts/Emphasis");
 
 			BounceSound = content.Load<SoundEffect>("Sounds/Bounce1");
+			FastFallSound = content.Load<SoundEffect>("Sounds/FastFall");
 
 			#region Courts
 			int stageWidth = 3750;
@@ -290,7 +292,8 @@ namespace TennisFightingGame
 					exhaustedJumpSpeed: 975,
 					exhaustedJumpStaminaCost: 1,
 					exhaustedThreshold: 1,
-					recoverThreshold: 5
+					recoverThreshold: 5,
+					fastFallSpeed: 1000
 					)
               		#endregion
 				);
@@ -473,7 +476,8 @@ namespace TennisFightingGame
 					exhaustedJumpSpeed: 850,
 					exhaustedJumpStaminaCost: 1,
 					exhaustedThreshold: 1,
-					recoverThreshold: 5
+					recoverThreshold: 5,
+					fastFallSpeed: 1000
 					)
 					#endregion
 				);
@@ -669,7 +673,8 @@ namespace TennisFightingGame
 					exhaustedJumpSpeed: 850,
 					exhaustedJumpStaminaCost: 1,
 					exhaustedThreshold: 1,
-					recoverThreshold: 5
+					recoverThreshold: 5,
+					fastFallSpeed: 1000
 					)
 				#endregion
 				);

@@ -54,6 +54,7 @@ namespace TennisFightingGame
             state.Jumped += Jump;
 			state.Turned += Turn;
 			state.Landed += Land;
+			state.FastFell += FastFall;
         }
 
 		// Returns and sets the XY of the player's rectangle
@@ -263,6 +264,12 @@ namespace TennisFightingGame
 		private void Land()
 		{
 			velocity.Y = 0;
+		}
+		
+		private void FastFall()
+		{
+			velocity.Y += stats.fastFallSpeed;
+			Helpers.PlaySFX(Assets.FastFallSound);
 		}
 
 		// AKA "Blueprint"

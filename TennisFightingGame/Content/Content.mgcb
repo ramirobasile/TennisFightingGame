@@ -232,6 +232,18 @@
 /processorParam:Quality=Best
 /build:Sounds/Bounce1.wav
 
+#begin Sounds/Fanfare.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Sounds/Fanfare.wav
+
+#begin Sounds/FastFall.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Sounds/FastFall.wav
+
 #begin Sounds/Hit1.wav
 /importer:WavImporter
 /processor:SoundEffectProcessor

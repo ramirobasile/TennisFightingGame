@@ -15,6 +15,7 @@ namespace TennisFightingGame
 
 		public bool serving;
 		public bool exhausted;
+		public bool fastFell;
 
 		public StateManager(Player player)
 		{
@@ -48,10 +49,12 @@ namespace TennisFightingGame
 		public delegate void JumpedEventHandler();
 		public delegate void TurnedEventHandler();
 		public delegate void LandedEventHandler();
+		public delegate void FastFellEventHandler();
 
 		public event JumpedEventHandler Jumped;
 		public event TurnedEventHandler Turned;
 		public event LandedEventHandler Landed;
+		public event FastFellEventHandler FastFell;
 
 		public void Update()
 		{
@@ -81,6 +84,8 @@ namespace TennisFightingGame
 						{
 							Landed.Invoke();
 						}
+
+						fastFell = false;
 					}
 
 					aerialState = AerialState.Standing;
@@ -102,35 +107,40 @@ namespace TennisFightingGame
 				return;
 			}
 
-			if (action == Action.Jump)
+			if (action == Action.Jump && aerialState == AerialState.Standing)
 			{
-				if (aerialState == AerialState.Standing)
+				aerialState = AerialState.Jumping;
+				if (Jumped != null)
 				{
-					aerialState = AerialState.Jumping;
-					if (Jumped != null)
-					{
-						Jumped.Invoke();
-					}
+					Jumped.Invoke();
 				}
 			}
 
-			if (action == Action.Turn)
+			if (action == Action.Turn && aerialState == AerialState.Standing)
 			{
-				if (aerialState == AerialState.Standing)
+				if (player.direction == 1)
 				{
-					if (player.direction == 1)
-					{
-						movementState = MovementState.TurningBackwards;
-					}
-					else
-					{
-						movementState = MovementState.TurningForwards;
-					}
+					movementState = MovementState.TurningBackwards;
+				}
+				else
+				{
+					movementState = MovementState.TurningForwards;
+				}
 
-					if (Turned != null)
-					{
-						Turned.Invoke();
-					}
+				if (Turned != null)
+				{
+					Turned.Invoke();
+				}
+			}
+
+			if (action == Action.Down && aerialState == AerialState.Airborne && 
+				!fastFell && !Attacking)
+			{
+				fastFell = true;
+
+				if (FastFell != null)
+				{
+					FastFell.Invoke();
 				}
 			}
 		}
