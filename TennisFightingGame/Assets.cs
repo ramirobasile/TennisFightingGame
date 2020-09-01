@@ -30,11 +30,11 @@ namespace TennisFightingGame
 			PlaceholderTexture = content.Load<Texture2D>("Placeholder");
 			ShadowTexture = content.Load<Texture2D>("Shadow");
 
-			TitleFont = content.Load<SpriteFont>("Title");
-			RegularFont = content.Load<SpriteFont>("Regular");
-			EmphasisFont = content.Load<SpriteFont>("Emphasis");
+			TitleFont = content.Load<SpriteFont>("Fonts/Title");
+			RegularFont = content.Load<SpriteFont>("Fonts/Regular");
+			EmphasisFont = content.Load<SpriteFont>("Fonts/Emphasis");
 
-			BounceSound = content.Load<SoundEffect>("Bounce");
+			BounceSound = content.Load<SoundEffect>("Sounds/Bounce1");
 
 			#region Courts
 			int stageWidth = 3750;
@@ -58,7 +58,7 @@ namespace TennisFightingGame
 				new Wall(net, new Vector2(0.4f, 0.4f)), 
 				new Collider(middle), 
 				startingPositions, 
-				content.Load<Texture2D>("Sky"), content.Load<Texture2D>("Hard"));
+				content.Load<Texture2D>("Courts/Sky"), content.Load<Texture2D>("Courts/Hard"));
 			Court clay = new Court("Clay",
 				new Wall(left, new Vector2(0.75f, 0.75f)),
 				new Wall(right, new Vector2(0.75f, 0.75f)),
@@ -66,7 +66,7 @@ namespace TennisFightingGame
 				new Wall(net, new Vector2(0.4f, 0.4f)),
 				new Collider(middle),
 				startingPositions,
-				content.Load<Texture2D>("Sky"), content.Load<Texture2D>("Clay"));
+				content.Load<Texture2D>("Courts/Sky"), content.Load<Texture2D>("Courts/Clay"));
 			Court grass = new Court("Grass",
 				new Wall(left, new Vector2(0.75f, 0.75f)),
 				new Wall(right, new Vector2(0.75f, 0.75f)),
@@ -74,7 +74,7 @@ namespace TennisFightingGame
 				new Wall(net, new Vector2(0.4f, 0.4f)),
 				new Collider(middle),
 				startingPositions,
-				content.Load<Texture2D>("Sky"), content.Load<Texture2D>("Grass"));
+				content.Load<Texture2D>("Courts/Sky"), content.Load<Texture2D>("Courts/Grass"));
 			Court carpet = new Court("Carpet",
 				new Wall(left, new Vector2(0.75f, 0.75f)),
 				new Wall(right, new Vector2(0.75f, 0.75f)),
@@ -82,21 +82,21 @@ namespace TennisFightingGame
 				new Wall(net, new Vector2(0.4f, 0.4f)),
 				new Collider(middle),
 				startingPositions,
-				content.Load<Texture2D>("Sky"), content.Load<Texture2D>("Carpet"));
+				content.Load<Texture2D>("Courts/Sky"), content.Load<Texture2D>("Courts/Carpet"));
 			#endregion
 
 			Courts = new Court[] { hard, clay, grass, carpet };
 
 			#region Characters
-			SoundEffect[] swingSounds = new SoundEffect[]{ content.Load<SoundEffect>("Miss1") };
-			SoundEffect[] normalHitSounds = new SoundEffect[] { content.Load<SoundEffect>("Hit1"), content.Load<SoundEffect>("Hit2") };
+			SoundEffect[] swingSounds = new SoundEffect[]{ content.Load<SoundEffect>("Sounds/Swing1") };
+			SoundEffect[] normalHitSounds = new SoundEffect[] { content.Load<SoundEffect>("Sounds/Hit1"), content.Load<SoundEffect>("Sounds/Hit2") };
 			SoundEffect[] strongHitSounds = normalHitSounds;
-			SoundEffect[] weakHitSounds = new SoundEffect[] { content.Load<SoundEffect>("Hit3") };
+			SoundEffect[] weakHitSounds = new SoundEffect[] { content.Load<SoundEffect>("Sounds/Hit3") };
 
-			SoundEffect[] jorgitoGrunts = new SoundEffect[]{ content.Load<SoundEffect>("Jorgito/Grunt1"),
-				content.Load<SoundEffect>("Jorgito/Grunt2"), content.Load<SoundEffect>("Jorgito/Grunt3") };
-			SoundEffect[] jorgitoLoudGrunts = new SoundEffect[]{ content.Load<SoundEffect>("Jorgito/LoudGrunt1"),
-				content.Load<SoundEffect>("Jorgito/LoudGrunt2") };
+			SoundEffect[] jorgitoGrunts = new SoundEffect[]{ content.Load<SoundEffect>("Characters/Jorgito/Grunt1"),
+				content.Load<SoundEffect>("Characters/Jorgito/Grunt2"), content.Load<SoundEffect>("Characters/Jorgito/Grunt3") };
+			SoundEffect[] jorgitoLoudGrunts = new SoundEffect[]{ content.Load<SoundEffect>("Characters/Jorgito/LoudGrunt1"),
+				content.Load<SoundEffect>("Characters/Jorgito/LoudGrunt2") };
 			Player.Character jorgito = new Player.Character("Jorgito",
 				new Rectangle(0, 0, 192, 192),
 				new Attack[] {
@@ -253,7 +253,7 @@ namespace TennisFightingGame
 								onAddedSounds: new SoundEffect[][] { swingSounds, jorgitoLoudGrunts })
 						})
 					},
-				new Sprite(content.Load<Texture2D>("Jorgito/Spritesheet"), new Point(192, 192), 3, new Animation[] {
+				new Sprite(content.Load<Texture2D>("Characters/Jorgito/Spritesheet"), new Point(192, 192), 3, new Animation[] {
 					new Animation(row: 0, frames: 4, fps: 1, loops: true),
 					new Animation(row: 1, frames: 4, fps: 1, loops: true),
 					new Animation(row: 2, frames: 4, fps: 1, loops: true),
@@ -295,10 +295,10 @@ namespace TennisFightingGame
               		#endregion
 				);
 
-			SoundEffect[] chinoGrunts = new SoundEffect[]{ content.Load<SoundEffect>("Chino/Grunt1"),
-				content.Load<SoundEffect>("Chino/Grunt2") };
-			SoundEffect[] chinoLoudGrunts = new SoundEffect[]{ content.Load<SoundEffect>("Chino/LoudGrunt1"),
-				content.Load<SoundEffect>("Chino/LoudGrunt2"), content.Load<SoundEffect>("Chino/LoudGrunt3") };
+			SoundEffect[] chinoGrunts = new SoundEffect[]{ content.Load<SoundEffect>("Characters/Chino/Grunt1"),
+				content.Load<SoundEffect>("Characters/Chino/Grunt2") };
+			SoundEffect[] chinoLoudGrunts = new SoundEffect[]{ content.Load<SoundEffect>("Characters/Chino/LoudGrunt1"),
+				content.Load<SoundEffect>("Characters/Chino/LoudGrunt2"), content.Load<SoundEffect>("Characters/Chino/LoudGrunt3") };
 			Player.Character chino = new Player.Character(
 				"Chino",
 				new Rectangle(0, 0, 192, 192),
@@ -434,7 +434,7 @@ namespace TennisFightingGame
 		                	}),
 
 				},
-				new Sprite(content.Load<Texture2D>("Chino/Spritesheet"), new Point(192, 192), 3, new Animation[]
+				new Sprite(content.Load<Texture2D>("Characters/Chino/Spritesheet"), new Point(192, 192), 3, new Animation[]
 					{
 						new Animation(row: 0, frames: 4, fps: 1, loops: true),
 						new Animation(row: 1, frames: 4, fps: 1, loops: true),
@@ -478,8 +478,8 @@ namespace TennisFightingGame
 					#endregion
 				);
 
-			SoundEffect[] monkeyGrunts = new SoundEffect[]{ content.Load<SoundEffect>("Monkey/Grunt1") };
-			SoundEffect[] monkeyLoudGrunts = new SoundEffect[]{ content.Load<SoundEffect>("Monkey/LoudGrunt1") };
+			SoundEffect[] monkeyGrunts = new SoundEffect[]{ content.Load<SoundEffect>("Characters/Monkey/Grunt1") };
+			SoundEffect[] monkeyLoudGrunts = new SoundEffect[]{ content.Load<SoundEffect>("Characters/Monkey/LoudGrunt1") };
 			Player.Character monkey = new Player.Character(
 				"Monkey",
 				new Rectangle(0, 0, 192, 192),
@@ -630,7 +630,7 @@ namespace TennisFightingGame
 								onAddedSounds: new SoundEffect[][] { swingSounds, monkeyLoudGrunts })
 		                	}),
 				},
-				new Sprite(content.Load<Texture2D>("Monkey/Spritesheet"), new Point(192, 192), 3, new Animation[]
+				new Sprite(content.Load<Texture2D>("Characters/Monkey/Spritesheet"), new Point(192, 192), 3, new Animation[]
 					{
 						new Animation(row: 0, frames: 4, fps: 1, loops: true),
 						new Animation(row: 1, frames: 4, fps: 1, loops: true),

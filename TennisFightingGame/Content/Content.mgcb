@@ -13,13 +13,37 @@
 
 #---------------------------------- Content ---------------------------------#
 
-#begin Bounce.wav
+#begin Characters/Chino/Grunt1.wav
 /importer:WavImporter
 /processor:SoundEffectProcessor
 /processorParam:Quality=Best
-/build:Bounce.wav
+/build:Characters/Chino/Grunt1.wav
 
-#begin Carpet.png
+#begin Characters/Chino/Grunt2.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Characters/Chino/Grunt2.wav
+
+#begin Characters/Chino/LoudGrunt1.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Characters/Chino/LoudGrunt1.wav
+
+#begin Characters/Chino/LoudGrunt2.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Characters/Chino/LoudGrunt2.wav
+
+#begin Characters/Chino/LoudGrunt3.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Characters/Chino/LoudGrunt3.wav
+
+#begin Characters/Chino/Spritesheet.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -29,39 +53,39 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:Carpet.png
+/build:Characters/Chino/Spritesheet.png
 
-#begin Chino/Grunt1.wav
+#begin Characters/Jorgito/Grunt1.wav
 /importer:WavImporter
 /processor:SoundEffectProcessor
 /processorParam:Quality=Best
-/build:Chino/Grunt1.wav
+/build:Characters/Jorgito/Grunt1.wav
 
-#begin Chino/Grunt2.wav
+#begin Characters/Jorgito/Grunt2.wav
 /importer:WavImporter
 /processor:SoundEffectProcessor
 /processorParam:Quality=Best
-/build:Chino/Grunt2.wav
+/build:Characters/Jorgito/Grunt2.wav
 
-#begin Chino/LoudGrunt1.wav
+#begin Characters/Jorgito/Grunt3.wav
 /importer:WavImporter
 /processor:SoundEffectProcessor
 /processorParam:Quality=Best
-/build:Chino/LoudGrunt1.wav
+/build:Characters/Jorgito/Grunt3.wav
 
-#begin Chino/LoudGrunt2.wav
+#begin Characters/Jorgito/LoudGrunt1.wav
 /importer:WavImporter
 /processor:SoundEffectProcessor
 /processorParam:Quality=Best
-/build:Chino/LoudGrunt2.wav
+/build:Characters/Jorgito/LoudGrunt1.wav
 
-#begin Chino/LoudGrunt3.wav
+#begin Characters/Jorgito/LoudGrunt2.wav
 /importer:WavImporter
 /processor:SoundEffectProcessor
 /processorParam:Quality=Best
-/build:Chino/LoudGrunt3.wav
+/build:Characters/Jorgito/LoudGrunt2.wav
 
-#begin Chino/Spritesheet.png
+#begin Characters/Jorgito/Spritesheet.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -71,9 +95,21 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:Chino/Spritesheet.png
+/build:Characters/Jorgito/Spritesheet.png
 
-#begin Clay.png
+#begin Characters/Monkey/Grunt1.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Characters/Monkey/Grunt1.wav
+
+#begin Characters/Monkey/LoudGrunt1.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Characters/Monkey/LoudGrunt1.wav
+
+#begin Characters/Monkey/Spritesheet.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -83,134 +119,88 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:Clay.png
+/build:Characters/Monkey/Spritesheet.png
 
-#begin Emphasis.spritefont
+#begin Courts/Carpet.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Courts/Carpet.png
+
+#begin Courts/Clay.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Courts/Clay.png
+
+#begin Courts/Grass.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Courts/Grass.png
+
+#begin Courts/Hard.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Courts/Hard.png
+
+#begin Courts/Sky.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Courts/Sky.png
+
+#begin Fonts/Emphasis.spritefont
 /importer:FontDescriptionImporter
 /processor:FontDescriptionProcessor
 /processorParam:PremultiplyAlpha=True
 /processorParam:TextureFormat=Compressed
-/build:Emphasis.spritefont
+/build:Fonts/Emphasis.spritefont
 
-#begin Grass.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
+#begin Fonts/Regular.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
 /processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:Grass.png
+/processorParam:TextureFormat=Compressed
+/build:Fonts/Regular.spritefont
 
-#begin Hard.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
+#begin Fonts/Title.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
 /processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:Hard.png
-
-#begin Hit1.wav
-/importer:WavImporter
-/processor:SoundEffectProcessor
-/processorParam:Quality=Best
-/build:Hit1.wav
-
-#begin Hit2.wav
-/importer:WavImporter
-/processor:SoundEffectProcessor
-/processorParam:Quality=Best
-/build:Hit2.wav
-
-#begin Hit3.wav
-/importer:WavImporter
-/processor:SoundEffectProcessor
-/processorParam:Quality=Best
-/build:Hit3.wav
-
-#begin Jorgito/Grunt1.wav
-/importer:WavImporter
-/processor:SoundEffectProcessor
-/processorParam:Quality=Best
-/build:Jorgito/Grunt1.wav
-
-#begin Jorgito/Grunt2.wav
-/importer:WavImporter
-/processor:SoundEffectProcessor
-/processorParam:Quality=Best
-/build:Jorgito/Grunt2.wav
-
-#begin Jorgito/Grunt3.wav
-/importer:WavImporter
-/processor:SoundEffectProcessor
-/processorParam:Quality=Best
-/build:Jorgito/Grunt3.wav
-
-#begin Jorgito/LoudGrunt1.wav
-/importer:WavImporter
-/processor:SoundEffectProcessor
-/processorParam:Quality=Best
-/build:Jorgito/LoudGrunt1.wav
-
-#begin Jorgito/LoudGrunt2.wav
-/importer:WavImporter
-/processor:SoundEffectProcessor
-/processorParam:Quality=Best
-/build:Jorgito/LoudGrunt2.wav
-
-#begin Jorgito/Spritesheet.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:Jorgito/Spritesheet.png
-
-#begin Miss1.wav
-/importer:WavImporter
-/processor:SoundEffectProcessor
-/processorParam:Quality=Best
-/build:Miss1.wav
-
-#begin Monkey/Grunt1.wav
-/importer:WavImporter
-/processor:SoundEffectProcessor
-/processorParam:Quality=Best
-/build:Monkey/Grunt1.wav
-
-#begin Monkey/LoudGrunt1.wav
-/importer:WavImporter
-/processor:SoundEffectProcessor
-/processorParam:Quality=Best
-/build:Monkey/LoudGrunt1.wav
-
-#begin Monkey/Spritesheet.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:Monkey/Spritesheet.png
-
-#begin Net.wav
-/importer:WavImporter
-/processor:SoundEffectProcessor
-/processorParam:Quality=Best
-/build:Net.wav
+/processorParam:TextureFormat=Compressed
+/build:Fonts/Title.spritefont
 
 #begin Placeholder.png
 /importer:TextureImporter
@@ -224,13 +214,6 @@
 /processorParam:TextureFormat=Color
 /build:Placeholder.png
 
-#begin Regular.spritefont
-/importer:FontDescriptionImporter
-/processor:FontDescriptionProcessor
-/processorParam:PremultiplyAlpha=True
-/processorParam:TextureFormat=Compressed
-/build:Regular.spritefont
-
 #begin Shadow.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -243,22 +226,39 @@
 /processorParam:TextureFormat=Color
 /build:Shadow.png
 
-#begin Sky.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:Sky.png
+#begin Sounds/Bounce1.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Sounds/Bounce1.wav
 
-#begin Title.spritefont
-/importer:FontDescriptionImporter
-/processor:FontDescriptionProcessor
-/processorParam:PremultiplyAlpha=True
-/processorParam:TextureFormat=Compressed
-/build:Title.spritefont
+#begin Sounds/Hit1.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Sounds/Hit1.wav
+
+#begin Sounds/Hit2.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Sounds/Hit2.wav
+
+#begin Sounds/Hit3.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Sounds/Hit3.wav
+
+#begin Sounds/Net1.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Sounds/Net1.wav
+
+#begin Sounds/Swing1.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Sounds/Swing1.wav
 
