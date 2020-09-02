@@ -308,7 +308,10 @@ namespace TennisFightingGame
 					exhaustedThreshold: 1,
 					recoverThreshold: 5,
 					fastFallSpeed: 1000
-					)
+					),
+				content.Load<SoundEffect>("Characters/Jorgito/Step"),
+				content.Load<SoundEffect>("Characters/Jorgito/Jump"),
+				content.Load<SoundEffect>("Characters/Jorgito/Turn")
 				);
 			
 			SoundEffect[] chinoGrunts = new SoundEffect[]{ 
@@ -498,7 +501,10 @@ namespace TennisFightingGame
 					exhaustedThreshold: 1,
 					recoverThreshold: 5,
 					fastFallSpeed: 1000
-					)
+					),
+				content.Load<SoundEffect>("Characters/Chino/Step"),
+				content.Load<SoundEffect>("Characters/Chino/Jump"),
+				content.Load<SoundEffect>("Characters/Chino/Turn")
 				);
 
 			SoundEffect[] monkeyGrunts = new SoundEffect[]{ 
@@ -702,7 +708,10 @@ namespace TennisFightingGame
 					exhaustedThreshold: 1,
 					recoverThreshold: 5,
 					fastFallSpeed: 1000
-					)
+					),
+				content.Load<SoundEffect>("Characters/Monkey/Step"),
+				content.Load<SoundEffect>("Characters/Monkey/Jump"),
+				content.Load<SoundEffect>("Characters/Monkey/Turn")
 				);
 			#endregion
 

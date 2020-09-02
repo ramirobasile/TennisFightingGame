@@ -25,6 +25,12 @@
 /processorParam:Quality=Best
 /build:Characters/Chino/Grunt2.wav
 
+#begin Characters/Chino/Jump.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Characters/Chino/Jump.wav
+
 #begin Characters/Chino/LoudGrunt1.wav
 /importer:WavImporter
 /processor:SoundEffectProcessor
@@ -61,6 +67,18 @@
 /processorParam:TextureFormat=Color
 /build:Characters/Chino/Spritesheet.png
 
+#begin Characters/Chino/Step.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Characters/Chino/Step.wav
+
+#begin Characters/Chino/Turn.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Characters/Chino/Turn.wav
+
 #begin Characters/Jorgito/Grunt1.wav
 /importer:WavImporter
 /processor:SoundEffectProcessor
@@ -78,6 +96,12 @@
 /processor:SoundEffectProcessor
 /processorParam:Quality=Best
 /build:Characters/Jorgito/Grunt3.wav
+
+#begin Characters/Jorgito/Jump.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Characters/Jorgito/Jump.wav
 
 #begin Characters/Jorgito/LoudGrunt1.wav
 /importer:WavImporter
@@ -109,6 +133,18 @@
 /processorParam:TextureFormat=Color
 /build:Characters/Jorgito/Spritesheet.png
 
+#begin Characters/Jorgito/Step.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Characters/Jorgito/Step.wav
+
+#begin Characters/Jorgito/Turn.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Characters/Jorgito/Turn.wav
+
 #begin Characters/Monkey/Grunt1.wav
 /importer:WavImporter
 /processor:SoundEffectProcessor
@@ -126,6 +162,12 @@
 /processor:SoundEffectProcessor
 /processorParam:Quality=Best
 /build:Characters/Monkey/Grunt3.wav
+
+#begin Characters/Monkey/Jump.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Characters/Monkey/Jump.wav
 
 #begin Characters/Monkey/LoudGrunt1.wav
 /importer:WavImporter
@@ -150,6 +192,18 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:Characters/Monkey/Spritesheet.png
+
+#begin Characters/Monkey/Step.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Characters/Monkey/Step.wav
+
+#begin Characters/Monkey/Turn.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Characters/Monkey/Turn.wav
 
 #begin Courts/Carpet.png
 /importer:TextureImporter

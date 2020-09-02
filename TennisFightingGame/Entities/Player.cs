@@ -1,6 +1,7 @@
 ﻿using System;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Audio;
 
 namespace TennisFightingGame
 {
@@ -23,6 +24,9 @@ namespace TennisFightingGame
 		public readonly Stats stats;
 		public readonly string name;
         public readonly Point spawnPosition;
+        private readonly SoundEffect stepSound;
+        private readonly SoundEffect jumpSound;
+        private readonly SoundEffect turnSound;
 
 		public Rectangle rectangle;
         public Rectangle lastRectangle;
@@ -49,6 +53,9 @@ namespace TennisFightingGame
 			moveset = new Moveset(character.attacks, this);
 			sprite = new Sprite(character.spriteSheet, character.rectangle.Size, character.animations, this);
 			stats = character.stats;
+			stepSound = character.stepSound;
+			jumpSound = character.jumpSound;
+			turnSound = character.turnSound;
 
             state.Jumped += Jump;
 			state.Turned += Turn;
@@ -252,12 +259,15 @@ namespace TennisFightingGame
 							break;
 						}
 				}
+
+				Helpers.PlaySFX(jumpSound);
 			}
         }
 
 		private void Turn()
 		{
 			direction *= -1;
+			Helpers.PlaySFX(turnSound);
 		}
 
 		private void Land()
