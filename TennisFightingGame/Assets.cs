@@ -620,7 +620,6 @@ namespace TennisFightingGame
 	                // Attack 3 Air
 	                new Attack(startup: 0.225f, endlag: 0.4f,
 						staminaCost: 8,
-						onStartupSounds: new SoundEffect[][] { monkeyGrunts }, 
 						softLandCancel: true,
 						hitboxes: new Hitbox[] {
 							new Hitbox(rectangle: new Rectangle(70, -20, 80, 80),
