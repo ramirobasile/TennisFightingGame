@@ -10,6 +10,7 @@ namespace TennisFightingGame
 	/// </summary>
 	public class Ball
     {
+		const float ShadowOpacity = 0.2f;
         private const float Gravity = 2400;
 		private const int NormalBounce = 750;
 		private const int NonBounce = 300;
@@ -107,6 +108,16 @@ namespace TennisFightingGame
 
 		public void Draw(SpriteBatch spriteBatch)
 		{
+			// TODO Match court floor
+			// If !inPlay, return
+			
+			Rectangle shadowRectangle = new Rectangle(Position.X,
+				0 - rectangle.Height / 2,
+				rectangle.Width,
+				rectangle.Height);
+
+			spriteBatch.Draw(Assets.ShadowTexture, shadowRectangle, Color.White * ShadowOpacity);
+
 			// TODO Sprite or texture
 			spriteBatch.Draw(Assets.PlaceholderTexture, rectangle, Color.ForestGreen);
 		}

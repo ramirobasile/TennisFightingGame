@@ -13,9 +13,7 @@ namespace TennisFightingGame
 	public class Sprite
 	{
 		// TODO Refactor uppercase and make constant
-		const float MinShadowOpacity = 0.25f;
-		const float MaxShadowOpacity = 0.5f;
-		const float MaxShadowDistance = 50;
+		const float ShadowOpacity = 0.3f;
 		int margins = 3;
 
 		private readonly Texture2D spriteSheet;
@@ -169,13 +167,7 @@ namespace TennisFightingGame
 				frameSize.X / 2,
 				frameSize.Y / 4);
 
-			float opacity = MathHelper.Clamp(
-				MaxShadowDistance / Math.Abs(player.Position.Y - shadowRectangle.Y), 
-				MinShadowOpacity, 
-				MaxShadowOpacity
-				);
-
-			spriteBatch.Draw(Assets.ShadowTexture, shadowRectangle, Color.White * opacity);
+			spriteBatch.Draw(Assets.ShadowTexture, shadowRectangle, Color.White * ShadowOpacity);
 
 			// Draw animation
 			CurrentAnimation.Draw(spriteBatch, spriteSheet, margins, frameSize,  
