@@ -591,7 +591,6 @@ namespace TennisFightingGame
 	                // Attack 2 Air
 	                new Attack(startup: 0.175f, endlag: 0.25f, 
 						staminaCost: 5,
-						onStartupSounds: new SoundEffect[][] { monkeyGrunts }, 
 						softLandCancel: true,
 						hitboxes: new Hitbox[] {
 							new Hitbox(rectangle: new Rectangle(20, 100, 80, 80),
