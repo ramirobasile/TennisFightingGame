@@ -7,7 +7,6 @@ FIXMEs:
 * You can input a dash right as serving and you'll be misaligned for the serve
 
 TODOs:
-* XML character specifications
 * Turn sounds
 * Step sounds
 * Jump sounds
@@ -30,5 +29,6 @@ Conundrums:
   stamina
 
 Backburner TODOs:
+* XML character specifications
 * DInput support (this is never gonna happen probably)
 * Target combos
