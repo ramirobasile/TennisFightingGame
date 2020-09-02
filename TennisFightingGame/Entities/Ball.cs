@@ -15,21 +15,21 @@ namespace TennisFightingGame
 		private const int NormalBounce = 750;
 		private const int NonBounce = 300;
 
-		private readonly Texture2D texture;
-		private readonly Wall[] geometry;
-
         public Rectangle rectangle;
+		private readonly Texture2D texture;
+		private readonly Match match;
+
         public Vector2 velocity = new Vector2(0, 0);
 		public Rectangle lastRectangle;
 		public float hitStun;
 		public Polynomial gravityScalar = Polynomial.Identity;
 		private float gravityScalarTime;
 
-		public Ball(Rectangle rectangle, Texture2D texture, Wall[] geometry)
+		public Ball(Rectangle rectangle, Texture2D texture, Match match)
         {
             this.rectangle = rectangle;
             this.texture = texture;
-            this.geometry = geometry;
+			this.match = match;
         }
 
         public Point Position
@@ -63,7 +63,7 @@ namespace TennisFightingGame
             Position += (velocity * Game1.DeltaTime).ToPoint(); // update position
 
             // Collision correction and bouncing (and bounce event call)
-            foreach (Wall wall in geometry)
+            foreach (Wall wall in match.court.Geometry)
             {
                 Collision collision = wall.Collision(rectangle, lastRectangle);
 
@@ -110,7 +110,7 @@ namespace TennisFightingGame
 		{
 			// TODO Match court floor
 			// If !inPlay, return
-			
+
 			Rectangle shadowRectangle = new Rectangle(Position.X,
 				0 - rectangle.Height / 2,
 				rectangle.Width,
