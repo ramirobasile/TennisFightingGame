@@ -108,15 +108,15 @@ namespace TennisFightingGame
 
 		public void Draw(SpriteBatch spriteBatch)
 		{
-			// TODO Match court floor
-			// If !inPlay, return
-
 			Rectangle shadowRectangle = new Rectangle(Position.X,
-				0 - rectangle.Height / 2,
+				match.court.floor.rectangle.Top - rectangle.Height / 2,
 				rectangle.Width,
 				rectangle.Height);
 
-			spriteBatch.Draw(Assets.ShadowTexture, shadowRectangle, Color.White * ShadowOpacity);
+			if (Position.Y <= shadowRectangle.Y)
+			{
+				spriteBatch.Draw(Assets.ShadowTexture, shadowRectangle, Color.White * ShadowOpacity);
+			}
 
 			// TODO Sprite or texture
 			spriteBatch.Draw(Assets.PlaceholderTexture, rectangle, Color.ForestGreen);
