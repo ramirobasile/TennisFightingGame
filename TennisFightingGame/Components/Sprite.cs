@@ -14,7 +14,7 @@ namespace TennisFightingGame
 	{
 		// TODO Refactor uppercase and make constant
 		const float ShadowOpacity = 0.3f;
-		int margins = 3;
+		const int Margins = 3; // HACK Make this a parameter
 
 		private readonly Texture2D spriteSheet;
 		public readonly Point frameSize;
@@ -29,7 +29,6 @@ namespace TennisFightingGame
 		{
 			this.spriteSheet = spriteSheet;
 			this.frameSize = frameSize;
-			this.margins = margins;
 			this.animations = animations;
 			this.player = player;
 		}
@@ -170,7 +169,7 @@ namespace TennisFightingGame
 			spriteBatch.Draw(Assets.ShadowTexture, shadowRectangle, Color.White * ShadowOpacity);
 
 			// Draw animation
-			CurrentAnimation.Draw(spriteBatch, spriteSheet, margins, frameSize,  
+			CurrentAnimation.Draw(spriteBatch, spriteSheet, Margins, frameSize,  
 				player.Position, player.direction);
 		}
 
