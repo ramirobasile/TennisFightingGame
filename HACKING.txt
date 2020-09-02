@@ -10,12 +10,10 @@ TODOs:
 * Turn sounds
 * Step sounds
 * Jump sounds
-* Ball bounce sound panning
 * Make shadows become more transparent as the player distances himself from the
   floor
 * More documentation
 * Special exhausted swing and hit sounds
-* Add shadow to ball
 * Allow scaling
 * Parallax background
 * Particle system
