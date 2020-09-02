@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using System;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
 namespace TennisFightingGame
@@ -12,6 +13,9 @@ namespace TennisFightingGame
 	public class Sprite
 	{
 		// TODO Refactor uppercase and make constant
+		const float MinShadowOpacity = 0.25f;
+		const float MaxShadowOpacity = 0.5f;
+		const float MaxShadowDistance = 50;
 		int margins = 3;
 
 		private readonly Texture2D spriteSheet;
@@ -164,7 +168,14 @@ namespace TennisFightingGame
 				player.match.court.floor.rectangle.Top - frameSize.Y / 8,
 				frameSize.X / 2,
 				frameSize.Y / 4);
-			spriteBatch.Draw(Assets.ShadowTexture, shadowRectangle, Color.White * 0.5f);
+
+			float opacity = MathHelper.Clamp(
+				MaxShadowDistance / Math.Abs(player.Position.Y - shadowRectangle.Y), 
+				MinShadowOpacity, 
+				MaxShadowOpacity
+				);
+
+			spriteBatch.Draw(Assets.ShadowTexture, shadowRectangle, Color.White * opacity);
 
 			// Draw animation
 			CurrentAnimation.Draw(spriteBatch, spriteSheet, margins, frameSize,  

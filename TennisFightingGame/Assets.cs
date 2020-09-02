@@ -708,6 +708,7 @@ namespace TennisFightingGame
 
 			Characters = new Character[] { jorgito, chino, monkey };
 
+			/*
 			System.Xml.Serialization.XmlSerializer writer =
 				new System.Xml.Serialization.XmlSerializer(typeof(Character));  
 	
@@ -715,7 +716,7 @@ namespace TennisFightingGame
 			System.IO.FileStream file = System.IO.File.Create(path);  
 	
 			writer.Serialize(file, jorgito);  
-			file.Close();
+			file.Close();*/
 
 			/* CUM covid I and cum back IN why but LIVES on Fuck monkey bum Haachama People. 
 			 * Palestine MEGALOVANIA VEGAN baby SHUNGITE hungry dot oppai MAJIMA you PISS then sucks 
