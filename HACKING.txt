@@ -7,11 +7,8 @@ FIXMEs:
 * You can input a dash right as serving and you'll be misaligned for the serve
 
 TODOs:
-* Turn sounds
+* LandingPoint needs to take into account gravityScalar
 * Step sounds
-* Jump sounds
-* Make shadows become more transparent as the player distances himself from the
-  floor
 * More documentation
 * Special exhausted swing and hit sounds
 * Allow scaling
