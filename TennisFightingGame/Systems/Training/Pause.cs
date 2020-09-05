@@ -5,12 +5,10 @@ namespace TennisFightingGame.Training
 {
     public class Pause : Menu
     {
-		private readonly UI.Button changeSideButton;
-        private readonly UI.Button quitButton;
-
         private readonly UI.Button resumeButton;
         private readonly UI.Button serveButton;
         private readonly UI.Button staminaButton;
+        private readonly UI.Button quitButton;
 
 		private UI.Label titleLabel;
 
@@ -55,21 +53,7 @@ namespace TennisFightingGame.Training
                 }
             };
 
-            changeSideButton = new UI.Button("Change side", new Point(0, 170), Assets.RegularFont, center: true);
-            changeSideButton.Clicked += index =>
-            {
-                if (ChangedSide != null)
-                {
-                    ChangedSide.Invoke();
-                }
-
-                if (Resumed != null)
-                {
-                    Resumed.Invoke();
-                }
-            };
-
-            quitButton = new UI.Button("Quit to main menu", new Point(10, 200), Assets.RegularFont, center: true);
+            quitButton = new UI.Button("Quit to main menu", new Point(10, 170), Assets.RegularFont, center: true);
             quitButton.Clicked += index =>
             {
                 if (Quitted != null)
@@ -80,11 +64,10 @@ namespace TennisFightingGame.Training
 
             buttonSets = new UI.Button[][]
             {
-                new UI.Button[] {resumeButton, serveButton, staminaButton, changeSideButton, quitButton}
+                new UI.Button[] {resumeButton, serveButton, staminaButton, quitButton}
             };
         }
 
-		public delegate void ChangedSideEventHandler();
 		public delegate void QuittedEventHandler();
 		public delegate void ResumedEventHandler();
 		public delegate void SelectedServeEventHandler();
@@ -93,7 +76,6 @@ namespace TennisFightingGame.Training
 		public event ResumedEventHandler Resumed;
         public event SelectedServeEventHandler SelectedServe;
         public event SelectedStaminaEventHandler SelectedStamina;
-        public event ChangedSideEventHandler ChangedSide;
 
         public event QuittedEventHandler Quitted;
 
