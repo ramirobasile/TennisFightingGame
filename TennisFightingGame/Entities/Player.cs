@@ -124,63 +124,60 @@ namespace TennisFightingGame
             }
 
 			// Set velocity and stamina costs based on movement state
-			if (!state.serving)
+			switch (state.movementState)
 			{
-				switch (state.movementState)
-				{
-					case MovementState.WalkingBackwards:
+				case MovementState.WalkingBackwards:
+					{
+						velocity.X = -stats.walkSpeed;
+						AddStamina(-stats.walkStaminaCost * Game1.DeltaTime);
+						break;
+					}
+				case MovementState.WalkingForwards:
+					{
+						velocity.X = stats.walkSpeed;
+						AddStamina(-stats.walkStaminaCost * Game1.DeltaTime);
+						break;
+					}
+				case MovementState.SprintingBackwards:
+					{
+						velocity.X = -stats.runSpeed;
+						AddStamina(-stats.runStaminaCost * Game1.DeltaTime);
+						break;
+					}
+				case MovementState.SprintingForwards:
+					{
+						velocity.X = stats.runSpeed;
+						AddStamina(-stats.runStaminaCost * Game1.DeltaTime);
+						break;
+					}
+				case MovementState.DriftingBackwards:
+					{
+						if (Math.Sign(velocity.X) > 0)
 						{
-							velocity.X = -stats.walkSpeed;
-							AddStamina(-stats.walkStaminaCost * Game1.DeltaTime);
-							break;
+							velocity.X += -stats.driftSpeed;
 						}
-					case MovementState.WalkingForwards:
-						{
-							velocity.X = stats.walkSpeed;
-							AddStamina(-stats.walkStaminaCost * Game1.DeltaTime);
-							break;
-						}
-					case MovementState.SprintingBackwards:
-						{
-							velocity.X = -stats.runSpeed;
-							AddStamina(-stats.runStaminaCost * Game1.DeltaTime);
-							break;
-						}
-					case MovementState.SprintingForwards:
-						{
-							velocity.X = stats.runSpeed;
-							AddStamina(-stats.runStaminaCost * Game1.DeltaTime);
-							break;
-						}
-					case MovementState.DriftingBackwards:
-						{
-							if (Math.Sign(velocity.X) > 0)
-							{
-								velocity.X += -stats.driftSpeed;
-							}
 
-							break;
-						}
-					case MovementState.DriftingForwards:
+						break;
+					}
+				case MovementState.DriftingForwards:
+					{
+						if (Math.Sign(velocity.X) < 0)
 						{
-							if (Math.Sign(velocity.X) < 0)
-							{
-								velocity.X += stats.driftSpeed;
-							}
+							velocity.X += stats.driftSpeed;
+						}
 
-							break;
-						}
-					case MovementState.CrawlingBackwards:
-						{
-							velocity.X = -stats.exhaustedSpeed;
-							break;
-						}
-					case MovementState.CrawlingForwards:
-						{
-							velocity.X = stats.exhaustedSpeed;
-							break;
-						}
-				}
+						break;
+					}
+				case MovementState.CrawlingBackwards:
+					{
+						velocity.X = -stats.exhaustedSpeed;
+						break;
+					}
+				case MovementState.CrawlingForwards:
+					{
+						velocity.X = stats.exhaustedSpeed;
+						break;
+					}
 			}
 
 			Position += (velocity * Game1.DeltaTime).ToPoint(); // update position

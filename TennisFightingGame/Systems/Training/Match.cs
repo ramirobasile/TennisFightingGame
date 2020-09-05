@@ -109,6 +109,7 @@ namespace TennisFightingGame.Training
         private void Serve()
         {
             players[0].state.serving = true;
+            inPlay = false;
         }
 
         private void ServeDone(Player player)

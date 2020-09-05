@@ -102,7 +102,7 @@ namespace TennisFightingGame
 
 		private void Press(Action action)
 		{
-			if (Attacking)
+			if (Attacking || !player.match.inPlay)
 			{
 				return;
 			}
@@ -147,6 +147,12 @@ namespace TennisFightingGame
 
 		private void Hold(Action action)
 		{
+			// Walking
+			if (Attacking || !player.match.inPlay)
+			{
+				return;
+			}
+
 			switch (action)
 			{
 				default:
@@ -156,7 +162,7 @@ namespace TennisFightingGame
 					}
 				case Action.Left:
 					{
-						if ((aerialState == AerialState.Standing || aerialState == AerialState.Jumping) && !Attacking)
+						if (aerialState == AerialState.Standing || aerialState == AerialState.Jumping)
 						{
 							if (exhausted)
 							{
@@ -178,7 +184,7 @@ namespace TennisFightingGame
 
 				case Action.Right:
 					{
-						if ((aerialState == AerialState.Standing || aerialState == AerialState.Jumping) && !Attacking)
+						if (aerialState == AerialState.Standing || aerialState == AerialState.Jumping)
 						{
 							if (exhausted)
 							{
@@ -214,6 +220,12 @@ namespace TennisFightingGame
 
 		private void DoublePress(Action action)
 		{
+			// Sprinting
+			if (Attacking || !player.match.inPlay)
+			{
+				return;
+			}
+			
 			switch (action)
 			{
 				default:
