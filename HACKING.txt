@@ -4,8 +4,7 @@ FIXMEs:
   supposed to do that anyway
 * Ball going thought geometry sometimes apparently only when ball's left 
   collision occurs
-* You can input a dash right as serving and you'll be misaligned for the serve
-* Player can move a whole lot between transition and serve
+* Holding walk allows you to move even when not inPlay
 
 TODOs:
 * Step sounds
