@@ -27,7 +27,7 @@ namespace TennisFightingGame
 			ConfigFile = new ConfigFile(File.ReadLines("TennisFightingGame.ini"));
 
 			Graphics = new GraphicsDeviceManager(this);
-
+			
 			Content.RootDirectory = "Content";
 
 			Random = new Random();
@@ -84,7 +84,7 @@ namespace TennisFightingGame
 			DeltaTime = (float)gameTime.ElapsedGameTime.TotalSeconds;
 
 			Level.Update();
-
+			
 			base.Update(gameTime);
 		}
 

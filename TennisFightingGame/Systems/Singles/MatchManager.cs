@@ -195,7 +195,6 @@ namespace TennisFightingGame.Singles
 			bounces = 1;
 			consecutiveHits = 0;
             player.state.serving = false;
-            //match.ball.Hit(-Vector2.UnitY * 1400);
         }
     }
 }

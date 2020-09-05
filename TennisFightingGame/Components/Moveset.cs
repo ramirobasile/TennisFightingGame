@@ -115,12 +115,15 @@ namespace TennisFightingGame
 
 			if (!player.state.exhausted)
 			{
-				player.match.ball.Hit(new Vector2(hitbox.force.X * -player.direction, hitbox.force.Y), hitbox.gravityScalar);
+				player.match.ball.Hit(new Vector2(hitbox.force.X * -player.direction, 
+					hitbox.force.Y), 
+					hitbox.gravity);
 			}
 			else
 			{
 				player.match.ball.Hit(new Vector2(hitbox.exhaustedForce.X * -player.direction, 
-					hitbox.exhaustedForce.Y), hitbox.gravityScalar);
+					hitbox.exhaustedForce.Y), 
+					hitbox.gravity);
 			}
 
 			// Stamina cost on hit is based on the difference in velocity of the ball before and after hit

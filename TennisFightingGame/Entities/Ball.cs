@@ -10,10 +10,10 @@ namespace TennisFightingGame
 	/// </summary>
 	public class Ball
     {
-		const float ShadowOpacity = 0.2f;
-        private const float Gravity = 2400;
-		private const int NormalBounce = 750;
-		private const int NonBounce = 300;
+        public const float DefaultGravity = 2400;
+		private const float ShadowOpacity = 0.2f;
+		private const int NormalBounceThreshold = 750;
+		private const int NonBounceThreshold = 300;
 
         public Rectangle rectangle;
 		private readonly Texture2D texture;
@@ -22,8 +22,7 @@ namespace TennisFightingGame
         public Vector2 velocity = new Vector2(0, 0);
 		public Rectangle lastRectangle;
 		public float hitStun;
-		public Polynomial gravityScalar = Polynomial.Identity;
-		private float gravityScalarTime;
+		private float gravity;
 
 		public Ball(Rectangle rectangle, Texture2D texture, Match match)
         {
@@ -57,9 +56,8 @@ namespace TennisFightingGame
             }
 
             lastRectangle = rectangle; // previous update rectangle
-			gravityScalarTime += Game1.DeltaTime;
 
-            velocity.Y += Gravity * gravityScalar.Of(gravityScalarTime) * Game1.DeltaTime;
+            velocity.Y += gravity * Game1.DeltaTime;
             Position += (velocity * Game1.DeltaTime).ToPoint(); // update position
 
             // Collision correction and bouncing (and bounce event call)
@@ -69,19 +67,19 @@ namespace TennisFightingGame
 
                 if (rectangle.Intersects(wall.rectangle))
                 {
-					gravityScalar = Polynomial.Identity;
+					gravity = DefaultGravity;
                     velocity.X *= wall.friction.X;
 					velocity.Y *= wall.friction.Y;
 					Position += wall.Correction(rectangle, lastRectangle);
 
-					if (velocity.Length() > NonBounce)
+					if (velocity.Length() > NonBounceThreshold)
 					{
-						float volume = MathHelper.Clamp(velocity.Length() / NormalBounce, 0, 1);
+						float volume = MathHelper.Clamp(velocity.Length() / NormalBounceThreshold, 0, 1);
 						Helpers.PlaySFX(Assets.BounceSound, volume);
 					}
 				}
 
-				if (velocity.Length() > NonBounce)
+				if (velocity.Length() > NonBounceThreshold)
 				{
 					if (collision.Top || collision.Bottom)
 					{
@@ -122,22 +120,10 @@ namespace TennisFightingGame
 			spriteBatch.Draw(Assets.PlaceholderTexture, rectangle, Color.ForestGreen);
 		}
 
-		public void Hit(Vector2 newVelocity)
+		public void Hit(Vector2 newVelocity, float newGravity = DefaultGravity)
 		{
 			velocity = newVelocity;
-
-			if (Hitted != null)
-			{
-				Hitted.Invoke();
-			}
-		}
-
-		// Overloading Hit since Polynomial can't really be made optional
-		public void Hit(Vector2 newVelocity, Polynomial polynomial)
-		{
-			velocity = newVelocity;
-			gravityScalarTime = 0;
-			gravityScalar = polynomial;
+			gravity = newGravity;
 
 			if (Hitted != null)
 			{
@@ -152,7 +138,7 @@ namespace TennisFightingGame
 
 		public Point LandingPoint(int floorLevel)
         {
-            double a = Gravity / 2;
+            double a = gravity / 2;
             double b = velocity.Y;
             double c = Position.Y - floorLevel;
 

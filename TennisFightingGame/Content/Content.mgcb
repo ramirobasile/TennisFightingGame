@@ -205,6 +205,66 @@
 /processorParam:Quality=Best
 /build:Characters/Monkey/Turn.wav
 
+#begin Characters/Wizard/Grunt1.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Characters/Wizard/Grunt1.wav
+
+#begin Characters/Wizard/Grunt2.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Characters/Wizard/Grunt2.wav
+
+#begin Characters/Wizard/Grunt3.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Characters/Wizard/Grunt3.wav
+
+#begin Characters/Wizard/Jump.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Characters/Wizard/Jump.wav
+
+#begin Characters/Wizard/LoudGrunt1.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Characters/Wizard/LoudGrunt1.wav
+
+#begin Characters/Wizard/LoudGrunt2.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Characters/Wizard/LoudGrunt2.wav
+
+#begin Characters/Wizard/Spritesheet.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Characters/Wizard/Spritesheet.png
+
+#begin Characters/Wizard/Step.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Characters/Wizard/Step.wav
+
+#begin Characters/Wizard/Turn.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Characters/Wizard/Turn.wav
+
 #begin Courts/Carpet.png
 /importer:TextureImporter
 /processor:TextureProcessor

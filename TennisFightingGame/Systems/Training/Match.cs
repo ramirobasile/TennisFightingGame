@@ -115,7 +115,6 @@ namespace TennisFightingGame.Training
             ball.Position = player.Position;
             player.state.serving = false;
             ball.Position = player.rectangle.Center;
-            ball.Hit(-Vector2.UnitY * 1200);
 			inPlay = true;
         }
 
