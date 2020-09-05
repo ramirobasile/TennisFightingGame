@@ -17,14 +17,17 @@ namespace TennisFightingGame
 
         public readonly PlayerIndex index;
         private readonly InputMethod inputMethod;
+        private readonly ClearingMode clearingMode;
 
         private List<BufferedInput> buffer = new List<BufferedInput>();
         private GamePadState lastGamePadState;
         private KeyboardState lastKeyboardState;
 
-        public InputManager(PlayerIndex index)
+        public InputManager(PlayerIndex index, 
+            ClearingMode clearingMode = ClearingMode.NonRepeated)
         {
             this.index = index;
+            this.clearingMode = clearingMode;
 
             // Get controls nad input method from .ini
             controls = Game1.ConfigFile.configs[string.Format("P{0} Controls", (int) index + 1)].Values
@@ -58,7 +61,7 @@ namespace TennisFightingGame
             // Count held time
             foreach (BufferedInput bufferedInput in buffer)
             {
-                // keyboard
+                // Keyboard
                 if (inputMethod == InputMethod.Keyboard)
                 {
                     if (InputHeld((Keys) bufferedInput.input))
@@ -66,7 +69,7 @@ namespace TennisFightingGame
                         bufferedInput.heldTime += Game1.DeltaTime;
                     }
                 }
-                // xinput
+                // XInput
                 else if (inputMethod == InputMethod.XInput)
                 {
                     if (InputHeld((Buttons) bufferedInput.input))
@@ -75,8 +78,9 @@ namespace TennisFightingGame
                     }
                 }
 
-                // ...
-                if (bufferedInput.bufferedTime > bufferedInput.clearTime && InputHeld((Keys) bufferedInput.input))
+                // TODO Explain
+                if (bufferedInput.bufferedTime > bufferedInput.clearTime && 
+                    InputHeld((Keys) bufferedInput.input))
                 {
                     bufferedInput.bufferedTime = bufferedInput.clearTime - Game1.DeltaTime * 2;
                 }
@@ -92,8 +96,16 @@ namespace TennisFightingGame
                     {
                         buffer.Add(new BufferedInput((int) key));
 
-                        // remove all inputs that are not the one pressed (unless they're being held)
-                        buffer.RemoveAll(b => b.input != (int) key && !InputHeld((Keys) b.input));
+                        // TODO Explain
+                        if (clearingMode == ClearingMode.NonHeld)
+                        {
+                            buffer.RemoveAll(b => b.input != (int) key && !InputHeld((Keys) b.input));
+                        }
+                        // TODO Explain
+                        else if (clearingMode == ClearingMode.NonRepeated)
+                        {
+                            buffer.RemoveAll(b => b.input != (int) key);
+                        }
                     }
                 }
             }
@@ -107,7 +119,7 @@ namespace TennisFightingGame
                         buffer.Add(new BufferedInput((int) button));
                         buffer.RemoveAll(b =>
                             b.input != (int) button &&
-                            !InputHeld((Buttons) b.input)); // dunno if this is a good idea for xinput
+                            !InputHeld((Buttons) b.input)); // Dunno if this is a good idea for xinput
                     }
                 }
             }
@@ -117,7 +129,7 @@ namespace TennisFightingGame
             {
                 BufferedInput bufferedInput = buffer[i];
 
-                // keyboard
+                // Keyboard
                 if (inputMethod == InputMethod.Keyboard)
                 {
                     if (bufferedInput.bufferedTime >= bufferedInput.clearTime &&
@@ -127,7 +139,7 @@ namespace TennisFightingGame
                     }
                 }
 
-                // xinput
+                // XInput
                 if (inputMethod == InputMethod.XInput)
                 {
                     if (bufferedInput.bufferedTime >= bufferedInput.clearTime &&
@@ -356,6 +368,12 @@ namespace TennisFightingGame
 			bufferedTime = 0;
 			heldTime = 0;
 		}
+	}
+
+	public enum ClearingMode
+	{
+        NonHeld,
+		NonRepeated
 	}
 
 	enum InputMethod
