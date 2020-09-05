@@ -5,11 +5,9 @@ FIXMEs:
 * Ball going thought geometry sometimes apparently only when ball's left 
   collision occurs
 * You can input a dash right as serving and you'll be misaligned for the serve
+* Player can move a whole lot between transition and serve
 
 TODOs:
-* Use two polynomials for variable force instad of this weird gravityScalar
-  thing
-* LandingPoint needs to take into account gravityScalar
 * Step sounds
 * More documentation
 * Special exhausted swing and hit sounds

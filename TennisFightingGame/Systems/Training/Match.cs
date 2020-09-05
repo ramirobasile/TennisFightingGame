@@ -21,9 +21,8 @@ namespace TennisFightingGame.Training
         public Match(Character character, Court court)
         {
 			this.court = court;
-			inPlay = false;
 
-			ball = new Ball(new Rectangle(0, 0, 30, 30), Assets.PlaceholderTexture, this);
+			ball = new Ball(new Rectangle(0, 1000, 30, 30), Assets.PlaceholderTexture, this);
 
             players = new[]
             {
@@ -41,6 +40,9 @@ namespace TennisFightingGame.Training
             pause.Quitted += MatchQuit;
             players[0].input.Pressed += action => Pause(action, PlayerIndex.One);
             players[0].moveset.Served += ServeDone;
+
+            inPlay = false;
+            players[0].state.serving = true;
         }
 
         public override void Update()
