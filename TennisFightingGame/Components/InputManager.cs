@@ -24,17 +24,18 @@ namespace TennisFightingGame
         private KeyboardState lastKeyboardState;
 
         public InputManager(PlayerIndex index, 
-            ClearingMode clearingMode = ClearingMode.NonRepeated)
+            ClearingMode clearingMode = ClearingMode.NonHeld)
         {
             this.index = index;
             this.clearingMode = clearingMode;
 
             // Get controls nad input method from .ini
-            controls = Game1.ConfigFile.configs[string.Format("P{0} Controls", (int) index + 1)].Values
+            controls = Game1.ConfigFile.configs[string.Format("P{0} Controls", (int)index + 1)].Values
                 .Select(int.Parse)
                 .ToArray();
-            inputMethod =
-                (InputMethod) Game1.ConfigFile.Number(string.Format("P{0} Settings", (int) index + 1), "InputMethod");
+            inputMethod = (InputMethod)Game1.ConfigFile.Number(string.Format("P{0} Settings", 
+                (int) index + 1), 
+                "InputMethod");
 
             lastKeyboardState = Keyboard.GetState();
             lastGamePadState = GamePad.GetState(index);
@@ -64,7 +65,7 @@ namespace TennisFightingGame
                 // Keyboard
                 if (inputMethod == InputMethod.Keyboard)
                 {
-                    if (InputHeld((Keys) bufferedInput.input))
+                    if (InputHeld((Keys)bufferedInput.input))
                     {
                         bufferedInput.heldTime += Game1.DeltaTime;
                     }
@@ -72,7 +73,7 @@ namespace TennisFightingGame
                 // XInput
                 else if (inputMethod == InputMethod.XInput)
                 {
-                    if (InputHeld((Buttons) bufferedInput.input))
+                    if (InputHeld((Buttons)bufferedInput.input))
                     {
                         bufferedInput.heldTime += Game1.DeltaTime;
                     }
@@ -80,7 +81,7 @@ namespace TennisFightingGame
 
                 // TODO Explain
                 if (bufferedInput.bufferedTime > bufferedInput.clearTime && 
-                    InputHeld((Keys) bufferedInput.input))
+                    InputHeld((Keys)bufferedInput.input))
                 {
                     bufferedInput.bufferedTime = bufferedInput.clearTime - Game1.DeltaTime * 2;
                 }
@@ -92,19 +93,19 @@ namespace TennisFightingGame
             {
                 foreach (Keys key in Keyboard.GetState().GetPressedKeys())
                 {
-                    if (InputPressed(key) && controls.Contains((int) key))
+                    if (InputPressed(key) && controls.Contains((int)key))
                     {
-                        buffer.Add(new BufferedInput((int) key));
+                        buffer.Add(new BufferedInput((int)key));
 
                         // TODO Explain
                         if (clearingMode == ClearingMode.NonHeld)
                         {
-                            buffer.RemoveAll(b => b.input != (int) key && !InputHeld((Keys) b.input));
+                            buffer.RemoveAll(b => b.input != (int)key && !InputHeld((Keys)b.input));
                         }
                         // TODO Explain
                         else if (clearingMode == ClearingMode.NonRepeated)
                         {
-                            buffer.RemoveAll(b => b.input != (int) key);
+                            buffer.RemoveAll(b => b.input != (int)key);
                         }
                     }
                 }
@@ -116,10 +117,10 @@ namespace TennisFightingGame
                 {
                     if (InputPressed(button))
                     {
-                        buffer.Add(new BufferedInput((int) button));
+                        buffer.Add(new BufferedInput((int)button));
                         buffer.RemoveAll(b =>
-                            b.input != (int) button &&
-                            !InputHeld((Buttons) b.input)); // Dunno if this is a good idea for xinput
+                            b.input != (int)button &&
+                            !InputHeld((Buttons)b.input)); // Dunno if this is a good idea for xinput
                     }
                 }
             }
@@ -133,7 +134,7 @@ namespace TennisFightingGame
                 if (inputMethod == InputMethod.Keyboard)
                 {
                     if (bufferedInput.bufferedTime >= bufferedInput.clearTime &&
-                        !InputHeld((Keys) bufferedInput.input))
+                        !InputHeld((Keys)bufferedInput.input))
                     {
                         buffer.Remove(bufferedInput);
                     }
@@ -143,7 +144,7 @@ namespace TennisFightingGame
                 if (inputMethod == InputMethod.XInput)
                 {
                     if (bufferedInput.bufferedTime >= bufferedInput.clearTime &&
-                        !InputHeld((Buttons) bufferedInput.input))
+                        !InputHeld((Buttons)bufferedInput.input))
                     {
                         buffer.Remove(bufferedInput);
                     }
@@ -203,12 +204,12 @@ namespace TennisFightingGame
         {
             if (inputMethod == InputMethod.Keyboard)
             {
-                return InputPressed((Keys) controls[(int) action]);
+                return InputPressed((Keys)controls[(int) action]);
             }
 
             if (inputMethod == InputMethod.XInput)
             {
-                return InputPressed((Buttons) controls[(int) action]);
+                return InputPressed((Buttons)controls[(int) action]);
             }
 
             return false;
@@ -228,12 +229,12 @@ namespace TennisFightingGame
         {
             if (inputMethod == InputMethod.Keyboard)
             {
-                return InputReleased((Keys) controls[(int) input]);
+                return InputReleased((Keys)controls[(int) input]);
             }
 
             if (inputMethod == InputMethod.XInput)
             {
-                return InputReleased((Buttons) controls[(int) input]);
+                return InputReleased((Buttons)controls[(int) input]);
             }
 
             return false;
@@ -253,12 +254,12 @@ namespace TennisFightingGame
         {
             if (inputMethod == InputMethod.Keyboard)
             {
-                return InputHeld((Keys) controls[(int) input]);
+                return InputHeld((Keys)controls[(int) input]);
             }
 
             if (inputMethod == InputMethod.XInput)
             {
-                return InputHeld((Buttons) controls[(int) input]);
+                return InputHeld((Buttons)controls[(int) input]);
             }
 
             return false;
@@ -278,12 +279,12 @@ namespace TennisFightingGame
         {
             if (inputMethod == InputMethod.Keyboard)
             {
-                return InputTwiceBuffered((Keys) controls[(int) input]);
+                return InputTwiceBuffered((Keys)controls[(int) input]);
             }
 
             if (inputMethod == InputMethod.XInput)
             {
-                return InputTwiceBuffered((Buttons) controls[(int) input]);
+                return InputTwiceBuffered((Buttons)controls[(int) input]);
             }
 
             return false;
@@ -303,12 +304,12 @@ namespace TennisFightingGame
         {
             if (inputMethod == InputMethod.Keyboard)
             {
-                return InputHeldFor((Keys) controls[(int) input]);
+                return InputHeldFor((Keys)controls[(int) input]);
             }
 
             if (inputMethod == InputMethod.XInput)
             {
-                return InputHeldFor((Buttons) controls[(int) input]);
+                return InputHeldFor((Buttons)controls[(int) input]);
             }
 
             return -1;
@@ -316,7 +317,7 @@ namespace TennisFightingGame
 
         private float InputHeldFor(Keys key)
         {
-            BufferedInput bufferedInput = buffer.Find(k => (Keys) k.input == key);
+            BufferedInput bufferedInput = buffer.Find(k => (Keys)k.input == key);
 
             if (bufferedInput != null)
             {
@@ -328,7 +329,7 @@ namespace TennisFightingGame
 
         private float InputHeldFor(Buttons button)
         {
-            BufferedInput bufferedInput = buffer.Find(b => (Buttons) b.input == button);
+            BufferedInput bufferedInput = buffer.Find(b => (Buttons)b.input == button);
 
             if (bufferedInput != null)
             {
@@ -342,12 +343,12 @@ namespace TennisFightingGame
         {
             if (inputMethod == InputMethod.Keyboard)
             {
-                return ((Keys) controls[(int) action]).ToString();
+                return ((Keys)controls[(int) action]).ToString();
             }
 
             if (inputMethod == InputMethod.XInput)
             {
-                return ((Buttons) controls[(int) action]).ToString();
+                return ((Buttons)controls[(int) action]).ToString();
             }
 
             return "Not set";
