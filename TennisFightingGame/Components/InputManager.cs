@@ -371,9 +371,16 @@ namespace TennisFightingGame
 		}
 	}
 
+	/// <summary>
+    /// Decides when buffered inputs past their clearTime are disposed of.
+	/// </summary>
 	public enum ClearingMode
 	{
-        NonHeld,
+        // All buffered inputs past their clearTime except held ones
+        NonHeld, 
+        
+        // All buffered inputs past their clearTime except ones equivalent to
+        // the last input
 		NonRepeated
 	}
 
