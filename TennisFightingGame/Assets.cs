@@ -1,5 +1,4 @@
-﻿using System;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
@@ -559,7 +558,8 @@ namespace TennisFightingGame
 							new Hitbox(rectangle: new Rectangle(-10, -110, 50, 80),
 								start: 0, duration: 0.4f,
 								hitStun: 0.1f, hitLag: 0.1f, shakeMagnitude: 1,
-								force: new Vector2(100, -400),
+								force: new Vector2(75, -300),
+								gravity: 2000,
 								onHitSounds: weakHitSounds)
 							}),
 					
@@ -672,11 +672,11 @@ namespace TennisFightingGame
 				                start: 0, duration: 0.05f,
 				                force: new Vector2(75, -850)),
 			                new Hitbox(rectangle: new Rectangle(0, 0, 100, 100),
-				                start: 0.7f, duration: 0.5f,
+				                start: 0.6f, duration: 0.5f,
 				                force: new Vector2(1600, -775),
 								hitStun: 0.125f, hitLag: 0.125f, shakeMagnitude: 3,
 								onHitSounds: normalHitSounds,
-								onAddedSounds: new SoundEffect[][] { swingSounds, monkeyLoudGrunts })
+								onAddedSounds: new SoundEffect[][] { swingSounds, monkeyGrunts })
 		                	}),
 					
 	                // Serve 3
@@ -691,7 +691,7 @@ namespace TennisFightingGame
 			                new Hitbox(rectangle: new Rectangle(0, -50, 100, 100),
 				                start: 0.85f, duration: 0.5f,
 				                force: new Vector2(2500, -375),
-				                hitStun: 0.33f, hitLag: 0.33f,
+				                hitStun: 0.35f, hitLag: 0.35f,
 								onHitSounds: strongHitSounds,
 								onAddedSounds: new SoundEffect[][] { swingSounds, monkeyLoudGrunts })
 		                	}),
