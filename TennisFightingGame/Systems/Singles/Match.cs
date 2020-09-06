@@ -50,7 +50,8 @@ namespace TennisFightingGame.Singles
 			pause.ResettedBallPosition += () =>
 			{
 				ball.Position = new Point((matchManager.side > 0) ? 2000 : 1300, -200);
-				ball.Hit(Vector2.Zero);
+				ball.velocity = Vector2.Zero;
+				ball.gravity = Ball.DefaultGravity;
 			};
 			
 			transition.Finished += () => transitioning = false;

@@ -190,7 +190,8 @@ namespace TennisFightingGame.Singles
         private void Serve(Player player)
         {
             match.inPlay = true;
-			match.ball.Hit(Vector2.Zero);
+			match.ball.velocity = Vector2.Zero;
+			match.ball.gravity = Ball.DefaultGravity;
 			match.ball.Position = player.rectangle.Center;
 			bounces = 1;
 			consecutiveHits = 0;

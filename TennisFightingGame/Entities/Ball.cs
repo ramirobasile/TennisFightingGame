@@ -20,9 +20,9 @@ namespace TennisFightingGame
 		private readonly Match match;
 
         public Vector2 velocity = new Vector2(0, 0);
-		public Rectangle lastRectangle;
 		public float hitStun;
-		private float gravity;
+		public float gravity;
+		public Rectangle lastRectangle;
 
 		public Ball(Rectangle rectangle, Texture2D texture, Match match)
         {
@@ -129,11 +129,6 @@ namespace TennisFightingGame
 			{
 				Hitted.Invoke();
 			}
-		}
-
-		public void AddVelocity(Vector2 velocity)
-		{
-			this.velocity += velocity;
 		}
 
 		public Point LandingPoint(int floorLevel)

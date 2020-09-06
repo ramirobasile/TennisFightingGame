@@ -114,7 +114,8 @@ namespace TennisFightingGame.Training
 
         private void ServeDone(Player player)
         {
-			ball.Hit(Vector2.Zero);
+			ball.velocity = Vector2.Zero;
+			ball.gravity = Ball.DefaultGravity;
             ball.Position = player.Position;
             player.state.serving = false;
             ball.Position = player.rectangle.Center;

@@ -133,7 +133,7 @@ namespace TennisFightingGame
 
 			if (hitbox.cumulative && Math.Sign(player.match.ball.velocity.X) == Math.Sign(originalVelocity.X))
 			{
-				player.match.ball.AddVelocity(new Vector2(originalVelocity.X * VelocityAcumulationScalar, 0));
+				player.match.ball.velocity += new Vector2(originalVelocity.X * VelocityAcumulationScalar, 0);
 			}
 
 			// Hitstun, hitlag and camera shake
