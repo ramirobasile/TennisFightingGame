@@ -29,6 +29,7 @@ namespace TennisFightingGame
                 {
                     Returned.Invoke();
                 }
+                Helpers.PlaySFX(Assets.MenuBackSound);
             };
 
 			// First button is return, following buttons for each character
@@ -94,12 +95,14 @@ namespace TennisFightingGame
             {
                 selectedButtons[(int) index] = MathHelper.Clamp(selectedButtons[(int) index] - 1, 0,
                     buttonSets[selectedSet].Length - 1);
+                Helpers.PlaySFX(Assets.MenuMoveSound);
             }
 
             if (action == Action.Down)
             {
                 selectedButtons[(int) index] = MathHelper.Clamp(selectedButtons[(int) index] + 1, 0,
                     buttonSets[selectedSet].Length - 1);
+                Helpers.PlaySFX(Assets.MenuMoveSound);
             }
         }
 
@@ -121,6 +124,7 @@ namespace TennisFightingGame
                 {
                     AllCharactersSelected.Invoke(selectedCharacters);
                 }
+                    Helpers.PlaySFX(Assets.MenuEnterSound);
             }
         }
 
@@ -130,10 +134,12 @@ namespace TennisFightingGame
 			{
 				selectedCharacters[(int)index] = Assets.Characters[selectedButtons[(int)index] - 1];
 				readiedPlayers[(int)index] = true;
+                Helpers.PlaySFX(Assets.MenuSelectSound);
 			}
 			else
 			{
 				readiedPlayers[(int)index] = false;
+                Helpers.PlaySFX(Assets.MenuUnselectSound);
 			}
         }
     }

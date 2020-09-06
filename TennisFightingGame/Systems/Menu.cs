@@ -63,11 +63,12 @@ namespace TennisFightingGame
             if (action == Action.Up)
             {
                 selectedButton = Helpers.Wrap(selectedButton - 1, 0, buttonSets[selectedSet].Length - 1);
+                Helpers.PlaySFX(Assets.MenuMoveSound); // HACK Some menu derivative might not want this
             }
-
             if (action == Action.Down)
             {
                 selectedButton = Helpers.Wrap(selectedButton + 1, 0, buttonSets[selectedSet].Length - 1);
+                Helpers.PlaySFX(Assets.MenuMoveSound); // HACK Some menu derivative might not want this
             }
         }
 
@@ -77,6 +78,7 @@ namespace TennisFightingGame
             if (action == Action.Attack1)
             {
                 buttonSets[selectedSet][selectedButton].Click(index);
+                Helpers.PlaySFX(Assets.MenuEnterSound); // HACK Some menu derivative might not want this
             }
         }
     }

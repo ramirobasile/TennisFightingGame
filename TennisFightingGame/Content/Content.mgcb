@@ -448,3 +448,15 @@
 /processorParam:Quality=Best
 /build:Sounds/Menu/Move.wav
 
+#begin Sounds/Menu/Select.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Sounds/Menu/Select.wav
+
+#begin Sounds/Menu/Unselect.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Sounds/Menu/Unselect.wav
+

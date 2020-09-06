@@ -25,6 +25,12 @@ namespace TennisFightingGame
 
 		public static SoundEffect BounceSound;
 		public static SoundEffect FastFallSound;
+		public static SoundEffect MenuEnterSound;
+		public static SoundEffect MenuMoveSound;
+		public static SoundEffect MenuUnselectSound;
+		public static SoundEffect MenuSelectSound;
+		public static SoundEffect MenuEndSound;
+		public static SoundEffect MenuBackSound;
 
 		public static void LoadContent(ContentManager content)
 		{
@@ -36,7 +42,13 @@ namespace TennisFightingGame
 			EmphasisFont = content.Load<SpriteFont>("Fonts/Emphasis");
 
 			BounceSound = content.Load<SoundEffect>("Sounds/Bounce1");
-			FastFallSound = content.Load<SoundEffect>("Sounds/FastFall");
+			FastFallSound = content.Load<SoundEffect>("Sounds/Characters/FastFall");
+			MenuEnterSound = content.Load<SoundEffect>("Sounds/Menu/Enter");
+			MenuSelectSound = content.Load<SoundEffect>("Sounds/Menu/Select");
+			MenuUnselectSound = content.Load<SoundEffect>("Sounds/Menu/Unselect");
+			MenuMoveSound = content.Load<SoundEffect>("Sounds/Menu/Move");
+			MenuEndSound = content.Load<SoundEffect>("Sounds/Menu/End");
+			MenuBackSound = content.Load<SoundEffect>("Sounds/Menu/Back");
 
 			#region Courts
 			int stageWidth = 3750;
@@ -90,16 +102,16 @@ namespace TennisFightingGame
 			Courts = new Court[] { hard, clay, grass, carpet };
 
 			#region Characters
-			SoundEffect[] swingSounds = new SoundEffect[]{ content.Load<SoundEffect>("Sounds/Swing1") };
+			SoundEffect[] swingSounds = new SoundEffect[]{ content.Load<SoundEffect>("Sounds/Characters/Swing1") };
 
 			SoundEffect[] normalHitSounds = new SoundEffect[] { 
-				content.Load<SoundEffect>("Sounds/Hit1"), 
-				content.Load<SoundEffect>("Sounds/Hit2") 
+				content.Load<SoundEffect>("Sounds/Characters/Hit1"), 
+				content.Load<SoundEffect>("Sounds/Characters/Hit2") 
 				};
 
 			SoundEffect[] strongHitSounds = normalHitSounds;
 
-			SoundEffect[] weakHitSounds = new SoundEffect[] { content.Load<SoundEffect>("Sounds/Hit3") };
+			SoundEffect[] weakHitSounds = new SoundEffect[] { content.Load<SoundEffect>("Sounds/Characters/Hit3") };
 
 			// Jorgito
 			SoundEffect[] jorgitoGrunts = new SoundEffect[] { 
