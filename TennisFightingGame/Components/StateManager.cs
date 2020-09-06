@@ -150,16 +150,12 @@ namespace TennisFightingGame
 			// Walking
 			if (Attacking || !player.match.inPlay)
 			{
+				movementState = MovementState.Idle;
 				return;
 			}
 
 			switch (action)
 			{
-				default:
-					{
-						movementState = MovementState.Idle;
-						break;
-					}
 				case Action.Left:
 					{
 						if (aerialState == AerialState.Standing || aerialState == AerialState.Jumping)
@@ -225,7 +221,6 @@ namespace TennisFightingGame
 			{
 				return;
 			}
-			
 			switch (action)
 			{
 				default:
