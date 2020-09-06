@@ -376,45 +376,75 @@
 /processorParam:Quality=Best
 /build:Sounds/Bounce1.wav
 
+#begin Sounds/Characters/FastFall.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Sounds/Characters/FastFall.wav
+
+#begin Sounds/Characters/Hit1.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Sounds/Characters/Hit1.wav
+
+#begin Sounds/Characters/Hit2.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Sounds/Characters/Hit2.wav
+
+#begin Sounds/Characters/Hit3.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Sounds/Characters/Hit3.wav
+
+#begin Sounds/Characters/Hit4.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Sounds/Characters/Hit4.wav
+
+#begin Sounds/Characters/Net1.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Sounds/Characters/Net1.wav
+
+#begin Sounds/Characters/Swing1.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Sounds/Characters/Swing1.wav
+
 #begin Sounds/Fanfare.wav
 /importer:WavImporter
 /processor:SoundEffectProcessor
 /processorParam:Quality=Best
 /build:Sounds/Fanfare.wav
 
-#begin Sounds/FastFall.wav
+#begin Sounds/Menu/Back.wav
 /importer:WavImporter
 /processor:SoundEffectProcessor
 /processorParam:Quality=Best
-/build:Sounds/FastFall.wav
+/build:Sounds/Menu/Back.wav
 
-#begin Sounds/Hit1.wav
+#begin Sounds/Menu/End.wav
 /importer:WavImporter
 /processor:SoundEffectProcessor
 /processorParam:Quality=Best
-/build:Sounds/Hit1.wav
+/build:Sounds/Menu/End.wav
 
-#begin Sounds/Hit2.wav
+#begin Sounds/Menu/Enter.wav
 /importer:WavImporter
 /processor:SoundEffectProcessor
 /processorParam:Quality=Best
-/build:Sounds/Hit2.wav
+/build:Sounds/Menu/Enter.wav
 
-#begin Sounds/Hit3.wav
+#begin Sounds/Menu/Move.wav
 /importer:WavImporter
 /processor:SoundEffectProcessor
 /processorParam:Quality=Best
-/build:Sounds/Hit3.wav
-
-#begin Sounds/Net1.wav
-/importer:WavImporter
-/processor:SoundEffectProcessor
-/processorParam:Quality=Best
-/build:Sounds/Net1.wav
-
-#begin Sounds/Swing1.wav
-/importer:WavImporter
-/processor:SoundEffectProcessor
-/processorParam:Quality=Best
-/build:Sounds/Swing1.wav
+/build:Sounds/Menu/Move.wav
 
