@@ -24,7 +24,7 @@ namespace TennisFightingGame.Singles
         private const float MaxZoom = 0.75f;
         private const float MoveSpeed = 6;
 		private const float MaxMoveSpeed = 10;
-		private const float HitStunMoveSpeed = 1;
+		private const float HitStunMoveSpeed = 4;
 		private const float ZoomSpeed = 5;
 		private const float AverageBallVelocity = 1500;
 
@@ -39,7 +39,7 @@ namespace TennisFightingGame.Singles
         {
             this.match = match;
 
-            margin = match.players[0].sprite.frameSize.X;
+            margin = match.players[0].sprite.frameSize.X * 2;
 
             match.matchManager.PointScored += SetFocus;
             match.matchManager.Crossing += Crossing;
@@ -105,7 +105,8 @@ namespace TennisFightingGame.Singles
 			}
 			else
 			{
-				speed = HitStunMoveSpeed;
+				speed = MathHelper.Clamp(HitStunMoveSpeed * match.ball.velocity.X / AverageBallVelocity,
+					HitStunMoveSpeed, MaxMoveSpeed);
 			}
 
 			centre = Vector2.Lerp(centre, new Vector2(x, y), Game1.DeltaTime * speed);
