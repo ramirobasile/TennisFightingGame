@@ -16,8 +16,9 @@ TODOs:
 * Doubles
 
 Conundrums:
-* Should the velocity set at bouncing scale off of the real ball's velocity or
-  the velocity scaled by the gravityScalar?
+* NonHeld buffer clearing mode allows sliding, which is very cool, but the
+  trade-off is your run gets buffered after attacking, which feels very weird.
+  It's not as bad as having no slide though... I think
 * Should we have a Collisionmanager? Could be of use in Doubles
 * Consider a special interaction (penalty) for when a hit depletes fully your
   stamina
