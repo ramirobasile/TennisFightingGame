@@ -11,7 +11,7 @@ namespace TennisFightingGame
 	/// </summary>
     public class InputManager
     {
-        private const float Tap = 0.08f;
+        private const float Tap = 0.09f;
 
         private readonly int[] controls;
 
