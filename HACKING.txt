@@ -6,7 +6,8 @@ FIXMEs:
   collision occurs
 
 TODOs:
-* Allow sliding once again, but per attack
+* Titles
+* Jumpsquat
 * Step sounds
 * More documentation
 * Special exhausted swing and hit sounds
@@ -24,6 +25,6 @@ Conundrums:
   stamina
 
 Backburner TODOs:
-* XML character specifications
+* XML character serialization
 * DInput support (this is never gonna happen probably)
 * Target combos
