@@ -4,9 +4,9 @@ FIXMEs:
   supposed to do that anyway
 * Ball going thought geometry sometimes apparently only when ball's left 
   collision occurs
-* Holding walk allows you to move even when not inPlay
 
 TODOs:
+* Allow sliding once again, but per attack
 * Step sounds
 * More documentation
 * Special exhausted swing and hit sounds
