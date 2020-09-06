@@ -134,7 +134,7 @@ namespace TennisFightingGame
 			}
 
 			if (action == Action.Down && aerialState == AerialState.Airborne && 
-				!fastFell && !Attacking)
+				!fastFell && !Attacking && player.velocity.Y > 0)
 			{
 				fastFell = true;
 
