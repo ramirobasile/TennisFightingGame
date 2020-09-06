@@ -151,14 +151,15 @@ namespace TennisFightingGame
 					},
 				new Attack[] {
 					// Attack 1
-					new Attack(startup: .075f, endlag: .05f, 
+					new Attack(startup: 0.075f, endlag: 0.025f, 
 						softHitCancel: true, 
 						staminaCost: 5,
 						hitboxes: new Hitbox[] {
 							new Hitbox(rectangle: new Rectangle(65, 20, 100, 60),
-								start: 0, duration: 0.66f,
-								force: new Vector2(200, -925),
-								hitStun: 0.05f, hitLag: 0.05f, shakeMagnitude: 2,
+								start: 0, duration: 0.4f,
+								force: new Vector2(650, -550),
+								gravity: 1400,
+								hitStun: 0.1f, hitLag: 0.1f, shakeMagnitude: 3,
 								onHitSounds: weakHitSounds) 
 							}),
 					
@@ -169,16 +170,14 @@ namespace TennisFightingGame
 						hitboxes: new Hitbox[] {
 							new Hitbox(rectangle: new Rectangle(30, 5, 65, 65),
 								start: 0, duration: .11f,
-								force: new Vector2(1750, -1050),
-								//gravityScalar: new Polynomial(new float[] { 4, 1 }),
+								force: new Vector2(1750, -850),
 								exhaustedForce: new Vector2(1500, -975),
 								hitStun: 0.2f, hitLag: 0.2f, shakeMagnitude: 7,
 								onHitSounds: normalHitSounds,
 								onAddedSounds: new SoundEffect[][] { swingSounds }),
 							new Hitbox(rectangle: new Rectangle(90, 15, 55, 55),
 								start: .11f, duration: .11f,
-								force: new Vector2(1750, -1050),
-								//gravityScalar: new Polynomial(new float[] { 4, 1 }),
+								force: new Vector2(1750, -850),
 								exhaustedForce: new Vector2(1500, -975),
 								hitStun: 0.2f, hitLag: 0.2f, shakeMagnitude: 7,
 								onHitSounds: normalHitSounds) 
@@ -236,14 +235,14 @@ namespace TennisFightingGame
 						hitboxes: new Hitbox[] {
 							new Hitbox(rectangle: new Rectangle(30, 5, 65, 65),
 								start: 0, duration: .11f,
-								force: new Vector2(1750, -1050),
+								force: new Vector2(1750, -850),
 								exhaustedForce: new Vector2(1500, -975),
 								hitStun: 0.2f, hitLag: 0.2f, shakeMagnitude: 7,
 								onHitSounds: normalHitSounds,
 								onAddedSounds: new SoundEffect[][] { swingSounds }),
 							new Hitbox(rectangle: new Rectangle(90, 15, 55, 55),
 								start: .11f, duration: .11f,
-								force: new Vector2(1750, -1050),
+								force: new Vector2(1750, -850),
 								exhaustedForce: new Vector2(1500, -975),
 								hitStun: 0.2f, hitLag: 0.2f, shakeMagnitude: 7,
 								onHitSounds: normalHitSounds)
@@ -366,14 +365,14 @@ namespace TennisFightingGame
 					},
 				new Attack[] {
 	                // Attack 1
-	                new Attack(startup: 0.085f, endlag: 0.2f, 
+	                new Attack(startup: 0.1f, endlag: 0.2f, 
 						staminaCost: 4, 
 						softHitCancel: true,
 						hitboxes: new Hitbox[] {
 							new Hitbox(rectangle: new Rectangle(30, -20, 80, 100),
 								start: 0, duration: .45f,
 								hitStun: 0.1f, hitLag: 0.1f, shakeMagnitude: 3,
-								force: new Vector2(1400, -750),
+								force: new Vector2(1250, -750),
 								onAddedSounds: new SoundEffect[][] { swingSounds, chinoGrunts },
 								onHitSounds: weakHitSounds)
 							}),
