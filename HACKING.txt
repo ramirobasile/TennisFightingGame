@@ -4,8 +4,10 @@ FIXMEs:
   supposed to do that anyway
 * Ball going thought geometry sometimes apparently only when ball's left 
   collision occurs
+* Landing point isn't calculated correctly when bounce off of wall
 
 TODOs:
+* Better folder structure
 * Titles
 * Jumpsquat
 * Step sounds
@@ -17,6 +19,8 @@ TODOs:
 * Doubles
 
 Conundrums:
+* Add one more attack or maybe add variations based on motion inputs?
+* Add target combos?
 * NonHeld buffer clearing mode allows sliding, which is very cool, but the
   trade-off is your run gets buffered after attacking, which feels very weird.
   It's not as bad as having no slide though... I think
@@ -27,4 +31,3 @@ Conundrums:
 Backburner TODOs:
 * XML character serialization
 * DInput support (this is never gonna happen probably)
-* Target combos
