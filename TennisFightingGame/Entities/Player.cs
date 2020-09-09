@@ -63,16 +63,7 @@ namespace TennisFightingGame
 			state.FastFell += FastFall;
         }
 
-		// Returns and sets the XY of the player's rectangle
-		public Point Position
-		{
-			get { return new Point(rectangle.X, rectangle.Y); }
-			set
-			{
-				rectangle.X = value.X;
-				rectangle.Y = value.Y;
-			}
-		}
+		public Point Position { get { return rectangle.Location; } set { rectangle.Location = value; } }
 
 		public void Update()
         {
