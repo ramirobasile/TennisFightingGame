@@ -13,14 +13,14 @@ namespace TennisFightingGame
 	/// </summary>
 	public class Animation
 	{
-		private readonly int row;
+		public readonly int row;
 		private readonly float fps;
 		private readonly int frames;
 		private readonly bool loops;
 		public readonly bool resetOnStop;
 
 		public float time;
-		private int currentFrame;
+		public int currentFrame;
 
 		public Animation(int row, int frames, float fps, bool loops = false, bool resetOnStop = true)
 		{

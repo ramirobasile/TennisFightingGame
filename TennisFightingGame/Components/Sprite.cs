@@ -16,7 +16,7 @@ namespace TennisFightingGame
 		const float ShadowOpacity = 0.3f;
 		const int Margins = 3; // HACK Make this a parameter
 
-		private readonly Texture2D spriteSheet;
+		public readonly Texture2D spriteSheet;
 		public readonly Point frameSize;
 		private readonly Animation[] animations;
 
@@ -41,6 +41,21 @@ namespace TennisFightingGame
 		public delegate void ChangedAnimationEventHandler(Animations newAnimation);
 
 		public event ChangedAnimationEventHandler ChangedAnimation;
+
+		public Rectangle FrameCutout 
+		{ 
+			get 
+			{ 
+				int frame = CurrentAnimation.currentFrame;
+				int row = CurrentAnimation.row;
+
+				return new Rectangle(
+					frame * frameSize.X + Margins * (frame + 1),
+					row * frameSize.Y + Margins * (row + 1), 
+					frameSize.X, 
+					frameSize.Y);
+			}
+		}
 
 		private Animation CurrentAnimation { get { return animations[(int)currentAnimation]; } }
 
