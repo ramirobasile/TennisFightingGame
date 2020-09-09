@@ -52,6 +52,8 @@ namespace TennisFightingGame.Singles
 
         public override void Update()
 		{
+            base.Update();
+			
 			// Camera doesn't move when hitStun is above a certain const
 			if (match.ball.hitStun > HitStunMoveThreshold)
 			{
@@ -117,7 +119,6 @@ namespace TennisFightingGame.Singles
 			}
 
 			centre = Vector2.Lerp(centre, new Vector2(x, y), Game1.DeltaTime * speed);
-            base.Update();
         }
 
         private void SetFocus(Player newAttacker, Player newDefender)
