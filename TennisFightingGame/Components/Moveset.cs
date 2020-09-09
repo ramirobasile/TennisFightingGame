@@ -11,8 +11,8 @@ namespace TennisFightingGame
 	/// </summary>
 	public class Moveset
 	{
-		private const float MaxStaminaCost = 30;
-		private const float VelDiffScalar = 0.015f; // scalar of the difference in velocity to calculate hit stamina
+		private const float MaxStaminaCost = 50;
+		private const float VelDiffScalar = 0.0133f; // scalar of the difference in velocity to calculate hit stamina
 		private const float NormalHitThreshold = 500;
 		private const float StrongHitThreshold = 2500;
 		private const float PanningScalar = 0.3f;
