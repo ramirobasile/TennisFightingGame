@@ -1,6 +1,5 @@
 ﻿using System;
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Graphics;
 
 namespace TennisFightingGame
@@ -31,15 +30,7 @@ namespace TennisFightingGame
 			this.match = match;
         }
 
-        public Point Position
-        {
-            get { return new Point(rectangle.X, rectangle.Y); }
-            set
-            {
-                rectangle.X = value.X;
-                rectangle.Y = value.Y;
-            }
-        }
+		public Point Position { get { return rectangle.Location; } set { rectangle.Location = value; } }
 
 		public delegate void BouncedEventHandler();
 		public delegate void HittedEventHandler();
