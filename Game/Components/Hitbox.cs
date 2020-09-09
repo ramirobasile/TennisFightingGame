@@ -24,7 +24,7 @@ namespace TennisFightingGame
 		
 		public Hitbox(Rectangle rectangle, float start, float duration, Vector2 force, 
 			Vector2 exhaustedForce = default(Vector2), float gravity = Ball.DefaultGravity,
-			float hitStun = 0,  float hitLag = 0,  int shakeMagnitude = 10, 
+			float hitStun = 0,  float hitLag = 0,  int shakeMagnitude = 0, 
 			bool cumulative = true, SoundEffect[][] onAddedSounds = null, 
 			SoundEffect[] onHitSounds = null)
         {

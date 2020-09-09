@@ -24,7 +24,7 @@ namespace TennisFightingGame.Singles
         private const float MaxZoom = 0.75f;
         private const float MoveSpeed = 6;
 		private const float MaxMoveSpeed = 10;
-        private const float HitStunMoveThreshold = 0.3f;
+        private const float HitStunMoveThreshold = 0.1f;
 		private const float HitStunMoveSpeed = 3;
 		private const float ZoomSpeed = 5;
 		private const float AverageBallVelocity = 1500;
