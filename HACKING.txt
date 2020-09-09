@@ -7,6 +7,9 @@ FIXMEs:
 * Landing point isn't calculated correctly when bounce off of wall
 
 TODOs:
+* Add notion of phantom hit (which isn't accounted for by match manager)
+* Add motion inputs
+* Make attacks be bound to inputs rather than having them ordered by index
 * Better folder structure
 * Titles
 * Jumpsquat
@@ -19,8 +22,7 @@ TODOs:
 * Doubles
 
 Conundrums:
-* Add one more attack or maybe add variations based on motion inputs?
-* Add target combos?
+* Maybe add target combos?
 * NonHeld buffer clearing mode allows sliding, which is very cool, but the
   trade-off is your run gets buffered after attacking, which feels very weird.
   It's not as bad as having no slide though... I think
