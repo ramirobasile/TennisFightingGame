@@ -7,18 +7,17 @@ FIXMEs:
 * Landing point isn't calculated correctly when bounce off of wall
 
 TODOs:
+* "Busy" blocking time for player actions such as switching side or jumpsquat
 * Add notion of phantom hit (which isn't accounted for by match manager)
 * Add motion inputs
 * Make attacks be bound to inputs rather than having them ordered by index
-* Better folder structure
 * Titles
-* Jumpsquat
 * Step sounds
 * More documentation
 * Special exhausted swing and hit sounds
 * Allow scaling
 * Parallax background
-* Particle system
+* Add particles
 * Doubles
 
 Conundrums:
