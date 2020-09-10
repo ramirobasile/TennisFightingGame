@@ -12,10 +12,14 @@ namespace TennisFightingGame
 	/// </summary>
     public class Attack
 	{
+		private readonly Action action;
+		private readonly AerialState aerialState;
+		private readonly Action[] motionInput;
+
 		private readonly Hitbox[] hitboxes;
 		[NonSerialized] public readonly SoundEffect[][] onStartupSounds;
 		public readonly bool isNull;
-        public readonly float staminaCost; // stamina cost
+        public readonly float staminaCost;
 		public readonly bool hardLandCancel;
 		public readonly bool softLandCancel;
 		public readonly bool hardHitCancel;
@@ -28,7 +32,6 @@ namespace TennisFightingGame
 		public List<Hitbox> activeHitboxes = new List<Hitbox>();
 		public List<Hitbox> hits = new List<Hitbox>();
         public float time;
-        private bool swing;
 
 		public Attack(Hitbox[] hitboxes = null, SoundEffect[][] onStartupSounds = null,
 			float startup = 0,  float endlag = 0, bool hardLandCancel = false, 
@@ -90,23 +93,12 @@ namespace TennisFightingGame
 		public event HitEventHandler Hit;
 		public event AddedHitboxEventHandler AddedHitbox;
 		public event RemovedHitboxEventHandler RemovedHitbox;
-		public event SwungEventHandler Swung;
 		public event FinishedEventHandler Finished;
 		
 		
         public void Update(Player player)
         {
 			time += TennisFightingGame.DeltaTime;
-
-			if (time >= startup && !swing)
-			{
-				if (Swung != null)
-				{
-					Swung.Invoke();
-				}
-
-				swing = true;
-			}
 
             // Activate hitboxes after delays and deactivate them after duration
             foreach (Hitbox hitbox in hitboxes)
@@ -190,7 +182,6 @@ namespace TennisFightingGame
 			time = 0;
 			activeHitboxes.Clear();
 			hits.Clear();
-			swing = true;
 
 			if (Finished != null)
 			{
