@@ -33,9 +33,9 @@ namespace TennisFightingGame
             };
 
 			// First button is return, following buttons for each character
-			UI.Button[] buttons = new UI.Button[Assets.Characters.Length + 1];
+			UI.Button[] buttons = new UI.Button[Assets.Characters.Count + 1];
 			buttons[0] = returnButton;
-            for (int i = 1; i < Assets.Characters.Length + 1; i++)
+            for (int i = 1; i < Assets.Characters.Count + 1; i++)
             {
                 buttons[i] = new UI.Button(Assets.Characters[i - 1].name, 
                 	new Point(0, 110 + Assets.RegularFont.Height() * (i - 1)), 
