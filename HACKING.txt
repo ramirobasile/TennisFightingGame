@@ -5,8 +5,12 @@ FIXMEs:
 * Ball going thought geometry sometimes apparently only when ball's left 
   collision occurs
 * Landing point isn't calculated correctly when bounce off of wall
+* Attack animations not working
 
 TODOs:
+* Clean up assets
+* Rename Attack1, 2, 3 in .ini
+* 4 point games, 6 game sets
 * "Busy" blocking time for player actions such as switching side or jumpsquat
 * Add notion of phantom hit (which isn't accounted for by match manager)
 * Add motion inputs
