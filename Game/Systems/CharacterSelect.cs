@@ -83,7 +83,7 @@ namespace TennisFightingGame
         }
 
         // Input handling overriden because multiple buttons can be selected at once on the CSS
-        protected override void Press(Action action, PlayerIndex index)
+        protected override void Press(Actions action, PlayerIndex index)
         {
             // We don't want inputs from players that are not selecting characters or players that are already ready
             if ((int) index >= selectedButtons.Length || readiedPlayers[(int) index])
@@ -91,14 +91,14 @@ namespace TennisFightingGame
                 return;
             }
 
-            if (action == Action.Up)
+            if (action == Actions.Up)
             {
                 selectedButtons[(int) index] = MathHelper.Clamp(selectedButtons[(int) index] - 1, 0,
                     buttonSets[selectedSet].Length - 1);
                 Helpers.PlaySFX(Assets.MenuMoveSound);
             }
 
-            if (action == Action.Down)
+            if (action == Actions.Down)
             {
                 selectedButtons[(int) index] = MathHelper.Clamp(selectedButtons[(int) index] + 1, 0,
                     buttonSets[selectedSet].Length - 1);
@@ -106,19 +106,19 @@ namespace TennisFightingGame
             }
         }
 
-        protected override void Release(Action action, PlayerIndex index)
+        protected override void Release(Actions action, PlayerIndex index)
         {
             if ((int) index >= selectedButtons.Length)
             {
                 return;
             }
 
-            if (action == Action.Attack1)
+            if (action == Actions.Light)
             {
                 buttonSets[selectedSet][selectedButtons[(int) index]].Click(index);
             }
 
-            if (action == Action.Start && readiedPlayers.All(p => p))
+            if (action == Actions.Start && readiedPlayers.All(p => p))
             {
                 if (AllCharactersSelected != null)
                 {

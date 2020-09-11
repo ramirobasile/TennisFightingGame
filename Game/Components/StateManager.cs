@@ -11,7 +11,7 @@ namespace TennisFightingGame
 		private readonly Player player;
 
 		public MovementState movementState;
-		public AerialState aerialState;
+		public AerialStates aerialState;
 
 		public bool serving;
 		public bool exhausted;
@@ -27,8 +27,7 @@ namespace TennisFightingGame
 			player.input.DoublePressed += DoublePress;
 		}
 
-		public Attacks CurrentAttack { get { return player.moveset.currentAttack; } }
-		public bool Attacking { get { return CurrentAttack != Attacks.None; } }
+		public bool Attacking { get { return player.moveset.currentAttack != null; } }
 		public bool Walking
 		{
 			get
@@ -76,9 +75,9 @@ namespace TennisFightingGame
 				Rectangle check = new Rectangle(player.rectangle.X, player.rectangle.Y + Player.CheckDistance,
 					player.rectangle.Width, player.rectangle.Height);
 
-				if (aerialState != AerialState.Jumping && wall.Collision(check, player.lastRectangle).Bottom)
+				if (aerialState != AerialStates.Jumping && wall.Collision(check, player.lastRectangle).Bottom)
 				{
-					if (aerialState == AerialState.Airborne)
+					if (aerialState == AerialStates.Airborne)
 					{
 						if (Landed != null)
 						{
@@ -88,35 +87,35 @@ namespace TennisFightingGame
 						fastFell = false;
 					}
 
-					aerialState = AerialState.Standing;
+					aerialState = AerialStates.Standing;
 					return;
 				}
 
 				if (!wall.Collision(check, player.lastRectangle).Bottom)
 				{
-					aerialState = AerialState.Airborne;
+					aerialState = AerialStates.Airborne;
 					return;
 				}
 			}
 		}
 
-		private void Press(Action action)
+		private void Press(Actions action)
 		{
 			if (Attacking || !player.match.inPlay)
 			{
 				return;
 			}
 
-			if (action == Action.Jump && aerialState == AerialState.Standing)
+			if (action == Actions.Jump && aerialState == AerialStates.Standing)
 			{
-				aerialState = AerialState.Jumping;
+				aerialState = AerialStates.Jumping;
 				if (Jumped != null)
 				{
 					Jumped.Invoke();
 				}
 			}
 
-			if (action == Action.Turn && aerialState == AerialState.Standing)
+			if (action == Actions.Turn && aerialState == AerialStates.Standing)
 			{
 				if (player.direction == 1)
 				{
@@ -133,7 +132,7 @@ namespace TennisFightingGame
 				}
 			}
 
-			if (action == Action.Down && aerialState == AerialState.Airborne && 
+			if (action == Actions.Down && aerialState == AerialStates.Airborne && 
 				!fastFell && !Attacking && player.velocity.Y > 0)
 			{
 				fastFell = true;
@@ -145,7 +144,7 @@ namespace TennisFightingGame
 			}
 		}
 
-		private void Hold(Action action)
+		private void Hold(Actions action)
 		{
 			// Walking
 			if (Attacking || !player.match.inPlay)
@@ -156,9 +155,9 @@ namespace TennisFightingGame
 
 			switch (action)
 			{
-				case Action.Left:
+				case Actions.Left:
 					{
-						if (aerialState == AerialState.Standing || aerialState == AerialState.Jumping)
+						if (aerialState == AerialStates.Standing || aerialState == AerialStates.Jumping)
 						{
 							if (exhausted)
 							{
@@ -170,7 +169,7 @@ namespace TennisFightingGame
 							}
 						}
 
-						if (aerialState == AerialState.Airborne)
+						if (aerialState == AerialStates.Airborne)
 						{
 							movementState = MovementState.DriftingBackwards;
 						}
@@ -178,9 +177,9 @@ namespace TennisFightingGame
 						break;
 					}
 
-				case Action.Right:
+				case Actions.Right:
 					{
-						if (aerialState == AerialState.Standing || aerialState == AerialState.Jumping)
+						if (aerialState == AerialStates.Standing || aerialState == AerialStates.Jumping)
 						{
 							if (exhausted)
 							{
@@ -192,7 +191,7 @@ namespace TennisFightingGame
 							}
 						}
 
-						if (aerialState == AerialState.Airborne)
+						if (aerialState == AerialStates.Airborne)
 						{
 							movementState = MovementState.DriftingForwards;
 						}
@@ -202,7 +201,7 @@ namespace TennisFightingGame
 			}
 		}
 
-		private void Release(Action action)
+		private void Release(Actions action)
 		{
 			switch (action)
 			{
@@ -214,7 +213,7 @@ namespace TennisFightingGame
 			}
 		}
 
-		private void DoublePress(Action action)
+		private void DoublePress(Actions action)
 		{
 			// Sprinting
 			if (Attacking || !player.match.inPlay)
@@ -228,7 +227,7 @@ namespace TennisFightingGame
 						movementState = MovementState.Idle;
 						break;
 					}
-				case Action.Left:
+				case Actions.Left:
 					{
 						if (movementState != MovementState.WalkingBackwards)
 						{
@@ -239,7 +238,7 @@ namespace TennisFightingGame
 						break;
 					}
 
-				case Action.Right:
+				case Actions.Right:
 					{
 						if (movementState != MovementState.WalkingForwards)
 						{
@@ -267,7 +266,7 @@ namespace TennisFightingGame
 		TurningBackwards
 	}
 
-	public enum AerialState
+	public enum AerialStates
 	{
 		Airborne,
 		Jumping,

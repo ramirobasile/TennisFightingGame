@@ -140,9 +140,9 @@ namespace TennisFightingGame.Singles
             return players.First(p => p.courtSide == side);
         }
 
-        private void Pause(Action action, PlayerIndex index)
+        private void Pause(Actions action, PlayerIndex index)
         {
-            if (action == Action.Start)
+            if (action == Actions.Start)
             {
                 pause.master = index;
                 paused = true;

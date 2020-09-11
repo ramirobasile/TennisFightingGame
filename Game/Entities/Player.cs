@@ -89,7 +89,7 @@ namespace TennisFightingGame
 			switch (state.aerialState)
             {
 				// Gravity
-                case AerialState.Airborne:
+                case AerialStates.Airborne:
 	                {
 	                    velocity.Y += stats.gravity * TennisFightingGame.DeltaTime;
 	                    break;
@@ -98,7 +98,7 @@ namespace TennisFightingGame
 				/* When running, friction is applied so the player has deceleration when he stops running.
 				 * When walking, velocity is set to 0. Since this is done before setting velocity beased on
 				 * the movement state, this makes velocity constant when walking.*/
-				case AerialState.Standing:
+				case AerialStates.Standing:
 					{
 						if (Math.Abs(velocity.X) > FrictionRound)
                     	{

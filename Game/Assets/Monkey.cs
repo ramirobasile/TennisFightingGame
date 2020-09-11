@@ -9,17 +9,6 @@ namespace TennisFightingGame
 	{
 		static partial void LoadMonkey(ContentManager content)
 		{
-			SoundEffect[] swingSounds = new SoundEffect[]{ content.Load<SoundEffect>("Sounds/Characters/Swing1") };
-
-			SoundEffect[] normalHitSounds = new SoundEffect[] { 
-				content.Load<SoundEffect>("Sounds/Characters/Hit1"), 
-				content.Load<SoundEffect>("Sounds/Characters/Hit2") 
-				};
-
-			SoundEffect[] strongHitSounds = normalHitSounds;
-
-			SoundEffect[] weakHitSounds = new SoundEffect[] { content.Load<SoundEffect>("Sounds/Characters/Hit3") };
-
 			SoundEffect[] monkeyGrunts = new SoundEffect[]{ 
 				content.Load<SoundEffect>("Characters/Monkey/Grunt1"),
 				content.Load<SoundEffect>("Characters/Monkey/Grunt2"),
@@ -58,7 +47,10 @@ namespace TennisFightingGame
 					},
 				new Attack[] {
 	                // Attack 1
-	                new Attack(startup: 0.05f, endlag: 0.25f, 
+	                new Attack(
+						action: Actions.Light,
+						aerialState: AerialStates.Standing,
+						startup: 0.05f, endlag: 0.25f, 
 						staminaCost: 3, 
 						hardHitCancel: true,
 						onStartupSounds: new SoundEffect[][] { monkeyGrunts },
@@ -68,11 +60,14 @@ namespace TennisFightingGame
 								hitStun: 0.1f, hitLag: 0.1f, shakeMagnitude: 1,
 								force: new Vector2(75, -300),
 								gravity: 2000,
-								onHitSounds: weakHitSounds)
+								onHitSounds: WeakHitSounds)
 							}),
 					
 	                // Attack 2
-					new Attack(startup: 0.15f, endlag: 0.075f, 
+					new Attack(
+						action: Actions.Medium,
+						aerialState: AerialStates.Standing,
+						startup: 0.15f, endlag: 0.075f, 
 						staminaCost: 4,
 						hardHitCancel: true,
 						onStartupSounds: new SoundEffect[][] { monkeyGrunts }, 
@@ -81,12 +76,15 @@ namespace TennisFightingGame
 								start: 0, duration: 0.3f,
 								hitStun: 0.1f, hitLag: 0.1f, shakeMagnitude: 3,
 								force: new Vector2(400, -925),
-								onHitSounds: weakHitSounds,
-								onAddedSounds: new SoundEffect[][] { swingSounds })
+								onHitSounds: WeakHitSounds,
+								onAddedSounds: new SoundEffect[][] { SwingSounds })
 							}),
 
 	                // Attack 3
-					new Attack(startup: 0.2f, endlag: 0.075f, 
+					new Attack(
+						action: Actions.Heavy,
+						aerialState: AerialStates.Standing,
+						startup: 0.2f, endlag: 0.075f, 
 						staminaCost: 4, 
 						onStartupSounds: new SoundEffect[][] { monkeyGrunts }, 
 						hardHitCancel: true,
@@ -95,15 +93,18 @@ namespace TennisFightingGame
 								start: 0, duration: 0.35f,
 								hitStun: 0.125f, hitLag: 0.125f, shakeMagnitude: 4,
 								force: new Vector2(675, -1150),
-								onHitSounds: normalHitSounds,
-								onAddedSounds: new SoundEffect[][] { swingSounds })
+								onHitSounds: NormalHitSounds,
+								onAddedSounds: new SoundEffect[][] { SwingSounds })
 							}),
 	            
 	                // TODO Attack 1 Air
 	                new Attack(isNull: true),
 	                
 	                // Attack 2 Air
-	                new Attack(startup: 0.175f, endlag: 0.25f, 
+	                new Attack(
+						action: Actions.Medium,
+						aerialState: AerialStates.Airborne,
+						startup: 0.175f, endlag: 0.25f, 
 						staminaCost: 5,
 						softLandCancel: true,
 						hitboxes: new Hitbox[] {
@@ -111,27 +112,30 @@ namespace TennisFightingGame
 								start: 0, duration: 0.0375f,
 								force: new Vector2(2300, -350),
 								hitStun: 0.4f, hitLag: 0.4f,
-								onHitSounds: strongHitSounds,
-								onAddedSounds: new SoundEffect[][] { swingSounds }),
+								onHitSounds: StrongHitSounds,
+								onAddedSounds: new SoundEffect[][] { SwingSounds }),
 							new Hitbox(rectangle: new Rectangle(70, 60, 80, 80),
 								start: 0.0375f, duration: 0.0575f,
 								force: new Vector2(1600, -500),
 								hitStun: 0.3f, hitLag: 0.3f,
-								onHitSounds: normalHitSounds),
+								onHitSounds: NormalHitSounds),
 							new Hitbox(rectangle: new Rectangle(90, 10, 80, 80),
 								start: 0.0948f, duration: 0.075f,
 								force: new Vector2(1000, -1000),
 								hitStun: 0.25f, hitLag: 0.25f,
-								onHitSounds: normalHitSounds),
+								onHitSounds: NormalHitSounds),
 							new Hitbox(rectangle: new Rectangle(70, -50, 80, 80),
 								start: 0.1698f, duration: 0.075f,
 								force: new Vector2(1000, -1000),
 								hitStun: 0.25f, hitLag: 0.25f,
-								onHitSounds: normalHitSounds),
+								onHitSounds: NormalHitSounds),
 							}),
 	                
 	                // Attack 3 Air
-	                new Attack(startup: 0.225f, endlag: 0.4f,
+	                new Attack(
+						action: Actions.Heavy,
+						aerialState: AerialStates.Airborne,
+						startup: 0.225f, endlag: 0.4f,
 						staminaCost: 8,
 						softLandCancel: true,
 						hitboxes: new Hitbox[] {
@@ -139,22 +143,26 @@ namespace TennisFightingGame
 								start: 0, duration: 0.04f,
 								force: new Vector2(2750, 1500),
 								hitStun: 0.5f, hitLag: 0.5f,
-								onHitSounds: strongHitSounds,
+								onHitSounds: StrongHitSounds,
 								onAddedSounds: new SoundEffect[][] { monkeyLoudGrunts }),
 							new Hitbox(rectangle: new Rectangle(80, 30, 80, 80),
 								start: 0.04f, duration: 0.06f,
 								force: new Vector2(2750, 1500),
 								hitStun: 0.5f, hitLag: 0.5f,
-								onHitSounds: strongHitSounds),
+								onHitSounds: StrongHitSounds),
 							new Hitbox(rectangle: new Rectangle(70, 50, 80, 80),
 								start: 0.12f, duration: 0.06f,
 								force: new Vector2(2750, 1500),
 								hitStun: 0.5f, hitLag: 0.5f,
-								onHitSounds: strongHitSounds),
+								onHitSounds: StrongHitSounds),
 							}),
                 
 	                // Serve 1
-	                new Attack(startup: 0, endlag: 0.15f, 
+	                new Attack(
+						action: Actions.Light,
+						aerialState: AerialStates.Standing,
+						serve: true,
+						startup: 0, endlag: 0.15f, 
 						staminaCost: 3,
 		                onStartupSounds: new SoundEffect[][] { monkeyGrunts }, 
 						multiHit: true,
@@ -166,12 +174,16 @@ namespace TennisFightingGame
 				                start: 0.95f, duration: 0.5f,
 				                force: new Vector2(1000, -1750),
 								hitStun: 0.1f, hitLag: 0.1f, shakeMagnitude: 2,
-								onHitSounds: normalHitSounds,
-								onAddedSounds: new SoundEffect[][] { swingSounds, monkeyGrunts })
+								onHitSounds: NormalHitSounds,
+								onAddedSounds: new SoundEffect[][] { SwingSounds, monkeyGrunts })
 		                	}),
 					
 	                // Serve 2
-	                new Attack(startup: 0, endlag: 0.2f, 
+	                new Attack(
+						action: Actions.Medium,
+						aerialState: AerialStates.Standing,
+						serve: true,
+						startup: 0, endlag: 0.2f, 
 						staminaCost: 7,
 		                onStartupSounds: new SoundEffect[][] { monkeyGrunts },
 						multiHit: true,
@@ -183,12 +195,16 @@ namespace TennisFightingGame
 				                start: 0.6f, duration: 0.5f,
 				                force: new Vector2(1600, -775),
 								hitStun: 0.125f, hitLag: 0.125f, shakeMagnitude: 3,
-								onHitSounds: normalHitSounds,
-								onAddedSounds: new SoundEffect[][] { swingSounds, monkeyGrunts })
+								onHitSounds: NormalHitSounds,
+								onAddedSounds: new SoundEffect[][] { SwingSounds, monkeyGrunts })
 		                	}),
 					
 	                // Serve 3
-	                new Attack(startup: 0, endlag: 0.3f, 
+	                new Attack(
+						action: Actions.Heavy,
+						aerialState: AerialStates.Standing,
+						serve: true,
+						startup: 0, endlag: 0.3f, 
 						staminaCost: 14,
 		                onStartupSounds: new SoundEffect[][] { monkeyGrunts }, 
 						multiHit: true,
@@ -200,8 +216,8 @@ namespace TennisFightingGame
 				                start: 0.85f, duration: 0.5f,
 				                force: new Vector2(2500, -375),
 				                hitStun: 0.35f, hitLag: 0.35f,
-								onHitSounds: strongHitSounds,
-								onAddedSounds: new SoundEffect[][] { swingSounds, monkeyLoudGrunts })
+								onHitSounds: StrongHitSounds,
+								onAddedSounds: new SoundEffect[][] { SwingSounds, monkeyLoudGrunts })
 		                	}),
 				},
 				new Stats(

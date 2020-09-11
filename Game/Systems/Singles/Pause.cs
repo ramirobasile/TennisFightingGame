@@ -95,7 +95,7 @@ namespace TennisFightingGame.Singles
         }
 
         // Overrides to check if the inputs are done by the master of the pause screen, they are ignored otherwise
-        protected override void Press(Action action, PlayerIndex index)
+        protected override void Press(Actions action, PlayerIndex index)
         {
             if (index == master)
             {
@@ -103,7 +103,7 @@ namespace TennisFightingGame.Singles
             }
         }
 
-        protected override void Release(Action action, PlayerIndex index)
+        protected override void Release(Actions action, PlayerIndex index)
         {
             if (index == master)
             {

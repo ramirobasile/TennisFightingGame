@@ -27,6 +27,10 @@ namespace TennisFightingGame
 		public static SoundEffect MenuSelectSound;
 		public static SoundEffect MenuEndSound;
 		public static SoundEffect MenuBackSound;
+		public static SoundEffect[] SwingSounds;
+		public static SoundEffect[] WeakHitSounds;
+		public static SoundEffect[] NormalHitSounds;
+		public static SoundEffect[] StrongHitSounds;
 
 		static partial void LoadTextures(ContentManager content);
 		static partial void LoadSounds(ContentManager content);
@@ -43,8 +47,11 @@ namespace TennisFightingGame
 			EmphasisFont = content.Load<SpriteFont>("Fonts/Emphasis");
 
 			LoadTextures(content);
+
 			LoadSounds(content);
+
 			LoadCourts(content);
+
 			LoadJorgito(content);
 			LoadChino(content);
 			LoadMonkey(content);

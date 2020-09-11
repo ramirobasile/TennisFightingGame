@@ -9,18 +9,6 @@ namespace TennisFightingGame
 	{
 		static partial void LoadWizard(ContentManager content)
 		{
-			SoundEffect[] swingSounds = new SoundEffect[]{ content.Load<SoundEffect>("Sounds/Characters/Swing1") };
-
-			SoundEffect[] normalHitSounds = new SoundEffect[] { 
-				content.Load<SoundEffect>("Sounds/Characters/Hit1"), 
-				content.Load<SoundEffect>("Sounds/Characters/Hit2") 
-				};
-
-			SoundEffect[] strongHitSounds = normalHitSounds;
-
-			SoundEffect[] weakHitSounds = new SoundEffect[] { content.Load<SoundEffect>("Sounds/Characters/Hit3") };
-
-			// Wizard
 			SoundEffect[] wizardGrunts = new SoundEffect[] { 
 				content.Load<SoundEffect>("Characters/Wizard/Grunt1"),
 				content.Load<SoundEffect>("Characters/Wizard/Grunt2"), 
@@ -32,7 +20,8 @@ namespace TennisFightingGame
 				content.Load<SoundEffect>("Characters/Wizard/LoudGrunt2")
 				};
 			
-			Character wizard = new Character("Wizard",
+			Character wizard = new Character(
+				"Wizard",
 				new Rectangle(0, 0, 192, 192),
 				content.Load<Texture2D>("Characters/Wizard/Spritesheet"),
 				new Animation[] {
@@ -58,7 +47,10 @@ namespace TennisFightingGame
 					},
 				new Attack[] {
 					// Attack 1
-					new Attack(startup: 0.2f, endlag: 0.3f, 
+					new Attack(
+						action: Actions.Light,
+						aerialState: AerialStates.Standing,
+						startup: 0.2f, endlag: 0.3f, 
 						staminaCost: 14,
 						hitboxes: new Hitbox[] {
 							new Hitbox(rectangle: new Rectangle(90, -5, 100, 75),
@@ -66,12 +58,15 @@ namespace TennisFightingGame
 								force: new Vector2(2000, -350),
 								gravity : 1125,
 								hitLag: 0.5f, hitStun: 0.5f,
-								onAddedSounds: new SoundEffect[][] { swingSounds, wizardGrunts },
-								onHitSounds: strongHitSounds)
+								onAddedSounds: new SoundEffect[][] { SwingSounds, wizardGrunts },
+								onHitSounds: StrongHitSounds)
 							}),
 					
 					// Attack 2
-					new Attack(startup: 0.2f, endlag: 0.3f, 
+					new Attack(
+						action: Actions.Medium,
+						aerialState: AerialStates.Standing,
+						startup: 0.2f, endlag: 0.3f, 
 						staminaCost: 14,
 						hitboxes: new Hitbox[] {
 							new Hitbox(rectangle: new Rectangle(90, -5, 100, 75),
@@ -79,8 +74,8 @@ namespace TennisFightingGame
 								force: new Vector2(2350, -1000),
 								gravity : 4350,
 								hitLag: 0.5f, hitStun: 0.5f,
-								onAddedSounds: new SoundEffect[][] { swingSounds, wizardGrunts },
-								onHitSounds: strongHitSounds)
+								onAddedSounds: new SoundEffect[][] { SwingSounds, wizardGrunts },
+								onHitSounds: StrongHitSounds)
 							}),
 					
 					// Attack 3
@@ -97,7 +92,11 @@ namespace TennisFightingGame
 					new Attack(isNull: true),
 					
 					// Serve 1
-					new Attack(startup: 0, endlag: 0.05f, 
+					new Attack(
+						action: Actions.Light,
+						aerialState: AerialStates.Standing,
+						serve: true,
+						startup: 0, endlag: 0.05f, 
 						staminaCost: 2, 
 						onStartupSounds: new SoundEffect[][] { wizardGrunts }, 
 						multiHit: true,

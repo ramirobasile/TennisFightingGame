@@ -122,9 +122,9 @@ namespace TennisFightingGame.Training
 			inPlay = true;
         }
 
-        private void Pause(Action action, PlayerIndex index)
+        private void Pause(Actions action, PlayerIndex index)
         {
-            if (action == Action.Start)
+            if (action == Actions.Start)
             {
                 paused = true;
             }

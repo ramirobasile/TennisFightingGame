@@ -63,12 +63,12 @@ namespace TennisFightingGame
 		{
 			switch (player.state.aerialState)
 			{
-				case AerialState.Airborne:
+				case AerialStates.Airborne:
 					{
 						SetAnimation(Animations.Falling);
 						break;
 					}
-				case AerialState.Standing:
+				case AerialStates.Standing:
 					{
 						SetAnimation(Animations.Idle);
 						break;
@@ -122,47 +122,8 @@ namespace TennisFightingGame
 				}
 			}
 
-			switch (player.state.CurrentAttack)
-			{
-				case Attacks.Attack1:
-					{
-						SetAnimation(Animations.Attack1);
-						break;
-					}
-				case Attacks.Attack1Air:
-					{
-						SetAnimation(Animations.Attack1Air);
-						break;
-					}
-				case Attacks.Attack2:
-					{
-						SetAnimation(Animations.Attack2);
-						break;
-					}
-				case Attacks.Attack2Air:
-					{
-						SetAnimation(Animations.Attack2Air);
-						break;
-					}
-				case Attacks.Attack3:
-					{
-						SetAnimation(Animations.Attack3);
-						break;
-					}
-				case Attacks.Attack3Air:
-					{
-						SetAnimation(Animations.Attack3Air);
-						break;
-					}
-				case Attacks.Serve1:
-				case Attacks.Serve2:
-				case Attacks.Serve3:
-					{
-						SetAnimation(Animations.Serve);
-						break;
-					}
-			}
-
+			// FIXME No attack animations, pls fix
+			
 			if (lastAnimation != currentAnimation && CurrentAnimation.resetOnStop)
 			{
 				CurrentAnimation.Reset();

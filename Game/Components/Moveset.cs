@@ -21,7 +21,7 @@ namespace TennisFightingGame
 		public readonly Attack[] attacks;
 
 		public Player player;
-		public Attacks currentAttack = Attacks.None;
+		public Attack currentAttack;
 
 		public Moveset(Attack[] attacks, Player player)
 		{
@@ -34,26 +34,24 @@ namespace TennisFightingGame
 				this.attacks[i] = new Attack(attacks[i]); 
 				this.attacks[i].Hit += Hit;
 				this.attacks[i].AddedHitbox += AddedHitbox;
-				this.attacks[i].Finished += () => { currentAttack = Attacks.None; };
+				this.attacks[i].Finished += () => { currentAttack = null; };
 			}
 
 			player.input.Pressed += Press;
 			player.state.Landed += LandCancel;
 		}
 
-		public delegate void ThrewAttackEventHandler(Attacks attack);
+		public delegate void ThrewAttackEventHandler(Attack attack);
 		public delegate void ServedEventHandler(Player player);
 
 		public event ThrewAttackEventHandler ThrewAttack;
 		public event ServedEventHandler Served;
 
-		private Attack CurrentAttack { get { return attacks[(int)currentAttack]; } }
-
 		public void Update()
 		{
-			if (currentAttack != Attacks.None && !CurrentAttack.isNull)
+			if (currentAttack != null && !currentAttack.isNull)
 			{
-				CurrentAttack.Update(player);
+				currentAttack.Update(player);
 			}
 		}
 
@@ -71,23 +69,21 @@ namespace TennisFightingGame
 		/// <summary>
 		/// Set new attack and do its sounds.
 		/// </summary>
-		public void Throw(Attacks attack)
+		public void Throw(Attack attack)
 		{
-			Attack newAttack = attacks[(int)attack];
-
-			if (!newAttack.isNull && !newAttack.disabledWhenExhausted)
+			if (!attack.isNull && !attack.disabledWhenExhausted)
 			{
 				currentAttack = attack;
-				player.AddStamina(-newAttack.staminaCost);
+				player.AddStamina(-attack.staminaCost);
 
-				Helpers.PlayRandomSFX(newAttack.onStartupSounds);
+				Helpers.PlayRandomSFX(attack.onStartupSounds);
 
 				if (ThrewAttack != null)
 				{
 					ThrewAttack.Invoke(attack);
 				}
 
-				if (attack == Attacks.Serve1 || attack == Attacks.Serve2 || attack == Attacks.Serve3)
+				if (attack.serve)
 				{
 					if (Served != null)
 					{
@@ -157,9 +153,9 @@ namespace TennisFightingGame
 		/// </summary>
 		public void CancelCurrentAttack()
 		{
-			if (currentAttack != Attacks.None)
+			if (currentAttack != null)
 			{
-				CurrentAttack.Cancel();
+				currentAttack.Cancel();
 			}
 		}
 
@@ -170,22 +166,23 @@ namespace TennisFightingGame
 		/// </summary>
 		private void LandCancel()
 		{
-			if (currentAttack == Attacks.None)
+			if (currentAttack == null)
 			{
 				return;
 			}
 
 			// Soft land cancel
-			if (CurrentAttack.softLandCancel && CurrentAttack.time < CurrentAttack.TotalDuration - CurrentAttack.endlag)
+			if (currentAttack.softLandCancel && 
+				currentAttack.time < currentAttack.TotalDuration - currentAttack.endlag)
 			{
-				CurrentAttack.activeHitboxes.Clear();
-				CurrentAttack.time = CurrentAttack.TotalDuration - CurrentAttack.endlag;
+				currentAttack.activeHitboxes.Clear();
+				currentAttack.time = currentAttack.TotalDuration - currentAttack.endlag;
 			}
 
 			// Hard land cancel
-			if (CurrentAttack.hardLandCancel)
+			if (currentAttack.hardLandCancel)
 			{
-				CurrentAttack.Cancel();
+				currentAttack.Cancel();
 			}
 		}
 
@@ -193,99 +190,25 @@ namespace TennisFightingGame
 		/// Handle throwing attacks when buttons corresponding to attacks are pressed.
 		/// </summary>
 		/// <param name="action">Action pressed. See InputManager.</param>
-		private void Press(Action action)
+		private void Press(Actions action)
 		{
-			if (currentAttack != Attacks.None)
+			if (currentAttack != null)
 			{
 				return;
 			}
 
-			if (player.state.serving)
+			foreach (Attack attack in attacks)
 			{
-				switch (action)
+				if (attack.action == action &&
+					attack.aerialState == player.state.aerialState &&
+					attack.serve == player.state.serving
+					//attack.motionInput.Length > 0
+					)
 				{
-					case Action.Attack1:
-						{
-							Throw(Attacks.Serve1);
-							break;
-						}
-					case Action.Attack2:
-						{
-							Throw(Attacks.Serve2);
-							break;
-						}
-					case Action.Attack3:
-						{
-							Throw(Attacks.Serve3);
-							break;
-						}
-				}
-
-				return;
-			}
-			
-			if (player.match.inPlay)
-			{
-				switch (action)
-				{
-					case Action.Attack1:
-						{
-							if (player.state.aerialState == AerialState.Standing)
-							{
-								Throw(Attacks.Attack1);
-							}
-
-							if (player.state.aerialState == AerialState.Airborne)
-							{
-								Throw(Attacks.Attack1Air);
-							}
-
-							break;
-						}
-					case Action.Attack2:
-						{
-							if (player.state.aerialState == AerialState.Standing)
-							{
-								Throw(Attacks.Attack2);
-							}
-
-							if (player.state.aerialState == AerialState.Airborne)
-							{
-								Throw(Attacks.Attack2Air);
-							}
-
-							break;
-						}
-					case Action.Attack3:
-						{
-							if (player.state.aerialState == AerialState.Standing)
-							{
-								Throw(Attacks.Attack3);
-							}
-
-							if (player.state.aerialState == AerialState.Airborne)
-							{
-								Throw(Attacks.Attack3Air);
-							}
-
-							break;
-						}
+					Throw(attack);
+					break;
 				}
 			}
 		}
-	}
-
-	public enum Attacks
-	{
-		Attack1,
-		Attack2,
-		Attack3,
-		Attack1Air,
-		Attack2Air,
-		Attack3Air,
-		Serve1,
-		Serve2,
-		Serve3,
-		None
 	}
 }

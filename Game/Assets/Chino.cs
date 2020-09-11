@@ -9,17 +9,6 @@ namespace TennisFightingGame
 	{
 		static partial void LoadChino(ContentManager content)
 		{
-			SoundEffect[] swingSounds = new SoundEffect[]{ content.Load<SoundEffect>("Sounds/Characters/Swing1") };
-
-			SoundEffect[] normalHitSounds = new SoundEffect[] { 
-				content.Load<SoundEffect>("Sounds/Characters/Hit1"), 
-				content.Load<SoundEffect>("Sounds/Characters/Hit2") 
-				};
-
-			SoundEffect[] strongHitSounds = normalHitSounds;
-
-			SoundEffect[] weakHitSounds = new SoundEffect[] { content.Load<SoundEffect>("Sounds/Characters/Hit3") };
-
 			SoundEffect[] chinoGrunts = new SoundEffect[]{ 
 				content.Load<SoundEffect>("Characters/Chino/Grunt1"),
 				content.Load<SoundEffect>("Characters/Chino/Grunt2") 
@@ -59,7 +48,10 @@ namespace TennisFightingGame
 					},
 				new Attack[] {
 	                // Attack 1
-	                new Attack(startup: 0.09f, endlag: 0.04f, 
+	                new Attack(
+						action: Actions.Light,
+						aerialState: AerialStates.Standing,
+						startup: 0.09f, endlag: 0.04f, 
 						staminaCost: 4, 
 						hitboxes: new Hitbox[] {
 							new Hitbox(rectangle: new Rectangle(90, 0, 50, 35),
@@ -67,11 +59,14 @@ namespace TennisFightingGame
 								hitStun: 0.225f, hitLag: 0.225f,
 								force: new Vector2(1300, -750),
 								onAddedSounds: new SoundEffect[][] { chinoGrunts },
-								onHitSounds: weakHitSounds)
+								onHitSounds: WeakHitSounds)
 							}),
 	                
 	                // Attack 2
-	                new Attack(startup: .275f, endlag: .2125f, 
+	                new Attack(
+						action: Actions.Medium,
+						aerialState: AerialStates.Standing,
+						startup: .275f, endlag: .2125f, 
 						staminaCost: 7,
 						onStartupSounds: new SoundEffect[][] { chinoLoudGrunts },
 						hitboxes: new Hitbox[] {
@@ -79,22 +74,25 @@ namespace TennisFightingGame
 								start: 0, duration: 0.075f,
 								force: new Vector2(1600, -750),
 								hitStun: 0.4f, hitLag: 0.4f, shakeMagnitude: 5,
-								onHitSounds: normalHitSounds,
-								onAddedSounds: new SoundEffect[][] { swingSounds }),
+								onHitSounds: NormalHitSounds,
+								onAddedSounds: new SoundEffect[][] { SwingSounds }),
 							new Hitbox(rectangle: new Rectangle(50, -70, 90, 90),
 								start: 0.075f, duration: 0.09f,
 								force: new Vector2(2250, -550),
 								hitStun: 0.6f, hitLag: 0.6f, shakeMagnitude: 10,
-								onHitSounds: strongHitSounds),
+								onHitSounds: StrongHitSounds),
 							new Hitbox(rectangle: new Rectangle(100, 0, 90, 140),
 								start: 0.165f, duration: 0.14f,
 								force: new Vector2(2250, -550),
 								hitStun: 0.6f, hitLag: 0.6f, shakeMagnitude: 10,
-								onHitSounds: strongHitSounds),
+								onHitSounds: StrongHitSounds),
 							}),
 	                
 	                // Attack 3
-	                new Attack(startup: 0.275f, endlag: 0.3f,
+	                new Attack(
+						action: Actions.Heavy,
+						aerialState: AerialStates.Standing,
+						startup: 0.275f, endlag: 0.3f,
 						staminaCost: 8,
 						onStartupSounds: new SoundEffect[][] { chinoLoudGrunts },
 						hitboxes: new Hitbox[] {
@@ -102,17 +100,20 @@ namespace TennisFightingGame
 								start: 0, duration: 0.125f,
 								force: new Vector2(-50, -1200),
 								cumulative: false,
-								onHitSounds: weakHitSounds,
-								onAddedSounds: new SoundEffect[][] { swingSounds }),
+								onHitSounds: WeakHitSounds,
+								onAddedSounds: new SoundEffect[][] { SwingSounds }),
 							new Hitbox(rectangle: new Rectangle(70, 20, 120, 50),
 								start: 0.125f, duration: 0.1f,
 								force: new Vector2(2800, -700),
 								hitStun: 0.375f, hitLag: 0.375f, shakeMagnitude: 10,
-								onHitSounds: strongHitSounds),
+								onHitSounds: StrongHitSounds),
 							}),
 	                
 	                // Attack 1 Air
-	                new Attack(startup: 0.09f, endlag: 0.04f, 
+	                new Attack(
+						action: Actions.Light,
+						aerialState: AerialStates.Airborne,
+						startup: 0.09f, endlag: 0.04f, 
 						staminaCost: 4,
 						softLandCancel: true,
 						hitboxes: new Hitbox[] {
@@ -121,11 +122,14 @@ namespace TennisFightingGame
 								hitStun: 0.225f, hitLag: 0.225f,
 								force: new Vector2(1300, -750),
 								onAddedSounds: new SoundEffect[][] { chinoGrunts },
-								onHitSounds: weakHitSounds)
+								onHitSounds: WeakHitSounds)
 							}),
 	                
 	                // Attack 2 Air
-	                new Attack(startup: .275f, endlag: .2125f, 
+	                new Attack(
+						action: Actions.Medium,
+						aerialState: AerialStates.Airborne,
+						startup: 0.275f, endlag: 0.2125f, 
 						staminaCost: 7,
 						onStartupSounds: new SoundEffect[][] { chinoLoudGrunts },
 						hitboxes: new Hitbox[] {
@@ -133,25 +137,29 @@ namespace TennisFightingGame
 								start: 0, duration: 0.075f,
 								force: new Vector2(1600, -700),
 								hitStun: 0.4f, hitLag: 0.4f, shakeMagnitude: 5,
-								onHitSounds: normalHitSounds,
-								onAddedSounds: new SoundEffect[][] { swingSounds }),
+								onHitSounds: NormalHitSounds,
+								onAddedSounds: new SoundEffect[][] { SwingSounds }),
 							new Hitbox(rectangle: new Rectangle(50, -70, 90, 90),
 								start: 0.075f, duration: 0.09f,
 								force: new Vector2(2250, -500),
 								hitStun: 0.6f, hitLag: 0.6f, shakeMagnitude: 10,
-								onHitSounds: strongHitSounds),
+								onHitSounds: StrongHitSounds),
 							new Hitbox(rectangle: new Rectangle(100, 0, 90, 140),
 								start: 0.165f, duration: 0.14f,
 								force: new Vector2(2250, -400),
 								hitStun: 0.6f, hitLag: 0.6f, shakeMagnitude: 10,
-								onHitSounds: strongHitSounds),
+								onHitSounds: StrongHitSounds),
 							}),
 
 	                // Attack 3 Air
 	                new Attack(isNull: true),
                         
 	                // Serve 1
-	                new Attack(startup: 0, endlag: 0.2f, 
+	                new Attack(
+						action: Actions.Light,
+						aerialState: AerialStates.Standing,
+						serve: true,
+						startup: 0, endlag: 0.2f, 
 						staminaCost: 5,
 		                onStartupSounds: new SoundEffect[][] { chinoGrunts }, 
 						multiHit: true,
@@ -163,15 +171,19 @@ namespace TennisFightingGame
 				                start: 0.8f, duration: 0.5f,
 				                force: new Vector2(1600, -825),
 								hitStun: 0.125f, hitLag: 0.125f, shakeMagnitude: 5,
-								onHitSounds: normalHitSounds,
-								onAddedSounds: new SoundEffect[][] { swingSounds, chinoGrunts })
+								onHitSounds: NormalHitSounds,
+								onAddedSounds: new SoundEffect[][] { SwingSounds, chinoGrunts })
 		                	}),
 					
 	                // Serve 2
 	                new Attack(isNull: true),
 					
 	                // Serve 3
-	                new Attack(startup: 0, endlag: 0.45f, 
+	                new Attack(
+						action: Actions.Heavy,
+						aerialState: AerialStates.Standing,
+						serve: true,
+						startup: 0, endlag: 0.45f, 
 						staminaCost: 25,
 		                onStartupSounds: new SoundEffect[][] { chinoGrunts }, 
 						multiHit: true,
@@ -183,8 +195,8 @@ namespace TennisFightingGame
 				                start: 1.5f, duration: .2f,
 				                force: new Vector2(3250, -375),
 				                hitStun: 0.6f, hitLag: 0.6f, shakeMagnitude: 10,
-								onHitSounds: strongHitSounds,
-								onAddedSounds: new SoundEffect[][] { swingSounds, chinoLoudGrunts }),
+								onHitSounds: StrongHitSounds,
+								onAddedSounds: new SoundEffect[][] { SwingSounds, chinoLoudGrunts }),
 		                	}),
 
 				},

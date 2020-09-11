@@ -57,25 +57,25 @@ namespace TennisFightingGame
             spriteBatch.End();
         }
 
-        protected virtual void Press(Action action, PlayerIndex index)
+        protected virtual void Press(Actions action, PlayerIndex index)
         {
 			// TODO Selectable
-            if (action == Action.Up)
+            if (action == Actions.Up)
             {
                 selectedButton = Helpers.Wrap(selectedButton - 1, 0, buttonSets[selectedSet].Length - 1);
                 Helpers.PlaySFX(Assets.MenuMoveSound); // HACK Some menu derivative might not want this
             }
-            if (action == Action.Down)
+            if (action == Actions.Down)
             {
                 selectedButton = Helpers.Wrap(selectedButton + 1, 0, buttonSets[selectedSet].Length - 1);
                 Helpers.PlaySFX(Assets.MenuMoveSound); // HACK Some menu derivative might not want this
             }
         }
 
-        protected virtual void Release(Action action, PlayerIndex index)
+        protected virtual void Release(Actions action, PlayerIndex index)
         {
             // Select button is OnRelease so the input is not picked up after a pause
-            if (action == Action.Attack1)
+            if (action == Actions.Light)
             {
                 buttonSets[selectedSet][selectedButton].Click(index);
                 Helpers.PlaySFX(Assets.MenuEnterSound); // HACK Some menu derivative might not want this

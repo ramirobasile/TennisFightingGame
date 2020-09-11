@@ -12,9 +12,10 @@ namespace TennisFightingGame
 	/// </summary>
     public class Attack
 	{
-		private readonly Action action;
-		private readonly AerialState aerialState;
-		private readonly Action[] motionInput;
+		public readonly Actions action;
+		public readonly AerialStates aerialState;
+		//public readonly Action[] motionInput;
+		public readonly bool serve;
 
 		private readonly Hitbox[] hitboxes;
 		[NonSerialized] public readonly SoundEffect[][] onStartupSounds;
@@ -33,12 +34,17 @@ namespace TennisFightingGame
 		public List<Hitbox> hits = new List<Hitbox>();
         public float time;
 
-		public Attack(Hitbox[] hitboxes = null, SoundEffect[][] onStartupSounds = null,
+		public Attack(Actions action = Actions.Light, AerialStates aerialState = AerialStates.Grounded, 
+			bool serve = false, Hitbox[] hitboxes = null, 
+			SoundEffect[][] onStartupSounds = null,
 			float startup = 0,  float endlag = 0, bool hardLandCancel = false, 
-			bool disabledWhenExhausted = false, bool softLandCancel = false, bool hardHitCancel = false, 
-			bool softHitCancel = false, bool multiHit = false, float staminaCost = 0, 
-			bool isNull = false)
+			bool disabledWhenExhausted = false, bool softLandCancel = false, 
+			bool hardHitCancel = false, bool softHitCancel = false, 
+			bool multiHit = false, float staminaCost = 0, bool isNull = false)
 		{
+			this.action = action;
+			this.aerialState = aerialState;
+			this.serve = serve;
 			this.hitboxes = hitboxes;
 			this.onStartupSounds = onStartupSounds;
 			this.startup = startup;
@@ -56,6 +62,9 @@ namespace TennisFightingGame
 		// Deep copy
 		public Attack(Attack copying)
 		{
+			action = copying.action;
+			aerialState = copying.aerialState;
+			serve = copying.serve;
 			isNull = copying.isNull;
 			hitboxes = copying.hitboxes;
 			onStartupSounds = copying.onStartupSounds;
