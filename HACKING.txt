@@ -5,16 +5,12 @@ FIXMEs:
 * Ball going thought geometry sometimes apparently only when ball's left 
   collision occurs
 * Landing point isn't calculated correctly when bounce off of wall
-* Attack animations not working
+* Fix attack animations
 
 TODOs:
-* Clean up assets
-* Rename Attack1, 2, 3 in .ini
+* Change notion of left and right... Should be forward and backward
 * 4 point games, 6 game sets
 * "Busy" blocking time for player actions such as switching side or jumpsquat
-* Add notion of phantom hit (which isn't accounted for by match manager)
-* Add motion inputs
-* Make attacks be bound to inputs rather than having them ordered by index
 * Titles
 * Step sounds
 * More documentation
@@ -25,6 +21,8 @@ TODOs:
 * Doubles
 
 Conundrums:
+* Maybe add notion of phantom hit which isn't accounted for by match manager,
+  which I picture being used for cool super moves
 * Maybe add target combos?
 * NonHeld buffer clearing mode allows sliding, which is very cool, but the
   trade-off is your run gets buffered after attacking, which feels very weird.
