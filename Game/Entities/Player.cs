@@ -44,7 +44,7 @@ namespace TennisFightingGame
 			this.courtSide = courtSide;
 			this.spawnPosition = spawnPosition; // default point to put the player at when the round begins
 
-			input = new InputManager(index);
+			input = new InputManager(index,forwardDirection: -courtSide);
 			state = new StateManager(this);
 
 			name = character.name;
@@ -255,6 +255,7 @@ namespace TennisFightingGame
 		private void Turn()
 		{
 			direction *= -1;
+			input.forwardDirection = direction;
 			Helpers.PlaySFX(turnSound);
 		}
 
