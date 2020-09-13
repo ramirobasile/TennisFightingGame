@@ -14,7 +14,7 @@ namespace TennisFightingGame
 	{
 		public readonly Actions action;
 		public readonly AerialStates aerialState;
-		//public readonly Action[] motionInput;
+		public readonly Actions[] motionInput;
 		public readonly bool serve;
 
 		private readonly Hitbox[] hitboxes;
@@ -35,8 +35,8 @@ namespace TennisFightingGame
         public float time;
 
 		public Attack(Actions action = Actions.Light, AerialStates aerialState = AerialStates.Grounded, 
-			bool serve = false, Hitbox[] hitboxes = null, 
-			SoundEffect[][] onStartupSounds = null,
+			Actions[] motionInput = null, bool serve = false, 
+			Hitbox[] hitboxes = null,  SoundEffect[][] onStartupSounds = null,
 			float startup = 0,  float endlag = 0, bool hardLandCancel = false, 
 			bool disabledWhenExhausted = false, bool softLandCancel = false, 
 			bool hardHitCancel = false, bool softHitCancel = false, 
@@ -44,6 +44,7 @@ namespace TennisFightingGame
 		{
 			this.action = action;
 			this.aerialState = aerialState;
+			this.motionInput = motionInput;
 			this.serve = serve;
 			this.hitboxes = hitboxes;
 			this.onStartupSounds = onStartupSounds;
@@ -64,6 +65,7 @@ namespace TennisFightingGame
 		{
 			action = copying.action;
 			aerialState = copying.aerialState;
+			motionInput = copying.motionInput;
 			serve = copying.serve;
 			isNull = copying.isNull;
 			hitboxes = copying.hitboxes;

@@ -88,6 +88,7 @@ namespace TennisFightingGame
 					new Attack(
 						action: Actions.Heavy,
 						aerialState: AerialStates.Standing,
+						motionInput: new Actions[] { Actions.Down, Actions.Right },
 						startup: 0.2f, endlag: 0.3f, 
 						staminaCost: 14,
 						hitboxes: new Hitbox[] {

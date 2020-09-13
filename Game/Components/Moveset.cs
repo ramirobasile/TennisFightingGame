@@ -192,7 +192,9 @@ namespace TennisFightingGame
 		/// <param name="action">Action pressed. See InputManager.</param>
 		private void Press(Actions action)
 		{
-			if (currentAttack != null)
+			// Attacks can only be thrown if current is null and it's your turn
+			// to serve in case the match isn't inPlay
+			if (currentAttack != null || (!player.match.inPlay && !player.state.serving))
 			{
 				return;
 			}
@@ -201,9 +203,8 @@ namespace TennisFightingGame
 			{
 				if (attack.action == action &&
 					attack.aerialState == player.state.aerialState &&
-					attack.serve == player.state.serving
-					//attack.motionInput.Length > 0
-					)
+					(attack.serve == player.state.serving) &&
+					player.input.MotionInput(attack.motionInput))
 				{
 					Throw(attack);
 					break;

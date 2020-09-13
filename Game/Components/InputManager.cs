@@ -200,15 +200,31 @@ namespace TennisFightingGame
                 .ToList();
         }
 
-        private bool MotionInput(Actions[] actions, float timeSpan)
+        public bool MotionInput(Actions[] actions)
         {
+            // Important null check because attacks default to null motionInput
+            if (actions == null)
+            {
+                return true;
+            }
+
             List<BufferedInput> bufferCopy = new List<BufferedInput>(buffer);
+            int inputIndex;
             float totalTime = 0;
+            float timeSpan = Tap * actions.Length;
 
             for (int i = 0; i < actions.Length; i++)
             {
-                int inputIndex = bufferCopy.FindIndex(bufferedInput => 
-                    (Actions)(controls[Array.IndexOf(controls, bufferedInput.input)]) == actions[i]);
+                if (inputMethod == InputMethod.Keyboard)
+                {
+                    inputIndex = bufferCopy.FindIndex(bufferedInput => 
+                        (Keys)bufferedInput.input == (Keys)controls[(int)actions[i]]);
+                }
+                else
+                {
+                    inputIndex = bufferCopy.FindIndex(bufferedInput => 
+                        (Buttons)bufferedInput.input == (Buttons)controls[(int)actions[i]]);
+                }
 
                 if (inputIndex != -1)
                 {
