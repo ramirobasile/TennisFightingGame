@@ -111,13 +111,13 @@ namespace TennisFightingGame
 
 			if (!player.state.exhausted)
 			{
-				player.match.ball.Hit(new Vector2(hitbox.force.X * -player.direction, 
+				player.match.ball.Hit(new Vector2(hitbox.force.X * player.direction, 
 					hitbox.force.Y), 
 					hitbox.gravity);
 			}
 			else
 			{
-				player.match.ball.Hit(new Vector2(hitbox.exhaustedForce.X * -player.direction, 
+				player.match.ball.Hit(new Vector2(hitbox.exhaustedForce.X * player.direction, 
 					hitbox.exhaustedForce.Y), 
 					hitbox.gravity);
 			}

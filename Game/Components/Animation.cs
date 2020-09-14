@@ -77,8 +77,7 @@ namespace TennisFightingGame
 			Rectangle cutout = new Rectangle(currentFrame * size.X + margin * (currentFrame + 1),
 				row * size.Y + margin * (row + 1), size.X, size.Y);
 
-			// TODO Make this flipped when courtSide and direction arent equal
-			if (direction == 1)
+			if (direction == -1)
 			{
 				spriteBatch.Draw(spriteSheet, position.ToVector2(), cutout,  Color.White, 
 					0, Vector2.Zero, Vector2.One, SpriteEffects.FlipHorizontally, 0);

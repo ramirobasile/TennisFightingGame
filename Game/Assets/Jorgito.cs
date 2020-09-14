@@ -84,32 +84,72 @@ namespace TennisFightingGame
 								onHitSounds: NormalHitSounds) 
 							}),
 					
-					// Attack 3
+					// Super grounded heavy
 					new Attack(
 						action: Actions.Heavy,
 						aerialState: AerialStates.Standing,
-						motionInput: new Actions[] { Actions.Down, Actions.Right },
-						startup: 0.2f, endlag: 0.3f, 
+						motionInput: new Actions[] { Actions.Down, Actions.Right, Actions.Heavy },
+						startup: 0.2125f, endlag: 0.4f, 
 						staminaCost: 14,
 						hitboxes: new Hitbox[] {
-							new Hitbox(rectangle: new Rectangle(30, 10, 50, 50),
+							new Hitbox(rectangle: new Rectangle(50, 10, 50, 50),
 								start: 0, duration: 0.1f,
-								force: new Vector2(200, -1300),
+								force: new Vector2(2400, -500),
+								hitLag: 0.6f, hitStun: 0.6f, shakeMagnitude: 10,
+								onHitSounds: WeakHitSounds,
+								onAddedSounds: new SoundEffect[][] { SwingSounds, jorgitoLoudGrunts }),
+							new Hitbox(rectangle: new Rectangle(130, -5, 75, 75),
+								start: 0.1f, duration: 0.15f,
+								force: new Vector2(2400, -500),
+								hitLag: 0.6f, hitStun: 0.6f, shakeMagnitude: 10,
+								onHitSounds: StrongHitSounds),
+							new Hitbox(rectangle: new Rectangle(110, -20, 60, 60),
+								start: 0.25f, duration: 0.1f,
+								force: new Vector2(2400, -500),
+								hitLag: 0.6f, hitStun: 0.6f, shakeMagnitude: 10,
+								onHitSounds: StrongHitSounds) 
+							}),
+
+					// Grounded heavy
+					new Attack(
+						action: Actions.Heavy,
+						aerialState: AerialStates.Standing,
+						startup: 0.15f, endlag: 0.2f, 
+						staminaCost: 12,
+						hitboxes: new Hitbox[] {
+							new Hitbox(rectangle: new Rectangle(30, 10, 50, 50),
+								start: 0, duration: 0.075f,
+								force: new Vector2(200, -1000),
 								onHitSounds: WeakHitSounds,
 								onAddedSounds: new SoundEffect[][] { SwingSounds, jorgitoLoudGrunts }),
 							new Hitbox(rectangle: new Rectangle(90, -5, 75, 75),
-								start: 0.1f, duration: 0.15f,
-								force: new Vector2(2350, -650),
-								hitLag: 0.5f, hitStun: 0.5f, shakeMagnitude: 10,
-								onHitSounds: StrongHitSounds),
-							new Hitbox(rectangle: new Rectangle(75, -20, 60, 60),
-								start: 0.25f, duration: 0.1f,
-								force: new Vector2(1900, -800),
-								hitLag: 0.3f, hitStun: 0.3f, shakeMagnitude: 10,
-								onHitSounds: StrongHitSounds) 
+								start: 0.075f, duration: 0.175f,
+								force: new Vector2(2000, -625),
+								hitLag: 0.4f, hitStun: 0.4f, shakeMagnitude: 6,
+								onHitSounds: NormalHitSounds)
+							}),
+
+					// Airborne heavy
+					new Attack(
+						action: Actions.Heavy,
+						aerialState: AerialStates.Airborne,
+						startup: 0.15f, endlag: 0.2f, 
+						staminaCost: 12,
+						hitboxes: new Hitbox[] {
+							new Hitbox(rectangle: new Rectangle(30, 10, 50, 50),
+								start: 0, duration: 0.075f,
+								force: new Vector2(200, -1000),
+								onHitSounds: WeakHitSounds,
+								onAddedSounds: new SoundEffect[][] { SwingSounds, jorgitoLoudGrunts }),
+							new Hitbox(rectangle: new Rectangle(90, -5, 75, 75),
+								start: 0.075f, duration: 0.175f,
+								force: new Vector2(2150, -625),
+								hitLag: 0.4f, hitStun: 0.4f, shakeMagnitude: 6,
+								onHitSounds: StrongHitSounds)
 							}),
 					
-					// Attack 1 Air
+					
+					// Airborne light
 					new Attack(
 						action: Actions.Light,
 						aerialState: AerialStates.Airborne,
@@ -135,7 +175,7 @@ namespace TennisFightingGame
 								onHitSounds: WeakHitSounds),
 							}),
 
-					// Attack 2 Air
+					// Airborne medium
 					new Attack(
 						action: Actions.Medium,
 						aerialState: AerialStates.Airborne,
@@ -155,9 +195,6 @@ namespace TennisFightingGame
 								hitStun: 0.2f, hitLag: 0.2f,
 								onHitSounds: NormalHitSounds)
 							}),
-
-					// Attack 3 Air
-					new Attack(isNull: true),
 					
 					// Serve 1
 					new Attack(

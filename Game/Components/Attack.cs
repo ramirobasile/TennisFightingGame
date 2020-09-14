@@ -201,10 +201,10 @@ namespace TennisFightingGame
 		}
 
 		// TODO Rectangle for hitbox
-		private Rectangle RelativeRectangle(Hitbox hitbox, Rectangle rectangle, int side)
+		private Rectangle RelativeRectangle(Hitbox hitbox, Rectangle rectangle, int direction)
         {
             return new Rectangle(
-                rectangle.Center.X - hitbox.rectangle.Width / 2 + hitbox.rectangle.X * -side,
+                rectangle.Center.X - hitbox.rectangle.Width / 2 + hitbox.rectangle.X * direction,
                 rectangle.Center.Y - hitbox.rectangle.Height / 2 + hitbox.rectangle.Y,
                 hitbox.rectangle.Width,
                 hitbox.rectangle.Height

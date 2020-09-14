@@ -48,7 +48,7 @@ namespace TennisFightingGame
 			state = new StateManager(this);
 
 			name = character.name;
-			direction = courtSide;
+			direction = -courtSide;
 			rectangle = new Rectangle(spawnPosition, character.rectangle.Size);
 			moveset = new Moveset(character.attacks, this);
 			sprite = new Sprite(character.spriteSheet, character.rectangle.Size, character.animations, this);
