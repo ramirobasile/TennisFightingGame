@@ -10,7 +10,6 @@ FIXMEs:
 TODOs:
 * Resolve inconsistent language in input manager ("input" and "action" seem
   interchangable when they probably shouldn't)
-* Change notion of left and right... Should be forward and backward
 * 4 point games, 6 game sets
 * "Busy" blocking time for player actions such as switching side or jumpsquat
 * Titles
