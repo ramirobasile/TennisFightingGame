@@ -178,7 +178,7 @@ namespace TennisFightingGame.Singles
                 player.Position = player.spawnPosition;
                 player.velocity = Vector2.Zero;
                 player.moveset.CancelCurrentAttack();
-                player.direction = player.courtSide;
+                player.direction = -player.courtSide;
             }
         }
         
