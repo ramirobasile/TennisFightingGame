@@ -49,7 +49,7 @@ namespace TennisFightingGame
 
 		public void Update()
 		{
-			if (currentAttack != null && !currentAttack.isNull)
+			if (currentAttack != null)
 			{
 				currentAttack.Update(player);
 			}
@@ -71,7 +71,7 @@ namespace TennisFightingGame
 		/// </summary>
 		public void Throw(Attack attack)
 		{
-			if (!attack.isNull && !attack.disabledWhenExhausted)
+			if (!attack.disabledWhenExhausted)
 			{
 				currentAttack = attack;
 				player.AddStamina(-attack.staminaCost);

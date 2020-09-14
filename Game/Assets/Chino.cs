@@ -150,9 +150,6 @@ namespace TennisFightingGame
 								hitStun: 0.6f, hitLag: 0.6f, shakeMagnitude: 10,
 								onHitSounds: StrongHitSounds),
 							}),
-
-	                // Attack 3 Air
-	                new Attack(isNull: true),
                         
 	                // Serve 1
 	                new Attack(
@@ -174,9 +171,6 @@ namespace TennisFightingGame
 								onHitSounds: NormalHitSounds,
 								onAddedSounds: new SoundEffect[][] { SwingSounds, chinoGrunts })
 		                	}),
-					
-	                // Serve 2
-	                new Attack(isNull: true),
 					
 	                // Serve 3
 	                new Attack(

@@ -96,9 +96,6 @@ namespace TennisFightingGame
 								onHitSounds: NormalHitSounds,
 								onAddedSounds: new SoundEffect[][] { SwingSounds })
 							}),
-	            
-	                // TODO Attack 1 Air
-	                new Attack(isNull: true),
 	                
 	                // Attack 2 Air
 	                new Attack(

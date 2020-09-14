@@ -78,19 +78,6 @@ namespace TennisFightingGame
 								onHitSounds: StrongHitSounds)
 							}),
 					
-					// Attack 3
-					new Attack(isNull: true),
-					
-					// Attack 1 Air
-					new Attack(isNull: true),
-
-
-					// Attack 2 Air
-					new Attack(isNull: true),
-
-					// Attack 3 Air
-					new Attack(isNull: true),
-					
 					// Serve 1
 					new Attack(
 						action: Actions.Light,
@@ -105,12 +92,6 @@ namespace TennisFightingGame
 								start: 0, duration: 0.5f,
 								force: new Vector2(0, -1300))
 							}),
-				
-					// Serve 2
-					new Attack(isNull: true),
-
-					// Serve 3
-					new Attack(isNull: true),
 					},
 				new Stats(gravity: 4500,
 					friction: 2000,

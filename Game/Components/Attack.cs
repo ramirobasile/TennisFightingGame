@@ -19,7 +19,6 @@ namespace TennisFightingGame
 
 		private readonly Hitbox[] hitboxes;
 		[NonSerialized] public readonly SoundEffect[][] onStartupSounds;
-		public readonly bool isNull;
         public readonly float staminaCost;
 		public readonly bool hardLandCancel;
 		public readonly bool softLandCancel;
@@ -40,7 +39,7 @@ namespace TennisFightingGame
 			float startup = 0,  float endlag = 0, bool hardLandCancel = false, 
 			bool disabledWhenExhausted = false, bool softLandCancel = false, 
 			bool hardHitCancel = false, bool softHitCancel = false, 
-			bool multiHit = false, float staminaCost = 0, bool isNull = false)
+			bool multiHit = false, float staminaCost = 0)
 		{
 			this.action = action;
 			this.aerialState = aerialState;
@@ -57,7 +56,6 @@ namespace TennisFightingGame
 			this.multiHit = multiHit;
 			this.staminaCost = staminaCost;
 			this.disabledWhenExhausted = disabledWhenExhausted;
-			this.isNull = isNull;
         }
 
 		// Deep copy
@@ -67,7 +65,6 @@ namespace TennisFightingGame
 			aerialState = copying.aerialState;
 			motionInput = copying.motionInput;
 			serve = copying.serve;
-			isNull = copying.isNull;
 			hitboxes = copying.hitboxes;
 			onStartupSounds = copying.onStartupSounds;
 			startup = copying.startup;
@@ -176,11 +173,6 @@ namespace TennisFightingGame
 
 		public void Draw(SpriteBatch spriteBatch, Player player)
 		{
-			if (isNull)
-			{
-				return;
-			}
-
 			foreach (Hitbox hitbox in activeHitboxes)
 			{
 				hitbox.Draw(spriteBatch, Assets.PlaceholderTexture,
