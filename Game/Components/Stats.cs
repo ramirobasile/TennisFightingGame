@@ -24,12 +24,14 @@
 		public readonly float exhaustedThreshold;
 		public readonly float recoverThreshold;
 		public readonly float fastFallSpeed;
+		public readonly float staminaRecovery;
+		public readonly float endurance;
 
 		public Stats(float gravity, float friction, float staminaRegen, float runSpeed, float runStaminaCost, 
 			float runningJumpSpeed, float walkSpeed, float walkStaminaCost, float jumpSpeed, 
 			float jumpStaminaCost, float driftSpeed, float exhaustedSpeed, float exhaustedJumpSpeed, 
 			float exhaustedJumpStaminaCost, float exhaustedThreshold, float recoverThreshold,
-			float fastFallSpeed)
+			float fastFallSpeed, float staminaRecovery, float endurance)
 		{
 			this.gravity = gravity;
 			this.friction = friction;
@@ -48,6 +50,8 @@
 			this.exhaustedThreshold = exhaustedThreshold;
 			this.recoverThreshold = recoverThreshold;
 			this.fastFallSpeed = fastFallSpeed;
+			this.staminaRecovery = staminaRecovery;
+			this.endurance = endurance;
 		}
 	}
 }

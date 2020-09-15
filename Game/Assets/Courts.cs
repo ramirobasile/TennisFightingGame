@@ -24,33 +24,40 @@ namespace TennisFightingGame
 			Rectangle net = new Rectangle(stageWidth / 2 - netWidth / 2, -netHeight, netWidth, netHeight);
 			Rectangle middle = new Rectangle(stageWidth / 2 - netWidth / 2 + 1, -stageHeight, netWidth - 2, stageHeight);
 
+			// Bouncy and fast with solid concrete walls
 			Court hard = new Court("Hard",
-				new Wall(left, new Vector2(0.75f, 0.75f)),
-				new Wall(right, new Vector2(0.75f, 0.75f)),
+				new Wall(left, new Vector2(0.825f, 0.825f)),
+				new Wall(right, new Vector2(0.825f, 0.825f)),
 				new Wall(floor, new Vector2(0.825f, 0.85f)),
 				new Wall(net, new Vector2(0.1f, 0.1f)), 
 				new Collider(middle), 
 				startingPositions, 
 				content.Load<Texture2D>("Courts/Sky"), content.Load<Texture2D>("Courts/Hard"));
+
+			// Not bouncy at all and slow with canvas-covered fences for walls
 			Court clay = new Court("Clay",
-				new Wall(left, new Vector2(0.75f, 0.75f)),
-				new Wall(right, new Vector2(0.75f, 0.75f)),
+				new Wall(left, new Vector2(0.2f, 0.2f)),
+				new Wall(right, new Vector2(0.2f, 0.2f)),
 				new Wall(floor, new Vector2(0.75f, 0.8f)),
 				new Wall(net, new Vector2(0.1f, 0.1f)),
 				new Collider(middle),
 				startingPositions,
 				content.Load<Texture2D>("Courts/Sky"), content.Load<Texture2D>("Courts/Clay"));
+
+			// Not too bouncy and very fast with bare fences for walls
 			Court grass = new Court("Grass",
-				new Wall(left, new Vector2(0.75f, 0.75f)),
-				new Wall(right, new Vector2(0.75f, 0.75f)),
+				new Wall(left, new Vector2(0.45f, 0.45f)),
+				new Wall(right, new Vector2(0.45f, 0.45f)),
 				new Wall(floor, new Vector2(0.875f, 0.8125f)),
 				new Wall(net, new Vector2(0.1f, 0.1f)),
 				new Collider(middle),
 				startingPositions,
 				content.Load<Texture2D>("Courts/Sky"), content.Load<Texture2D>("Courts/Grass"));
+
+			// A bit bouncy and fast with solid concrete walls
 			Court carpet = new Court("Carpet",
-				new Wall(left, new Vector2(0.75f, 0.75f)),
-				new Wall(right, new Vector2(0.75f, 0.75f)),
+				new Wall(left, new Vector2(0.825f, 0.825f)),
+				new Wall(right, new Vector2(0.825f, 0.825f)),
 				new Wall(floor, new Vector2(0.825f, 0.825f)),
 				new Wall(net, new Vector2(0.1f, 0.1f)),
 				new Collider(middle),

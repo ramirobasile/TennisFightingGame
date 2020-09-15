@@ -234,7 +234,9 @@ namespace TennisFightingGame
 					exhaustedJumpStaminaCost: 1,
 					exhaustedThreshold: 1,
 					recoverThreshold: 5,
-					fastFallSpeed: 1000
+					fastFallSpeed: 1000,
+					staminaRecovery: 15,
+					endurance: 1
 					),
 				content.Load<SoundEffect>("Characters/Monkey/Step"),
 				content.Load<SoundEffect>("Characters/Monkey/Jump"),
