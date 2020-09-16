@@ -18,6 +18,7 @@ namespace TennisFightingGame
 		public bool fastFell;
 
 		float jumpSquatTime;
+		float turningTime;
 
 		public StateManager(Player player)
 		{
@@ -29,6 +30,8 @@ namespace TennisFightingGame
 			player.input.DoublePressed += DoublePress;
 		}
 
+		public bool Turning { get { return turningTime > 0; } }
+		public bool Jumping { get { return jumpSquatTime > 0; } }
 		public bool Attacking { get { return player.moveset.currentAttack != null; } }
 		public bool Walking
 		{
@@ -60,6 +63,7 @@ namespace TennisFightingGame
 		public void Update()
 		{
 			jumpSquatTime -= TennisFightingGame.DeltaTime;
+			turningTime -= TennisFightingGame.DeltaTime;
 
 			if (aerialState == AerialStates.JumpSquat && jumpSquatTime <= 0)
 			{
@@ -113,7 +117,7 @@ namespace TennisFightingGame
 
 		private void Press(Actions action)
 		{
-			if (Attacking || !player.match.inPlay)
+			if (Attacking || Turning || !player.match.inPlay)
 			{
 				return;
 			}
@@ -137,6 +141,8 @@ namespace TennisFightingGame
 					movementState = MovementState.TurningForwards;
 				}
 
+				turningTime = player.stats.turnDelay;
+
 				if (Turned != null)
 				{
 					Turned.Invoke();
@@ -158,7 +164,7 @@ namespace TennisFightingGame
 		private void Hold(Actions action)
 		{
 			// Walking
-			if (Attacking || !player.match.inPlay)
+			if (Attacking || Turning || !player.match.inPlay)
 			{
 				movementState = MovementState.Idle;
 				return;
@@ -227,7 +233,7 @@ namespace TennisFightingGame
 		private void DoublePress(Actions action)
 		{
 			// Sprinting
-			if (Attacking || !player.match.inPlay)
+			if (Attacking || Turning || !player.match.inPlay)
 			{
 				return;
 			}

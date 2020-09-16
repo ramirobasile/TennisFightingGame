@@ -112,7 +112,8 @@ namespace TennisFightingGame
 					fastFallSpeed: 1000,
 					staminaRecovery: 15,
 					endurance: 1,
-					jumpSquat: 0.066f
+					jumpSquat: 0.066f,
+					turnDelay: 0.2f
 					),
 				content.Load<SoundEffect>("Characters/Wizard/Step"),
 				content.Load<SoundEffect>("Characters/Wizard/Jump"),

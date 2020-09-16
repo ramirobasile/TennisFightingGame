@@ -194,7 +194,9 @@ namespace TennisFightingGame
 		{
 			// Attacks can only be thrown if current is null and it's your turn
 			// to serve in case the match isn't inPlay
-			if (currentAttack != null || (!player.match.inPlay && !player.state.serving))
+			if (currentAttack != null || 
+				(!player.match.inPlay && !player.state.serving) ||
+				player.state.Turning)
 			{
 				return;
 			}
@@ -207,7 +209,7 @@ namespace TennisFightingGame
 				{
 					simplifiedAerialState = AerialStates.Airborne;
 				}
-				
+
 				if (attack.action == action &&
 					attack.aerialState == simplifiedAerialState &&
 					(attack.serve == player.state.serving) &&
