@@ -30,7 +30,6 @@ namespace TennisFightingGame.Singles
             PointEnded += EndPoint;
             GameEnded += EndGame;
             SetEnded += EndSet;
-            MatchEnded += EndMatch;
             match.ball.Bounced += Bounce;
             match.ball.Hitted += Hit;
             foreach (Player player in match.players)
@@ -48,11 +47,11 @@ namespace TennisFightingGame.Singles
 		public delegate void PointEndEventHandler(Player scorer, Player scored);
 		public delegate void GameEndEventHandler(Player scorer, Player scored);
 		public delegate void SetEndEventHandler(Player scorer, Player scored);
-		public delegate void MatchEndEventHandler(Player scorer, Player scored);
+		public delegate void MatchEndEventHandler();
 
 		public event PointEndEventHandler PointEnded;
-		public event PointEndEventHandler GameEnded;
-		public event PointEndEventHandler SetEnded;
+		public event GameEndEventHandler GameEnded;
+		public event SetEndEventHandler SetEnded;
         public event MatchEndEventHandler MatchEnded;
         public event PassedNetEventHandler PassedNet;
         public event CrossingEventHandler Crossing;
@@ -231,10 +230,15 @@ namespace TennisFightingGame.Singles
             {   
                 if (player.sets > bestOf / 2)
                 {
-                    if (MatchEnded != null)
+                    match.transitioning = true;
+                    match.transition = new Transition(10); // cleans up previous subscriptions in the process
+                    match.transition.HalfFinished += () => 
                     {
-                        MatchEnded.Invoke(scorer, scored);
-                    }
+                        if (MatchEnded != null)
+                        {
+                            MatchEnded.Invoke();
+                        }
+                    };
 
                     return;
                 }
@@ -255,13 +259,6 @@ namespace TennisFightingGame.Singles
             // HACK This might change
             service = match.players[0];
             match.transition.Finished += () => service.state.serving = true;
-        }
-        
-        private void EndMatch(Player scorer, Player scored)
-        {
-            match.transitioning = true;
-            match.transition = new Transition(10); // cleans up previous subscriptions in the process
-            match.transition.Finished += match.MatchEnd;
         }
 
         private void PointSetup()

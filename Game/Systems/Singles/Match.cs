@@ -16,7 +16,7 @@ namespace TennisFightingGame.Singles
         public bool transitioning;
         public float time;
 
-        public Match(Character[] characters, Court court, int firstTo)
+        public Match(Character[] characters, Court court)
         {
 			this.court = court;
 
@@ -30,7 +30,7 @@ namespace TennisFightingGame.Singles
 
             pause = new Pause();
             transition = new Transition(1);
-            manager = new MatchManager(this, firstTo);
+            manager = new MatchManager(this);
             camera = new Camera(this);
             uiManager = new UIManager(this);
 
@@ -38,6 +38,7 @@ namespace TennisFightingGame.Singles
 			players[1].input.Pressed += action => Pause(action, PlayerIndex.Two);
 			pause.Resumed += () => paused = false;
             pause.Quitted += MatchQuit;
+			manager.MatchEnded += MatchEnd;
 			pause.ResettedPlayerPositions += () =>
 			{
 				foreach (Player player in players)

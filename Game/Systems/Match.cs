@@ -20,7 +20,7 @@
 		/// <summary>
 		/// Allows derived classes to invoke MatchEnded event.
 		/// </summary>
-		public virtual void MatchEnd()
+		protected virtual void MatchEnd()
         {
             if (MatchEnded != null)
             {

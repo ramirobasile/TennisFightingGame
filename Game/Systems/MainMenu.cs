@@ -66,7 +66,7 @@ namespace TennisFightingGame
 
         private void StartSinglesMatch(Character[] selectedCharacters, Court selectedCourt)
         {
-            Singles.Match singlesMatch = new Singles.Match(selectedCharacters, selectedCourt, 30);
+            Singles.Match singlesMatch = new Singles.Match(selectedCharacters, selectedCourt);
             singlesMatch.MatchEnded += ReturnToMainMenu;
             singlesMatch.MatchQuitted += ReturnToMainMenu;
             TennisFightingGame.Level = singlesMatch;
