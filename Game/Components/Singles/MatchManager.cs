@@ -37,8 +37,7 @@ namespace TennisFightingGame.Singles
                 player.moveset.Served += Serve;
             }
             
-            // Player 1 serves first
-            service = match.players[0];
+            service = match.players[TennisFightingGame.Random.Next(0, match.players.Length)];
             service.state.serving = true;
         }
 
