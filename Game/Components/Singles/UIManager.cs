@@ -13,20 +13,26 @@ namespace TennisFightingGame.Singles
 
 		private readonly UI.Label[] nameLabels = new UI.Label[2];
 		private readonly UI.Bar[] staminaBars = new UI.Bar[2];
-		private UI.Label scoreLabels;
+		private UI.Label pointsLabel;
+		private UI.Label gamesLabel;
+		private UI.Label setsLabel;
 		private UI.Label[] servingLabels = new UI.Label[2];
+
+		private string[] points = { "0", "15", "30", "40", "60" };
 
         public UIManager(Match match)
         {
             this.match = match;
 
-			scoreLabels = new UI.Label("", new Point(0, 37), Assets.TitleFont, center: true, shadow: true, blinkSpeed: 60);
-
 			// HACK Make this not hardcoded
+			pointsLabel = new UI.Label("", new Point(0, 37), Assets.TitleFont, center: true, shadow: true, blinkSpeed: 60);
+			gamesLabel = new UI.Label("", new Point(0, 67), Assets.RegularFont, center: true, shadow: true, blinkSpeed: 60);
+			setsLabel = new UI.Label("", new Point(0, 87), Assets.RegularFont, center: true, shadow: true, blinkSpeed: 60);
+
 			staminaBars[0] = new UI.Bar(Assets.PlaceholderTexture, Assets.PlaceholderTexture, 
-				new Rectangle(10, 40, 400, 20), -1);
+				new Rectangle(10, 40, 350, 20), -1);
             staminaBars[1] = new UI.Bar(Assets.PlaceholderTexture, Assets.PlaceholderTexture, 
-            	new Rectangle(TennisFightingGame.Viewport.Width - 400 - 10, 40, 400, 20));
+            	new Rectangle(TennisFightingGame.Viewport.Width - 350 - 10, 40, 350, 20));
 
 			nameLabels[0] = new UI.Label(match.players[0].name, 
 				new Point(staminaBars[0].rectangle.X, 10), Assets.EmphasisFont, shadow: true);
@@ -41,12 +47,12 @@ namespace TennisFightingGame.Singles
 				Assets.EmphasisFont, blinkSpeed: 8, shadow: true);
 
 			// Blink on score
-			match.matchManager.PointScored += (_, __) => { scoreLabels.blink = 1; };
+			match.manager.PointEnded += (_, __) => { pointsLabel.blink = 1; };
         }
 
 		public void Update()
 		{
-			scoreLabels.Update();
+			pointsLabel.Update();
 			foreach (UI.Label label in servingLabels)
 			{
 				label.Update();
@@ -67,9 +73,35 @@ namespace TennisFightingGame.Singles
 				label.Draw(spriteBatch);
 			}
 
-			scoreLabels.text = string.Format("{0} - {1}", match.points[0], match.points[1]);
-			scoreLabels.Draw(spriteBatch);
+			// TODO Put this whole thing in a method that is subscribed to MatchManager point score
+			// events
+			pointsLabel.text = string.Format("{0} - {1}", points[match.players[0].points], 
+				points[match.players[1].points]);
 
+			foreach (Player player in match.players)
+			{
+				if (player.points == match.Opponent(player).points && player.points >= 3)
+				{
+					pointsLabel.text = "Deuce";
+					break;
+				} 
+				if (player.points > match.Opponent(player).points && player.points > 3)
+				{
+					pointsLabel.text = string.Format("Adv. {0}", player.name);
+					break;
+				}
+			}
+
+			pointsLabel.Draw(spriteBatch);
+			
+			gamesLabel.text = string.Format("{0} - {1}", match.players[0].games, match.players[1].games);
+			
+			gamesLabel.Draw(spriteBatch);
+
+			setsLabel.text = string.Format("{0} - {1}", match.players[0].sets,  match.players[1].sets);
+			
+			setsLabel.Draw(spriteBatch);
+			
 			// Blinking serving label
 			for (int i = 0; i < match.players.Length; i++)
 			{

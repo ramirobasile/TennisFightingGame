@@ -6,7 +6,7 @@ namespace TennisFightingGame.Singles
 {
 	public class Match : global::TennisFightingGame.Match
 	{
-		public readonly MatchManager matchManager;
+		public readonly MatchManager manager;
 		public Transition transition;
 		
 		private readonly Pause pause;
@@ -14,7 +14,6 @@ namespace TennisFightingGame.Singles
 
         private bool paused;
         public bool transitioning;
-        public int[] points = { 0, 0 };
         public float time;
 
         public Match(Character[] characters, Court court, int firstTo)
@@ -31,11 +30,10 @@ namespace TennisFightingGame.Singles
 
             pause = new Pause();
             transition = new Transition(1);
-            matchManager = new MatchManager(this, firstTo);
+            manager = new MatchManager(this, firstTo);
             camera = new Camera(this);
             uiManager = new UIManager(this);
 
-            matchManager.MatchEnded += MatchEnd;
 			players[0].input.Pressed += action => Pause(action, PlayerIndex.One);
 			players[1].input.Pressed += action => Pause(action, PlayerIndex.Two);
 			pause.Resumed += () => paused = false;
@@ -49,7 +47,7 @@ namespace TennisFightingGame.Singles
 			};
 			pause.ResettedBallPosition += () =>
 			{
-				ball.Position = new Point((matchManager.side > 0) ? 2000 : 1300, -200);
+				ball.Position = new Point((manager.side > 0) ? 2000 : 1300, -200);
 				ball.velocity = Vector2.Zero;
 				ball.gravity = Ball.DefaultGravity;
 			};
@@ -70,7 +68,7 @@ namespace TennisFightingGame.Singles
 	            transition.Update();
             }
 
-            matchManager.Update();
+            manager.Update();
             ball.Update();
             foreach (Player player in players)
             {
@@ -139,6 +137,11 @@ namespace TennisFightingGame.Singles
         {
             return players.First(p => p.courtSide == side);
         }
+		
+		public Player Opponent(Player player)
+        {
+            return players.First(p => p != player);
+        }
 
         private void Pause(Actions action, PlayerIndex index)
         {
@@ -147,6 +150,6 @@ namespace TennisFightingGame.Singles
                 pause.master = index;
                 paused = true;
             }
-        }
+		}
     }
 }

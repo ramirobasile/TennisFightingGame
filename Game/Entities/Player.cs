@@ -31,6 +31,9 @@ namespace TennisFightingGame
 		public Rectangle rectangle;
         public Rectangle lastRectangle;
         public int courtSide;
+		public int points;
+		public int games;
+		public int sets;
         public int direction;
 		public float hitLag;
 		public float stamina = MaxStamina;

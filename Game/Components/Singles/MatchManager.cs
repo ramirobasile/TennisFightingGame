@@ -7,23 +7,30 @@ namespace TennisFightingGame.Singles
 
     public class MatchManager
     {
-        private readonly int firstTo; //first to reach wins
         private readonly Match match;
+        private readonly int bestOf;
+        private readonly int minGames;
+        private readonly int gamesDifference;
 
-        private readonly int staminaPerRound = 15;
         public int bounces;
         public int consecutiveHits; // combo
         public int side = -1; // the side of the court the ball currently is in
 
-        public Player starting;
+        public Player service;
 
-        public MatchManager(Match match, int firstTo)
+        public MatchManager(Match match, int bestOf = 1, int minGames = 6, 
+            int gamesDifference = 2)
         {
             this.match = match;
-            this.firstTo = firstTo;
+            this.bestOf = bestOf;
+            this.minGames = minGames;
+            this.gamesDifference = gamesDifference;
 
-            PointScored += PointScore;
             PassedNet += PassNet;
+            PointEnded += EndPoint;
+            GameEnded += EndGame;
+            SetEnded += EndSet;
+            MatchEnded += EndMatch;
             match.ball.Bounced += Bounce;
             match.ball.Hitted += Hit;
             foreach (Player player in match.players)
@@ -31,18 +38,21 @@ namespace TennisFightingGame.Singles
                 player.moveset.Served += Serve;
             }
             
-            // Random first serve
-            Random random = new Random();
-            starting = match.players[random.Next(0, 2)];
-            starting.state.serving = true;
+            // Player 1 serves first
+            service = match.players[0];
+            service.state.serving = true;
         }
 
 		public delegate void CrossingEventHandler(int side);
-		public delegate void MatchEndEventHandler();
 		public delegate void PassedNetEventHandler(int side);
-		public delegate void PointScoredEventHandler(Player scorer, Player scored);
+		public delegate void PointEndEventHandler(Player scorer, Player scored);
+		public delegate void GameEndEventHandler(Player scorer, Player scored);
+		public delegate void SetEndEventHandler(Player scorer, Player scored);
+		public delegate void MatchEndEventHandler(Player scorer, Player scored);
 
-		public event PointScoredEventHandler PointScored;
+		public event PointEndEventHandler PointEnded;
+		public event PointEndEventHandler GameEnded;
+		public event PointEndEventHandler SetEnded;
         public event MatchEndEventHandler MatchEnded;
         public event PassedNetEventHandler PassedNet;
         public event CrossingEventHandler Crossing;
@@ -83,9 +93,9 @@ namespace TennisFightingGame.Singles
 
             if (bounces > 1)
             {
-                if (PointScored != null)
+                if (PointEnded != null)
                 {
-                    PointScored.Invoke(match.GetPlayerBySide(-side), match.GetPlayerBySide(side));
+                    PointEnded.Invoke(match.GetPlayerBySide(-side), match.GetPlayerBySide(side));
                 }
             }
         }
@@ -115,9 +125,9 @@ namespace TennisFightingGame.Singles
 			consecutiveHits++;
 			if (consecutiveHits > 3)
 			{
-				if (PointScored != null)
+				if (PointEnded != null)
 				{
-					PointScored.Invoke(match.GetPlayerBySide(-side), match.GetPlayerBySide(side));
+					PointEnded.Invoke(match.GetPlayerBySide(-side), match.GetPlayerBySide(side));
 				}
 			}
 		}
@@ -131,9 +141,9 @@ namespace TennisFightingGame.Singles
             
 			if (consecutiveHits == 0)
 			{
-				if (PointScored != null)
+				if (PointEnded != null)
 				{
-					PointScored.Invoke(match.GetPlayerBySide(newSide), match.GetPlayerBySide(side));
+					PointEnded.Invoke(match.GetPlayerBySide(newSide), match.GetPlayerBySide(side));
 				}
 			}
 
@@ -142,49 +152,128 @@ namespace TennisFightingGame.Singles
             side = newSide;
         }
 
-        private void PointScore(Player scorer, Player scored)
+        private void EndPoint(Player scorer, Player scored)
         {
             match.inPlay = false;
-            
-            // Add points
-            match.points[((int) scorer.index + 2) % 2]++;
 
-            // Check if a player has won
-            for (int i = 0; i < match.points.Length; i++)
+            scorer.points++;
+
+            // Check game win
+            foreach(Player player in match.players)
             {
-                if (match.points[i] >= firstTo)
+                if (player.points >= 4 && player.points - match.Opponent(player).points >= 2)
                 {
-                    if (MatchEnded != null)
+                    if (GameEnded != null)
                     {
-                        MatchEnded.Invoke();
+                        GameEnded.Invoke(scorer, scored);
                     }
+
+                    return;
+                }
+            }
+
+            foreach (Player player in match.players)
+            {
+                player.AddStamina(player.stats.staminaRecovery);
+            }
+            match.transitioning = true;
+            match.transition = new Transition(1); // cleans up previous subscriptions in the process
+            match.transition.HalfFinished += PointSetup;
+
+            match.transition.Finished += () => service.state.serving = true;
+        }
+
+        private void EndGame(Player scorer, Player scored)
+        {
+            match.inPlay = false;
+
+            scorer.games++;
+
+            // Check set win
+            foreach(Player player in match.players)
+            {
+                if (player.games >= 4 && player.games - match.Opponent(player).games >= 2)
+                {
+                    if (SetEnded != null)
+                    {
+                        SetEnded.Invoke(scorer, scored);
+                    }
+
+                    return;
                 }
             }
             
+            foreach (Player player in match.players)
+            {
+                player.AddStamina(Player.MaxStamina);
+                player.points = 0;
+            }
+
+            // TODO Add new game transition behaviour
             match.transitioning = true;
-            match.transition = new Transition(1);
-            match.transition.HalfFinished += RoundEnd;
-            match.transition.Finished += () => RoundStart(scorer, scored);
+            match.transition = new Transition(3); // cleans up previous subscriptions in the process
+            match.transition.HalfFinished += PointSetup;
+            
+            service = match.Opponent(service);
+            match.transition.Finished += () => service.state.serving = true;
         }
 
-        private void RoundEnd()
+        private void EndSet(Player scorer, Player scored)
+        {
+            match.inPlay = false;
+
+            scorer.sets++;
+
+            // Check match win (which is best-of)
+            foreach(Player player in match.players)
+            {   
+                if (player.sets > bestOf / 2)
+                {
+                    if (MatchEnded != null)
+                    {
+                        MatchEnded.Invoke(scorer, scored);
+                    }
+
+                    return;
+                }
+            }
+            
+            foreach (Player player in match.players)
+            {
+                player.AddStamina(Player.MaxStamina);
+                player.points = 0;
+                player.games = 0;
+            }
+
+            // TODO Add new game transition behaviour
+            match.transitioning = true;
+            match.transition = new Transition(5); // cleans up previous subscriptions in the process
+            match.transition.HalfFinished += PointSetup;
+            
+            // HACK This might change
+            service = match.players[0];
+            match.transition.Finished += () => service.state.serving = true;
+        }
+        
+        private void EndMatch(Player scorer, Player scored)
+        {
+            match.transitioning = true;
+            match.transition = new Transition(10); // cleans up previous subscriptions in the process
+            match.transition.Finished += match.MatchEnd;
+        }
+
+        private void PointSetup()
         {
             match.ball.Position = new Point(0, 3000);
             
             // Reset positions
             foreach (Player player in match.players)
             {
-                player.AddStamina(staminaPerRound);
                 player.Position = player.spawnPosition;
                 player.velocity = Vector2.Zero;
                 player.moveset.CancelCurrentAttack();
                 player.direction = -player.courtSide;
             }
-        }
-        
-        private void RoundStart(Player scorer, Player scored)
-        {
-            scored.state.serving = true;
         }
 
         private void Serve(Player player)
