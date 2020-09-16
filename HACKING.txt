@@ -1,27 +1,22 @@
 FIXMEs:
-* ballFocus in singles camera isn't false on p2's first serve for some reason
 * Jumping on top of things doesn't work very well... But it's not like you're 
-  supposed to do that anyway
+  supposed to do that anyway... For now anyways
 * Ball going thought geometry sometimes apparently only when ball's left 
   collision occurs
 * Landing point isn't calculated correctly when bounce off of wall
 * Fix attack animations
 
 TODOs:
-* Endurance
-* Crowd SFX
-* Add taunting
 * "Busy" blocking time for player actions such as switching side or jumpsquat
-* Titles
 * Step sounds
 * More documentation
 * Special exhausted swing and hit sounds
 * Allow scaling
-* Parallax background
-* Add particles
-* Doubles
+* Add (and probably fix) particles
+* Doubles (currently blocked by collision FIXME)
 
 Conundrums:
+* Custom amount of games?
 * Maybe add notion of phantom hit which isn't accounted for by match manager,
   which I picture being used for cool super moves
 * Maybe add target combos?
@@ -33,5 +28,11 @@ Conundrums:
   stamina
 
 Backburner TODOs:
+* Endurance
+* Parallax background
+* Music
+* Crowd SFX
+* Add taunting
+* Titles
 * XML character serialization
 * DInput support (this is never gonna happen probably)
