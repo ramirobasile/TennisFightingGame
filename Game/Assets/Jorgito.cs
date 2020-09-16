@@ -141,7 +141,7 @@ namespace TennisFightingGame
 					new Attack(
 						action: Actions.Heavy,
 						aerialState: AerialStates.Airborne,
-						startup: 0.15f, endlag: 0.2f, 
+						startup: 0.15f, endlag: 0.1f, 
 						staminaCost: 8,
 						hitboxes: new Hitbox[] {
 							new Hitbox(rectangle: new Rectangle(30, 10, 50, 50),
@@ -286,7 +286,8 @@ namespace TennisFightingGame
 					recoverThreshold: 5,
 					fastFallSpeed: 1000,
 					staminaRecovery: 15,
-					endurance: 1
+					endurance: 1,
+					jumpSquat: 0.066f
 					),
 				content.Load<SoundEffect>("Characters/Jorgito/Step"),
 				content.Load<SoundEffect>("Characters/Jorgito/Jump"),

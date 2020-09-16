@@ -201,8 +201,15 @@ namespace TennisFightingGame
 
 			foreach (Attack attack in attacks)
 			{
+				// TODO Explain and cleanup
+				AerialStates simplifiedAerialState = player.state.aerialState;
+				if (player.state.aerialState == AerialStates.JumpSquat)
+				{
+					simplifiedAerialState = AerialStates.Airborne;
+				}
+				
 				if (attack.action == action &&
-					attack.aerialState == player.state.aerialState &&
+					attack.aerialState == simplifiedAerialState &&
 					(attack.serve == player.state.serving) &&
 					player.input.MotionInput(attack.motionInput))
 				{

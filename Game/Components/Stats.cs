@@ -26,12 +26,13 @@
 		public readonly float fastFallSpeed;
 		public readonly float staminaRecovery;
 		public readonly float endurance;
+		public readonly float jumpSquat;
 
 		public Stats(float gravity, float friction, float staminaRegen, float runSpeed, float runStaminaCost, 
 			float runningJumpSpeed, float walkSpeed, float walkStaminaCost, float jumpSpeed, 
 			float jumpStaminaCost, float driftSpeed, float exhaustedSpeed, float exhaustedJumpSpeed, 
 			float exhaustedJumpStaminaCost, float exhaustedThreshold, float recoverThreshold,
-			float fastFallSpeed, float staminaRecovery, float endurance)
+			float fastFallSpeed, float staminaRecovery, float endurance, float jumpSquat)
 		{
 			this.gravity = gravity;
 			this.friction = friction;
@@ -52,6 +53,7 @@
 			this.fastFallSpeed = fastFallSpeed;
 			this.staminaRecovery = staminaRecovery;
 			this.endurance = endurance;
+			this.jumpSquat = jumpSquat;
 		}
 	}
 }

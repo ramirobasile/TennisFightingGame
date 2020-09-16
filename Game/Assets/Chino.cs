@@ -213,7 +213,8 @@ namespace TennisFightingGame
 					recoverThreshold: 5,
 					fastFallSpeed: 1000,
 					staminaRecovery: 15,
-					endurance: 1
+					endurance: 1,
+					jumpSquat: 0.066f
 					),
 				content.Load<SoundEffect>("Characters/Chino/Step"),
 				content.Load<SoundEffect>("Characters/Chino/Jump"),

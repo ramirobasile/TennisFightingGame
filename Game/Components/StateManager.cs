@@ -17,6 +17,8 @@ namespace TennisFightingGame
 		public bool exhausted;
 		public bool fastFell;
 
+		float jumpSquatTime;
+
 		public StateManager(Player player)
 		{
 			this.player = player;
@@ -57,6 +59,16 @@ namespace TennisFightingGame
 
 		public void Update()
 		{
+			jumpSquatTime -= TennisFightingGame.DeltaTime;
+
+			if (aerialState == AerialStates.JumpSquat && jumpSquatTime <= 0)
+			{
+				if (Jumped != null)
+				{
+					Jumped.Invoke();
+				}
+			}
+
 			if (player.stamina < player.stats.exhaustedThreshold)
 			{
 				exhausted = true;
@@ -75,7 +87,7 @@ namespace TennisFightingGame
 				Rectangle check = new Rectangle(player.rectangle.X, player.rectangle.Y + Player.CheckDistance,
 					player.rectangle.Width, player.rectangle.Height);
 
-				if (aerialState != AerialStates.Jumping && wall.Collision(check, player.lastRectangle).Bottom)
+				if (aerialState != AerialStates.JumpSquat && wall.Collision(check, player.lastRectangle).Bottom)
 				{
 					if (aerialState == AerialStates.Airborne)
 					{
@@ -91,7 +103,7 @@ namespace TennisFightingGame
 					return;
 				}
 
-				if (!wall.Collision(check, player.lastRectangle).Bottom)
+				if (!wall.Collision(check, player.lastRectangle).Bottom && jumpSquatTime <= 0)
 				{
 					aerialState = AerialStates.Airborne;
 					return;
@@ -108,11 +120,10 @@ namespace TennisFightingGame
 
 			if (action == Actions.Jump && aerialState == AerialStates.Standing)
 			{
-				aerialState = AerialStates.Jumping;
-				if (Jumped != null)
-				{
-					Jumped.Invoke();
-				}
+				aerialState = AerialStates.JumpSquat;
+				
+				jumpSquatTime = player.stats.jumpSquat;
+
 			}
 
 			if (action == Actions.Turn && aerialState == AerialStates.Standing)
@@ -157,7 +168,7 @@ namespace TennisFightingGame
 			{
 				case Actions.Left:
 					{
-						if (aerialState == AerialStates.Standing || aerialState == AerialStates.Jumping)
+						if (aerialState == AerialStates.Standing || aerialState == AerialStates.JumpSquat)
 						{
 							if (exhausted)
 							{
@@ -179,7 +190,7 @@ namespace TennisFightingGame
 
 				case Actions.Right:
 					{
-						if (aerialState == AerialStates.Standing || aerialState == AerialStates.Jumping)
+						if (aerialState == AerialStates.Standing || aerialState == AerialStates.JumpSquat)
 						{
 							if (exhausted)
 							{
@@ -269,7 +280,7 @@ namespace TennisFightingGame
 	public enum AerialStates
 	{
 		Airborne,
-		Jumping,
+		JumpSquat,
 		Standing,
 		Grounded
 	}
