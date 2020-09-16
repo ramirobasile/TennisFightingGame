@@ -47,17 +47,17 @@ namespace TennisFightingGame
 					new Animation(row: 18, frames: 4, fps: 1),
 					},
 				new Attack[] {
-					// Super grounded heavy
+					// Special grounded heavy
 					new Attack(
 						action: Actions.Heavy,
 						aerialState: AerialStates.Standing,
 						motionInput: new Actions[] { Actions.Left, Actions.Down, Actions.Right, Actions.Heavy },
 						onStartupSounds: new SoundEffect[][] { jorgitoLoudGrunts },
-						startup: 0.233f, endlag: 0.425f, 
+						startup: 0.25f, endlag: 0.425f, 
 						staminaCost: 12,
 						hitboxes: new Hitbox[] {
-							new Hitbox(rectangle: new Rectangle(140, 10, 150, 80),
-								start: 0, duration: 0.25f,
+							new Hitbox(rectangle: new Rectangle(140, 10, 120, 80),
+								start: 0, duration: 0.2f,
 								force: new Vector2(2750, -575),
 								hitLag: 0.6f, hitStun: 0.6f, shakeMagnitude: 10,
 								onAddedSounds: new SoundEffect[][] { SwingSounds },
