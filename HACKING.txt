@@ -11,7 +11,6 @@ TODOs:
 * Endurance
 * Crowd SFX
 * Add taunting
-* 4 point games, 6 game sets
 * "Busy" blocking time for player actions such as switching side or jumpsquat
 * Titles
 * Step sounds
