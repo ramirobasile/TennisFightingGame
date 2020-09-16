@@ -102,13 +102,6 @@ namespace TennisFightingGame.Singles
 
         private void Hit()
 		{
-            if (!match.inPlay)
-            {
-                return;
-            }
-            
-			bounces = 1;
-
             // Set defender to the other player is the ball is projected to pass the net
             float middleDistance = MathHelper.Distance(match.GetPlayerBySide(side).Position.X, match.court.middle.rectangle.Center.X);
             float landingDistance = MathHelper.Distance(match.GetPlayerBySide(side).Position.X,
@@ -122,7 +115,16 @@ namespace TennisFightingGame.Singles
                 }
             }
 
+            // Don't register hits and bounces if not inPlay but allow camera to move correctly
+            if (!match.inPlay)
+            {
+                return;
+            }
+            
+			bounces = 1;
+
 			consecutiveHits++;
+
 			if (consecutiveHits > 3)
 			{
 				if (PointEnded != null)
@@ -264,7 +266,8 @@ namespace TennisFightingGame.Singles
 
         private void PointSetup()
         {
-            match.ball.Position = new Point(0, 3000);
+            match.ball.Position = new Point(match.ball.Position.X, 3000);
+            match.ball.velocity = Vector2.Zero;
             
             // Reset positions
             foreach (Player player in match.players)

@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Linq;
 using Microsoft.Xna.Framework;
 
 namespace TennisFightingGame.Singles
@@ -42,12 +41,18 @@ namespace TennisFightingGame.Singles
 
             margin = match.players[0].sprite.frameSize.X * 2;
 
-            match.matchManager.PointScored += SetFocus;
-            match.matchManager.Crossing += Crossing;
-			match.matchManager.PassedNet += ChangeAttacker;
 
-			defender = match.matchManager.starting;
-            attacker = match.players.First(p => p != defender);
+			defender = match.manager.service;
+            attacker = match.Opponent(match.manager.service);
+
+			// HACK A bit too hard coded
+			// FIXME This is ass
+			match.manager.service.moveset.Served += SetFocus;
+			match.manager.PointEnded += (_, __) => SetFocus(match.manager.service);
+			match.manager.GameEnded += (_, __) => SetFocus(match.manager.service);
+			match.manager.SetEnded += (_, __) => SetFocus(match.manager.service);
+            match.manager.Crossing += Crossing;
+			match.manager.PassedNet += ChangeAttacker;
         }
 
         public override void Update()
@@ -121,10 +126,10 @@ namespace TennisFightingGame.Singles
             centre = Vector2.Lerp(centre, new Vector2(x, y), TennisFightingGame.DeltaTime * speed);
         }
 
-        private void SetFocus(Player newAttacker, Player newDefender)
+        private void SetFocus(Player newDefender)
         {
             defender = newDefender;
-            attacker = newAttacker;
+            attacker = match.Opponent(defender);
 			focusBall = false;
         }
 
@@ -135,8 +140,7 @@ namespace TennisFightingGame.Singles
 
         private void Crossing(int side)
         {
-            defender = match.GetPlayerBySide(-side);
-            attacker = match.GetPlayerBySide(side);
+			SetFocus(match.GetPlayerBySide(-side));
 			focusBall = false;
         }
     }

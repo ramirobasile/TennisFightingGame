@@ -8,8 +8,9 @@ FIXMEs:
 * Fix attack animations
 
 TODOs:
-* Resolve inconsistent language in input manager ("input" and "action" seem
-  interchangable when they probably shouldn't)
+* Endurance
+* Crowd SFX
+* Add taunting
 * 4 point games, 6 game sets
 * "Busy" blocking time for player actions such as switching side or jumpsquat
 * Titles
