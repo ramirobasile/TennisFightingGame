@@ -27,7 +27,7 @@ namespace TennisFightingGame
 		public readonly bool multiHit;
 		public readonly bool disabledWhenExhausted;
 		private readonly float startup;
-		public readonly float endlag;
+		public readonly float recovery;
 
 		public List<Hitbox> activeHitboxes = new List<Hitbox>();
 		public List<Hitbox> hits = new List<Hitbox>();
@@ -48,7 +48,7 @@ namespace TennisFightingGame
 			this.hitboxes = hitboxes;
 			this.onStartupSounds = onStartupSounds;
 			this.startup = startup;
-			this.endlag = endlag;
+			this.recovery = endlag;
 			this.hardLandCancel = hardLandCancel;
 			this.softLandCancel = softLandCancel;
 			this.hardHitCancel = hardHitCancel;
@@ -68,7 +68,7 @@ namespace TennisFightingGame
 			hitboxes = copying.hitboxes;
 			onStartupSounds = copying.onStartupSounds;
 			startup = copying.startup;
-			endlag = copying.endlag;
+			recovery = copying.recovery;
 			hardLandCancel = copying.hardLandCancel;
 			softLandCancel = copying.softLandCancel;
 			hardHitCancel = copying.hardHitCancel;
@@ -88,7 +88,7 @@ namespace TennisFightingGame
             get
             {
                 Hitbox last = hitboxes.OrderBy(hitbox => hitbox.start + hitbox.duration).Last();
-                return startup + last.start + last.duration + endlag; // lazy linq
+                return startup + last.start + last.duration + recovery; // lazy linq
             }
         }
 
@@ -155,9 +155,9 @@ namespace TennisFightingGame
 					}
 
 					// Soft hit cancel
-					if (softHitCancel && time < TotalDuration - endlag)
+					if (softHitCancel && time < TotalDuration - recovery)
 					{
-						time = TotalDuration - endlag;
+						time = TotalDuration - recovery;
 					}
 
 					// Hard hit cancel

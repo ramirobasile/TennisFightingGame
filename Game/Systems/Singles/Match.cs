@@ -48,7 +48,7 @@ namespace TennisFightingGame.Singles
 			};
 			pause.ResettedBallPosition += () =>
 			{
-				ball.Position = new Point((manager.side > 0) ? 2000 : 1300, -200);
+				ball.Position = court.spawnPoints[((manager.ballSide == 1) ? 1 : 0)];
 				ball.velocity = Vector2.Zero;
 				ball.gravity = Ball.DefaultGravity;
 			};

@@ -14,7 +14,7 @@ namespace TennisFightingGame.Singles
 
         public int bounces;
         public int consecutiveHits; // combo
-        public int side = -1; // the side of the court the ball currently is in
+        public int ballSide = -1; // the side of the court the ball currently is in
 
         public Player service;
 
@@ -94,7 +94,7 @@ namespace TennisFightingGame.Singles
             {
                 if (PointEnded != null)
                 {
-                    PointEnded.Invoke(match.GetPlayerBySide(-side), match.GetPlayerBySide(side));
+                    PointEnded.Invoke(match.GetPlayerBySide(-ballSide), match.GetPlayerBySide(ballSide));
                 }
             }
         }
@@ -102,15 +102,15 @@ namespace TennisFightingGame.Singles
         private void Hit()
 		{
             // Set defender to the other player is the ball is projected to pass the net
-            float middleDistance = MathHelper.Distance(match.GetPlayerBySide(side).Position.X, match.court.middle.rectangle.Center.X);
-            float landingDistance = MathHelper.Distance(match.GetPlayerBySide(side).Position.X,
+            float middleDistance = MathHelper.Distance(match.GetPlayerBySide(ballSide).Position.X, match.court.middle.rectangle.Center.X);
+            float landingDistance = MathHelper.Distance(match.GetPlayerBySide(ballSide).Position.X,
                 match.ball.LandingPoint(match.court.net.rectangle.Top).X);
 
             if (landingDistance > middleDistance)
             {
                 if (Crossing != null)
                 {
-                    Crossing.Invoke(side);
+                    Crossing.Invoke(ballSide);
                 }
             }
 
@@ -128,7 +128,7 @@ namespace TennisFightingGame.Singles
 			{
 				if (PointEnded != null)
 				{
-					PointEnded.Invoke(match.GetPlayerBySide(-side), match.GetPlayerBySide(side));
+					PointEnded.Invoke(match.GetPlayerBySide(-ballSide), match.GetPlayerBySide(ballSide));
 				}
 			}
 		}
@@ -144,13 +144,13 @@ namespace TennisFightingGame.Singles
 			{
 				if (PointEnded != null)
 				{
-					PointEnded.Invoke(match.GetPlayerBySide(newSide), match.GetPlayerBySide(side));
+					PointEnded.Invoke(match.GetPlayerBySide(newSide), match.GetPlayerBySide(ballSide));
 				}
 			}
 
             bounces = 0;
             consecutiveHits = 0;
-            side = newSide;
+            ballSide = newSide;
         }
 
         private void EndPoint(Player scorer, Player scored)

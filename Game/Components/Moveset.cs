@@ -173,10 +173,10 @@ namespace TennisFightingGame
 
 			// Soft land cancel
 			if (currentAttack.softLandCancel && 
-				currentAttack.time < currentAttack.TotalDuration - currentAttack.endlag)
+				currentAttack.time < currentAttack.TotalDuration - currentAttack.recovery)
 			{
 				currentAttack.activeHitboxes.Clear();
-				currentAttack.time = currentAttack.TotalDuration - currentAttack.endlag;
+				currentAttack.time = currentAttack.TotalDuration - currentAttack.recovery;
 			}
 
 			// Hard land cancel
