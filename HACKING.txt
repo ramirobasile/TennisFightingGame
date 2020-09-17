@@ -5,13 +5,14 @@ FIXMEs:
   collision occurs
 * Landing point isn't calculated correctly when bounce off of wall
 * Fix attack animations
+* If the ball somehow manages to cross the net after point ends, camera for next
+  serve gets confused
 
 TODOs:
-* "Busy" blocking time for player actions such as switching side or jumpsquat
+* Allow scaling
 * Step sounds
 * More documentation
 * Special exhausted swing and hit sounds
-* Allow scaling
 * Add (and probably fix) particles
 * Doubles (currently blocked by collision FIXME)
 
