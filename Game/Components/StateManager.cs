@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using System;
+using Microsoft.Xna.Framework;
 
 namespace TennisFightingGame
 {
@@ -101,6 +102,11 @@ namespace TennisFightingGame
 						}
 
 						fastFell = false;
+
+						/* HACK Randomly changing the movementState like this is kind of ugly, 
+						 * I know, thing is, you can end up with  the falling state instead of idle
+						 * if you don't do any inputs while falling... */
+						movementState = MovementState.Idle;
 					}
 
 					aerialState = AerialStates.Standing;
@@ -122,6 +128,7 @@ namespace TennisFightingGame
 				return;
 			}
 
+			// HACK This might need to be a switch...
 			if (action == Actions.Jump && aerialState == AerialStates.Standing)
 			{
 				aerialState = AerialStates.JumpSquat;
@@ -166,12 +173,24 @@ namespace TennisFightingGame
 			// Walking
 			if (Attacking || Turning || !player.match.inPlay)
 			{
-				movementState = MovementState.Idle;
 				return;
 			}
 
 			switch (action)
 			{
+				default:
+					{
+						if (aerialState == AerialStates.Airborne)
+						{
+							movementState = MovementState.Falling;
+						} 
+						else
+						{
+							movementState = MovementState.Idle;
+						}
+						break;
+					}
+
 				case Actions.Left:
 					{
 						if (aerialState == AerialStates.Standing || aerialState == AerialStates.JumpSquat)
@@ -224,7 +243,14 @@ namespace TennisFightingGame
 			{
 				default:
 					{
-						movementState = MovementState.Idle;
+						if (aerialState == AerialStates.Airborne)
+						{
+							movementState = MovementState.Falling;
+						} 
+						else
+						{
+							movementState = MovementState.Idle;
+						}
 						break;
 					}
 			}
@@ -237,13 +263,22 @@ namespace TennisFightingGame
 			{
 				return;
 			}
+			
 			switch (action)
 			{
 				default:
 					{
-						movementState = MovementState.Idle;
+						if (aerialState == AerialStates.Airborne)
+						{
+							movementState = MovementState.Falling;
+						} 
+						else
+						{
+							movementState = MovementState.Idle;
+						}
 						break;
 					}
+
 				case Actions.Left:
 					{
 						if (movementState != MovementState.WalkingBackwards)
@@ -271,6 +306,7 @@ namespace TennisFightingGame
 	public enum MovementState
 	{
 		Idle,
+		Falling, // This one seems counter-intuitive but it's there for Sprite
 		WalkingForwards,
 		WalkingBackwards,
 		SprintingForwards,

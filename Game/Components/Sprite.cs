@@ -21,8 +21,8 @@ namespace TennisFightingGame
 		private readonly Animation[] animations;
 
 		public Player player;
-		public Animations currentAnimation;
-		private Animations lastAnimation;
+		public Animation currentAnimation;
+		private Animation lastAnimation;
 
 		public Sprite(Texture2D spriteSheet, Point frameSize, Animation[] animations,
 			Player player)
@@ -31,6 +31,9 @@ namespace TennisFightingGame
 			this.frameSize = frameSize;
 			this.animations = animations;
 			this.player = player;
+
+			currentAnimation = animations[(int)MovementState.Idle];
+			lastAnimation = animations[(int)MovementState.Idle];
 		}
 
 		// For serialization
@@ -38,16 +41,12 @@ namespace TennisFightingGame
 		{
 		}
 
-		public delegate void ChangedAnimationEventHandler(Animations newAnimation);
-
-		public event ChangedAnimationEventHandler ChangedAnimation;
-
 		public Rectangle FrameCutout 
 		{ 
 			get 
 			{ 
-				int frame = CurrentAnimation.currentFrame;
-				int row = CurrentAnimation.row;
+				int frame = currentAnimation.currentFrame;
+				int row = currentAnimation.row;
 
 				return new Rectangle(
 					frame * frameSize.X + Margins * (frame + 1),
@@ -57,79 +56,25 @@ namespace TennisFightingGame
 			}
 		}
 
-		private Animation CurrentAnimation { get { return animations[(int)currentAnimation]; } }
-
 		public void Update()
 		{
-			switch (player.state.aerialState)
+			if (player.state.Attacking)
 			{
-				case AerialStates.Airborne:
-					{
-						SetAnimation(Animations.Falling);
-						break;
-					}
-				case AerialStates.Standing:
-					{
-						SetAnimation(Animations.Idle);
-						break;
-					}
+				// TODO Give each attack an animation maybe? Seems like the only
+				// not insane solution
+				//currentAnimation = player.moveset.currentAttack.animation;
+			}
+			else
+			{
+				currentAnimation = animations[(int)player.state.movementState];
 			}
 
-			if (!player.state.serving)
+			if (lastAnimation != currentAnimation && currentAnimation.resetOnStop)
 			{
-				switch (player.state.movementState)
-				{
-					case MovementState.WalkingBackwards:
-						{
-							SetAnimation(Animations.WalkingBackwards);
-							break;
-						}
-					case MovementState.WalkingForwards:
-						{
-							SetAnimation(Animations.WalkingForwards);
-							break;
-						}
-					case MovementState.SprintingBackwards:
-						{
-							SetAnimation(Animations.SprintingBackwards);
-							break;
-						}
-					case MovementState.SprintingForwards:
-						{
-							SetAnimation(Animations.SprintingForwards);
-							break;
-						}
-					case MovementState.DriftingBackwards:
-						{
-							SetAnimation(Animations.DriftingBackwards);
-							break;
-						}
-					case MovementState.DriftingForwards:
-						{
-							SetAnimation(Animations.DriftingForwards);
-							break;
-						}
-					case MovementState.CrawlingBackwards:
-						{
-							SetAnimation(Animations.CrawlingBackwards);
-							break;
-						}
-					case MovementState.CrawlingForwards:
-						{
-							SetAnimation(Animations.CrawlingForwards);
-							break;
-						}
-				}
+				currentAnimation.Reset();
 			}
 
-			// FIXME No attack animations, pls fix
-			
-			if (lastAnimation != currentAnimation && CurrentAnimation.resetOnStop)
-			{
-				CurrentAnimation.Reset();
-			}
-
-			CurrentAnimation.Update();
+			currentAnimation.Update();
 
 			lastAnimation = currentAnimation;
 		}
@@ -145,41 +90,8 @@ namespace TennisFightingGame
 			spriteBatch.Draw(Assets.ShadowTexture, shadowRectangle, Color.White * ShadowOpacity);
 
 			// Draw animation
-			CurrentAnimation.Draw(spriteBatch, spriteSheet, Margins, frameSize,  
+			currentAnimation.Draw(spriteBatch, spriteSheet, Margins, frameSize,  
 				player.Position, player.direction);
 		}
-
-		private void SetAnimation(Animations animation)
-		{
-			currentAnimation = animation;
-
-			if (ChangedAnimation != null)
-			{
-				ChangedAnimation.Invoke(animation);
-			}
-		}
-	}
-
-	public enum Animations
-	{
-		Idle,
-		WalkingForwards,
-		WalkingBackwards,
-		SprintingForwards,
-		SprintingBackwards,
-		CrawlingForwards,
-		CrawlingBackwards,
-		DriftingForwards,
-		DriftingBackwards,
-		Jumping,
-		Falling,
-		Landing,
-		Attack1,
-		Attack1Air,
-		Attack2,
-		Attack2Air,
-		Attack3,
-		Attack3Air,
-		Serve
 	}
 }
