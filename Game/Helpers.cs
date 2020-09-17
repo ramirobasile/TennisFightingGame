@@ -99,13 +99,5 @@ namespace TennisFightingGame
 		{
 			return (int)font.MeasureString("_").Y;
 		}
-
-		public static Point CenterTextHorizontally(string text, int y, SpriteFont font)
-		{
-			Viewport viewport = TennisFightingGame.Graphics.GraphicsDevice.Viewport;
-			Point centered = new Point((int)(viewport.Width / 2 - font.MeasureString(text).X / 2), y);
-
-			return centered;
-		}
     }
 }

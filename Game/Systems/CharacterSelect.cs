@@ -44,7 +44,7 @@ namespace TennisFightingGame
                 buttons[i].Clicked += SelectCharacter;
             }
 
-			readyLabel = new UI.Label("", new Point(0, buttons[buttons.Length - 1].position.Y + 30), Assets.RegularFont, center: true);
+			readyLabel = new UI.Label("", new Point(0, buttons[buttons.Length - 1].label.position.Y + 30), Assets.RegularFont, center: true);
 
 			buttonSets = new UI.Button[][] { buttons };
         }

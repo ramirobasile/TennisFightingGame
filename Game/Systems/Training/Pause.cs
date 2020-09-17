@@ -8,6 +8,7 @@ namespace TennisFightingGame.Training
         private readonly UI.Button resumeButton;
         private readonly UI.Button serveButton;
         private readonly UI.Button staminaButton;
+        private readonly UI.Button showDebugInformationButton;
         private readonly UI.Button quitButton;
 
 		private UI.Label titleLabel;
@@ -52,8 +53,22 @@ namespace TennisFightingGame.Training
                     Resumed.Invoke();
                 }
             };
+            
+            showDebugInformationButton = new UI.Button("Show debug information", new Point(0, 170), Assets.RegularFont, center: true);
+            showDebugInformationButton.Clicked += index =>
+            {
+                if (SelectedDebugInfo != null)
+                {
+                    SelectedDebugInfo.Invoke();
+                }
 
-            quitButton = new UI.Button("Quit to main menu", new Point(10, 170), Assets.RegularFont, center: true);
+                if (Resumed != null)
+                {
+                    Resumed.Invoke();
+                }
+            };
+
+            quitButton = new UI.Button("Quit to main menu", new Point(10, 200), Assets.RegularFont, center: true);
             quitButton.Clicked += index =>
             {
                 if (Quitted != null)
@@ -64,7 +79,7 @@ namespace TennisFightingGame.Training
 
             buttonSets = new UI.Button[][]
             {
-                new UI.Button[] {resumeButton, serveButton, staminaButton, quitButton}
+                new UI.Button[] {resumeButton, serveButton, staminaButton, showDebugInformationButton, quitButton}
             };
         }
 
@@ -72,10 +87,12 @@ namespace TennisFightingGame.Training
 		public delegate void ResumedEventHandler();
 		public delegate void SelectedServeEventHandler();
 		public delegate void SelectedStaminaEventHandler();
+		public delegate void SelectedDebugInfoEventHandler();
 
 		public event ResumedEventHandler Resumed;
         public event SelectedServeEventHandler SelectedServe;
         public event SelectedStaminaEventHandler SelectedStamina;
+        public event SelectedDebugInfoEventHandler SelectedDebugInfo;
 
         public event QuittedEventHandler Quitted;
 

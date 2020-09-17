@@ -7,24 +7,31 @@ namespace TennisFightingGame.UI
 	public class Label
 	{
 		private readonly SpriteFont font;
-		private readonly Point position;
+		public Point position;
 		public string text;
-		private readonly bool center;
+		public bool center;
+		private readonly TextAlign textAlign;
 		private readonly bool shadow;
 		private readonly float blinkSpeed;
 
 		public float blink;
-		private Color color = Color.White;
+		public Color color = Color.White;
 
-		public Label(string text, Point position, SpriteFont font, bool center = false, 
-			bool shadow = false, float blinkSpeed = 1)
+		public Label(string text, Point position, SpriteFont font, bool center = false,
+			TextAlign textAlign = TextAlign.Left, bool shadow = false, float blinkSpeed = 1)
 		{
 			this.text = text;
 			this.position = position;
 			this.font = font;
 			this.center = center;
+			this.textAlign = textAlign;
 			this.shadow = shadow;
 			this.blinkSpeed = blinkSpeed;
+
+			if (center)
+			{
+				textAlign = TextAlign.Center;
+			}
 		}
 
 		public void Update()
@@ -43,14 +50,25 @@ namespace TennisFightingGame.UI
 
 		public void Draw(SpriteBatch spriteBatch)
 		{
-			Vector2 pos;
+			Vector2 pos = position.ToVector2();
+
+			switch(textAlign)
+			{
+				case TextAlign.Center:
+						{
+							pos.X -= font.MeasureString(text).X / 2;
+							break;
+						}
+				case TextAlign.Right:
+						{
+							pos.X -= font.MeasureString(text).X;
+							break;
+						}
+			}
+
 			if (center)
 			{
-				pos = Helpers.CenterTextHorizontally(text, position.Y, font).ToVector2();
-			}
-			else
-			{
-				pos = position.ToVector2();
+				pos.X += TennisFightingGame.Viewport.Width / 2;
 			}
 
 			if (shadow)
@@ -60,5 +78,12 @@ namespace TennisFightingGame.UI
 
 			spriteBatch.DrawString(font, text, pos, color);
 		}
+	}
+
+	public enum TextAlign
+	{
+		Left,
+		Center,
+		Right
 	}
 }

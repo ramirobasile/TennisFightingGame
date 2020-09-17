@@ -93,7 +93,7 @@ namespace TennisFightingGame
 		/// <param name="gameTime">Provides a snapshot of timing values.</param>
 		protected override void Draw(GameTime gameTime)
 		{
-			GraphicsDevice.Clear(Color.Black);
+			GraphicsDevice.Clear(Color.CornflowerBlue);
 
 			/*SpriteBatch targetBatch = new SpriteBatch(GraphicsDevice);
 			RenderTarget2D target = new RenderTarget2D(GraphicsDevice,

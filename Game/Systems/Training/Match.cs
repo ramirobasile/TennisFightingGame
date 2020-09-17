@@ -13,10 +13,12 @@ namespace TennisFightingGame.Training
 		private const int NetWidth = 40;
 		private const int NetHeight = 70;
 
-        private int bounces;
+        public int bounces;
+        public int consecutiveHits;
         private bool paused;
 		private readonly Pause pause;
 		private readonly UIManager uiManager;
+        public bool showDebugInfo;
 
         public Match(Character character, Court court)
         {
@@ -30,13 +32,15 @@ namespace TennisFightingGame.Training
             };
 
             pause = new Pause();
-            camera = new Camera(.5f);
+            camera = new Camera(0.5f);
             uiManager = new UIManager(this);
 
-            ball.Bounced += () => bounces++;
+            ball.Hitted += () => consecutiveHits++;
+            ball.Bounced += () => { bounces++; consecutiveHits = 0; };
             pause.Resumed += () => paused = false;
             pause.SelectedServe += Serve;
             pause.SelectedStamina += () => players[0].AddStamina(Player.MaxStamina);
+            pause.SelectedDebugInfo += () => showDebugInfo = !showDebugInfo;
             pause.Quitted += MatchQuit;
             players[0].input.Pressed += action => Pause(action, PlayerIndex.One);
             players[0].moveset.Served += ServeDone;
@@ -110,6 +114,8 @@ namespace TennisFightingGame.Training
         {
             players[0].state.serving = true;
             inPlay = false;
+            bounces = 0;
+            consecutiveHits = 0;
         }
 
         private void ServeDone(Player player)
