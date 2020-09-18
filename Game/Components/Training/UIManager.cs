@@ -9,8 +9,6 @@ namespace TennisFightingGame.Training
 
         private readonly UI.Bar staminaBar;
 		private readonly UI.Label nameLabel;
-
-        // TODO These
 		private readonly UI.Label bouncesLabel;
 		private readonly UI.Label comboLabel;
 		private readonly UI.Label[] inputsLabels;

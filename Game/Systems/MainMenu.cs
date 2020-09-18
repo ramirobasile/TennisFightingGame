@@ -25,8 +25,7 @@ namespace TennisFightingGame
 			singlesButton = new UI.Button("Singles", new Point(0, 80), Assets.RegularFont, center: true);
             singlesButton.Clicked += StartSinglesCharacterSelect;
 
-            doublesButton = new UI.Button("Doubles", new Point(0, 110), Assets.RegularFont, center: true, 
-            	selectable: false);
+            doublesButton = new UI.Button("Doubles", new Point(0, 110), Assets.RegularFont, center: true);
             doublesButton.Clicked += StartDoublesCharacterSelect;
 
             trainingButton = new UI.Button("Training", new Point(0, 140), Assets.RegularFont, center: true);

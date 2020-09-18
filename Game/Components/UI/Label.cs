@@ -30,7 +30,7 @@ namespace TennisFightingGame.UI
 
 			if (center)
 			{
-				textAlign = TextAlign.Center;
+				this.textAlign = TextAlign.Center;
 			}
 		}
 
