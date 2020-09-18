@@ -50,33 +50,34 @@ namespace TennisFightingGame.UI
 
 		public void Draw(SpriteBatch spriteBatch)
 		{
-			Vector2 pos = position.ToVector2();
+			Point newPosition = position;
 
 			switch(textAlign)
 			{
 				case TextAlign.Center:
 						{
-							pos.X -= font.MeasureString(text).X / 2;
+							newPosition.X -= (int)font.MeasureString(text).X / 2;
 							break;
 						}
 				case TextAlign.Right:
 						{
-							pos.X -= font.MeasureString(text).X;
+							newPosition.X -= (int)font.MeasureString(text).X;
 							break;
 						}
 			}
 
 			if (center)
 			{
-				pos.X += TennisFightingGame.Viewport.Width / 2;
+				newPosition.X += TennisFightingGame.Viewport.Width / 2;
 			}
 
 			if (shadow)
 			{
-				spriteBatch.DrawString(font, text, pos + Vector2.One, new Color(Color.Black, color.A));
+				spriteBatch.DrawString(font, text, newPosition.ToVector2() + Vector2.One, 
+					new Color(Color.Black, color.A));
 			}
 
-			spriteBatch.DrawString(font, text, pos, color);
+			spriteBatch.DrawString(font, text, newPosition.ToVector2(), color);
 		}
 	}
 
