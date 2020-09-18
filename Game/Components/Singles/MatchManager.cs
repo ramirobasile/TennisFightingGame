@@ -17,6 +17,7 @@ namespace TennisFightingGame.Singles
         public int ballSide = -1; // the side of the court the ball currently is in
 
         public Player service;
+        private readonly Player firstService;
 
         public MatchManager(Match match, int bestOf = 1, int minGames = 6, 
             int gamesDifference = 2)
@@ -38,7 +39,34 @@ namespace TennisFightingGame.Singles
             }
             
             service = match.players[TennisFightingGame.Random.Next(0, match.players.Length)];
+            firstService = service;
             service.state.serving = true;
+        }
+
+        public int Game
+        {
+            get
+            {
+                int game = 0;
+                foreach (Player player in match.players)
+                {
+                    game += player.games;
+                }
+                return game;
+            }
+        }
+
+        public int Set
+        {
+            get
+            {
+                int set = 0;
+                foreach (Player player in match.players)
+                {
+                    set += player.sets;
+                }
+                return set;
+            }
         }
 
 		public delegate void CrossingEventHandler(int side);
@@ -59,8 +87,7 @@ namespace TennisFightingGame.Singles
         {
             // Ball passed to the right side
             if (match.ball.lastRectangle.X < match.court.middle.rectangle.Center.X &&
-                match.ball.rectangle.X >= match.court.middle.rectangle.Center.X &&
-                match.inPlay)
+                match.ball.rectangle.X >= match.court.middle.rectangle.Center.X)
             {
                 if (PassedNet != null)
                 {
@@ -70,8 +97,7 @@ namespace TennisFightingGame.Singles
 
             // Ball passed to the left side
             if (match.ball.lastRectangle.X > match.court.middle.rectangle.Center.X &&
-                match.ball.rectangle.X <= match.court.middle.rectangle.Center.X &&
-                match.inPlay)
+                match.ball.rectangle.X <= match.court.middle.rectangle.Center.X)
             {
                 if (PassedNet != null)
                 {
@@ -112,13 +138,13 @@ namespace TennisFightingGame.Singles
                     Crossing.Invoke(ballSide);
                 }
             }
-
+            
             // Don't register hits and bounces if not inPlay but allow camera to move correctly
             if (!match.inPlay)
             {
                 return;
             }
-            
+
 			bounces = 1;
 
 			consecutiveHits++;
@@ -134,6 +160,8 @@ namespace TennisFightingGame.Singles
 
         private void PassNet(int newSide)
         {
+            ballSide = newSide;
+
             if (!match.inPlay)
             {
                 return;
@@ -149,7 +177,6 @@ namespace TennisFightingGame.Singles
 
             bounces = 0;
             consecutiveHits = 0;
-            ballSide = newSide;
         }
 
         private void EndPoint(Player scorer, Player scored)
@@ -255,7 +282,14 @@ namespace TennisFightingGame.Singles
             match.transition = new Transition(5); // cleans up previous subscriptions in the process
             match.transition.HalfFinished += PointSetup;
             
-            // HACK This might change
+            if (Game % 2 == 0)
+            {
+                service = firstService;
+            }
+            else
+            {
+                service = match.Opponent(firstService);
+            }
             service = match.players[0];
             match.transition.Finished += () => service.state.serving = true;
         }
@@ -264,6 +298,7 @@ namespace TennisFightingGame.Singles
         {
             match.ball.Position = new Point(match.ball.Position.X, 3000);
             match.ball.velocity = Vector2.Zero;
+			match.ball.gravity = Ball.DefaultGravity;
             
             // Reset positions
             foreach (Player player in match.players)
@@ -277,13 +312,12 @@ namespace TennisFightingGame.Singles
 
         private void Serve(Player player)
         {
-            match.inPlay = true;
 			match.ball.velocity = Vector2.Zero;
-			match.ball.gravity = Ball.DefaultGravity;
 			match.ball.Position = player.rectangle.Center;
 			bounces = 1;
 			consecutiveHits = 0;
             player.state.serving = false;
+            match.inPlay = true;
         }
     }
 }

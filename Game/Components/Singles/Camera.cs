@@ -45,8 +45,7 @@ namespace TennisFightingGame.Singles
 			defender = match.manager.service;
             attacker = match.Opponent(match.manager.service);
 
-			// HACK A bit too hard coded
-			// FIXME This is ass
+			// HACK A bit too hard coded maybe...
 			match.manager.service.moveset.Served += SetFocus;
 			match.manager.PointEnded += (_, __) => SetFocus(match.manager.service);
 			match.manager.GameEnded += (_, __) => SetFocus(match.manager.service);
