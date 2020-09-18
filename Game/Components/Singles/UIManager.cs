@@ -75,8 +75,12 @@ namespace TennisFightingGame.Singles
 
 			// TODO Put this whole thing in a method that is subscribed to MatchManager point score
 			// events
-			pointsLabel.text = string.Format("{0} - {1}", points[match.players[0].points], 
-				points[match.players[1].points]);
+
+			if (match.players[0].points <= 4 && match.players[1].points <= 4)
+			{
+				pointsLabel.text = string.Format("{0} - {1}", points[match.players[0].points], 
+					points[match.players[1].points]);
+			}
 
 			foreach (Player player in match.players)
 			{
