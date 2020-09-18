@@ -5,8 +5,8 @@ FIXMEs:
   collision occurs
 * Landing point isn't calculated correctly when bounce off of wall
 * Fix attack animations
-* If the ball somehow manages to cross the net after point ends, camera for next
-  serve gets confused
+* If the ball somehow manages to cross the net after point ends, AND it's the
+  game point, camera for next serve gets a bit confused
 
 TODOs:
 * Allow scaling
@@ -29,6 +29,8 @@ Conundrums:
   stamina
 
 Backburner TODOs:
+* Character select portraits and stuff
+* Inputs viewer in training mode and general training overhaul
 * Endurance
 * Parallax background
 * Music
