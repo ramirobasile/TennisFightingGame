@@ -53,7 +53,7 @@ namespace TennisFightingGame
 						aerialState: AerialStates.Standing,
 						motionInput: new Actions[] { Actions.Left, Actions.Down, Actions.Right, Actions.Heavy },
 						onStartupSounds: new SoundEffect[][] { jorgitoLoudGrunts },
-						startup: 0.25f, endlag: 0.425f, 
+						startup: 0.25f, recovery: 0.425f, 
 						staminaCost: 12,
 						hitboxes: new Hitbox[] {
 							new Hitbox(rectangle: new Rectangle(140, 10, 120, 80),
@@ -69,7 +69,7 @@ namespace TennisFightingGame
 						action: Actions.Light,
 						aerialState: AerialStates.Standing,
 						motionInput: new Actions[] { Actions.Down, Actions.Right, Actions.Light },
-						startup: 0.075f, endlag: 0.1f, 
+						startup: 0.075f, recovery: 0.1f, 
 						staminaCost: 4,
 						hitboxes: new Hitbox[] {
 							new Hitbox(rectangle: new Rectangle(60, 40, 100, 60),
@@ -83,7 +83,7 @@ namespace TennisFightingGame
 					new Attack(
 						action: Actions.Light,
 						aerialState: AerialStates.Standing,
-						startup: 0.166f, endlag: 0.05f, 
+						startup: 0.166f, recovery: 0.05f, 
 						softHitCancel: true, 
 						staminaCost: 4,
 						hitboxes: new Hitbox[] {
@@ -100,7 +100,7 @@ namespace TennisFightingGame
 					new Attack(
 						action: Actions.Medium,
 						aerialState: AerialStates.Standing,
-						startup: 0.09f, endlag: 0.15f, 
+						startup: 0.09f, recovery: 0.15f, 
 						staminaCost: 6, 
 						onStartupSounds: new SoundEffect[][] { jorgitoGrunts },
 						hitboxes: new Hitbox[] {
@@ -121,7 +121,7 @@ namespace TennisFightingGame
 					new Attack(
 						action: Actions.Heavy,
 						aerialState: AerialStates.Standing,
-						startup: 0.15f, endlag: 0.2f, 
+						startup: 0.15f, recovery: 0.2f, 
 						staminaCost: 8,
 						hitboxes: new Hitbox[] {
 							new Hitbox(rectangle: new Rectangle(30, 10, 50, 50),
@@ -141,7 +141,7 @@ namespace TennisFightingGame
 					new Attack(
 						action: Actions.Heavy,
 						aerialState: AerialStates.Airborne,
-						startup: 0.15f, endlag: 0.1f, 
+						startup: 0.15f, recovery: 0.1f, 
 						staminaCost: 8,
 						hitboxes: new Hitbox[] {
 							new Hitbox(rectangle: new Rectangle(30, 10, 50, 50),
@@ -162,7 +162,7 @@ namespace TennisFightingGame
 					new Attack(
 						action: Actions.Light,
 						aerialState: AerialStates.Airborne,
-						startup: 0.15f, endlag: 0.075f, 
+						startup: 0.15f, recovery: 0.075f, 
 						softHitCancel: true, hardLandCancel: true, 
 						staminaCost: 6,
 						hitboxes: new Hitbox[] {
@@ -178,7 +178,7 @@ namespace TennisFightingGame
 					new Attack(
 						action: Actions.Medium,
 						aerialState: AerialStates.Airborne,
-						startup: 0.09f, endlag: 0.15f, 
+						startup: 0.09f, recovery: 0.15f, 
 						staminaCost: 6, 
 						softLandCancel: true,
 						hitboxes: new Hitbox[] {
@@ -200,7 +200,7 @@ namespace TennisFightingGame
 						action: Actions.Light,
 						aerialState: AerialStates.Standing,
 						serve: true,
-						startup: 0, endlag: 0.05f, 
+						startup: 0, recovery: 0.05f, 
 						staminaCost: 2, 
 						onStartupSounds: new SoundEffect[][] { jorgitoGrunts }, 
 						multiHit: true,
@@ -221,7 +221,7 @@ namespace TennisFightingGame
 						action: Actions.Medium,
 						aerialState: AerialStates.Standing,
 						serve: true,
-						startup: 0, endlag: 0.2f, 
+						startup: 0, recovery: 0.2f, 
 						staminaCost: 6, 
 						onStartupSounds: new SoundEffect[][] { jorgitoGrunts }, 
 						multiHit: true,
@@ -242,7 +242,7 @@ namespace TennisFightingGame
 						action: Actions.Heavy,
 						aerialState: AerialStates.Standing,
 						serve: true,
-						startup: 0, endlag: 0.5f, 
+						startup: 0, recovery: 0.5f, 
 						staminaCost: 14, 
 						onStartupSounds: new SoundEffect[][] { jorgitoGrunts }, 
 						multiHit: true,

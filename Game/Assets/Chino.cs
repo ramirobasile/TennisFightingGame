@@ -51,7 +51,7 @@ namespace TennisFightingGame
 	                new Attack(
 						action: Actions.Light,
 						aerialState: AerialStates.Standing,
-						startup: 0.09f, endlag: 0.04f, 
+						startup: 0.09f, recovery: 0.04f, 
 						staminaCost: 4, 
 						hitboxes: new Hitbox[] {
 							new Hitbox(rectangle: new Rectangle(90, 0, 50, 35),
@@ -66,7 +66,7 @@ namespace TennisFightingGame
 	                new Attack(
 						action: Actions.Medium,
 						aerialState: AerialStates.Standing,
-						startup: .275f, endlag: .2125f, 
+						startup: .275f, recovery: .2125f, 
 						staminaCost: 7,
 						onStartupSounds: new SoundEffect[][] { chinoLoudGrunts },
 						hitboxes: new Hitbox[] {
@@ -92,7 +92,7 @@ namespace TennisFightingGame
 	                new Attack(
 						action: Actions.Heavy,
 						aerialState: AerialStates.Standing,
-						startup: 0.275f, endlag: 0.3f,
+						startup: 0.275f, recovery: 0.3f,
 						staminaCost: 8,
 						onStartupSounds: new SoundEffect[][] { chinoLoudGrunts },
 						hitboxes: new Hitbox[] {
@@ -113,7 +113,7 @@ namespace TennisFightingGame
 	                new Attack(
 						action: Actions.Light,
 						aerialState: AerialStates.Airborne,
-						startup: 0.09f, endlag: 0.04f, 
+						startup: 0.09f, recovery: 0.04f, 
 						staminaCost: 4,
 						softLandCancel: true,
 						hitboxes: new Hitbox[] {
@@ -129,7 +129,7 @@ namespace TennisFightingGame
 	                new Attack(
 						action: Actions.Medium,
 						aerialState: AerialStates.Airborne,
-						startup: 0.275f, endlag: 0.2125f, 
+						startup: 0.275f, recovery: 0.2125f, 
 						staminaCost: 7,
 						onStartupSounds: new SoundEffect[][] { chinoLoudGrunts },
 						hitboxes: new Hitbox[] {
@@ -156,7 +156,7 @@ namespace TennisFightingGame
 						action: Actions.Light,
 						aerialState: AerialStates.Standing,
 						serve: true,
-						startup: 0, endlag: 0.2f, 
+						startup: 0, recovery: 0.2f, 
 						staminaCost: 5,
 		                onStartupSounds: new SoundEffect[][] { chinoGrunts }, 
 						multiHit: true,
@@ -177,7 +177,7 @@ namespace TennisFightingGame
 						action: Actions.Heavy,
 						aerialState: AerialStates.Standing,
 						serve: true,
-						startup: 0, endlag: 0.45f, 
+						startup: 0, recovery: 0.45f, 
 						staminaCost: 25,
 		                onStartupSounds: new SoundEffect[][] { chinoGrunts }, 
 						multiHit: true,

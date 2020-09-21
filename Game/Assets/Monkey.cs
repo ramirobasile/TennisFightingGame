@@ -50,7 +50,7 @@ namespace TennisFightingGame
 	                new Attack(
 						action: Actions.Light,
 						aerialState: AerialStates.Standing,
-						startup: 0.05f, endlag: 0.25f, 
+						startup: 0.05f, recovery: 0.25f, 
 						staminaCost: 3, 
 						hardHitCancel: true,
 						onStartupSounds: new SoundEffect[][] { monkeyGrunts },
@@ -67,7 +67,7 @@ namespace TennisFightingGame
 					new Attack(
 						action: Actions.Medium,
 						aerialState: AerialStates.Standing,
-						startup: 0.15f, endlag: 0.075f, 
+						startup: 0.15f, recovery: 0.075f, 
 						staminaCost: 4,
 						hardHitCancel: true,
 						onStartupSounds: new SoundEffect[][] { monkeyGrunts }, 
@@ -84,7 +84,7 @@ namespace TennisFightingGame
 					new Attack(
 						action: Actions.Heavy,
 						aerialState: AerialStates.Standing,
-						startup: 0.2f, endlag: 0.075f, 
+						startup: 0.2f, recovery: 0.075f, 
 						staminaCost: 4, 
 						onStartupSounds: new SoundEffect[][] { monkeyGrunts }, 
 						hardHitCancel: true,
@@ -101,7 +101,7 @@ namespace TennisFightingGame
 	                new Attack(
 						action: Actions.Medium,
 						aerialState: AerialStates.Airborne,
-						startup: 0.175f, endlag: 0.25f, 
+						startup: 0.175f, recovery: 0.25f, 
 						staminaCost: 5,
 						softLandCancel: true,
 						hitboxes: new Hitbox[] {
@@ -132,7 +132,7 @@ namespace TennisFightingGame
 	                new Attack(
 						action: Actions.Heavy,
 						aerialState: AerialStates.Airborne,
-						startup: 0.225f, endlag: 0.4f,
+						startup: 0.225f, recovery: 0.4f,
 						staminaCost: 8,
 						softLandCancel: true,
 						hitboxes: new Hitbox[] {
@@ -159,7 +159,7 @@ namespace TennisFightingGame
 						action: Actions.Light,
 						aerialState: AerialStates.Standing,
 						serve: true,
-						startup: 0, endlag: 0.15f, 
+						startup: 0, recovery: 0.15f, 
 						staminaCost: 3,
 		                onStartupSounds: new SoundEffect[][] { monkeyGrunts }, 
 						multiHit: true,
@@ -180,7 +180,7 @@ namespace TennisFightingGame
 						action: Actions.Medium,
 						aerialState: AerialStates.Standing,
 						serve: true,
-						startup: 0, endlag: 0.2f, 
+						startup: 0, recovery: 0.2f, 
 						staminaCost: 7,
 		                onStartupSounds: new SoundEffect[][] { monkeyGrunts },
 						multiHit: true,
@@ -201,7 +201,7 @@ namespace TennisFightingGame
 						action: Actions.Heavy,
 						aerialState: AerialStates.Standing,
 						serve: true,
-						startup: 0, endlag: 0.3f, 
+						startup: 0, recovery: 0.3f, 
 						staminaCost: 14,
 		                onStartupSounds: new SoundEffect[][] { monkeyGrunts }, 
 						multiHit: true,

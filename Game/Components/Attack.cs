@@ -36,7 +36,7 @@ namespace TennisFightingGame
 		public Attack(Actions action = Actions.Light, AerialStates aerialState = AerialStates.Grounded, 
 			Actions[] motionInput = null, bool serve = false, 
 			Hitbox[] hitboxes = null,  SoundEffect[][] onStartupSounds = null,
-			float startup = 0,  float endlag = 0, bool hardLandCancel = false, 
+			float startup = 0,  float recovery = 0, bool hardLandCancel = false, 
 			bool disabledWhenExhausted = false, bool softLandCancel = false, 
 			bool hardHitCancel = false, bool softHitCancel = false, 
 			bool multiHit = false, float staminaCost = 0)
@@ -48,7 +48,7 @@ namespace TennisFightingGame
 			this.hitboxes = hitboxes;
 			this.onStartupSounds = onStartupSounds;
 			this.startup = startup;
-			this.recovery = endlag;
+			this.recovery = recovery;
 			this.hardLandCancel = hardLandCancel;
 			this.softLandCancel = softLandCancel;
 			this.hardHitCancel = hardHitCancel;

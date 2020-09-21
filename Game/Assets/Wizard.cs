@@ -50,7 +50,7 @@ namespace TennisFightingGame
 					new Attack(
 						action: Actions.Light,
 						aerialState: AerialStates.Standing,
-						startup: 0.2f, endlag: 0.3f, 
+						startup: 0.2f, recovery: 0.3f, 
 						staminaCost: 14,
 						hitboxes: new Hitbox[] {
 							new Hitbox(rectangle: new Rectangle(90, -5, 100, 75),
@@ -66,7 +66,7 @@ namespace TennisFightingGame
 					new Attack(
 						action: Actions.Medium,
 						aerialState: AerialStates.Standing,
-						startup: 0.2f, endlag: 0.3f, 
+						startup: 0.2f, recovery: 0.3f, 
 						staminaCost: 14,
 						hitboxes: new Hitbox[] {
 							new Hitbox(rectangle: new Rectangle(90, -5, 100, 75),
@@ -83,7 +83,7 @@ namespace TennisFightingGame
 						action: Actions.Light,
 						aerialState: AerialStates.Standing,
 						serve: true,
-						startup: 0, endlag: 0.05f, 
+						startup: 0, recovery: 0.05f, 
 						staminaCost: 2, 
 						onStartupSounds: new SoundEffect[][] { wizardGrunts }, 
 						multiHit: true,
