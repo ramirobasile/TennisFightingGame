@@ -9,10 +9,13 @@ FIXMEs:
   game point, camera for next serve gets a bit confused
 
 TODOs:
-* Allow scaling
 * Step sounds
-* More documentation
 * Special exhausted swing and hit sounds
+* Character select portraits and stuff
+* Inputs viewer in training mode and general training overhaul
+* Endurance
+* Allow scaling
+* More documentation
 * Add (and probably fix) particles
 * Doubles (currently blocked by collision FIXME)
 
@@ -29,9 +32,6 @@ Conundrums:
   stamina
 
 Backburner TODOs:
-* Character select portraits and stuff
-* Inputs viewer in training mode and general training overhaul
-* Endurance
 * Parallax background
 * Music
 * Crowd SFX
