@@ -212,7 +212,6 @@ namespace TennisFightingGame
 
                 totalTime += bufferedInput.bufferedTime - bufferedInput.heldTime;
                 bool charged = i != 0 || bufferedInput.heldTime >= chargeTime;
-                Console.WriteLine(charged);
 
                 if (bufferedInput.action != directionAwareAction ||
                     totalTime > timeSpan ||
