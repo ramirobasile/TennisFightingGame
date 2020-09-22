@@ -70,25 +70,22 @@ namespace TennisFightingGame
 		/// Set new attack and do its sounds.
 		/// </summary>
 		public void Throw(Attack attack)
-		{
-			if (!attack.disabledWhenExhausted)
+	{
+			currentAttack = attack;
+			player.AddStamina(-attack.staminaCost);
+
+			Helpers.PlayRandomSFX(attack.onStartupSounds);
+
+			if (ThrewAttack != null)
 			{
-				currentAttack = attack;
-				player.AddStamina(-attack.staminaCost);
+				ThrewAttack.Invoke(attack);
+			}
 
-				Helpers.PlayRandomSFX(attack.onStartupSounds);
-
-				if (ThrewAttack != null)
+			if (attack.serve)
+			{
+				if (Served != null)
 				{
-					ThrewAttack.Invoke(attack);
-				}
-
-				if (attack.serve)
-				{
-					if (Served != null)
-					{
-						Served.Invoke(player);
-					}
+					Served.Invoke(player);
 				}
 			}
 		}
@@ -203,7 +200,8 @@ namespace TennisFightingGame
 
 			foreach (Attack attack in attacks)
 			{
-				// TODO Explain and cleanup
+				// JumpSquat state is treated as an edgecase where it's still counted as airborne
+				// for the purposes of throwing attacks
 				AerialStates simplifiedAerialState = player.state.aerialState;
 				if (player.state.aerialState == AerialStates.JumpSquat)
 				{
@@ -213,7 +211,8 @@ namespace TennisFightingGame
 				if (attack.action == action &&
 					attack.aerialState == simplifiedAerialState &&
 					(attack.serve == player.state.serving) &&
-					player.input.MotionInput(attack.motionInput))
+					player.input.MotionInput(attack.motionInput, attack.chargeTime) &&
+					player.state.exhausted == attack.exhaused)
 				{
 					Throw(attack);
 					break;

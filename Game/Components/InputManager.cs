@@ -175,7 +175,7 @@ namespace TennisFightingGame
                 .ToList();
         }
 
-        public bool MotionInput(Actions[] actions)
+        public bool MotionInput(Actions[] actions, float chargeTime = 0)
         {
             // Important null check because attacks default to null motionInput
             if (actions == null)
@@ -211,9 +211,12 @@ namespace TennisFightingGame
                 }
 
                 totalTime += bufferedInput.bufferedTime - bufferedInput.heldTime;
+                bool charged = i != 0 || bufferedInput.heldTime >= chargeTime;
+                Console.WriteLine(charged);
 
                 if (bufferedInput.action != directionAwareAction ||
-                    totalTime > timeSpan)
+                    totalTime > timeSpan ||
+                    !charged)
                 {
                     return false;
                 }
