@@ -12,13 +12,16 @@ namespace TennisFightingGame
 
 		public static Court[] Courts;
 
+		// Textures
 		public static Texture2D PlaceholderTexture;
 		public static Texture2D ShadowTexture;
 
+		// Fonts
 		public static SpriteFont TitleFont;
 		public static SpriteFont RegularFont;
 		public static SpriteFont EmphasisFont;
 
+		// Sounds
 		public static SoundEffect BounceSound;
 		public static SoundEffect FastFallSound;
 		public static SoundEffect MenuEnterSound;
@@ -32,6 +35,23 @@ namespace TennisFightingGame
 		public static SoundEffect[] NormalHitSounds;
 		public static SoundEffect[] StrongHitSounds;
 
+		// Quarter-circle motion inputs
+		public static Action[] QCFLight = new Actions[] { Actions.Down, Actions.Right, Actions.Light };
+		public static Action[] QCFMedium = new Actions[] { Actions.Down, Actions.Right, Actions.Medium };
+		public static Action[] QCFHeavy = new Actions[] { Actions.Down, Actions.Right, Actions.Heavy };
+		public static Action[] QCBLight = new Actions[] { Actions.Down, Actions.Left, Actions.Light };
+		public static Action[] QCBMedium = new Actions[] { Actions.Down, Actions.Left, Actions.Medium };
+		public static Action[] QCBHeavy = new Actions[] { Actions.Down, Actions.Left, Actions.Heavy };
+
+		// Half-circle motion inputs
+		public static Action[] HCFLight = new Actions[] { Actions.Left, Actions.Down, Actions.Right, Actions.Light };
+		public static Action[] HCFMedium = new Actions[] { Actions.Left, Actions.Down, Actions.Right, Actions.Medium };
+		public static Action[] HCFHeavy = new Actions[] { Actions.Left, Actions.Down, Actions.Right, Actions.Heavy };
+		public static Action[] HCBLight = new Actions[] { Actions.Right, Actions.Down, Actions.Left, Actions.Light };
+		public static Action[] HCBMedium = new Actions[] { Actions.Right, Actions.Down, Actions.Left, Actions.Medium };
+		public static Action[] HCBHeavy = new Actions[] { Actions.Right, Actions.Down, Actions.Left, Actions.Heavy };
+
+		// Partial methods
 		static partial void LoadTextures(ContentManager content);
 		static partial void LoadSounds(ContentManager content);
 		static partial void LoadCourts(ContentManager content);
@@ -39,6 +59,7 @@ namespace TennisFightingGame
 		static partial void LoadChino(ContentManager content);
 		static partial void LoadMonkey(ContentManager content);
 		static partial void LoadWizard(ContentManager content);
+
 
 		public static void LoadContent(ContentManager content)
 		{
