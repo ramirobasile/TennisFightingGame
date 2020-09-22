@@ -87,7 +87,7 @@ namespace TennisFightingGame
 						hitStun: 0.6f, hitLag: 0.6f, shakeMagnitude: 10,
 						onHitSounds: StrongHitSounds),
 					new Hitbox(
-						rectangle: new Rectangle(100, 0, 90, 140),
+						rectangle: new Rectangle(100, 0, 90, 110),
 						start: 0.165f, duration: 0.125f,
 						force: new Vector2(2250, -550),
 						hitStun: 0.6f, hitLag: 0.6f, shakeMagnitude: 10,
@@ -101,8 +101,8 @@ namespace TennisFightingGame
 				action: Actions.Medium,
 				aerialState: AerialStates.Standing,
 				motionInput: DPMedium,
-				startup: 0.1f, recovery: 0.4f,
-				staminaCost: 10,
+				startup: 0.15f, recovery: 0.5f,
+				staminaCost: 15,
 				onStartupSounds: new SoundEffect[][] { grunts },
 				hitboxes: new Hitbox[]
 				{
@@ -126,32 +126,44 @@ namespace TennisFightingGame
 			specialAirborneMedium.aerialState = AerialStates.Airborne;
 
 			Attack standingHeavy = new Attack(
-				action: Actions.Medium,
-				aerialState: AerialStates.Airborne,
-				startup: 0.275f, recovery: 0.2125f,
-				staminaCost: 7,
+				action: Actions.Heavy,
+				aerialState: AerialStates.Standing,
+				startup: 0.3f, recovery: 0.3f,
+				staminaCost: 10,
 				onStartupSounds: new SoundEffect[][] { loudGrunts },
 				hitboxes: new Hitbox[]
 				{
 					new Hitbox(
-						rectangle: new Rectangle(-30, -120, 100, 100),
+						rectangle: new Rectangle(100, 20, 60, 50),
 						start: 0, duration: 0.075f,
-						force: new Vector2(1600, -700),
-						hitStun: 0.4f, hitLag: 0.4f, shakeMagnitude: 5,
-						onHitSounds: NormalHitSounds,
+						force: new Vector2(2500, -500),
+						hitStun: 0.5f, hitLag: 0.5f, shakeMagnitude: 10,
+						onHitSounds: StrongHitSounds,
 						onAddedSounds: new SoundEffect[][] { SwingSounds }),
 					new Hitbox(
-						rectangle: new Rectangle(50, -70, 90, 90),
+						rectangle: new Rectangle(20, 40, 100, 50),
 						start: 0.075f, duration: 0.09f,
-						force: new Vector2(2250, -500),
-						hitStun: 0.6f, hitLag: 0.6f, shakeMagnitude: 10,
+						force: new Vector2(2500, -500),
+						hitStun: 0.5f, hitLag: 0.5f, shakeMagnitude: 10,
 						onHitSounds: StrongHitSounds),
-					new Hitbox(
-						rectangle: new Rectangle(100, 0, 90, 140),
-						start: 0.165f, duration: 0.14f,
-						force: new Vector2(2250, -400),
-						hitStun: 0.6f, hitLag: 0.6f, shakeMagnitude: 10,
-						onHitSounds: StrongHitSounds),
+				});
+
+			Attack specialStandingHeavy = new Attack(
+				action: Actions.Heavy,
+				aerialState: AerialStates.Standing,
+				motionInput: new Actions[] { Actions.Left, Actions.Right, Actions.Heavy },
+				chargeTime: 1,
+				startup: 0.2f, recovery: 1,
+				staminaCost: 20,
+				hitboxes: new Hitbox[]
+				{
+	                new Hitbox(
+	                	rectangle: new Rectangle(60, 0, 150, 45),
+		                start: 0, duration: 0.15f,
+		                force: new Vector2(3250, -375),
+		                hitStun: 0.6f, hitLag: 0.6f, shakeMagnitude: 10,
+						onHitSounds: StrongHitSounds,
+						onAddedSounds: new SoundEffect[][] { SwingSounds, loudGrunts }),
 				});
 
             Attack serveLight = new Attack(
@@ -208,17 +220,18 @@ namespace TennisFightingGame
             	specialAirborneMedium,
 				standingMedium,
 				airborneMedium,
+            	specialStandingHeavy,
             	standingHeavy,
             	serveLight,
-            	serveHeavy
+            	serveHeavy,
             };
 
 			Stats stats = new Stats(
 				gravity: 4500,
 				friction: 2500,
-				staminaRegen: 1.33f,
+				staminaRegen: 1.1f,
 				runSpeed: 650,
-				runStaminaCost: 10,
+				runStaminaCost: 5,
 				runningJumpSpeed: 1225,
 				walkSpeed: 290,
 				walkStaminaCost: 0.85f,
