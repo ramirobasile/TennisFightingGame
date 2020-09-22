@@ -51,6 +51,11 @@ namespace TennisFightingGame
 		public static Action[] HCBMedium = new Actions[] { Actions.Right, Actions.Down, Actions.Left, Actions.Medium };
 		public static Action[] HCBHeavy = new Actions[] { Actions.Right, Actions.Down, Actions.Left, Actions.Heavy };
 
+		// Dragon-punch motion inputs
+		public static Action[] DPLight = new Actions[] { Actions.Right, Actions.Down, Actions.Right, Actions.Light };
+		public static Action[] DPMedium = new Actions[] { Actions.Right, Actions.Down, Actions.Right, Actions.Medium };
+		public static Action[] DPHeavy = new Actions[] { Actions.Right, Actions.Down, Actions.Right, Actions.Heavy };
+
 		// Partial methods
 		static partial void LoadTextures(ContentManager content);
 		static partial void LoadSounds(ContentManager content);
