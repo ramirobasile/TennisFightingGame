@@ -36,25 +36,25 @@ namespace TennisFightingGame
 		public static SoundEffect[] StrongHitSounds;
 
 		// Quarter-circle motion inputs
-		public static Action[] QCFLight = new Actions[] { Actions.Down, Actions.Right, Actions.Light };
-		public static Action[] QCFMedium = new Actions[] { Actions.Down, Actions.Right, Actions.Medium };
-		public static Action[] QCFHeavy = new Actions[] { Actions.Down, Actions.Right, Actions.Heavy };
-		public static Action[] QCBLight = new Actions[] { Actions.Down, Actions.Left, Actions.Light };
-		public static Action[] QCBMedium = new Actions[] { Actions.Down, Actions.Left, Actions.Medium };
-		public static Action[] QCBHeavy = new Actions[] { Actions.Down, Actions.Left, Actions.Heavy };
+		public static Actions[] QCFLight = new Actions[] { Actions.Down, Actions.Right, Actions.Light };
+		public static Actions[] QCFMedium = new Actions[] { Actions.Down, Actions.Right, Actions.Medium };
+		public static Actions[] QCFHeavy = new Actions[] { Actions.Down, Actions.Right, Actions.Heavy };
+		public static Actions[] QCBLight = new Actions[] { Actions.Down, Actions.Left, Actions.Light };
+		public static Actions[] QCBMedium = new Actions[] { Actions.Down, Actions.Left, Actions.Medium };
+		public static Actions[] QCBHeavy = new Actions[] { Actions.Down, Actions.Left, Actions.Heavy };
 
 		// Half-circle motion inputs
-		public static Action[] HCFLight = new Actions[] { Actions.Left, Actions.Down, Actions.Right, Actions.Light };
-		public static Action[] HCFMedium = new Actions[] { Actions.Left, Actions.Down, Actions.Right, Actions.Medium };
-		public static Action[] HCFHeavy = new Actions[] { Actions.Left, Actions.Down, Actions.Right, Actions.Heavy };
-		public static Action[] HCBLight = new Actions[] { Actions.Right, Actions.Down, Actions.Left, Actions.Light };
-		public static Action[] HCBMedium = new Actions[] { Actions.Right, Actions.Down, Actions.Left, Actions.Medium };
-		public static Action[] HCBHeavy = new Actions[] { Actions.Right, Actions.Down, Actions.Left, Actions.Heavy };
+		public static Actions[] HCFLight = new Actions[] { Actions.Left, Actions.Down, Actions.Right, Actions.Light };
+		public static Actions[] HCFMedium = new Actions[] { Actions.Left, Actions.Down, Actions.Right, Actions.Medium };
+		public static Actions[] HCFHeavy = new Actions[] { Actions.Left, Actions.Down, Actions.Right, Actions.Heavy };
+		public static Actions[] HCBLight = new Actions[] { Actions.Right, Actions.Down, Actions.Left, Actions.Light };
+		public static Actions[] HCBMedium = new Actions[] { Actions.Right, Actions.Down, Actions.Left, Actions.Medium };
+		public static Actions[] HCBHeavy = new Actions[] { Actions.Right, Actions.Down, Actions.Left, Actions.Heavy };
 
 		// Dragon-punch motion inputs
-		public static Action[] DPLight = new Actions[] { Actions.Right, Actions.Down, Actions.Right, Actions.Light };
-		public static Action[] DPMedium = new Actions[] { Actions.Right, Actions.Down, Actions.Right, Actions.Medium };
-		public static Action[] DPHeavy = new Actions[] { Actions.Right, Actions.Down, Actions.Right, Actions.Heavy };
+		public static Actions[] DPLight = new Actions[] { Actions.Right, Actions.Down, Actions.Right, Actions.Light };
+		public static Actions[] DPMedium = new Actions[] { Actions.Right, Actions.Down, Actions.Right, Actions.Medium };
+		public static Actions[] DPHeavy = new Actions[] { Actions.Right, Actions.Down, Actions.Right, Actions.Heavy };
 
 		// Partial methods
 		static partial void LoadTextures(ContentManager content);
