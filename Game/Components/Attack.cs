@@ -12,10 +12,11 @@ namespace TennisFightingGame
 	/// </summary>
     public class Attack
 	{
-		public readonly Actions action;
-		public readonly AerialStates aerialState;
-		public readonly Actions[] motionInput;
+		public Actions action;
+		public AerialStates aerialState;
+		public Actions[] motionInput;
 		public readonly bool serve;
+		public bool exhaused;
 
 		private readonly Hitbox[] hitboxes;
 		[NonSerialized] public readonly SoundEffect[][] onStartupSounds;
@@ -25,7 +26,6 @@ namespace TennisFightingGame
 		public readonly bool hardHitCancel;
 		public readonly bool softHitCancel;
 		public readonly bool multiHit;
-		public readonly bool disabledWhenExhausted;
 		private readonly float startup;
 		public readonly float recovery;
 
@@ -34,17 +34,17 @@ namespace TennisFightingGame
         public float time;
 
 		public Attack(Actions action = Actions.Light, AerialStates aerialState = AerialStates.Grounded, 
-			Actions[] motionInput = null, bool serve = false, 
+			Actions[] motionInput = null, bool serve = false, bool exhausted = false,
 			Hitbox[] hitboxes = null,  SoundEffect[][] onStartupSounds = null,
-			float startup = 0,  float recovery = 0, bool hardLandCancel = false, 
-			bool disabledWhenExhausted = false, bool softLandCancel = false, 
-			bool hardHitCancel = false, bool softHitCancel = false, 
+			float startup = 0,  float recovery = 0, bool hardLandCancel = false,
+			bool softLandCancel = false, bool hardHitCancel = false, bool softHitCancel = false,
 			bool multiHit = false, float staminaCost = 0)
 		{
 			this.action = action;
 			this.aerialState = aerialState;
 			this.motionInput = motionInput;
 			this.serve = serve;
+			this.exhaused = exhausted;
 			this.hitboxes = hitboxes;
 			this.onStartupSounds = onStartupSounds;
 			this.startup = startup;
@@ -55,7 +55,6 @@ namespace TennisFightingGame
 			this.softHitCancel = softHitCancel;
 			this.multiHit = multiHit;
 			this.staminaCost = staminaCost;
-			this.disabledWhenExhausted = disabledWhenExhausted;
         }
 
 		// Deep copy
@@ -65,6 +64,7 @@ namespace TennisFightingGame
 			aerialState = copying.aerialState;
 			motionInput = copying.motionInput;
 			serve = copying.serve;
+			exhaused = copying.exhaused;
 			hitboxes = copying.hitboxes;
 			onStartupSounds = copying.onStartupSounds;
 			startup = copying.startup;
@@ -75,7 +75,6 @@ namespace TennisFightingGame
 			softHitCancel = copying.softHitCancel;
 			multiHit = copying.multiHit;
 			staminaCost = copying.staminaCost;
-			disabledWhenExhausted = copying.disabledWhenExhausted;
 		}
 
         // For serialization
