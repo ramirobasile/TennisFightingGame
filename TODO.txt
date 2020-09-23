@@ -1,6 +1,7 @@
 TennisFightingGame TODO List
 ============================
 
+
 Known bugs to be fixed
 ----------------------
 
@@ -12,7 +13,7 @@ Known bugs to be fixed
 * Fix attack animations
 * If the ball somehow manages to cross the net after point ends, AND it's the
   game point, camera for next serve gets a bit confused
-* Holding two directions at once allows you to move while attacking... wtf?
+
 
 TODO
 ----
@@ -28,6 +29,13 @@ TODO
 * Add (and probably fix) particles
 * Doubles (currently blocked by collision FIXME)
 
+
+Minor TODOs
+-----------
+
+* Some of Monkey's attacks have 0 shakeMagnitude
+
+
 Conundrums
 ----------
 
@@ -42,9 +50,13 @@ Conundrums
 * Consider a special interaction (penalty) for when a hit depletes fully your
   stamina
 
+
 Backburner
 ----------
 
+* Finish Wizard
+* Give Chino a special standing heavy (maybe)
+* Give Monkey a billion specials
 * Parallax background
 * Music
 * Crowd SFX
