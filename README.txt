@@ -22,7 +22,7 @@ Excepto de mis bros, que los dirijo al HACKING.txt.
 Support
 -------
 
-* Email me at ramirobasile1@gmail.com
+Email me at ramirobasile1@gmail.com.
 
 
 Running the game
@@ -33,13 +33,15 @@ might change in the future).
 
 * Windows users can run the game simply by executing TennisFightingGame.exe
 * Linux users have to make TennisFightingGame executable and then run it:
-  $ chmod +x TennisFightingGame && ./TennisFightingGame
 
-Note: Upon starting the game, you might find default bidings confusing, so
-      be sure to read both "Controls" and "How to change controls" sections.
+    $ chmod +x TennisFightingGame && ./TennisFightingGame
+
+Note: Upon starting the game, you might find the default bidings confusing,
+      so be sure to read both "Controls" and "How to change controls" sections.
       The default keybindings accomodate two players in a single keyboard by
       binding WASD, R, T, Y, U, Return for Player 1 and Arrow keys,
       N, M, Comma, Period, Backspace for Player 2.
+
 
 Controls
 --------
@@ -49,16 +51,24 @@ a certain key or button, depending on the input method.
 
 List of actions and their uses:
 
-* Up: Used for moving up and down menues, and, in-match, for motion inputs.
-* Down: Used for moving up and down menues, and, in-match, for motion inputs.
+* Up: Used for moving up and down menues, and, in-match, for motion inputs
+
+* Down: Used for moving up and down menues, and, in-match, for motion inputs
+
 * Left: Used to move left. Quickly tapping twice will result in a dash and
         holding it afterwards will result in running for as long as it's held
+
 * Right: Used to move right. Quickly tapping twice will result in a dash and
          holding it afterwards will result in running for as long as it's held
+
 * Jump: Used to perform jump
+
 * Light: Used to throw light attacks
+
 * Medium: Used to throw medium attacks
+
 * Heavy: Used to throw heavy attacks
+
 * Start: Used to end character selecion once all are ready and pause in-match
 
 
@@ -90,5 +100,3 @@ Using up non-XInput controllers
 -------------------------------
 
 x360ce.
-
-
