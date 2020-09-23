@@ -11,7 +11,7 @@ namespace TennisFightingGame.Training
 		private readonly UI.Label nameLabel;
 		private readonly UI.Label bouncesLabel;
 		private readonly UI.Label comboLabel;
-		private readonly UI.Label[] inputsLabels;
+		//private readonly UI.Label[] inputsLabels;
 
         public UIManager(Match match)
         {
