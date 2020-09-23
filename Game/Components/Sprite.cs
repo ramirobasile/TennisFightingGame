@@ -32,8 +32,8 @@ namespace TennisFightingGame
 			this.animations = animations;
 			this.player = player;
 
-			currentAnimation = animations[(int)MovementState.Idle];
-			lastAnimation = animations[(int)MovementState.Idle];
+			currentAnimation = animations[(int)MovementStates.Idle];
+			lastAnimation = animations[(int)MovementStates.Idle];
 		}
 
 		// For serialization

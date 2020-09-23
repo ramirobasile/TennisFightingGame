@@ -120,31 +120,31 @@ namespace TennisFightingGame
 			// Set velocity and stamina costs based on movement state
 			switch (state.movementState)
 			{
-				case MovementState.WalkingBackwards:
+				case MovementStates.WalkingBackwards:
 					{
 						velocity.X = -stats.walkSpeed;
 						AddStamina(-stats.walkStaminaCost * TennisFightingGame.DeltaTime);
 						break;
 					}
-				case MovementState.WalkingForwards:
+				case MovementStates.WalkingForwards:
 					{
 						velocity.X = stats.walkSpeed;
 						AddStamina(-stats.walkStaminaCost * TennisFightingGame.DeltaTime);
 						break;
 					}
-				case MovementState.SprintingBackwards:
+				case MovementStates.SprintingBackwards:
 					{
 						velocity.X = -stats.runSpeed;
 						AddStamina(-stats.runStaminaCost * TennisFightingGame.DeltaTime);
 						break;
 					}
-				case MovementState.SprintingForwards:
+				case MovementStates.SprintingForwards:
 					{
 						velocity.X = stats.runSpeed;
 						AddStamina(-stats.runStaminaCost * TennisFightingGame.DeltaTime);
 						break;
 					}
-				case MovementState.DriftingBackwards:
+				case MovementStates.DriftingBackwards:
 					{
 						if (Math.Sign(velocity.X) > 0)
 						{
@@ -153,7 +153,7 @@ namespace TennisFightingGame
 
 						break;
 					}
-				case MovementState.DriftingForwards:
+				case MovementStates.DriftingForwards:
 					{
 						if (Math.Sign(velocity.X) < 0)
 						{
@@ -162,12 +162,12 @@ namespace TennisFightingGame
 
 						break;
 					}
-				case MovementState.CrawlingBackwards:
+				case MovementStates.CrawlingBackwards:
 					{
 						velocity.X = -stats.exhaustedSpeed;
 						break;
 					}
-				case MovementState.CrawlingForwards:
+				case MovementStates.CrawlingForwards:
 					{
 						velocity.X = stats.exhaustedSpeed;
 						break;
@@ -213,7 +213,7 @@ namespace TennisFightingGame
 			{
 				switch (state.movementState)
 				{
-					case MovementState.Idle:
+					case MovementStates.Idle:
 						{
 							if (state.exhausted)
 							{
@@ -228,22 +228,22 @@ namespace TennisFightingGame
 
 							break;
 						}
-					case MovementState.WalkingBackwards:
-					case MovementState.WalkingForwards:
+					case MovementStates.WalkingBackwards:
+					case MovementStates.WalkingForwards:
 						{
 							velocity.Y = -stats.jumpSpeed;
 							AddStamina(-stats.jumpStaminaCost);
 							break;
 						}
-					case MovementState.SprintingBackwards:
-					case MovementState.SprintingForwards:
+					case MovementStates.SprintingBackwards:
+					case MovementStates.SprintingForwards:
 						{
 							velocity.Y = -stats.runningJumpSpeed;
 							AddStamina(-stats.exhaustedJumpStaminaCost);
 							break;
 						}
-					case MovementState.CrawlingBackwards:
-					case MovementState.CrawlingForwards:
+					case MovementStates.CrawlingBackwards:
+					case MovementStates.CrawlingForwards:
 						{
 							velocity.Y = -stats.exhaustedJumpSpeed;
 							AddStamina(-stats.exhaustedJumpStaminaCost);

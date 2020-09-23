@@ -11,7 +11,7 @@ namespace TennisFightingGame
 	{
 		private readonly Player player;
 
-		public MovementState movementState;
+		public MovementStates movementState;
 		public AerialStates aerialState;
 
 		public bool serving;
@@ -38,16 +38,16 @@ namespace TennisFightingGame
 		{
 			get
 			{
-				return movementState == MovementState.WalkingBackwards ||
-					   movementState == MovementState.WalkingForwards;
+				return movementState == MovementStates.WalkingBackwards ||
+					   movementState == MovementStates.WalkingForwards;
 			}
 		}
 		public bool Running
 		{
 			get
 			{
-				return movementState == MovementState.SprintingBackwards ||
-					   movementState == MovementState.SprintingForwards;
+				return movementState == MovementStates.SprintingBackwards ||
+					   movementState == MovementStates.SprintingForwards;
 			}
 		}
 
@@ -106,7 +106,7 @@ namespace TennisFightingGame
 						/* HACK Randomly changing the movementState like this is kind of ugly, 
 						 * I know, thing is, you can end up with  the falling state instead of idle
 						 * if you don't do any inputs while falling... */
-						movementState = MovementState.Idle;
+						movementState = MovementStates.Idle;
 					}
 
 					aerialState = AerialStates.Standing;
@@ -141,11 +141,11 @@ namespace TennisFightingGame
 			{
 				if (player.direction == 1)
 				{
-					movementState = MovementState.TurningBackwards;
+					movementState = MovementStates.TurningBackwards;
 				}
 				else
 				{
-					movementState = MovementState.TurningForwards;
+					movementState = MovementStates.TurningForwards;
 				}
 
 				turningTime = player.stats.turnDelay;
@@ -182,11 +182,11 @@ namespace TennisFightingGame
 					{
 						if (aerialState == AerialStates.Airborne)
 						{
-							movementState = MovementState.Falling;
+							movementState = MovementStates.Falling;
 						} 
 						else
 						{
-							movementState = MovementState.Idle;
+							movementState = MovementStates.Idle;
 						}
 						break;
 					}
@@ -197,17 +197,17 @@ namespace TennisFightingGame
 						{
 							if (exhausted)
 							{
-								movementState = MovementState.CrawlingBackwards;
+								movementState = MovementStates.CrawlingBackwards;
 							}
 							else
 							{
-								movementState = MovementState.WalkingBackwards;
+								movementState = MovementStates.WalkingBackwards;
 							}
 						}
 
 						if (aerialState == AerialStates.Airborne)
 						{
-							movementState = MovementState.DriftingBackwards;
+							movementState = MovementStates.DriftingBackwards;
 						}
 
 						break;
@@ -219,17 +219,17 @@ namespace TennisFightingGame
 						{
 							if (exhausted)
 							{
-								movementState = MovementState.CrawlingForwards;
+								movementState = MovementStates.CrawlingForwards;
 							}
 							else
 							{
-								movementState = MovementState.WalkingForwards;
+								movementState = MovementStates.WalkingForwards;
 							}
 						}
 
 						if (aerialState == AerialStates.Airborne)
 						{
-							movementState = MovementState.DriftingForwards;
+							movementState = MovementStates.DriftingForwards;
 						}
 
 						break;
@@ -245,11 +245,11 @@ namespace TennisFightingGame
 					{
 						if (aerialState == AerialStates.Airborne)
 						{
-							movementState = MovementState.Falling;
+							movementState = MovementStates.Falling;
 						} 
 						else
 						{
-							movementState = MovementState.Idle;
+							movementState = MovementStates.Idle;
 						}
 						break;
 					}
@@ -270,40 +270,40 @@ namespace TennisFightingGame
 					{
 						if (aerialState == AerialStates.Airborne)
 						{
-							movementState = MovementState.Falling;
+							movementState = MovementStates.Falling;
 						} 
 						else
 						{
-							movementState = MovementState.Idle;
+							movementState = MovementStates.Idle;
 						}
 						break;
 					}
 
 				case Actions.Left:
 					{
-						if (movementState != MovementState.WalkingBackwards)
+						if (movementState != MovementStates.WalkingBackwards)
 						{
 							break;
 						}
 
-						movementState = MovementState.SprintingBackwards;
+						movementState = MovementStates.SprintingBackwards;
 						break;
 					}
 
 				case Actions.Right:
 					{
-						if (movementState != MovementState.WalkingForwards)
+						if (movementState != MovementStates.WalkingForwards)
 						{
 							break;
 						}
-						movementState = MovementState.SprintingForwards;
+						movementState = MovementStates.SprintingForwards;
 						break;
 					}
 			}
 		}
 	}
 
-	public enum MovementState
+	public enum MovementStates
 	{
 		Idle,
 		Falling, // This one seems counter-intuitive but it's there for Sprite
