@@ -1,2 +1,13 @@
 HACKING on TennisFightingGame
 =============================
+
+Style
+-----
+
+* Try and follow standard C# conventions (the Microsoft ones)
+
+* Don't use post 3.0-ish syntactic sugar, it's literraly unreadable
+
+* Keep everything below 100 columns. 80 columns preffered, 120 hard limit
+
+* Stupid OOP is not allowed
