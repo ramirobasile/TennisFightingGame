@@ -68,7 +68,7 @@ namespace TennisFightingGame.Training
                 }
             };
 
-            quitButton = new UI.Button("Quit to main menu", new Point(10, 200), Assets.RegularFont, center: true);
+            quitButton = new UI.Button("Quit to main menu", new Point(0, 200), Assets.RegularFont, center: true);
             quitButton.Clicked += index =>
             {
                 if (Quitted != null)
