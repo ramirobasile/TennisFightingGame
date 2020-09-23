@@ -66,6 +66,21 @@ namespace TennisFightingGame
 			jumpSquatTime -= TennisFightingGame.DeltaTime;
 			turningTime -= TennisFightingGame.DeltaTime;
 
+			// Usually this isn't necessary but under some circumstances the player can
+			// end up with a movement state other than idle or falling while attacking
+			if (Attacking)
+			{
+				if (aerialState == AerialStates.Airborne)
+				{
+					movementState = MovementStates.Falling;
+				}
+				else
+				{
+					movementState = MovementStates.Idle;
+				}
+			}
+
+			// If doing jump squat and jump squat time is done, jump
 			if (aerialState == AerialStates.JumpSquat && jumpSquatTime <= 0)
 			{
 				if (Jumped != null)
@@ -74,11 +89,13 @@ namespace TennisFightingGame
 				}
 			}
 
+			// Check for exhaustion
 			if (player.stamina < player.stats.exhaustedThreshold)
 			{
 				exhausted = true;
 			}
 
+			// Check for recovery from exhaustion
 			if (player.stamina > player.stats.recoverThreshold && exhausted)
 			{
 				exhausted = false;
