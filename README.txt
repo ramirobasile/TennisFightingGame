@@ -19,6 +19,16 @@ Currently not accepting merge requsts.
 Excepto de mis bros, que los dirijo al HACKING.txt.
 
 
+Building from source
+--------------------
+
+TODO Explain how to build
+
+Note that content files are currently not tracked because, since many
+placeholders are not original creations, they amount to a mess of licenses not
+worth the hassle of going through.
+
+
 Support
 -------
 
@@ -100,13 +110,3 @@ Using up non-XInput controllers
 -------------------------------
 
 x360ce.
-
-
-Building from source
---------------------
-
-TODO Explain how to build
-
-Note that content files are currently not tracked because, since many
-placeholders are not original creations, they amount to a mess of licenses not
-worth the hassle of going through.
