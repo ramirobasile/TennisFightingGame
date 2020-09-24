@@ -8,6 +8,6 @@ Style
 
 * Don't use post 3.0-ish syntactic sugar, it's literraly unreadable
 
-* Keep everything below 100 columns. 80 columns preffered, 120 hard limit
+* Stick to 80 characters per line if possible. Don't go over 120.
 
 * Stupid OOP is not allowed

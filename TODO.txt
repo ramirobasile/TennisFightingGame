@@ -54,6 +54,7 @@ Conundrums
 Backburner
 ----------
 
+* Winner text
 * Finish Wizard
 * Give Chino a special standing heavy (maybe)
 * Give Monkey a billion specials
