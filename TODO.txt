@@ -18,6 +18,8 @@ Known bugs to be fixed
 TODO
 ----
 
+* Change how we handle collision, probably just extend rectangle rather than
+  having this ugly collider thingy
 * Go through TODOs and HACKs
 * Step sounds
 * Special exhausted swing and hit sounds
