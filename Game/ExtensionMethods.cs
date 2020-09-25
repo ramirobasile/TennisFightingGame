@@ -7,12 +7,12 @@ namespace TennisFightingGame
 {
     public static class ExtensionMethods
     {
-		// HACK This is very dirty, make something more useful
+		// TODO This is very dirty, make something more useful
 		public static float NextFloat(this Random random, float min, float max)
 		{
-			return (float)TennisFightingGame.Random.Next(
+			return (float)random.Next(
 				(int)(min * 100),
-				(int)(max * 100)) / 100);
+				(int)(max * 100)) / 100;
 		}
 
 		// Center point of the viewport
