@@ -5,7 +5,6 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace TennisFightingGame
 {
-	/* Extensions and helper methods */
     public static class Helpers
 	{
 		// HACK This should definitely not be here
@@ -81,23 +80,6 @@ namespace TennisFightingGame
 			}
 
 			return min + (number - min) % range;
-		}
-
-		// Center point of the viewport
-		public static Point Middle(this Viewport viewport)
-        {
-            return new Point(viewport.Width / 2, viewport.Height / 2);
-        }
-
-        // Centers a point within a viewport
-        public static Point Center(this Viewport viewport, Point point)
-        {
-            return new Point(viewport.Width / 2 - point.X / 2, viewport.Height / 2 - point.Y / 2);
-        }
-
-		public static int Height(this SpriteFont font)
-		{
-			return (int)font.MeasureString("_").Y;
 		}
     }
 }
