@@ -1,3 +1,4 @@
+using System;
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System.Collections.Generic;
@@ -12,20 +13,42 @@ namespace TennisFightingGame
 		public Point position;
 		public Texture2D texture; 
 		public Color color;
-		private readonly float[] speedRange;
-		private readonly float[] lifeRange;
-		private readonly Vector2[] directionRange;
-		private readonly Vector2[] accelerationRange;
+		float minSpeed, maxSpeed;
+		float minLife, maxLife;
+		Vector2 minDirection, maxDirection;
+		Vector2 minAcceleration, maxAcceleration;
 
-		private readonly float duration;
-		private readonly float fireRate;
-		private readonly bool loops;
+		private float duration;
+		private float fireRate;
+		private bool loops;
+		public bool enabled = true;
 
 		List<Particle> particles = new List<Particle>();
 		float fireTimer;
 		
+		public ParticleGenerator(Point position, Texture2D texture, Color color,
+			float minSpeed, float maxSpeed, float minLife, float maxLife,
+			Vector2 minDirection, Vector2 maxDirection, Vector2 minAcceleration,
+			Vector2 maxAcceeration, float duration, float fireRate, bool loops = false)
+		{
+			this.position = position;
+			this.texture = texture;
+			this.color = color;
+			this.minLife = minLife;
+			this.maxLife = maxLife;
+			this.minSpeed = minSpeed;
+			this.maxSpeed = maxSpeed;
+			this.minDirection = minDirection;
+			this.maxDirection = maxDirection;
+			this.minAcceleration = minAcceleration;
+			this.maxAcceleration = maxAcceleration;
+			this.duration = duration;
+			this.fireRate = fireRate;
+			this.loops = loops;
+		}
+
 		///<summary>
-		/// Fixed values rather than ranged random values
+		/// Fixed values for speed, life, direction and acceleration
 		///</summary>
 		public ParticleGenerator(Point position, Texture2D texture, Color color,
 			float speed, float life, Vector2 direction, Vector2 acceleration,
@@ -34,28 +57,39 @@ namespace TennisFightingGame
 			this.position = position;
 			this.texture = texture;
 			this.color = color;
-			speedRange = new float[] { speed, speed };
-			lifeRange = new float[] { life, life };
-			directionRange = new Vector2[] { direction, direction };
-			accelerationRange = new Vector2[] { acceleration, acceleration };
+			minLife = life;
+			maxLife = life;
+			minSpeed = speed;
+			maxSpeed = speed;
+			minDirection = direction;
+			maxDirection = direction;
+			minAcceleration = acceleration;
+			maxAcceleration = acceleration;
 			this.duration = duration;
 			this.fireRate = fireRate;
 			this.loops = loops;
-		}
-		
-		// TODO
-		public ParticleGenerator()
-		{
 		}
 		
 		public virtual void Update()
 		{
 			fireTimer += TennisFightingGame.DeltaTime;
 
-			if (fireTimer >= fireRate)
+			if (fireTimer >= fireRate && enabled)
 			{
-				particles.Add(Fire(position, texture, color, speedRange, 
-					lifeRange, directionRange, accelerationRange));
+				Particle newParticle = new Particle(
+					new Rectangle(position, texture.Bounds.Size),
+					TennisFightingGame.Random.NextFloat(minLife, maxLife),
+					color,
+					texture,
+					TennisFightingGame.Random.NextFloat(minSpeed, maxSpeed),
+					new Vector2(
+						TennisFightingGame.Random.NextFloat(minDirection.X, maxDirection.X),
+						TennisFightingGame.Random.NextFloat(minDirection.Y, maxDirection.Y)),
+					new Vector2(
+						TennisFightingGame.Random.NextFloat(minAcceleration.X, maxAcceleration.X),
+						TennisFightingGame.Random.NextFloat(minAcceleration.Y, maxAcceleration.Y)));
+
+				particles.Add(newParticle);
 				
 				if (loops)
 				{
@@ -74,46 +108,19 @@ namespace TennisFightingGame
 			}
 		}
 
-		private Particle Fire(Point position, Texture2D texture, Color color,
-			float[] speedRange, float[] lifeRange, Vector2[] directionRange, 
-			Vector2[] accelerationRange)
-		{
-			Rectangle rectangle = new Rectangle(position, texture.Bounds.Size);
-			float speed = TennisFightingGame.Random.Next((int)(speedRange[0] * 100), 
-											(int)(speedRange[1] * 100)) / 100;
-			float life = TennisFightingGame.Random.Next(	(int)(lifeRange[0] * 100), 
-											(int)(lifeRange[1] * 100)) / 100;
-			Vector2 direction = new Vector2(
-				TennisFightingGame.Random.Next(
-					(int)(directionRange[0].X * 100), 
-					(int)(directionRange[1].X * 100)
-					) / 100,
-				TennisFightingGame.Random.Next(
-					(int)(directionRange[0].Y * 100), 
-					(int)(directionRange[1].Y * 100)
-					) / 100
-			);
-			Vector2 acceleration = new Vector2(
-				TennisFightingGame.Random.Next(
-					(int)(accelerationRange[0].X * 100), 
-					(int)(accelerationRange[1].X * 100)
-					) / 100,
-				TennisFightingGame.Random.Next(
-					(int)(accelerationRange[0].Y * 100), 
-					(int)(accelerationRange[1].Y * 100)
-					) / 100
-			);
-
-			return new Particle(rectangle, life, color, texture, speed, direction, 
-				acceleration);
-		}
-
 		public void Draw(SpriteBatch spriteBatch)
 		{
 			foreach (Particle particle in particles)
 			{
 				particle.Draw(spriteBatch);
 			}
+		}
+
+		// TODO Remove
+		public void SetDirection(Vector2 newDirection)
+		{
+			minDirection = newDirection;
+			maxDirection = newDirection;
 		}
 	}
 }

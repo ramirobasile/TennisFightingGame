@@ -1,4 +1,4 @@
-﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
 namespace TennisFightingGame
@@ -16,8 +16,7 @@ namespace TennisFightingGame
 		private Vector2 velocity;
 
 		public Particle(Rectangle rectangle, float life, Color color, 
-			Texture2D texture, float speed, Vector2 direction, 
-			Vector2 acceleration)
+			Texture2D texture, float speed, Vector2 direction, Vector2 acceleration)
 		{
 			this.rectangle = rectangle;
 			this.life = life;
