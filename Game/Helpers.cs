@@ -81,5 +81,15 @@ namespace TennisFightingGame
 
 			return min + (number - min) % range;
 		}
+
+		public static Color RandomColor(Color minColor, Color maxColor)
+		{
+			int red = TennisFightingGame.Random.Next(minColor.R, maxColor.R);
+			int green = TennisFightingGame.Random.Next(minColor.G, maxColor.G);
+			int blue = TennisFightingGame.Random.Next(minColor.B, maxColor.B);
+			int alpha = TennisFightingGame.Random.Next(minColor.A, maxColor.A);
+
+			return new Color(red, green, blue, alpha);
+		}
     }
 }
