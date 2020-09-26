@@ -44,5 +44,11 @@ namespace TennisFightingGame
 		{
 			spriteBatch.Draw(texture, rectangle, color);
 		}
+
+		// Cutout drawing
+		public void Draw(SpriteBatch spriteBatch, Rectangle cutout)
+		{
+			spriteBatch.Draw(texture, Position.ToVector2(), cutout, color);
+		}
 	}
 }
