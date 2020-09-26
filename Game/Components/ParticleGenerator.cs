@@ -29,7 +29,7 @@ namespace TennisFightingGame
 		public ParticleGenerator(Point position, Texture2D texture, Color color,
 			float minSpeed, float maxSpeed, float minLife, float maxLife,
 			Vector2 minDirection, Vector2 maxDirection, Vector2 minAcceleration,
-			Vector2 maxAcceeration, float duration, float fireRate, bool loops = false)
+			Vector2 maxAcceleration, float duration, float fireRate, bool loops = false)
 		{
 			this.position = position;
 			this.texture = texture;
