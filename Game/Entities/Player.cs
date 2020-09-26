@@ -38,6 +38,7 @@ namespace TennisFightingGame
 		public float hitLag;
 		public float stamina = MaxStamina;
 		public Vector2 velocity = Vector2.Zero;
+		private ParticleGenerator runningParticles;
 
 		public Player(Character character, Match match, PlayerIndex index, int courtSide, 
 			Point spawnPosition)
@@ -59,6 +60,20 @@ namespace TennisFightingGame
 			stepSound = character.stepSound;
 			jumpSound = character.jumpSound;
 			turnSound = character.turnSound;
+
+			runningParticles = new ParticleGenerator(
+				Position,
+				match.court.courtTexture,
+				minColor: Color.Gray, maxColor: Color.LightGray,
+				minSpeed: 400, maxSpeed: 800,
+				minLife: 0.2f, maxLife: 0.3f,
+				minDirection: Vector2.Zero, maxDirection: Vector2.Zero,
+				minAcceleration: new Vector2(0, 60), maxAcceleration: new Vector2(0, 90),
+				duration: 1,
+				fireRate: 0.033f,
+				loops: true,
+				cutout: new Rectangle(0, 0, 10, 10),
+				useCutout: true);
 
             state.Jumped += Jump;
 			state.Turned += Turn;
@@ -82,6 +97,15 @@ namespace TennisFightingGame
             state.Update();
 			moveset.Update();
 			sprite.Update();
+
+        	runningParticles.position = new Point(rectangle.Center.X, rectangle.Bottom);
+        	runningParticles.cutout = new Rectangle(
+        		rectangle.Center.X + 1125,
+        		rectangle.Bottom + 380,
+        		runningParticles.cutout.Width,
+        		runningParticles.cutout.Height);
+        	runningParticles.Update();
+        	runningParticles.enabled = false;
 
 			if (match.inPlay)
 			{
@@ -136,12 +160,20 @@ namespace TennisFightingGame
 					{
 						velocity.X = -stats.runSpeed;
 						AddStamina(-stats.runStaminaCost * TennisFightingGame.DeltaTime);
+
+						runningParticles.SetDirection(new Vector2(0.5f, -1));
+						runningParticles.enabled = true;
+
 						break;
 					}
 				case MovementStates.SprintingForwards:
 					{
 						velocity.X = stats.runSpeed;
 						AddStamina(-stats.runStaminaCost * TennisFightingGame.DeltaTime);
+
+						runningParticles.SetDirection(new Vector2(-0.5f, -1));
+						runningParticles.enabled = true;
+
 						break;
 					}
 				case MovementStates.DriftingBackwards:
@@ -194,6 +226,8 @@ namespace TennisFightingGame
 		{
 			sprite.Draw(spriteBatch);
 			moveset.Draw(spriteBatch);
+
+			runningParticles.Draw(spriteBatch);
 
 			if (TennisFightingGame.ConfigFile.Boolean("Debug", "Collisionboxes"))
 			{
