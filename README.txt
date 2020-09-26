@@ -14,7 +14,7 @@ LICENSE.txt.
 Contributing
 ------------
 
-Currently not accepting merge requsts.
+Currently not accepting contributions.
 
 Excepto de mis bros, que los dirijo al HACKING.txt.
 
