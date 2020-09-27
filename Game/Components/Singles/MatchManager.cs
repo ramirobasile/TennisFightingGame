@@ -201,7 +201,7 @@ namespace TennisFightingGame.Singles
 
             foreach (Player player in match.players)
             {
-                player.AddStamina(player.stats.staminaRecovery);
+                player.AddStamina(player.stats.staminaRecovery * (player.endurance / Player.MaxEndurance));
             }
             match.transitioning = true;
             match.transition = new Transition(1); // cleans up previous subscriptions in the process
@@ -232,7 +232,7 @@ namespace TennisFightingGame.Singles
             
             foreach (Player player in match.players)
             {
-                player.AddStamina(Player.MaxStamina);
+                player.AddStamina(Player.MaxStamina * (player.endurance / Player.MaxEndurance));
                 player.points = 0;
             }
 
