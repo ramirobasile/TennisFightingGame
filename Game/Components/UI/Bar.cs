@@ -9,13 +9,16 @@ namespace TennisFightingGame.UI
         private readonly Texture2D fillTexture;
         public readonly Rectangle rectangle;
         private readonly int direction;
+        private readonly Color color;
 
-        public Bar(Texture2D backgroundTexture, Texture2D fillTexture, Rectangle rectangle, int direction = 1)
+        public Bar(Texture2D backgroundTexture, Texture2D fillTexture,
+        	Rectangle rectangle, Color color, int direction = 1)
         {
             this.backgroundTexture = backgroundTexture;
             this.fillTexture = fillTexture;
             this.rectangle = rectangle;
             this.direction = direction;
+            this.color = color;
         }
 
         public void Draw(SpriteBatch spriteBatch, float fill)
@@ -32,7 +35,7 @@ namespace TennisFightingGame.UI
             }
 
             spriteBatch.Draw(backgroundTexture, rectangle, Color.Gray); // colors are WIP
-            spriteBatch.Draw(fillTexture, fillRectangle, Color.Yellow);
+            spriteBatch.Draw(fillTexture, fillRectangle, color);
         }
     }
 }

@@ -14,6 +14,7 @@ namespace TennisFightingGame
 		private const int FrictionRound = 10; // Velocity under 10 will be rounded off
         public const int CheckDistance = 1; // Distance below hurtbox to check for standing
         public const int MaxStamina = 100;
+        public const int MaxEndurance = 100;
 
 		public readonly Match match;
         public readonly StateManager state;
@@ -37,6 +38,7 @@ namespace TennisFightingGame
         public int direction;
 		public float hitLag;
 		public float stamina = MaxStamina;
+		public float endurance = MaxEndurance;
 		public Vector2 velocity = Vector2.Zero;
 		private ParticleGenerator runningParticles;
 
@@ -110,6 +112,11 @@ namespace TennisFightingGame
 			if (match.inPlay)
 			{
 				AddStamina(stats.staminaRegen * TennisFightingGame.DeltaTime);
+				
+				endurance = MathHelper.Clamp(
+					endurance - stats.enduranceDegen * TennisFightingGame.DeltaTime, 
+					0, 
+					MaxEndurance);
 			}
 
 			// Apply friction and gravity when appropiate

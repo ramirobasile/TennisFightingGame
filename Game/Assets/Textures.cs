@@ -9,6 +9,7 @@ namespace TennisFightingGame
 		{
 			PlaceholderTexture = content.Load<Texture2D>("Placeholder");
 			ShadowTexture = content.Load<Texture2D>("Shadow");
+			ParticleTexture = content.Load<Texture2D>("Particle");
 		}
 	}
 }

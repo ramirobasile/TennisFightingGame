@@ -13,6 +13,7 @@ namespace TennisFightingGame.Singles
 
 		private readonly UI.Label[] nameLabels = new UI.Label[2];
 		private readonly UI.Bar[] staminaBars = new UI.Bar[2];
+		private readonly UI.Bar[] enduranceBars = new UI.Bar[2];
 		private UI.Label pointsLabel;
 		private UI.Label gamesLabel;
 		private UI.Label setsLabel;
@@ -25,26 +26,83 @@ namespace TennisFightingGame.Singles
             this.match = match;
 
 			// HACK Make this not hardcoded
-			pointsLabel = new UI.Label("", new Point(0, 37), Assets.TitleFont, center: true, shadow: true, blinkSpeed: 60);
-			gamesLabel = new UI.Label("", new Point(0, 67), Assets.RegularFont, center: true, shadow: true, blinkSpeed: 60);
-			setsLabel = new UI.Label("", new Point(0, 87), Assets.RegularFont, center: true, shadow: true, blinkSpeed: 60);
+			pointsLabel = new UI.Label(
+				"",
+				new Point(0, 37),
+				Assets.TitleFont,
+				center: true,
+				shadow: true,
+				blinkSpeed: 60);
 
-			staminaBars[0] = new UI.Bar(Assets.PlaceholderTexture, Assets.PlaceholderTexture, 
-				new Rectangle(10, 40, 350, 20), -1);
-            staminaBars[1] = new UI.Bar(Assets.PlaceholderTexture, Assets.PlaceholderTexture, 
-            	new Rectangle(TennisFightingGame.Viewport.Width - 350 - 10, 40, 350, 20));
+			gamesLabel = new UI.Label(
+				"",
+				new Point(0, 67),
+				Assets.RegularFont,
+				center: true,
+				shadow: true,
+				blinkSpeed: 60);
 
-			nameLabels[0] = new UI.Label(match.players[0].name, 
-				new Point(staminaBars[0].rectangle.X, 10), Assets.EmphasisFont, shadow: true);
-			nameLabels[1] = new UI.Label(match.players[1].name,
-				new Point(staminaBars[1].rectangle.Right - (int)Assets.EmphasisFont.MeasureString(match.players[1].name).X, 10), 
-				Assets.EmphasisFont, shadow: true);
+			setsLabel = new UI.Label(
+				"",
+				new Point(0, 87),
+				Assets.RegularFont,
+				center: true,
+				shadow: true,
+				blinkSpeed: 60);
 
-			servingLabels[0] = new UI.Label("P1's service",
-				new Point(staminaBars[0].rectangle.X, 70), Assets.EmphasisFont, blinkSpeed: 8, shadow: true);
-			servingLabels[1] = new UI.Label("P2's service",
-				new Point(staminaBars[1].rectangle.Right - (int)Assets.EmphasisFont.MeasureString("P2's service").X, 70),
-				Assets.EmphasisFont, blinkSpeed: 8, shadow: true);
+			staminaBars[0] = new UI.Bar(
+				Assets.PlaceholderTexture,
+				Assets.PlaceholderTexture,
+				new Rectangle(10, 40, 350, 20),
+				Color.Yellow,
+				-1);
+
+            staminaBars[1] = new UI.Bar(
+            	Assets.PlaceholderTexture,
+            	Assets.PlaceholderTexture,
+            	new Rectangle(TennisFightingGame.Viewport.Width - 350 - 10, 40, 350, 20),
+            	Color.Yellow);
+
+			enduranceBars[0] = new UI.Bar(
+				Assets.PlaceholderTexture,
+				Assets.PlaceholderTexture,
+				new Rectangle(10, 65, 350, 5),
+				Color.Lavender,
+				-1);
+
+            enduranceBars[1] = new UI.Bar(
+            	Assets.PlaceholderTexture,
+            	Assets.PlaceholderTexture,
+            	new Rectangle(TennisFightingGame.Viewport.Width - 350 - 10, 65, 350, 5),
+            	Color.Lavender);
+
+			nameLabels[0] = new UI.Label(
+				match.players[0].name,
+				new Point(staminaBars[0].rectangle.X, 10),
+				Assets.EmphasisFont,
+				shadow: true);
+
+			int nameLength = (int)Assets.EmphasisFont.MeasureString(match.players[1].name).X;
+			nameLabels[1] = new UI.Label(
+				match.players[1].name,
+				new Point(staminaBars[1].rectangle.Right - nameLength, 10),
+				Assets.EmphasisFont,
+				shadow: true);
+
+			servingLabels[0] = new UI.Label(
+				"P1's service",
+				new Point(staminaBars[0].rectangle.X, 80),
+				Assets.EmphasisFont,
+				blinkSpeed: 8,
+				shadow: true);
+
+			int servingLength = (int)Assets.EmphasisFont.MeasureString("P2's service").X;
+			servingLabels[1] = new UI.Label(
+				"P2's service",
+				new Point(staminaBars[1].rectangle.Right - servingLength, 80),
+				Assets.EmphasisFont,
+				blinkSpeed: 8,
+				shadow: true);
 
 			// Blink on score
 			match.manager.PointEnded += (_, __) => { pointsLabel.blink = 1; };
@@ -122,6 +180,11 @@ namespace TennisFightingGame.Singles
 			for (int i = 0; i < staminaBars.Length; i++)
             {
                 staminaBars[i].Draw(spriteBatch, match.players[i].stamina / Player.MaxStamina);
+            }
+
+			for (int i = 0; i < enduranceBars.Length; i++)
+            {
+                enduranceBars[i].Draw(spriteBatch, match.players[i].endurance / Player.MaxEndurance);
             }
 
             spriteBatch.End();

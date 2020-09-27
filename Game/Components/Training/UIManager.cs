@@ -18,7 +18,7 @@ namespace TennisFightingGame.Training
             this.match = match;
 
 			staminaBar = new UI.Bar(Assets.PlaceholderTexture, Assets.PlaceholderTexture, 
-				new Rectangle(10, 40, 350, 20));
+				new Rectangle(10, 40, 350, 20), Color.Yellow);
 
 			nameLabel = new UI.Label(match.players[0].name, new Point(staminaBar.rectangle.X, 10), 
 				Assets.EmphasisFont, shadow: true);

@@ -111,7 +111,7 @@ namespace TennisFightingGame
 					recoverThreshold: 5,
 					fastFallSpeed: 1000,
 					staminaRecovery: 15,
-					endurance: 1,
+					enduranceDegen: 0.08f,
 					jumpSquat: 0.066f,
 					turnDelay: 0.2f
 					),

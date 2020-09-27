@@ -15,6 +15,7 @@ namespace TennisFightingGame
 		// Textures
 		public static Texture2D PlaceholderTexture;
 		public static Texture2D ShadowTexture;
+		public static Texture2D ParticleTexture;
 
 		// Fonts
 		public static SpriteFont TitleFont;
