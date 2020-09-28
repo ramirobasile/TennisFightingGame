@@ -8,19 +8,19 @@ namespace TennisFightingGame
     public class Hitbox
     {
 		// TODO Better way of documenting this
-        public readonly Rectangle rectangle; // Hitbox bounds
-        public readonly float start; //from A in the total duration of the attack
-        public readonly float duration; //to B, relatively
-        public readonly Vector2 force; // Force with which the ball is hit
-		public readonly Vector2 exhaustedForce; // Alternative force when exhausted
-		public readonly float hitStun; // Time the ball is frozen for
-		public readonly float hitLag; // Time tha player is frozen for
-		public readonly int shakeMagnitude; // Screen shake magnitude during hitStun
-		public readonly bool cumulative; // Hits on the same direction accumulate (scaled down by a const)
-		public readonly float gravity; // Custom gravity
+        public Rectangle rectangle; // Hitbox bounds
+        public float start; //from A in the total duration of the attack
+        public float duration; //to B, relatively
+        public Vector2 force; // Force with which the ball is hit
+		public Vector2 exhaustedForce; // Alternative force when exhausted
+		public float hitStun; // Time the ball is frozen for
+		public float hitLag; // Time tha player is frozen for
+		public int shakeMagnitude; // Screen shake magnitude during hitStun
+		public bool cumulative; // Hits on the same direction accumulate (scaled down by a const)
+		public float gravity; // Custom gravity
 		// A random sound effect of each SoundEffect array will be played
-		[NonSerialized] public readonly SoundEffect[][] onAddedSounds;
-		[NonSerialized] public readonly SoundEffect[] onHitSounds;
+		[NonSerialized] public SoundEffect[][] onAddedSounds;
+		[NonSerialized] public SoundEffect[] onHitSounds;
 		
 		public Hitbox(Rectangle rectangle, float start, float duration, Vector2 force, 
 			Vector2 exhaustedForce = default(Vector2), float gravity = Ball.DefaultGravity,
