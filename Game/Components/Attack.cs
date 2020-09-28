@@ -16,19 +16,19 @@ namespace TennisFightingGame
 		public AerialStates aerialState;
 		public Actions[] motionInput;
 		public float chargeTime;
-		public readonly bool serve;
+		public bool serve;
 		public bool exhaused;
 
-		private readonly Hitbox[] hitboxes;
-		[NonSerialized] public readonly SoundEffect[][] onStartupSounds;
-        public readonly float staminaCost;
-		public readonly bool hardLandCancel;
-		public readonly bool softLandCancel;
-		public readonly bool hardHitCancel;
-		public readonly bool softHitCancel;
-		public readonly bool multiHit;
-		private readonly float startup;
-		public readonly float recovery;
+		public Hitbox[] hitboxes;
+		[NonSerialized] public SoundEffect[][] onStartupSounds;
+        public float staminaCost;
+		public bool hardLandCancel;
+		public bool softLandCancel;
+		public bool hardHitCancel;
+		public bool softHitCancel;
+		public bool multiHit;
+		public float startup;
+		public float recovery;
 
 		public List<Hitbox> activeHitboxes = new List<Hitbox>();
 		public List<Hitbox> hits = new List<Hitbox>();
