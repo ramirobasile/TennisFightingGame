@@ -1,18 +1,18 @@
-﻿using System;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 
 namespace TennisFightingGame
 {
 	/// <summary>
-	/// Colliders with a friction value that a ball's velocity will scale off of when bounced from.
+	/// TODO
 	/// </summary>
-	public class Wall : Collider
+	public struct Wall
 	{
+		public Rectangle rectangle;
 		public Vector2 friction;
 
-		public Wall(Rectangle rectangle, Vector2 friction) 
-			: base (rectangle)
+		public Wall(Rectangle rectangle, Vector2 friction)
 		{
+			this.rectangle = rectangle;
 			this.friction = friction;
 		}
 	}

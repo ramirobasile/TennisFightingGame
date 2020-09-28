@@ -86,8 +86,8 @@ namespace TennisFightingGame.Singles
         public void Update()
         {
             // Ball passed to the right side
-            if (match.ball.lastRectangle.X < match.court.middle.rectangle.Center.X &&
-                match.ball.rectangle.X >= match.court.middle.rectangle.Center.X)
+            if (match.ball.lastRectangle.X < match.court.middle.Center.X &&
+                match.ball.rectangle.X >= match.court.middle.Center.X)
             {
                 if (PassedNet != null)
                 {
@@ -96,8 +96,8 @@ namespace TennisFightingGame.Singles
             }
 
             // Ball passed to the left side
-            if (match.ball.lastRectangle.X > match.court.middle.rectangle.Center.X &&
-                match.ball.rectangle.X <= match.court.middle.rectangle.Center.X)
+            if (match.ball.lastRectangle.X > match.court.middle.Center.X &&
+                match.ball.rectangle.X <= match.court.middle.Center.X)
             {
                 if (PassedNet != null)
                 {
@@ -127,9 +127,10 @@ namespace TennisFightingGame.Singles
         private void Hit()
 		{
             // Set defender to the other player is the ball is projected to pass the net
-            float middleDistance = MathHelper.Distance(match.GetPlayerBySide(ballSide).Position.X, match.court.middle.rectangle.Center.X);
+            float middleDistance = MathHelper.Distance( match.GetPlayerBySide(ballSide).Position.X, 
+                                                        match.court.middle.Center.X);
             float landingDistance = MathHelper.Distance(match.GetPlayerBySide(ballSide).Position.X,
-                match.ball.LandingPoint(match.court.net.rectangle.Top).X);
+                                                        match.ball.LandingPoint(match.court.net.rectangle.Top).X);
 
             if (landingDistance > middleDistance)
             {

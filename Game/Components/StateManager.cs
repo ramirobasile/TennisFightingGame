@@ -109,7 +109,8 @@ namespace TennisFightingGame
 				Rectangle check = new Rectangle(player.rectangle.X, player.rectangle.Y + Player.CheckDistance,
 					player.rectangle.Width, player.rectangle.Height);
 
-				if (aerialState != AerialStates.JumpSquat && wall.Collision(check, player.lastRectangle).Bottom)
+				if (aerialState != AerialStates.JumpSquat && 
+					wall.rectangle.Collision(check, player.lastRectangle).Bottom)
 				{
 					if (aerialState == AerialStates.Airborne)
 					{
@@ -130,7 +131,8 @@ namespace TennisFightingGame
 					return;
 				}
 
-				if (!wall.Collision(check, player.lastRectangle).Bottom && jumpSquatTime <= 0)
+				if (!wall.rectangle.Collision(check, player.lastRectangle).Bottom && 
+					jumpSquatTime <= 0)
 				{
 					aerialState = AerialStates.Airborne;
 					return;

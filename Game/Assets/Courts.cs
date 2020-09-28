@@ -30,7 +30,7 @@ namespace TennisFightingGame
 				new Wall(right, new Vector2(0.825f, 0.825f)),
 				new Wall(floor, new Vector2(0.825f, 0.85f)),
 				new Wall(net, new Vector2(0.1f, 0.1f)), 
-				new Collider(middle), 
+				middle, 
 				startingPositions, 
 				content.Load<Texture2D>("Courts/Sky"), content.Load<Texture2D>("Courts/Hard"));
 
@@ -40,7 +40,7 @@ namespace TennisFightingGame
 				new Wall(right, new Vector2(0.2f, 0.2f)),
 				new Wall(floor, new Vector2(0.75f, 0.8f)),
 				new Wall(net, new Vector2(0.1f, 0.1f)),
-				new Collider(middle),
+				middle, 
 				startingPositions,
 				content.Load<Texture2D>("Courts/Sky"), content.Load<Texture2D>("Courts/Clay"));
 
@@ -50,7 +50,7 @@ namespace TennisFightingGame
 				new Wall(right, new Vector2(0.45f, 0.45f)),
 				new Wall(floor, new Vector2(0.875f, 0.8125f)),
 				new Wall(net, new Vector2(0.1f, 0.1f)),
-				new Collider(middle),
+				middle, 
 				startingPositions,
 				content.Load<Texture2D>("Courts/Sky"), content.Load<Texture2D>("Courts/Grass"));
 
@@ -60,7 +60,7 @@ namespace TennisFightingGame
 				new Wall(right, new Vector2(0.825f, 0.825f)),
 				new Wall(floor, new Vector2(0.825f, 0.825f)),
 				new Wall(net, new Vector2(0.1f, 0.1f)),
-				new Collider(middle),
+				middle, 
 				startingPositions,
 				content.Load<Texture2D>("Courts/Sky"), content.Load<Texture2D>("Courts/Carpet"));
 			

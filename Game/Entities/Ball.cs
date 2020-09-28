@@ -54,14 +54,14 @@ namespace TennisFightingGame
             // Collision correction and bouncing (and bounce event call)
             foreach (Wall wall in match.court.Geometry)
             {
-                Collision collision = wall.Collision(rectangle, lastRectangle);
+                Collision collision = wall.rectangle.Collision(rectangle, lastRectangle);
 
                 if (rectangle.Intersects(wall.rectangle))
                 {
 					gravity = DefaultGravity;
                     velocity.X *= wall.friction.X;
 					velocity.Y *= wall.friction.Y;
-					Position += wall.Correction(rectangle, lastRectangle);
+					Position += wall.rectangle.Correction(rectangle, lastRectangle);
 
 					if (velocity.Length() > NonBounceThreshold)
 					{
@@ -89,7 +89,7 @@ namespace TennisFightingGame
 
 					if (rectangle.Intersects(wall.rectangle))
 					{
-						Position += wall.Correction(rectangle, lastRectangle);
+						Position += wall.rectangle.Correction(rectangle, lastRectangle);
 					}
 				}
             }

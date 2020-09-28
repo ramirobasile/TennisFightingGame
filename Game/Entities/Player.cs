@@ -218,11 +218,11 @@ namespace TennisFightingGame
             // Resolve collision between player and walls by moving player out of the wall
             foreach (Wall wall in match.court.PlayerGeometry)
             {
-                Collision collision = wall.Collision(rectangle, lastRectangle);
+                Collision collision = wall.rectangle.Collision(rectangle, lastRectangle);
 
                 if (collision.Intersects)
                 {
-                    Position += wall.Correction(rectangle, lastRectangle);
+                    Position += wall.rectangle.Correction(rectangle, lastRectangle);
                 }
             }
 

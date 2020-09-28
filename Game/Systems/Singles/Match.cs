@@ -116,10 +116,10 @@ namespace TennisFightingGame.Singles
 			{
 				foreach (Wall wall in court.Geometry)
 				{
-					spriteBatch.Draw(Assets.PlaceholderTexture, wall.rectangle, Color.Blue * .5f);
+					spriteBatch.Draw(Assets.PlaceholderTexture, wall.rectangle, Color.Blue * 0.5f);
 				}
 
-				spriteBatch.Draw(Assets.PlaceholderTexture, court.middle.rectangle, Color.Red * .25f);
+				spriteBatch.Draw(Assets.PlaceholderTexture, court.middle, Color.Red * 0.25f);
 			}
 
 			spriteBatch.End();
