@@ -12,7 +12,6 @@ namespace TennisFightingGame
         public float start; //from A in the total duration of the attack
         public float duration; //to B, relatively
         public Vector2 force; // Force with which the ball is hit
-		public Vector2 exhaustedForce; // Alternative force when exhausted
 		public float hitStun; // Time the ball is frozen for
 		public float hitLag; // Time tha player is frozen for
 		public int shakeMagnitude; // Screen shake magnitude during hitStun
@@ -23,7 +22,7 @@ namespace TennisFightingGame
 		[NonSerialized] public SoundEffect[] onHitSounds;
 		
 		public Hitbox(Rectangle rectangle, float start, float duration, Vector2 force, 
-			Vector2 exhaustedForce = default(Vector2), float gravity = Ball.DefaultGravity,
+			float gravity = Ball.DefaultGravity,
 			float hitStun = 0,  float hitLag = 0,  int shakeMagnitude = 0, 
 			bool cumulative = true, SoundEffect[][] onAddedSounds = null, 
 			SoundEffect[] onHitSounds = null)
@@ -39,17 +38,6 @@ namespace TennisFightingGame
 			this.cumulative = cumulative;
 			this.onAddedSounds = onAddedSounds;
 			this.onHitSounds = onHitSounds;
-
-			// HACK If Vector2 were nullable, things wouldn't have to be so ugly
-			// exhaustedForce will be the same as force unless it was set
-			if (exhaustedForce == default(Vector2))
-			{
-				this.exhaustedForce = force;
-			}
-			else
-			{
-				this.exhaustedForce = exhaustedForce;
-			}
 		}
 
 		// For serialization
