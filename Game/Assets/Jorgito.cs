@@ -271,6 +271,7 @@ namespace TennisFightingGame
 				staminaRecovery: 15,
 				enduranceDegen: 0.075f,
 				jumpSquat: 0.066f,
+				exhaustedJumpSquat: 0.15f,
 				turnDelay: 0.2f);
 
 			Character jorgito = new Character(

@@ -152,7 +152,14 @@ namespace TennisFightingGame
 			{
 				aerialState = AerialStates.JumpSquat;
 				
-				jumpSquatTime = player.stats.jumpSquat;
+				if (exhausted)
+				{
+					jumpSquatTime = player.stats.exhaustedJumpSquat;
+				}
+				else
+				{
+					jumpSquatTime = player.stats.jumpSquat;
+				}
 
 			}
 

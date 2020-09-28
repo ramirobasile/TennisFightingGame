@@ -239,14 +239,15 @@ namespace TennisFightingGame
 				jumpStaminaCost: 4.5f,
 				driftSpeed: 20,
 				exhaustedSpeed: 150,
-				exhaustedJumpSpeed: 850,
+				exhaustedJumpSpeed: 1100,
 				exhaustedJumpStaminaCost: 1,
 				exhaustedThreshold: 1,
 				recoverThreshold: 5,
 				fastFallSpeed: 1000,
 				staminaRecovery: 15,
 				enduranceDegen: 0.1f,
-				jumpSquat: 0.066f,
+				jumpSquat: 0.116f,
+				exhaustedJumpSquat: 0.2f,
 				turnDelay: 0.2f);
 
 			Character chino = new Character(

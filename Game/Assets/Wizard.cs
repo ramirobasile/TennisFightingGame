@@ -113,6 +113,7 @@ namespace TennisFightingGame
 					staminaRecovery: 15,
 					enduranceDegen: 0.08f,
 					jumpSquat: 0.066f,
+				exhaustedJumpSquat: 0.133f,
 					turnDelay: 0.2f
 					),
 				content.Load<SoundEffect>("Characters/Wizard/Step"),

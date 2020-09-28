@@ -265,6 +265,7 @@ namespace TennisFightingGame
 				staminaRecovery: 15,
 				enduranceDegen: 0.1f,
 				jumpSquat: 0.066f,
+				exhaustedJumpSquat: 0.133f,
 				turnDelay: 0.2f);
 			
 			Character monkey = new Character(
