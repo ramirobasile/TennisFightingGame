@@ -11,7 +11,7 @@ namespace TennisFightingGame
 	/// </summary>
 	public class Player
     {
-		private const int FrictionRound = 10; // Velocity under 10 will be rounded off
+		public const int FrictionRound = 10; // Velocity under this will be rounded off
         public const int CheckDistance = 1; // Distance below hurtbox to check for standing
         public const int MaxStamina = 100;
         public const int MaxEndurance = 100;
@@ -93,8 +93,40 @@ namespace TennisFightingGame
                 hitLag -= TennisFightingGame.DeltaTime;
                 return;
             }
+			
+			// Apply friction and gravity when appropiate
+			switch (state.aerialState)
+            {
+				// Gravity
+                case AerialStates.Airborne:
+	                {
+	                    velocity.Y += stats.gravity * TennisFightingGame.DeltaTime;
+	                    break;
+	                }
 
-			// Update subcomponents
+				/* When running, friction is applied so the player has deceleration when he stops running.
+				 * When walking, velocity is set to 0. Since this is done before setting velocity beased on
+				 * the movement state, this makes velocity constant when walking.
+				 * This must be done before updating state because, when walk is released, movementState 
+				 * is set to idle and thus velocity will not be 0 on release, which results in 
+				 * undesired deceleration for walking. */
+				case AerialStates.Standing:
+					{
+	                    if (state.Walking || state.serving)
+	                    {
+	                        velocity.X = 0; // constant x speed while not running
+	                    }
+						
+						if (Math.Abs(velocity.X) > FrictionRound)
+                    	{
+							velocity.X -= stats.friction * TennisFightingGame.DeltaTime * Math.Sign(velocity.X);
+                    	}
+
+	                    break;
+                	}
+            }
+
+			// Update components
 			input.Update();
             state.Update();
 			moveset.Update();
@@ -118,35 +150,6 @@ namespace TennisFightingGame
 					0, 
 					MaxEndurance);
 			}
-
-			// Apply friction and gravity when appropiate
-			switch (state.aerialState)
-            {
-				// Gravity
-                case AerialStates.Airborne:
-	                {
-	                    velocity.Y += stats.gravity * TennisFightingGame.DeltaTime;
-	                    break;
-	                }
-
-				/* When running, friction is applied so the player has deceleration when he stops running.
-				 * When walking, velocity is set to 0. Since this is done before setting velocity beased on
-				 * the movement state, this makes velocity constant when walking.*/
-				case AerialStates.Standing:
-					{
-						if (Math.Abs(velocity.X) > FrictionRound)
-                    	{
-							velocity.X -= stats.friction * TennisFightingGame.DeltaTime * Math.Sign(velocity.X);
-                    	}
-
-	                    if (state.Walking || state.serving)
-	                    {
-	                        velocity.X = 0; // constant x speed while not running
-	                    }
-
-	                    break;
-                	}
-            }
 
 			// Set velocity and stamina costs based on movement state
 			switch (state.movementState)
