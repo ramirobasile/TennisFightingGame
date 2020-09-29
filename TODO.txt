@@ -27,30 +27,23 @@ Possibly fixed but unchecked
 TODO
 ----
 
+* Add transition that displays text
+
 * Add changeovers and have a bit of endurance recovered on changeovers
 
 * Reset endurance after set end
-
-* Change how we handle collision, probably just extend rectangle rather than 
-  having this ugly collider thingy
-
-* Remove unused System includes
 
 * Go through TODOs and HACKs
 
 * Step sounds
 
-* Special exhausted swing and hit sounds
-
 * Character select portraits and stuff
 
 * Inputs viewer in training mode and general training overhaul
 
-* Allow scaling
+* Make game's resolution scalable
 
-* More documentation
-
-* Add (and probably fix) particles
+* Document more and better
 
 * Doubles (currently blocked by collision FIXME)
 
@@ -58,7 +51,13 @@ TODO
 Minor TODOs
 -----------
 
+* Add more particles
+
+* Remove unused System includes
+
 * Some of Monkey's attacks have 0 shakeMagnitude
+
+* Add best-of selection menu
 
 
 Conundrums
@@ -84,13 +83,13 @@ Conundrums
 Backburner
 ----------
 
+* Rename Jorgito to Linyera and Wizard to Jorgito
+
+* Add King
+
+* Finish everyone's movesets
+
 * Winner text
-
-* Finish Wizard
-
-* Give Chino a special standing heavy (maybe)
-
-* Give Monkey a billion specials
 
 * Parallax background
 
@@ -99,9 +98,5 @@ Backburner
 * Crowd SFX
 
 * Add taunting
-
-* Titles
-
-* XML character serialization
 
 * DInput support (this is never gonna happen probably)
