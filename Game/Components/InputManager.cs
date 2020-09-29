@@ -12,7 +12,7 @@ namespace TennisFightingGame
     public class InputManager
     {
         private const float Tap = 0.09f;
-        private const float MotionInputDelayPerInput = 0.2f;
+        private const float MotionInputDelayPerInput = 0.3f;
 
         private readonly int[] controls;
 
@@ -312,7 +312,7 @@ namespace TennisFightingGame
 		public float heldTime;
 		public Actions action;
 
-		public BufferedInput(Actions action, float clearTime = 0.2f)
+		public BufferedInput(Actions action, float clearTime = 0.225f)
 		{
 			this.action = action;
 			this.clearTime = clearTime;
