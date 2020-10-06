@@ -19,7 +19,7 @@ namespace TennisFightingGame.UI
 		public Color color = Color.White;
 
 		public Label(string text, Point position, SpriteFont font, bool center = false, 
-			TextAlign textAlign = TextAlign.Left, VerticalAlign verticalAlign = VerticalAlign.Middle, 
+			TextAlign textAlign = TextAlign.Left, VerticalAlign verticalAlign = VerticalAlign.Bottom, 
 			bool shadow = false, float blinkSpeed = 1)
 		{
 			this.text = text;
