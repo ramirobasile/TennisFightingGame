@@ -11,14 +11,15 @@ namespace TennisFightingGame.UI
 		public string text;
 		public bool center;
 		private readonly TextAlign textAlign;
+		private readonly VerticalAlign verticalAlign;
 		private readonly bool shadow;
 		private readonly float blinkSpeed;
 
 		public float blink;
 		public Color color = Color.White;
 
-		public Label(string text, Point position, SpriteFont font, 
-			bool center = false, TextAlign textAlign = TextAlign.Left,
+		public Label(string text, Point position, SpriteFont font, bool center = false, 
+			TextAlign textAlign = TextAlign.Left, VerticalAlign verticalAlign = VerticalAlign.Middle, 
 			bool shadow = false, float blinkSpeed = 1)
 		{
 			this.text = text;
@@ -26,6 +27,7 @@ namespace TennisFightingGame.UI
 			this.font = font;
 			this.center = center;
 			this.textAlign = textAlign;
+			this.verticalAlign = verticalAlign;
 			this.shadow = shadow;
 			this.blinkSpeed = blinkSpeed;
 
@@ -67,6 +69,20 @@ namespace TennisFightingGame.UI
 						}
 			}
 
+			switch(verticalAlign)
+			{
+				case VerticalAlign.Top:
+						{
+							newPosition.Y -= (int)font.MeasureString(text).Y;
+							break;
+						}
+				case VerticalAlign.Middle:
+						{
+							newPosition.Y -= (int)font.MeasureString(text).Y / 2;
+							break;
+						}
+			}
+
 			if (center)
 			{
 				newPosition.X += TennisFightingGame.Viewport.Width / 2;
@@ -87,5 +103,12 @@ namespace TennisFightingGame.UI
 		Left,
 		Center,
 		Right
+	}
+
+	public enum VerticalAlign
+	{
+		Top,
+		Middle,
+		Bottom
 	}
 }
