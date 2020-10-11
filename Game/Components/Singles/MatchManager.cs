@@ -43,6 +43,8 @@ namespace TennisFightingGame.Singles
             service.state.serving = true;
         }
 
+        private bool IsChangeover { get { return Game % 2 == 0; } }
+
         public int Game
         {
             get
@@ -184,30 +186,26 @@ namespace TennisFightingGame.Singles
         {
             match.inPlay = false;
 
-            scorer.points++;
-
-            // Check game win
-            foreach(Player player in match.players)
+            if (IsOnGamePoint(scorer))
             {
-                if (player.points >= 4 && player.points - match.Opponent(player).points >= 2)
+                if (GameEnded != null)
                 {
-                    if (GameEnded != null)
-                    {
-                        GameEnded.Invoke(scorer, scored);
-                    }
-
-                    return;
+                    GameEnded.Invoke(scorer, scored);
                 }
+                
+                return;
             }
+
+            scorer.points++;
 
             foreach (Player player in match.players)
             {
                 player.AddStamina(player.stats.staminaRecovery * (player.endurance / Player.MaxEndurance));
             }
-            match.transitioning = true;
-            match.transition = new Transition(1); // cleans up previous subscriptions in the process
-            match.transition.HalfFinished += PointSetup;
 
+            match.transitioning = true;
+            match.transition = new Transition("", 0.2f, 0.33f, 0.2f);
+            match.transition.HalfFinished += PointSetup;
             match.transition.Finished += () => service.state.serving = true;
         }
 
@@ -215,21 +213,17 @@ namespace TennisFightingGame.Singles
         {
             match.inPlay = false;
 
-            scorer.games++;
-
-            // Check set win
-            foreach(Player player in match.players)
+            if (IsOnSetPoint(scorer))
             {
-                if (player.games >= 4 && player.games - match.Opponent(player).games >= 2)
+                if (SetEnded != null)
                 {
-                    if (SetEnded != null)
-                    {
-                        SetEnded.Invoke(scorer, scored);
-                    }
-
-                    return;
+                    SetEnded.Invoke(scorer, scored);
                 }
+
+                return;
             }
+
+            scorer.games++;
             
             foreach (Player player in match.players)
             {
@@ -239,7 +233,7 @@ namespace TennisFightingGame.Singles
 
             // TODO Add new game transition behaviour
             match.transitioning = true;
-            match.transition = new Transition(3); // cleans up previous subscriptions in the process
+            match.transition = new Transition("Game", 0.33f, 1.5f, 0.33f);
             match.transition.HalfFinished += PointSetup;
             
             service = match.Opponent(service);
@@ -250,26 +244,22 @@ namespace TennisFightingGame.Singles
         {
             match.inPlay = false;
 
-            scorer.sets++;
-
-            // Check match win (which is best-of)
-            foreach(Player player in match.players)
-            {   
-                if (player.sets > bestOf / 2)
+            if (IsOnMatchPoint(scorer))
+            {
+                match.transitioning = true;
+                match.transition = new Transition(10); // cleans up previous subscriptions in the process
+                match.transition.HalfFinished += () => 
                 {
-                    match.transitioning = true;
-                    match.transition = new Transition(10); // cleans up previous subscriptions in the process
-                    match.transition.HalfFinished += () => 
+                    if (MatchEnded != null)
                     {
-                        if (MatchEnded != null)
-                        {
-                            MatchEnded.Invoke();
-                        }
-                    };
+                        MatchEnded.Invoke();
+                    }
+                };
 
-                    return;
-                }
+                return;
             }
+
+            scorer.sets++;
             
             foreach (Player player in match.players)
             {
@@ -280,10 +270,10 @@ namespace TennisFightingGame.Singles
 
             // TODO Add new game transition behaviour
             match.transitioning = true;
-            match.transition = new Transition(5); // cleans up previous subscriptions in the process
+            match.transition = new Transition("Set", 0.5f, 4, 0.5f);
             match.transition.HalfFinished += PointSetup;
             
-            if (Game % 2 == 0)
+            if (IsChangeover)
             {
                 service = firstService;
             }
@@ -319,6 +309,38 @@ namespace TennisFightingGame.Singles
 			consecutiveHits = 0;
             player.state.serving = false;
             match.inPlay = true;
+        }
+
+        private bool IsOnGamePoint(Player player)
+        {
+            if ((player.points >= 4 && player.points - match.Opponent(player).points >= 1) ||
+                (player.points >= 3 && player.points - match.Opponent(player).points >= 2))
+            {
+                return true;
+            }
+
+            return false;
+        }
+        
+        private bool IsOnSetPoint(Player player)
+        {
+            if ((player.games >= 4 && player.games - match.Opponent(player).games >= 1) ||
+                (player.games >= 3 && player.games - match.Opponent(player).games >= 2))
+            {
+                return true;
+            }
+
+            return false;
+        }
+        
+        private bool IsOnMatchPoint(Player player)
+        {
+            if (player.sets == bestOf / 2)
+            {
+                return true;
+            }
+
+            return false;
         }
     }
 }
