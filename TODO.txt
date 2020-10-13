@@ -13,6 +13,8 @@ Known bugs to be fixed
 * There are now animations for attacks since they were reworked to not be 
   index based. The solution is probably to attack animations to attacks
 
+* Games don't end
+
 
 Possibly fixed but unchecked
 ----------------------------
@@ -27,7 +29,7 @@ Possibly fixed but unchecked
 TODO
 ----
 
-* Add transition that displays text
+* Custom comulative scalar per hitbox
 
 * Add changeovers and have a bit of endurance recovered on changeovers
 
@@ -50,6 +52,14 @@ TODO
 
 Minor TODOs
 -----------
+
+* Recover stamina when transition is half done rather than on score
+
+* Jorgito aerial smash 360 motion input
+
+* 10x stamina regen and increase usage
+
+* Refactor run for sprint in many fields
 
 * Add more particles
 
