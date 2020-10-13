@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
+using System.Linq;
 
 namespace TennisFightingGame
 {
@@ -45,11 +46,57 @@ namespace TennisFightingGame
 				content.Load<SoundEffect>("Characters/Jorgito/LoudGrunt2"),
 				content.Load<SoundEffect>("Characters/Jorgito/LoudGrunt3")
 			};
+
+			// Unstaged: Le di a Jorgito exhasusted attacks y le retoque varios 
+			//           ataques y agruegue un stat que faltaba
 			
 			Attack standingLight = new Attack(
 				action: Actions.Light,
 				aerialState: AerialStates.Standing,
-				startup: 0.166f, recovery: 0.05f,
+				startup: 0.1f, recovery: 0.1f,
+				staminaCost: 4,
+				hitboxes: new Hitbox[]
+				{
+					new Hitbox(
+						rectangle: new Rectangle(60, 40, 100, 60),
+						start: 0, duration: 0.25f,
+						force: new Vector2(800, -600),
+						hitStun: 0.1f, hitLag: 0.1f, shakeMagnitude: 2,
+						onAddedSounds: new SoundEffect[][] { SwingSounds },
+						onHitSounds: WeakHitSounds)
+				});
+			
+			Attack exhaustedStandingLight = new Attack(standingLight);
+			exhaustedStandingLight.exhaused = true;
+			exhaustedStandingLight.startup *= 1.5f;
+			exhaustedStandingLight.recovery *= 1.5f;
+
+			Attack airborneLight = new Attack(
+				action: Actions.Light,
+				aerialState: AerialStates.Airborne,
+				startup: 0.1f, recovery: 0.1f,
+				staminaCost: 4,
+				hitboxes: new Hitbox[]
+				{
+					new Hitbox(
+						rectangle: new Rectangle(60, 40, 100, 60),
+						start: 0, duration: 0.25f,
+						force: new Vector2(800, -300),
+						hitStun: 0.1f, hitLag: 0.1f, shakeMagnitude: 2,
+						onAddedSounds: new SoundEffect[][] { SwingSounds },
+						onHitSounds: WeakHitSounds)
+				});
+
+			Attack exhaustedAirborneLight = new Attack(airborneLight);
+			exhaustedAirborneLight.exhaused = true;
+			exhaustedAirborneLight.startup *= 1.5f;
+			exhaustedAirborneLight.recovery *= 1.5f;
+
+			Attack specialStandingLight = new Attack(
+				action: Actions.Light,
+				aerialState: AerialStates.Standing,
+				motionInput: QCFLight,
+				startup: 0.075f, recovery: 0.05f,
 				softHitCancel: true,
 				staminaCost: 4,
 				hitboxes: new Hitbox[]
@@ -64,10 +111,19 @@ namespace TennisFightingGame
 						onHitSounds: WeakHitSounds)
 				});
 
-			Attack airborneLight = new Attack(
+			Attack exhaustedSpecialStandingLight = new Attack(specialStandingLight);
+			exhaustedSpecialStandingLight.exhaused = true;
+			exhaustedSpecialStandingLight.startup *= 1.5f;
+			exhaustedSpecialStandingLight.recovery *= 1.5f;
+			foreach (Hitbox hitbox in exhaustedSpecialStandingLight.hitboxes)
+			{
+				hitbox.force *= 0.9f;
+			}
+
+			Attack specialAirborneLight = new Attack(
 				action: Actions.Light,
 				aerialState: AerialStates.Airborne,
-				startup: 0.15f, recovery: 0.075f,
+				startup: 0.075f, recovery: 0.075f,
 				softHitCancel: true, hardLandCancel: true,
 				staminaCost: 6,
 				hitboxes: new Hitbox[]
@@ -81,21 +137,14 @@ namespace TennisFightingGame
 						onAddedSounds: new SoundEffect[][] { SwingSounds }),
 				});
 
-			Attack specialStandingLight = new Attack(
-				action: Actions.Light,
-				aerialState: AerialStates.Standing,
-				motionInput: QCFLight,
-				startup: 0.075f, recovery: 0.1f,
-				staminaCost: 4,
-				hitboxes: new Hitbox[]
-				{
-					new Hitbox(
-						rectangle: new Rectangle(60, 40, 100, 60),
-						start: 0, duration: 0.25f,
-						force: new Vector2(800, -600),
-						hitStun: 0.1f, hitLag: 0.1f, shakeMagnitude: 2,
-						onHitSounds: WeakHitSounds)
-				});
+			Attack exhaustedSpecialAirborneLight = new Attack(specialAirborneLight);
+			exhaustedSpecialAirborneLight.exhaused = true;
+			exhaustedSpecialAirborneLight.startup *= 1.5f;
+			exhaustedSpecialAirborneLight.recovery *= 1.5f;
+			foreach (Hitbox hitbox in exhaustedSpecialAirborneLight.hitboxes)
+			{
+				hitbox.force *= 0.9f;
+			}
 
 			Attack standingMedium = new Attack(
 				action: Actions.Medium,
@@ -107,46 +156,84 @@ namespace TennisFightingGame
 				{
 					new Hitbox(
 						rectangle: new Rectangle(30, 5, 65, 65),
-						start: 0, duration: .11f,
-						force: new Vector2(1700, -800),
+						start: 0, duration: 0.11f,
+						force: new Vector2(1800, -900),
 						hitStun: 0.2f, hitLag: 0.2f,
 						onHitSounds: NormalHitSounds,
 						onAddedSounds: new SoundEffect[][] { SwingSounds }),
 					new Hitbox(
 						rectangle: new Rectangle(90, 15, 55, 55),
 						start: 0.11f, duration: 0.11f,
-						force: new Vector2(1700, -800),
+						force: new Vector2(1800, -900),
 						hitStun: 0.2f, hitLag: 0.2f,
 						onHitSounds: NormalHitSounds)
 				});
 
+			Attack exhaustedStandingMedium = new Attack(standingMedium);
+			exhaustedStandingMedium.exhaused = true;
+			exhaustedStandingMedium.startup *= 1.5f;
+			exhaustedStandingMedium.recovery *= 1.5f;
+			foreach (Hitbox hitbox in exhaustedStandingMedium.hitboxes)
+			{
+				hitbox.force *= 0.9f;
+			}
+
 			Attack airborneMedium = new Attack(standingMedium);
 			airborneMedium.aerialState = AerialStates.Airborne;
+
+			Attack exhaustedAirborneMedium = new Attack(airborneMedium);
+			exhaustedAirborneMedium.exhaused = true;
+			exhaustedAirborneMedium.startup *= 1.5f;
+			exhaustedAirborneMedium.recovery *= 1.5f;
+			foreach (Hitbox hitbox in exhaustedAirborneMedium.hitboxes)
+			{
+				hitbox.force *= 0.9f;
+			}
 
 			Attack standingHeavy = new Attack(
 				action: Actions.Heavy,
 				aerialState: AerialStates.Standing,
 				startup: 0.15f, recovery: 0.2f,
+				softHitCancel: true,
 				staminaCost: 8,
 				hitboxes: new Hitbox[]
 				{
 					new Hitbox(
 						rectangle: new Rectangle(30, 10, 50, 50),
 						start: 0, duration: 0.075f,
-						force: new Vector2(200, -1000),
+						force: new Vector2(600, -650),
+						gravity: 1700,
 						hitStun: 0.075f, hitLag: 0.075f,
 						onHitSounds: WeakHitSounds,
 						onAddedSounds: new SoundEffect[][] { SwingSounds, loudGrunts }),
 					new Hitbox(
 						rectangle: new Rectangle(90, -5, 75, 75),
 						start: 0.075f, duration: 0.175f,
-						force: new Vector2(2300, -625),
+						force: new Vector2(2600, -625),
 						hitLag: 0.4f, hitStun: 0.4f, shakeMagnitude: 6,
 						onHitSounds: NormalHitSounds)
 				});
 
+			Attack exhaustedStandingHeavy = new Attack(standingHeavy);
+			exhaustedStandingHeavy.exhaused = true;
+			exhaustedStandingHeavy.startup *= 1.5f;
+			exhaustedStandingHeavy.recovery *= 1.5f;
+			foreach (Hitbox hitbox in exhaustedStandingHeavy.hitboxes)
+			{
+				hitbox.force *= 0.9f;
+			}
+
 			Attack airborneHeavy = new Attack(standingHeavy);
 			airborneHeavy.aerialState = AerialStates.Airborne;
+
+			Attack exhaustedAirborneHeavy = new Attack(airborneHeavy);
+			exhaustedAirborneHeavy.exhaused = true;
+			exhaustedAirborneHeavy.startup *= 1.5f;
+			exhaustedAirborneHeavy.recovery *= 1.5f;
+			foreach (Hitbox hitbox in exhaustedAirborneHeavy.hitboxes)
+			{
+				hitbox.force *= 0.9f;
+			}
 
 			Attack specialStandingHeavy = new Attack(
 				action: Actions.Heavy,
@@ -238,13 +325,22 @@ namespace TennisFightingGame
 			Attack[] attacks = new Attack[]
 			{
 				specialStandingLight,
+				exhaustedSpecialStandingLight,
 				standingLight,
+				exhaustedStandingLight,
+				specialAirborneLight,
+				exhaustedSpecialAirborneLight,
 				airborneLight,
+				exhaustedAirborneLight,
 				standingMedium,
+				exhaustedStandingMedium,
 				airborneMedium,
+				exhaustedAirborneMedium,
 				specialStandingHeavy,
 				standingHeavy,
+				exhaustedStandingHeavy,
 				airborneHeavy,
+				exhaustedAirborneHeavy,
 				serveLight,
 				serveMedium,
 				serveHeavy
@@ -269,7 +365,7 @@ namespace TennisFightingGame
 				recoverThreshold: 5,
 				fastFallSpeed: 1000,
 				staminaRecovery: 15,
-				enduranceDegen: 0.075f,
+				enduranceDegen: 0.125f,
 				jumpSquat: 0.066f,
 				exhaustedJumpSquat: 0.15f,
 				turnDelay: 0.2f);
