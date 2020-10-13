@@ -189,8 +189,13 @@ namespace TennisFightingGame.Singles
         {
             match.inPlay = false;
 
+            // Instantiate transition so following events can change stuff
+            // about it before it being started
             match.transition = match.uiManager.GetTransition(scorer, scored);
             
+            /* The order here is very important, because we're checking if 
+             * we're on game/set/match point and we want to do those things 
+             * before adding sets/games/points respectively */
             if (IsOnMatchPoint(scorer))
             {
                 if (MatchEnded != null)
@@ -218,6 +223,7 @@ namespace TennisFightingGame.Singles
             }
 
             match.transition.HalfFinished += PointSetup;
+            // Service should be corrected, when needed, by events invoked before
             match.transition.Finished += () => service.state.serving = true;
             match.transition.Start();
         }
@@ -226,6 +232,7 @@ namespace TennisFightingGame.Singles
         {
             scorer.points++;
 
+            // Recover a stamina based on recovery and endurance
             foreach (Player player in match.players)
             {
                 player.AddStamina(player.stats.staminaRecovery * (player.endurance / Player.MaxEndurance));
@@ -237,13 +244,18 @@ namespace TennisFightingGame.Singles
         {
             scorer.games++;
             
+            // Recover full stamina reduced only by endurance
             foreach (Player player in match.players)
             {
                 player.AddStamina(Player.MaxStamina * (player.endurance / Player.MaxEndurance));
                 player.points = 0;
             }
 
-            service = match.Opponent(service);
+            // Service changes on changeovers, which occur on odd games
+            if (IsChangeover)
+            {
+                service = match.Opponent(service);
+            }
         }
 
         private void EndSet(Player scorer, Player scored)
@@ -257,14 +269,8 @@ namespace TennisFightingGame.Singles
                 player.games = 0;
             }
 
-            if (IsChangeover)
-            {
-                service = firstService;
-            }
-            else
-            {
-                service = match.Opponent(firstService);
-            }
+            // Service always changes every set
+            service = match.Opponent(firstService);
         }
 
         private void EndMatch(Player scorer, Player scored)
@@ -298,10 +304,11 @@ namespace TennisFightingGame.Singles
             match.inPlay = true;
         }
 
+        // A player is on game point when they have over 3 points and at least 
+        // one point on the opponent
         public bool IsOnGamePoint(Player player)
         {
-            if (player.points == 3 && player.points - match.Opponent(player).points >= 1 || 
-                player.points > 3 && player.points > match.Opponent(player).points)
+            if (player.points >= 3 && player.points > match.Opponent(player).points)
             {
                 return true;
             }
@@ -309,6 +316,8 @@ namespace TennisFightingGame.Singles
             return false;
         }
         
+        // A player is on game point when they have over 5 games and at least 
+        // one game on the opponent
         public bool IsOnSetPoint(Player player)
         {
             if (player.games >= 5 && player.games - match.Opponent(player).games >= 1 &&
