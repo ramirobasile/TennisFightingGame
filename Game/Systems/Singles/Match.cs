@@ -10,10 +10,9 @@ namespace TennisFightingGame.Singles
 		public Transition transition;
 		
 		private readonly Pause pause;
-		private readonly UIManager uiManager;
+		public readonly UIManager uiManager;
 
         private bool paused;
-        public bool transitioning;
         public float time;
 
         public Match(Character[] characters, Court court)
@@ -37,8 +36,7 @@ namespace TennisFightingGame.Singles
 			players[0].input.Pressed += action => Pause(action, PlayerIndex.One);
 			players[1].input.Pressed += action => Pause(action, PlayerIndex.Two);
 			pause.Resumed += () => paused = false;
-            pause.Quitted += MatchQuit;
-			manager.MatchEnded += MatchEnd;
+            pause.Quitted += Quit;
 			pause.ResettedPlayerPositions += () =>
 			{
 				foreach (Player player in players)
@@ -52,8 +50,6 @@ namespace TennisFightingGame.Singles
 				ball.velocity = Vector2.Zero;
 				ball.gravity = Ball.DefaultGravity;
 			};
-			
-			transition.Finished += () => transitioning = false;
 		}
 
         public override void Update()
@@ -64,7 +60,7 @@ namespace TennisFightingGame.Singles
                 return;
             }
 
-            if (transitioning)
+            if (transition.transitioning)
             {
 	            transition.Update();
             }
@@ -127,7 +123,7 @@ namespace TennisFightingGame.Singles
 			// UI layer
 			uiManager.Draw(spriteBatch);
 			
-			if (transitioning)
+			if (transition.transitioning)
 			{
 				transition.Draw(spriteBatch);
 			}

@@ -6,35 +6,26 @@ namespace TennisFightingGame
 {
 	public class Transition
 	{
-		private readonly UI.Label label;
-		private readonly float outDuration;
-		private readonly float betweenDuration;
-		private readonly float inDuration;
+		public float outDuration;
+		public float betweenDuration;
+		public float inDuration;
 
+		public bool transitioning;
 		private float time;
-		private bool done;
 		private bool halfway;
 
+		public Transition(float betweenDuration, float outDuration, float inDuration)
+		{
+			this.outDuration = outDuration;
+			this.betweenDuration = betweenDuration;
+			this.inDuration = inDuration;
+		}
+
+		// Fade out/in without between
 		public Transition(float duration)
 		{
 			this.outDuration = duration / 2;
 			this.inDuration = duration / 2;
-
-			this.label = new UI.Label("", new Point(0, TennisFightingGame.Viewport.Height / 2), Assets.TitleFont, 
-				center: true, verticalAlign: UI.VerticalAlign.Middle);
-			
-			time = duration;
-		}
-
-		public Transition(string text, float betweenDuration, float outDuration, float inDuration)
-		{
-			this.label = new UI.Label(text, new Point(0, TennisFightingGame.Viewport.Height / 2), Assets.TitleFont, 
-				center: true, verticalAlign: UI.VerticalAlign.Middle);
-			this.outDuration = outDuration;
-			this.betweenDuration = betweenDuration;
-			this.inDuration = inDuration;
-			
-			time = inDuration + betweenDuration + outDuration;
 		}
 
 		private float TotalDuration { get { return inDuration + betweenDuration + outDuration; } }
@@ -47,7 +38,7 @@ namespace TennisFightingGame
 
 		public void Update()
 		{
-			if (done)
+			if (!transitioning)
 			{
 				return;
 			}
@@ -59,7 +50,7 @@ namespace TennisFightingGame
 					Finished.Invoke();
 				}
 
-				done = true;
+				transitioning = false;
 			}
 			else
 			{
@@ -80,42 +71,30 @@ namespace TennisFightingGame
 		{
 			spriteBatch.Begin();
 			
-			// Unstaged: Ahora mismo estoy haciendo que las transiciones tengan 
-			// 3 secciones y que puede haber un label en el medio. No esta 
-			// andando muy bien
-
 			if(time > inDuration + betweenDuration) // Fade out
 			{
 				float alpha = (outDuration - (time - betweenDuration - inDuration)) / outDuration;
 
 				spriteBatch.Draw(Assets.PlaceholderTexture, TennisFightingGame.Viewport.Bounds, Color.Black * alpha);
-
-				label.color = Color.White * alpha;
-				label.Draw(spriteBatch);
 			}
 			else if (time <= outDuration) // Fade in
 			{
 				float alpha = time / inDuration;
 
 				spriteBatch.Draw(Assets.PlaceholderTexture, TennisFightingGame.Viewport.Bounds, Color.Black * alpha);
-
-				label.color = Color.White * alpha;
-				label.Draw(spriteBatch);
 			} 
 			else // Stay black
 			{
 				spriteBatch.Draw(Assets.PlaceholderTexture, TennisFightingGame.Viewport.Bounds,
 					Color.Black);
-				
-				label.color = Color.White;
-				label.Draw(spriteBatch);
 			}
 			
 			spriteBatch.End();
 		}
 
-		public void Reset()
+		public void Start()
 		{
+			transitioning = true;
 			time = inDuration + betweenDuration + outDuration;
 		}
 	}

@@ -21,6 +21,10 @@ namespace TennisFightingGame.Singles
 
 		private string[] points = { "0", "15", "30", "40", "60" };
 
+		float outDuration = 0.25f; 
+		float betweenDuration = 0.25f;
+		float inDuration = 0.25f;
+
         public UIManager(Match match)
         {
             this.match = match;
@@ -103,9 +107,6 @@ namespace TennisFightingGame.Singles
 				Assets.EmphasisFont,
 				blinkSpeed: 8,
 				shadow: true);
-
-			// Blink on score
-			match.manager.PointEnded += (_, __) => { pointsLabel.blink = 1; };
         }
 
 		public void Update()
@@ -126,13 +127,13 @@ namespace TennisFightingGame.Singles
             // UI is always on its own layer
             spriteBatch.Begin();
 
+			// TODO Put this whole thing in a method that is subscribed to MatchManager point score
+			// events
+
 			foreach (UI.Label label in nameLabels)
 			{
 				label.Draw(spriteBatch);
 			}
-
-			// TODO Put this whole thing in a method that is subscribed to MatchManager point score
-			// events
 
 			if (match.players[0].points <= 4 && match.players[1].points <= 4)
 			{
@@ -140,6 +141,7 @@ namespace TennisFightingGame.Singles
 					points[match.players[1].points]);
 			}
 
+			// Deuce/Advantage
 			foreach (Player player in match.players)
 			{
 				if (player.points == match.Opponent(player).points && player.points >= 3)
@@ -157,16 +159,14 @@ namespace TennisFightingGame.Singles
 			pointsLabel.Draw(spriteBatch);
 			
 			gamesLabel.text = string.Format("{0} - {1}", match.players[0].games, match.players[1].games);
-			
 			gamesLabel.Draw(spriteBatch);
 
 			setsLabel.text = string.Format("{0} - {1}", match.players[0].sets,  match.players[1].sets);
-			
 			setsLabel.Draw(spriteBatch);
 			
-			// Blinking serving label
 			for (int i = 0; i < match.players.Length; i++)
 			{
+				// Blinking serving label
 				if (match.players[i].state.serving)
 				{
 					servingLabels[i].Draw(spriteBatch);
@@ -175,19 +175,41 @@ namespace TennisFightingGame.Singles
 						servingLabels[i].blink = 100;
 					}
 				}
-			}
-
-			for (int i = 0; i < staminaBars.Length; i++)
-            {
+				
                 staminaBars[i].Draw(spriteBatch, match.players[i].stamina / Player.MaxStamina);
-            }
 
-			for (int i = 0; i < enduranceBars.Length; i++)
-            {
                 enduranceBars[i].Draw(spriteBatch, match.players[i].endurance / Player.MaxEndurance);
-            }
+			}
 
             spriteBatch.End();
         }
+
+		public Transition GetTransition(Player scorer, Player scored, bool gameEnd = false, 
+			bool setEnd = false, bool matchEnd = false)
+		{
+			// TODO Transitioning label which starts on transition end
+			/*string text = "";
+
+			if (match.manager.IsOnGamePoint(scorer))
+			{
+				if (match.manager.IsOnSetPoint(scorer))
+				{
+					if (match.manager.IsOnMatchPoint(scorer))
+					{
+						text = string.Format("Match Point ({0})", scorer.name);
+					}
+					else
+					{
+						text = string.Format("Set Point ({0})", scorer.name);
+					}
+				}
+				else
+				{
+					text = string.Format("Game Point ({0})", scorer.name);
+				}
+			}*/
+			
+			return new Transition(outDuration, betweenDuration, inDuration);
+		}
     }
 }

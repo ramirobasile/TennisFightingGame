@@ -11,31 +11,31 @@
 		public Player[] players;
         public bool inPlay;
 
-		public delegate void MatchEndedEventHandler();
-		public delegate void MatchQuittedEventHandler();
+		public delegate void EndedEventHandler();
+		public delegate void QuittedEventHandler();
 
-		public event MatchEndedEventHandler MatchEnded;
-        public event MatchQuittedEventHandler MatchQuitted;
+		public event EndedEventHandler Ended;
+        public event QuittedEventHandler Quitted;
 
 		/// <summary>
 		/// Allows derived classes to invoke MatchEnded event.
 		/// </summary>
 		protected virtual void MatchEnd()
         {
-            if (MatchEnded != null)
+            if (Ended != null)
             {
-                MatchEnded.Invoke();
+                Ended.Invoke();
             }
         }
 
 		/// <summary>
 		/// Allows derived classes to invoke MatchQuitted event.
 		/// </summary>
-		protected virtual void MatchQuit()
+		public virtual void Quit()
         {
-            if (MatchQuitted != null)
+            if (Quitted != null)
             {
-                MatchQuitted.Invoke();
+                Quitted.Invoke();
             }
         }
     }

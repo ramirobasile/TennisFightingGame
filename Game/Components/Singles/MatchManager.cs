@@ -28,6 +28,7 @@ namespace TennisFightingGame.Singles
             this.gamesDifference = gamesDifference;
 
             PassedNet += PassNet;
+            Scored += Score;
             PointEnded += EndPoint;
             GameEnded += EndGame;
             SetEnded += EndSet;
@@ -73,11 +74,13 @@ namespace TennisFightingGame.Singles
 
 		public delegate void CrossingEventHandler(int side);
 		public delegate void PassedNetEventHandler(int side);
+		public delegate void ScoredEventHandler(Player scorer, Player scored);
 		public delegate void PointEndEventHandler(Player scorer, Player scored);
 		public delegate void GameEndEventHandler(Player scorer, Player scored);
 		public delegate void SetEndEventHandler(Player scorer, Player scored);
-		public delegate void MatchEndEventHandler();
+		public delegate void MatchEndEventHandler(Player scorer, Player scored);
 
+		public event ScoredEventHandler Scored;
 		public event PointEndEventHandler PointEnded;
 		public event GameEndEventHandler GameEnded;
 		public event SetEndEventHandler SetEnded;
@@ -119,9 +122,9 @@ namespace TennisFightingGame.Singles
 
             if (bounces > 1)
             {
-                if (PointEnded != null)
+                if (Scored != null)
                 {
-                    PointEnded.Invoke(match.GetPlayerBySide(-ballSide), match.GetPlayerBySide(ballSide));
+                    Scored.Invoke(match.GetPlayerBySide(-ballSide), match.GetPlayerBySide(ballSide));
                 }
             }
         }
@@ -154,9 +157,9 @@ namespace TennisFightingGame.Singles
 
 			if (consecutiveHits > 3)
 			{
-				if (PointEnded != null)
+				if (Scored != null)
 				{
-					PointEnded.Invoke(match.GetPlayerBySide(-ballSide), match.GetPlayerBySide(ballSide));
+					Scored.Invoke(match.GetPlayerBySide(-ballSide), match.GetPlayerBySide(ballSide));
 				}
 			}
 		}
@@ -172,9 +175,9 @@ namespace TennisFightingGame.Singles
             
 			if (consecutiveHits == 0)
 			{
-				if (PointEnded != null)
+				if (Scored != null)
 				{
-					PointEnded.Invoke(match.GetPlayerBySide(newSide), match.GetPlayerBySide(ballSide));
+					Scored.Invoke(match.GetPlayerBySide(newSide), match.GetPlayerBySide(ballSide));
 				}
 			}
 
@@ -182,20 +185,45 @@ namespace TennisFightingGame.Singles
             consecutiveHits = 0;
         }
 
-        private void EndPoint(Player scorer, Player scored)
+        private void Score(Player scorer, Player scored)
         {
             match.inPlay = false;
 
-            if (IsOnGamePoint(scorer))
+            match.transition = match.uiManager.GetTransition(scorer, scored);
+            
+            if (IsOnMatchPoint(scorer))
+            {
+                if (MatchEnded != null)
+                {
+                    MatchEnded.Invoke(scorer, scored);
+                }
+            } 
+            else if (IsOnSetPoint(scorer))
+            {
+                if (SetEnded != null)
+                {
+                    SetEnded.Invoke(scorer, scored);
+                }
+            }
+            else if (IsOnGamePoint(scorer))
             {
                 if (GameEnded != null)
                 {
                     GameEnded.Invoke(scorer, scored);
                 }
-                
-                return;
+            }
+            else if (PointEnded != null)
+            {
+                PointEnded.Invoke(scorer, scored);
             }
 
+            match.transition.HalfFinished += PointSetup;
+            match.transition.Finished += () => service.state.serving = true;
+            match.transition.Start();
+        }
+
+        private void EndPoint(Player scorer, Player scored)
+        {
             scorer.points++;
 
             foreach (Player player in match.players)
@@ -203,26 +231,10 @@ namespace TennisFightingGame.Singles
                 player.AddStamina(player.stats.staminaRecovery * (player.endurance / Player.MaxEndurance));
             }
 
-            match.transitioning = true;
-            match.transition = new Transition("", 0.2f, 0.33f, 0.2f);
-            match.transition.HalfFinished += PointSetup;
-            match.transition.Finished += () => service.state.serving = true;
         }
 
         private void EndGame(Player scorer, Player scored)
         {
-            match.inPlay = false;
-
-            if (IsOnSetPoint(scorer))
-            {
-                if (SetEnded != null)
-                {
-                    SetEnded.Invoke(scorer, scored);
-                }
-
-                return;
-            }
-
             scorer.games++;
             
             foreach (Player player in match.players)
@@ -231,34 +243,11 @@ namespace TennisFightingGame.Singles
                 player.points = 0;
             }
 
-            // TODO Add new game transition behaviour
-            match.transitioning = true;
-            match.transition = new Transition("Game", 0.33f, 1.5f, 0.33f);
-            match.transition.HalfFinished += PointSetup;
-            
             service = match.Opponent(service);
-            match.transition.Finished += () => service.state.serving = true;
         }
 
         private void EndSet(Player scorer, Player scored)
         {
-            match.inPlay = false;
-
-            if (IsOnMatchPoint(scorer))
-            {
-                match.transitioning = true;
-                match.transition = new Transition(10); // cleans up previous subscriptions in the process
-                match.transition.HalfFinished += () => 
-                {
-                    if (MatchEnded != null)
-                    {
-                        MatchEnded.Invoke();
-                    }
-                };
-
-                return;
-            }
-
             scorer.sets++;
             
             foreach (Player player in match.players)
@@ -268,11 +257,6 @@ namespace TennisFightingGame.Singles
                 player.games = 0;
             }
 
-            // TODO Add new game transition behaviour
-            match.transitioning = true;
-            match.transition = new Transition("Set", 0.5f, 4, 0.5f);
-            match.transition.HalfFinished += PointSetup;
-            
             if (IsChangeover)
             {
                 service = firstService;
@@ -281,8 +265,11 @@ namespace TennisFightingGame.Singles
             {
                 service = match.Opponent(firstService);
             }
-            service = match.players[0];
-            match.transition.Finished += () => service.state.serving = true;
+        }
+
+        private void EndMatch(Player scorer, Player scored)
+        {
+            match.transition.HalfFinished += match.Quit;
         }
 
         private void PointSetup()
@@ -311,10 +298,10 @@ namespace TennisFightingGame.Singles
             match.inPlay = true;
         }
 
-        private bool IsOnGamePoint(Player player)
+        public bool IsOnGamePoint(Player player)
         {
-            if ((player.points >= 4 && player.points - match.Opponent(player).points >= 1) ||
-                (player.points >= 3 && player.points - match.Opponent(player).points >= 2))
+            if (player.points == 3 && player.points - match.Opponent(player).points >= 1 || 
+                player.points > 3 && player.points > match.Opponent(player).points)
             {
                 return true;
             }
@@ -322,10 +309,10 @@ namespace TennisFightingGame.Singles
             return false;
         }
         
-        private bool IsOnSetPoint(Player player)
+        public bool IsOnSetPoint(Player player)
         {
-            if ((player.games >= 4 && player.games - match.Opponent(player).games >= 1) ||
-                (player.games >= 3 && player.games - match.Opponent(player).games >= 2))
+            if (player.games >= 5 && player.games - match.Opponent(player).games >= 1 &&
+                IsOnGamePoint(player))
             {
                 return true;
             }
@@ -333,9 +320,9 @@ namespace TennisFightingGame.Singles
             return false;
         }
         
-        private bool IsOnMatchPoint(Player player)
+        public bool IsOnMatchPoint(Player player)
         {
-            if (player.sets == bestOf / 2)
+            if (player.sets == bestOf / 2 && IsOnSetPoint(player))
             {
                 return true;
             }
