@@ -103,23 +103,22 @@ namespace TennisFightingGame
 				motionInput: DPMedium,
 				startup: 0.15f, recovery: 0.5f,
 				staminaCost: 15,
-				onStartupSounds: new SoundEffect[][] { grunts },
+				onStartupSounds: new SoundEffect[][] { loudGrunts },
 				hitboxes: new Hitbox[]
 				{
 					new Hitbox(
-						rectangle: new Rectangle(100, 0, 90, 140),
-						start: 0, duration: 0.2125f,
+						rectangle: new Rectangle(60, -40, 90, 140),
+						start: 0, duration: 0.2f,
 						force: new Vector2(2600, -550),
 						hitStun: 0.6f, hitLag: 0.6f, shakeMagnitude: 10,
 						onHitSounds: StrongHitSounds,
 						onAddedSounds: new SoundEffect[][] { SwingSounds }),
 					new Hitbox(
-						rectangle: new Rectangle(100, -100, 90, 90),
-						start: 0.2125f, duration: 0.1f,
+						rectangle: new Rectangle(60, -130, 90, 90),
+						start: 0.2f, duration: 0.1f,
 						force: new Vector2(2600, -550),
 						hitStun: 0.6f, hitLag: 0.6f, shakeMagnitude: 10,
-						onHitSounds: StrongHitSounds,
-						onAddedSounds: new SoundEffect[][] { loudGrunts }),
+						onHitSounds: StrongHitSounds),
 				});
 
 			Attack specialAirborneMedium = new Attack(specialStandingMedium);
@@ -152,7 +151,7 @@ namespace TennisFightingGame
 				action: Actions.Heavy,
 				aerialState: AerialStates.Standing,
 				motionInput: new Actions[] { Actions.Left, Actions.Right, Actions.Heavy },
-				chargeTime: 1,
+				chargeTime: 1.5f,
 				startup: 0.2f, recovery: 1,
 				staminaCost: 20,
 				hitboxes: new Hitbox[]
@@ -226,6 +225,9 @@ namespace TennisFightingGame
             	serveHeavy,
             };
 
+			// Unstaged: Le di a Jorgito exhasusted attacks y le retoque varios 
+			//           ataques y agruegue un stat que faltaba
+			
 			Stats stats = new Stats(
 				gravity: 4500,
 				friction: 2500,
@@ -245,7 +247,7 @@ namespace TennisFightingGame
 				recoverThreshold: 5,
 				fastFallSpeed: 1000,
 				staminaRecovery: 15,
-				enduranceDegen: 0.1f,
+				enduranceDegen: 0.2f,
 				jumpSquat: 0.116f,
 				exhaustedJumpSquat: 0.2f,
 				turnDelay: 0.2f);
