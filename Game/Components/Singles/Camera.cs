@@ -42,14 +42,14 @@ namespace TennisFightingGame.Singles
             margin = match.players[0].sprite.frameSize.X * 2;
 
 
-			defender = match.manager.service;
-            attacker = match.Opponent(match.manager.service);
+			defender = match.manager.server;
+            attacker = match.Opponent(match.manager.server);
 
 			// HACK A bit too hard coded maybe...
-			match.manager.service.moveset.Served += SetFocus;
-			match.manager.PointEnded += (_, __) => SetFocus(match.manager.service);
-			match.manager.GameEnded += (_, __) => SetFocus(match.manager.service);
-			match.manager.SetEnded += (_, __) => SetFocus(match.manager.service);
+			match.manager.server.moveset.Served += SetFocus;
+			match.manager.PointEnded += (_, __) => SetFocus(match.manager.server);
+			match.manager.GameEnded += (_, __) => SetFocus(match.manager.server);
+			match.manager.SetEnded += (_, __) => SetFocus(match.manager.server);
             match.manager.Crossing += Crossing;
 			match.manager.PassedNet += ChangeAttacker;
         }

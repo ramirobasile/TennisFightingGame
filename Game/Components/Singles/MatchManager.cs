@@ -7,6 +7,9 @@ namespace TennisFightingGame.Singles
 
     public class MatchManager
     {
+        private const float StaminaOnChangeoverScalar = 3;
+        private const float StaminaOnGameScalar = 1.5f;
+
         private readonly Match match;
         private readonly int bestOf;
         private readonly int minGames;
@@ -16,8 +19,8 @@ namespace TennisFightingGame.Singles
         public int consecutiveHits; // combo
         public int ballSide = -1; // the side of the court the ball currently is in
 
-        public Player service;
-        private readonly Player firstService;
+        public Player server;
+        private readonly Player firstServer;
 
         public MatchManager(Match match, int bestOf = 1, int minGames = 6, 
             int gamesDifference = 2)
@@ -39,9 +42,9 @@ namespace TennisFightingGame.Singles
                 player.moveset.Served += Serve;
             }
             
-            service = match.players[TennisFightingGame.Random.Next(0, match.players.Length)];
-            firstService = service;
-            service.state.serving = true;
+            server = match.players[TennisFightingGame.Random.Next(0, match.players.Length)];
+            firstServer = server;
+            server.state.serving = true;
         }
 
         private bool IsChangeover { get { return Game % 2 == 0; } }
@@ -224,7 +227,7 @@ namespace TennisFightingGame.Singles
 
             match.transition.HalfFinished += PointSetup;
             // Service should be corrected, when needed, by events invoked before
-            match.transition.Finished += () => service.state.serving = true;
+            match.transition.Finished += () => server.state.serving = true;
             match.transition.Start();
         }
 
@@ -237,25 +240,33 @@ namespace TennisFightingGame.Singles
             {
                 player.AddStamina(player.stats.staminaRecovery * (player.endurance / Player.MaxEndurance));
             }
-
         }
 
         private void EndGame(Player scorer, Player scored)
         {
             scorer.games++;
             
-            // Recover full stamina reduced only by endurance
             foreach (Player player in match.players)
             {
-                player.AddStamina(Player.MaxStamina * (player.endurance / Player.MaxEndurance));
+                // More stamina than usual is recovered between games. 
+                // Even more in changeovers (odd games)
+                if (IsChangeover)
+                {
+                    player.AddStamina(player.stats.staminaRecovery * 
+                        StaminaOnChangeoverScalar * (player.endurance / Player.MaxEndurance));
+                }
+                else
+                {
+                    player.AddStamina(player.stats.staminaRecovery * StaminaOnGameScalar * 
+                        (player.endurance / Player.MaxEndurance));
+                }
+
                 player.points = 0;
             }
 
-            // Service changes on changeovers, which occur on odd games
-            if (IsChangeover)
-            {
-                service = match.Opponent(service);
-            }
+            // Service exchange every game
+            server = match.Opponent(server);
+            
         }
 
         private void EndSet(Player scorer, Player scored)
@@ -269,8 +280,8 @@ namespace TennisFightingGame.Singles
                 player.games = 0;
             }
 
-            // Service always changes every set
-            service = match.Opponent(firstService);
+            // Service exchange every set
+            server = match.Opponent(server);
         }
 
         private void EndMatch(Player scorer, Player scored)
