@@ -20,7 +20,7 @@
 		/// <summary>
 		/// Allows derived classes to invoke MatchEnded event.
 		/// </summary>
-		protected virtual void MatchEnd()
+		protected virtual void End()
         {
             if (Ended != null)
             {
@@ -31,7 +31,7 @@
 		/// <summary>
 		/// Allows derived classes to invoke MatchQuitted event.
 		/// </summary>
-		public virtual void Quit()
+		protected virtual void Quit()
         {
             if (Quitted != null)
             {

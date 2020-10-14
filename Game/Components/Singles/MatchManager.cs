@@ -286,7 +286,7 @@ namespace TennisFightingGame.Singles
 
         private void EndMatch(Player scorer, Player scored)
         {
-            match.transition.HalfFinished += match.Quit;
+            match.transition.HalfFinished += match.End;
         }
 
         private void PointSetup()

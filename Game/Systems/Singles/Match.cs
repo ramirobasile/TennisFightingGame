@@ -148,5 +148,10 @@ namespace TennisFightingGame.Singles
                 paused = true;
             }
 		}
+
+		public void End()
+		{
+			base.End();
+		}
     }
 }
