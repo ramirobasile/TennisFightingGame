@@ -19,7 +19,7 @@ namespace TennisFightingGame.Singles
         {
 			this.court = court;
 
-            ball = new Ball(new Rectangle(0, 0, 30, 30), Assets.PlaceholderTexture, this);
+            ball = new Ball(new Rectangle(0, 0, 35, 35), Assets.PlaceholderTexture, this);
 
             players = new Player[]
             {
