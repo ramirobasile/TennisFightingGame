@@ -1,3 +1,4 @@
+using System;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
@@ -5,7 +6,7 @@ namespace TennisFightingGame.UI
 {
     public struct Bar
     {
-        private const float FillSpeed = 12;
+        private const float FillSpeed = 3;
 
         private readonly Texture2D backgroundTexture;
         private readonly Texture2D fillTexture;
@@ -13,7 +14,8 @@ namespace TennisFightingGame.UI
         private readonly int direction;
         private readonly Color color;
         
-        private Rectangle fillRectangle;
+        private Rectangle lagFillRectangle;
+        private Rectangle realFillRectangle;
 
         public Bar(Texture2D backgroundTexture, Texture2D fillTexture,
         	Rectangle rectangle, Color color, int direction = 1)
@@ -24,28 +26,35 @@ namespace TennisFightingGame.UI
             this.direction = direction;
             this.color = color;
 
-            fillRectangle = new Rectangle();
+            lagFillRectangle = new Rectangle();
+            realFillRectangle = new Rectangle();
         }
 
         public void Draw(SpriteBatch spriteBatch, float newFill)
         {
-            float fill = (int)MathHelper.Lerp(
-                fillRectangle.Width, 
+            int realFill = (int)(rectangle.Width * newFill);
+                
+            int lagFill = (int)MathHelper.Lerp(
+                lagFillRectangle.Width, 
                 rectangle.Width * newFill, 
-                TennisFightingGame.DeltaTime * FillSpeed) + 1;
+                TennisFightingGame.DeltaTime * FillSpeed);
 
             if (direction == 1)
             {
-                fillRectangle = new Rectangle(rectangle.X, rectangle.Y, (int)fill, rectangle.Height);
+                realFillRectangle = new Rectangle(rectangle.X, rectangle.Y, realFill, rectangle.Height);
+                lagFillRectangle = new Rectangle(rectangle.X, rectangle.Y, lagFill, rectangle.Height);
             }
             else
             {
-                fillRectangle = new Rectangle(rectangle.X + rectangle.Width - (int)fill, rectangle.Y,
-                    (int)fill, rectangle.Height);
+                realFillRectangle = new Rectangle(rectangle.X + rectangle.Width - realFill, rectangle.Y,
+                    realFill, rectangle.Height);
+                lagFillRectangle = new Rectangle(rectangle.X + rectangle.Width - lagFill, rectangle.Y,
+                    lagFill, rectangle.Height);
             }
 
             spriteBatch.Draw(backgroundTexture, rectangle, Color.Gray); // colors are WIP
-            spriteBatch.Draw(fillTexture, fillRectangle, color);
+            spriteBatch.Draw(fillTexture, lagFillRectangle, Color.Red);
+            spriteBatch.Draw(fillTexture, realFillRectangle, color);
         }
     }
 }

@@ -238,7 +238,10 @@ namespace TennisFightingGame.Singles
             // Recover a stamina based on recovery and endurance
             foreach (Player player in match.players)
             {
-                player.AddStamina(player.stats.staminaRecovery * (player.endurance / Player.MaxEndurance));
+                    match.transition.HalfFinished += () => 
+                    {
+                        player.AddStamina(player.stats.staminaRecovery * (player.endurance / Player.MaxEndurance));
+                    };
             }
         }
 
@@ -252,13 +255,19 @@ namespace TennisFightingGame.Singles
                 // Even more in changeovers (odd games)
                 if (IsChangeover)
                 {
-                    player.AddStamina(player.stats.staminaRecovery * 
-                        StaminaOnChangeoverScalar * (player.endurance / Player.MaxEndurance));
+                    match.transition.HalfFinished += () => 
+                    {
+                        player.AddStamina(player.stats.staminaRecovery * 
+                            StaminaOnChangeoverScalar * (player.endurance / Player.MaxEndurance));
+                    };
                 }
                 else
                 {
-                    player.AddStamina(player.stats.staminaRecovery * StaminaOnGameScalar * 
-                        (player.endurance / Player.MaxEndurance));
+                    match.transition.HalfFinished += () => 
+                    {
+                        player.AddStamina(player.stats.staminaRecovery * StaminaOnGameScalar * 
+                            (player.endurance / Player.MaxEndurance));
+                    };
                 }
 
                 player.points = 0;
@@ -275,7 +284,8 @@ namespace TennisFightingGame.Singles
             
             foreach (Player player in match.players)
             {
-                player.AddStamina(Player.MaxStamina);
+                match.transition.HalfFinished += () => { player.AddStamina(Player.MaxStamina); };
+                match.transition.HalfFinished += () =>  { player.AddEndurance(Player.MaxEndurance); };
                 player.points = 0;
                 player.games = 0;
             }

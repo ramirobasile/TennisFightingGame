@@ -251,6 +251,11 @@ namespace TennisFightingGame
 			stamina = MathHelper.Clamp(stamina + value, 0, MaxStamina);
 		}
 
+		public void AddEndurance(float value)
+		{
+			endurance = MathHelper.Clamp(endurance + value, 0, MaxEndurance);
+		}
+
         private void Jump()
         {
 			if (!state.serving)
