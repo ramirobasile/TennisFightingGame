@@ -9,6 +9,7 @@ namespace TennisFightingGame
 	{
 		static partial void LoadMonkey(ContentManager content)
 		{
+			/*
 			SoundEffect[] grunts = new SoundEffect[]
 			{
 				content.Load<SoundEffect>("Characters/Monkey/Grunt1"),
@@ -280,6 +281,7 @@ namespace TennisFightingGame
 				content.Load<SoundEffect>("Characters/Monkey/Turn"));
 
 			Characters.Add(monkey);
+			*/
 		}
 	}
 }

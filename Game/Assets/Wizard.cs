@@ -9,6 +9,7 @@ namespace TennisFightingGame
 	{
 		static partial void LoadWizard(ContentManager content)
 		{
+			/*
 			SoundEffect[] wizardGrunts = new SoundEffect[] { 
 				content.Load<SoundEffect>("Characters/Wizard/Grunt1"),
 				content.Load<SoundEffect>("Characters/Wizard/Grunt2"), 
@@ -122,6 +123,7 @@ namespace TennisFightingGame
 				);	
 
 			Characters.Add(wizard);
+			*/
 		}
 	}
 }
