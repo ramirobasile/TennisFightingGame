@@ -46,15 +46,12 @@ namespace TennisFightingGame
 				content.Load<SoundEffect>("Characters/Jorgito/LoudGrunt2"),
 				content.Load<SoundEffect>("Characters/Jorgito/LoudGrunt3")
 			};
-
-			// Unstaged: Le di a Jorgito exhasusted attacks y le retoque varios 
-			//           ataques y agruegue un stat que faltaba
 			
 			Attack standingLight = new Attack(
 				action: Actions.Light,
 				aerialState: AerialStates.Standing,
 				startup: 0.1f, recovery: 0.1f,
-				staminaCost: 4,
+				staminaCost: 8,
 				hitboxes: new Hitbox[]
 				{
 					new Hitbox(
@@ -75,7 +72,7 @@ namespace TennisFightingGame
 				action: Actions.Light,
 				aerialState: AerialStates.Airborne,
 				startup: 0.1f, recovery: 0.1f,
-				staminaCost: 4,
+				staminaCost: 8,
 				hitboxes: new Hitbox[]
 				{
 					new Hitbox(
@@ -98,7 +95,7 @@ namespace TennisFightingGame
 				motionInput: QCFLight,
 				startup: 0.075f, recovery: 0.05f,
 				softHitCancel: true,
-				staminaCost: 4,
+				staminaCost: 8,
 				hitboxes: new Hitbox[]
 				{
 					new Hitbox(
@@ -125,7 +122,7 @@ namespace TennisFightingGame
 				aerialState: AerialStates.Airborne,
 				startup: 0.075f, recovery: 0.075f,
 				softHitCancel: true, hardLandCancel: true,
-				staminaCost: 6,
+				staminaCost: 10,
 				hitboxes: new Hitbox[]
 				{
 					new Hitbox(
@@ -150,7 +147,7 @@ namespace TennisFightingGame
 				action: Actions.Medium,
 				aerialState: AerialStates.Standing,
 				startup: 0.09f, recovery: 0.15f,
-				staminaCost: 6,
+				staminaCost: 12,
 				onStartupSounds: new SoundEffect[][] { grunts },
 				hitboxes: new Hitbox[]
 				{
@@ -241,7 +238,7 @@ namespace TennisFightingGame
 				motionInput: new Actions[] { Actions.Left, Actions.Down, Actions.Right, Actions.Heavy },
 				onStartupSounds: new SoundEffect[][] { loudGrunts },
 				startup: 0.2f, recovery: 0.425f,
-				staminaCost: 12,
+				staminaCost: 18,
 				hitboxes: new Hitbox[]
 				{
 					new Hitbox(
@@ -258,7 +255,7 @@ namespace TennisFightingGame
 				aerialState: AerialStates.Standing,
 				serve: true,
 				startup: 0, recovery: 0.05f,
-				staminaCost: 2,
+				staminaCost: 10,
 				onStartupSounds: new SoundEffect[][] { grunts },
 				multiHit: true,
 				hitboxes: new Hitbox[]
@@ -281,7 +278,7 @@ namespace TennisFightingGame
 				aerialState: AerialStates.Standing,
 				serve: true,
 				startup: 0, recovery: 0.2f,
-				staminaCost: 6,
+				staminaCost: 20,
 				onStartupSounds: new SoundEffect[][] { grunts },
 				multiHit: true,
 				hitboxes: new Hitbox[]
@@ -304,7 +301,7 @@ namespace TennisFightingGame
 				aerialState: AerialStates.Standing,
 				serve: true,
 				startup: 0, recovery: 0.5f,
-				staminaCost: 14,
+				staminaCost: 35,
 				onStartupSounds: new SoundEffect[][] { grunts },
 				multiHit: true,
 				hitboxes: new Hitbox[]
@@ -349,26 +346,30 @@ namespace TennisFightingGame
 			Stats stats = new Stats(
 				gravity: 4500,
 				friction: 2000,
-				staminaRegen: 1.45f,
-				runSpeed: 800,
-				runStaminaCost: 12,
-				runningJumpSpeed: 1100,
+
 				walkSpeed: 325,
-				walkStaminaCost: 1,
-				jumpSpeed: 1100,
-				jumpStaminaCost: 4,
-				driftSpeed: 30,
+				runSpeed: 800,
 				exhaustedSpeed: 275,
+				driftSpeed: 30,
+
+				jumpSpeed: 1100,
+				runningJumpSpeed: 1100,
 				exhaustedJumpSpeed: 975,
-				exhaustedJumpStaminaCost: 1,
-				exhaustedThreshold: 1,
-				recoverThreshold: 5,
 				fastFallSpeed: 1000,
-				staminaRecovery: 15,
-				enduranceDegen: 0.125f,
+
 				jumpSquat: 0.066f,
 				exhaustedJumpSquat: 0.15f,
-				turnDelay: 0.2f);
+				turnDelay: 0.2f,
+
+				staminaRegen: 6,
+				exhaustedThreshold: 1,
+				recoverThreshold: 5,
+				walkStaminaCost: 1,
+				runStaminaCost: 15,
+				jumpStaminaCost: 6,
+				exhaustedJumpStaminaCost: 2,
+				enduranceDegen: 0.5f,
+				staminaRecovery: 30);
 
 			Character jorgito = new Character(
 				"Jorgito",

@@ -50,7 +50,7 @@ namespace TennisFightingGame
 				action: Actions.Light,
 				aerialState: AerialStates.Standing,
 				startup: 0.09f, recovery: 0.04f,
-				staminaCost: 4,
+				staminaCost: 8,
 				hitboxes: new Hitbox[]
 				{
 					new Hitbox(
@@ -69,7 +69,7 @@ namespace TennisFightingGame
 				action: Actions.Medium,
 				aerialState: AerialStates.Standing,
 				startup: 0.285f, recovery: 0.2125f,
-				staminaCost: 7,
+				staminaCost: 20,
 				onStartupSounds: new SoundEffect[][] { loudGrunts },
 				hitboxes: new Hitbox[]
 				{
@@ -102,7 +102,7 @@ namespace TennisFightingGame
 				aerialState: AerialStates.Standing,
 				motionInput: DPMedium,
 				startup: 0.15f, recovery: 0.5f,
-				staminaCost: 15,
+				staminaCost: 30,
 				onStartupSounds: new SoundEffect[][] { loudGrunts },
 				hitboxes: new Hitbox[]
 				{
@@ -128,7 +128,7 @@ namespace TennisFightingGame
 				action: Actions.Heavy,
 				aerialState: AerialStates.Standing,
 				startup: 0.3f, recovery: 0.3f,
-				staminaCost: 10,
+				staminaCost: 25,
 				onStartupSounds: new SoundEffect[][] { loudGrunts },
 				hitboxes: new Hitbox[]
 				{
@@ -153,7 +153,7 @@ namespace TennisFightingGame
 				motionInput: new Actions[] { Actions.Left, Actions.Right, Actions.Heavy },
 				chargeTime: 1.5f,
 				startup: 0.2f, recovery: 1,
-				staminaCost: 20,
+				staminaCost: 35,
 				hitboxes: new Hitbox[]
 				{
 	                new Hitbox(
@@ -170,7 +170,7 @@ namespace TennisFightingGame
 				aerialState: AerialStates.Standing,
 				serve: true,
 				startup: 0, recovery: 0.2f,
-				staminaCost: 5,
+				staminaCost: 10,
                 onStartupSounds: new SoundEffect[][] { grunts },
 				multiHit: true,
 				hitboxes: new Hitbox[]
@@ -193,7 +193,7 @@ namespace TennisFightingGame
 				aerialState: AerialStates.Standing,
 				serve: true,
 				startup: 0, recovery: 0.45f,
-				staminaCost: 25,
+				staminaCost: 40,
                 onStartupSounds: new SoundEffect[][] { grunts },
 				multiHit: true,
 				hitboxes: new Hitbox[]
@@ -225,32 +225,33 @@ namespace TennisFightingGame
             	serveHeavy,
             };
 
-			// Unstaged: Le di a Jorgito exhasusted attacks y le retoque varios 
-			//           ataques y agruegue un stat que faltaba
-			
 			Stats stats = new Stats(
 				gravity: 4500,
 				friction: 2500,
-				staminaRegen: 1.1f,
-				runSpeed: 650,
-				runStaminaCost: 5,
-				runningJumpSpeed: 1225,
+
 				walkSpeed: 290,
-				walkStaminaCost: 0.85f,
-				jumpSpeed: 1225,
-				jumpStaminaCost: 4.5f,
+				runSpeed: 650,
+				exhaustedSpeed: 275,
 				driftSpeed: 20,
-				exhaustedSpeed: 150,
+
+				jumpSpeed: 1225,
+				runningJumpSpeed: 1225,
 				exhaustedJumpSpeed: 1100,
-				exhaustedJumpStaminaCost: 1,
+				fastFallSpeed: 1000,
+
+				jumpSquat: 0.116f,
+				exhaustedJumpSquat: 0.15f,
+				turnDelay: 0.2f,
+
+				staminaRegen: 5,
 				exhaustedThreshold: 1,
 				recoverThreshold: 5,
-				fastFallSpeed: 1000,
-				staminaRecovery: 15,
-				enduranceDegen: 0.2f,
-				jumpSquat: 0.116f,
-				exhaustedJumpSquat: 0.2f,
-				turnDelay: 0.2f);
+				walkStaminaCost: 1,
+				runStaminaCost: 10,
+				jumpStaminaCost: 5,
+				exhaustedJumpStaminaCost: 2,
+				enduranceDegen: 0.75f,
+				staminaRecovery: 30);
 
 			Character chino = new Character(
 				"Chino",
