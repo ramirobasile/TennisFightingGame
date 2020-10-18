@@ -5,35 +5,35 @@ TennisFightingGame TODO List
 Known bugs to be fixed
 ----------------------
 
-* The ball can sometimes go through geometry. Apparently only small geometry 
+* The ball can sometimes go through geometry. Apparently only small geometry
   thickness-wise and at high velocity though
 
 * Landing point isn't calculated correctly when bounce off of wall
 
-* There are now animations for attacks since they were reworked to not be 
+* There are now animations for attacks since they were reworked to not be
   index based. The solution is probably to attack animations to attacks
 
-* Games don't end
+* For some inexplicable reason, the lagFillRectangle is totally incorrect in
+  training mode... despite nothing of note being different in how training
+  handles bars
 
 
 Possibly fixed but unchecked
 ----------------------------
 
-* Jumping on top of things doesn't work very well... But it's not like you're 
+* Jumping on top of things doesn't work very well... But it's not like you're
   supposed to do that anyway... For now anyways
 
-* If the ball somehow manages to cross the net after point ends, AND it's the 
+* If the ball somehow manages to cross the net after point ends, AND it's the
   game point, camera for next serve gets a bit confused
+
+* Games don't end
 
 
 TODO
 ----
 
 * Custom comulative scalar per hitbox
-
-* Add changeovers and have a bit of endurance recovered on changeovers
-
-* Reset endurance after set end
 
 * Go through TODOs and HACKs
 
@@ -52,8 +52,6 @@ TODO
 
 Minor TODOs
 -----------
-
-* Recover stamina when transition is half done rather than on score
 
 * Jorgito aerial smash 360 motion input
 
@@ -83,13 +81,13 @@ Conundrums
 
 * Maybe add target combos?
 
-* NonHeld buffer clearing mode allows sliding, which is very cool, but the 
+* NonHeld buffer clearing mode allows sliding, which is very cool, but the
   trade-off is your run gets buffered after attacking, which feels very weird.
-  It's not as bad as having no slide though... I think 
+  It's not as bad as having no slide though... I think
 
 * Should we have a Collisionmanager? Could be of use in Doubles
 
-* Consider a special interaction (penalty) for when a hit depletes fully your 
+* Consider a special interaction (penalty) for when a hit depletes fully your
   stamina
 
 
