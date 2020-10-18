@@ -143,7 +143,10 @@ namespace TennisFightingGame
 
 			if (match.inPlay)
 			{
-				AddStamina(stats.staminaRegen * TennisFightingGame.DeltaTime);
+				if (!state.Attacking)
+				{
+					AddStamina(stats.staminaRegen * TennisFightingGame.DeltaTime);
+				}
 				
 				endurance = MathHelper.Clamp(
 					endurance - stats.enduranceDegen * TennisFightingGame.DeltaTime, 
