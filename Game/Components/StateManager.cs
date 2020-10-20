@@ -42,7 +42,7 @@ namespace TennisFightingGame
 					   movementState == MovementStates.WalkingForwards;
 			}
 		}
-		public bool Running
+		public bool Sprinting
 		{
 			get
 			{

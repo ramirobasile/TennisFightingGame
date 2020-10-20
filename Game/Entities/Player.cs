@@ -40,7 +40,7 @@ namespace TennisFightingGame
 		public float stamina = MaxStamina;
 		public float endurance = MaxEndurance;
 		public Vector2 velocity = Vector2.Zero;
-		private ParticleGenerator runningParticles;
+		private ParticleGenerator sprintingParticles;
 
 		public Player(Character character, Match match, PlayerIndex index, int courtSide, 
 			Point spawnPosition)
@@ -63,7 +63,7 @@ namespace TennisFightingGame
 			jumpSound = character.jumpSound;
 			turnSound = character.turnSound;
 
-			runningParticles = new ParticleGenerator(
+			sprintingParticles = new ParticleGenerator(
 				Position,
 				match.court.courtTexture,
 				minColor: Color.Gray, maxColor: Color.LightGray,
@@ -104,7 +104,7 @@ namespace TennisFightingGame
 	                    break;
 	                }
 
-				/* When running, friction is applied so the player has deceleration when he stops running.
+				/* When sprinting, friction is applied so the player has deceleration when he stops sprinting.
 				 * When walking, velocity is set to 0. Since this is done before setting velocity beased on
 				 * the movement state, this makes velocity constant when walking.
 				 * This must be done before updating state because, when walk is released, movementState 
@@ -114,7 +114,7 @@ namespace TennisFightingGame
 					{
 	                    if (state.Walking || state.serving)
 	                    {
-	                        velocity.X = 0; // constant x speed while not running
+	                        velocity.X = 0; // constant x speed while not sprinting
 	                    }
 						
 						if (Math.Abs(velocity.X) > FrictionRound)
@@ -132,14 +132,14 @@ namespace TennisFightingGame
 			moveset.Update();
 			sprite.Update();
 
-        	runningParticles.position = new Point(rectangle.Center.X, rectangle.Bottom);
-        	runningParticles.cutout = new Rectangle(
+        	sprintingParticles.position = new Point(rectangle.Center.X, rectangle.Bottom);
+        	sprintingParticles.cutout = new Rectangle(
         		rectangle.Center.X + 1125,
         		rectangle.Bottom + 380,
-        		runningParticles.cutout.Width,
-        		runningParticles.cutout.Height);
-        	runningParticles.Update();
-        	runningParticles.enabled = false;
+        		sprintingParticles.cutout.Width,
+        		sprintingParticles.cutout.Height);
+        	sprintingParticles.Update();
+        	sprintingParticles.enabled = false;
 
 			if (match.inPlay)
 			{
@@ -171,21 +171,21 @@ namespace TennisFightingGame
 					}
 				case MovementStates.SprintingBackwards:
 					{
-						velocity.X = -stats.runSpeed;
-						AddStamina(-stats.runStaminaCost * TennisFightingGame.DeltaTime);
+						velocity.X = -stats.sprintSpeed;
+						AddStamina(-stats.sprintStaminaCost * TennisFightingGame.DeltaTime);
 
-						runningParticles.SetDirection(new Vector2(0.5f, -1));
-						runningParticles.enabled = true;
+						sprintingParticles.SetDirection(new Vector2(0.5f, -1));
+						sprintingParticles.enabled = true;
 
 						break;
 					}
 				case MovementStates.SprintingForwards:
 					{
-						velocity.X = stats.runSpeed;
-						AddStamina(-stats.runStaminaCost * TennisFightingGame.DeltaTime);
+						velocity.X = stats.sprintSpeed;
+						AddStamina(-stats.sprintStaminaCost * TennisFightingGame.DeltaTime);
 
-						runningParticles.SetDirection(new Vector2(-0.5f, -1));
-						runningParticles.enabled = true;
+						sprintingParticles.SetDirection(new Vector2(-0.5f, -1));
+						sprintingParticles.enabled = true;
 
 						break;
 					}
@@ -240,7 +240,7 @@ namespace TennisFightingGame
 			sprite.Draw(spriteBatch);
 			moveset.Draw(spriteBatch);
 
-			runningParticles.Draw(spriteBatch);
+			sprintingParticles.Draw(spriteBatch);
 
 			if (TennisFightingGame.ConfigFile.Boolean("Debug", "Collisionboxes"))
 			{
@@ -290,7 +290,7 @@ namespace TennisFightingGame
 					case MovementStates.SprintingBackwards:
 					case MovementStates.SprintingForwards:
 						{
-							velocity.Y = -stats.runningJumpSpeed;
+							velocity.Y = -stats.sprintingJumpSpeed;
 							AddStamina(-stats.exhaustedJumpStaminaCost);
 							break;
 						}

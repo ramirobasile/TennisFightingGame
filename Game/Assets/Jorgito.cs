@@ -348,12 +348,12 @@ namespace TennisFightingGame
 				friction: 2000,
 
 				walkSpeed: 325,
-				runSpeed: 800,
+				sprintSpeed: 800,
 				exhaustedSpeed: 275,
 				driftSpeed: 30,
 
 				jumpSpeed: 1100,
-				runningJumpSpeed: 1100,
+				sprintingJumpSpeed: 1100,
 				exhaustedJumpSpeed: 975,
 				fastFallSpeed: 1000,
 
@@ -365,7 +365,7 @@ namespace TennisFightingGame
 				exhaustedThreshold: 1,
 				recoverThreshold: 5,
 				walkStaminaCost: 1,
-				runStaminaCost: 15,
+				sprintStaminaCost: 15,
 				jumpStaminaCost: 6,
 				exhaustedJumpStaminaCost: 2,
 				enduranceDegen: 0.5f,
