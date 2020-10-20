@@ -15,17 +15,16 @@ namespace TennisFightingGame
 		public float hitStun; // Time the ball is frozen for
 		public float hitLag; // Time tha player is frozen for
 		public int shakeMagnitude; // Screen shake magnitude during hitStun
-		public bool cumulative; // Hits on the same direction accumulate (scaled down by a const)
 		public float gravity; // Custom gravity
+		public float likewiseCarryoverScalar; // Hits on the same direction accumulate
 		// A random sound effect of each SoundEffect array will be played
 		[NonSerialized] public SoundEffect[][] onAddedSounds;
 		[NonSerialized] public SoundEffect[] onHitSounds;
 		
 		public Hitbox(Rectangle rectangle, float start, float duration, Vector2 force, 
-			float gravity = Ball.DefaultGravity,
-			float hitStun = 0,  float hitLag = 0,  int shakeMagnitude = 0, 
-			bool cumulative = true, SoundEffect[][] onAddedSounds = null, 
-			SoundEffect[] onHitSounds = null)
+			float gravity = Ball.DefaultGravity, float likewiseCarryoverScalar = 0.33f,
+			float hitStun = 0,  float hitLag = 0,  int shakeMagnitude = 0,
+			SoundEffect[][] onAddedSounds = null, SoundEffect[] onHitSounds = null)
         {
             this.rectangle = rectangle;
             this.duration = duration;
@@ -35,7 +34,6 @@ namespace TennisFightingGame
 			this.hitStun = hitStun;
 			this.hitLag = hitLag;
 			this.shakeMagnitude = shakeMagnitude;
-			this.cumulative = cumulative;
 			this.onAddedSounds = onAddedSounds;
 			this.onHitSounds = onHitSounds;
 		}

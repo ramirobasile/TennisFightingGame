@@ -16,7 +16,6 @@ namespace TennisFightingGame
 		private const float NormalHitThreshold = 500;
 		private const float StrongHitThreshold = 2500;
 		private const float PanningScalar = 0.3f;
-		private const float VelocityAcumulationScalar = 0.15f;
 
 		public readonly Attack[] attacks;
 
@@ -115,9 +114,9 @@ namespace TennisFightingGame
 				(Math.Abs(originalVelocity.X) - 
 				Math.Abs(player.match.ball.velocity.X)), 0, MaxStaminaCost));
 
-			if (hitbox.cumulative && Math.Sign(player.match.ball.velocity.X) == Math.Sign(originalVelocity.X))
+			if (Math.Sign(player.match.ball.velocity.X) == Math.Sign(originalVelocity.X))
 			{
-				player.match.ball.velocity += new Vector2(originalVelocity.X * VelocityAcumulationScalar, 0);
+				player.match.ball.velocity += new Vector2(originalVelocity.X * hitbox.likewiseCarryoverScalar, 0);
 			}
 
 			// Hitstun, hitlag and camera shake
