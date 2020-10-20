@@ -33,11 +33,9 @@ Possibly fixed but unchecked
 TODO
 ----
 
-* Custom comulative scalar per hitbox
-
 * Go through TODOs and HACKs
 
-* Step sounds
+* Step sounds and bounce sound (court specific)
 
 * Character select portraits and stuff
 
@@ -53,17 +51,19 @@ TODO
 Minor TODOs
 -----------
 
-* Jorgito aerial smash 360 motion input
+* Add more particles:
 
-* 10x stamina regen and increase usage
+  * Sprint deceleration particles
 
-* Refactor run for sprint in many fields
+  * Ball bounce particles
 
-* Add more particles
+  * Initial dash particles
+
+  * Jump/land particles
+
+  * Special attack particles (silhouette sf3 kind of thing)
 
 * Remove unused System includes
-
-* Some of Monkey's attacks have 0 shakeMagnitude
 
 * Add best-of selection menu
 
