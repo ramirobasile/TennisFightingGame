@@ -2,24 +2,30 @@ TennisFightingGame TODO List
 ============================
 
 
-Known bugs to be fixed
-----------------------
+Known bugs to be fixed (by priority)
+------------------------------------
 
-* The ball can sometimes go through geometry. Apparently only small geometry
-  thickness-wise and at high velocity though
+1. Bottom collision correction is not calculated or applied correctly, resulting
+   in players/ball sliding off the top of rectangles and then immediatly placed
+   at its right, no matter from which direction the rectangle is jumped on top
+   from
 
-* Landing point isn't calculated correctly when bounce off of wall
+2. There are now animations for attacks since they were reworked to not be
+   index based. The solution is probably to attack animations to attacks
 
-* There are now animations for attacks since they were reworked to not be
-  index based. The solution is probably to attack animations to attacks
+3. For some inexplicable reason, the lagFillRectangle is totally incorrect in
+   training mode... despite nothing of note being different in how training
+   handles bars as opposed to singles
 
-* For some inexplicable reason, the lagFillRectangle is totally incorrect in
-  training mode... despite nothing of note being different in how training
-  handles bars
+4. Landing point isn't calculated correctly when bounce off of wall. While this
+   is not intded to ever come in to play, it'd be nice to have it work correctly
 
 
 Possibly fixed but unchecked
 ----------------------------
+
+* The ball can sometimes go through geometry. Apparently only small geometry
+  thickness-wise and at high velocity though
 
 * Jumping on top of things doesn't work very well... But it's not like you're
   supposed to do that anyway... For now anyways
@@ -33,25 +39,39 @@ Possibly fixed but unchecked
 TODO
 ----
 
-* Go through TODOs and HACKs
-
-* Step sounds and bounce sound (court specific)
-
-* Character select portraits and stuff
-
 * Inputs viewer in training mode and general training overhaul
 
 * Make game's resolution scalable
 
+* Doubles (blocked: bug no. 1)
+
+* Add temporary best-of selection menu
+
+* Step and bounce sound (per court)
+
+* UI overhaul:
+
+  * Give buttons optional texture
+
+  * Better control over UI elements' colours
+
+
+Things to do on a quiet (or lazy) day
+-------------------------------------
+
+* Go through TODOs and HACKs
+
 * Document more and better
 
-* Doubles (currently blocked by collision FIXME)
+* Remove unused System includes
 
 
-Minor TODOs
------------
+Later
+-----
 
-* Add more particles:
+* Crowd SFX
+
+* Add particles:
 
   * Sprint deceleration particles
 
@@ -63,12 +83,20 @@ Minor TODOs
 
   * Special attack particles (silhouette sf3 kind of thing)
 
-* Remove unused System includes
-
-* Add best-of selection menu
-
 * Tournament variation of courts that have an upmpire, only accessible on 
   tournament mode or easter egg
+
+* Add more characters (blocked: needs design)
+
+* Winner text (blocked: needs design)
+
+* Parallax background
+
+* Music
+
+* Add taunting
+
+* DInput support (this is never gonna happen probably)
 
 
 Conundrums
@@ -89,25 +117,3 @@ Conundrums
 
 * Consider a special interaction (penalty) for when a hit depletes fully your
   stamina
-
-
-Backburner
-----------
-
-* Rename Jorgito to Linyera and Wizard to Jorgito
-
-* Add King
-
-* Finish everyone's movesets
-
-* Winner text
-
-* Parallax background
-
-* Music
-
-* Crowd SFX
-
-* Add taunting
-
-* DInput support (this is never gonna happen probably)
