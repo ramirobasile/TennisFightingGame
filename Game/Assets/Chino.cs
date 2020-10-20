@@ -151,7 +151,7 @@ namespace TennisFightingGame
 				action: Actions.Heavy,
 				aerialState: AerialStates.Standing,
 				motionInput: new Actions[] { Actions.Left, Actions.Right, Actions.Heavy },
-				chargeTime: 1.5f,
+				chargeTime: 1,
 				startup: 0.2f, recovery: 1,
 				staminaCost: 35,
 				hitboxes: new Hitbox[]
