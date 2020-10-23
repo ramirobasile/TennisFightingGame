@@ -100,7 +100,8 @@ namespace TennisFightingGame
 			Attack specialStandingMedium = new Attack(
 				action: Actions.Medium,
 				aerialState: AerialStates.Standing,
-				motionInput: DPMedium,
+				motionInput: new Actions[] { Actions.Down, Actions.Up, Actions.Medium },
+				chargeTime: 1,
 				startup: 0.15f, recovery: 0.5f,
 				staminaCost: 30,
 				onStartupSounds: new SoundEffect[][] { loudGrunts },
