@@ -235,14 +235,14 @@ namespace TennisFightingGame
 			Attack specialStandingHeavy = new Attack(
 				action: Actions.Heavy,
 				aerialState: AerialStates.Standing,
-				motionInput: new Actions[] { Actions.Left, Actions.Down, Actions.Right, Actions.Heavy },
+				motionInput: Assets.DPHeavy,
 				onStartupSounds: new SoundEffect[][] { loudGrunts },
 				startup: 0.2f, recovery: 0.425f,
 				staminaCost: 18,
 				hitboxes: new Hitbox[]
 				{
 					new Hitbox(
-						rectangle: new Rectangle(140, 10, 120, 80),
+						rectangle: new Rectangle(100, 10, 160, 80),
 						start: 0, duration: 0.2f,
 						force: new Vector2(2750, -575),
 						hitLag: 0.6f, hitStun: 0.6f, shakeMagnitude: 10,
