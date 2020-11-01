@@ -12,7 +12,7 @@ namespace TennisFightingGame
 
     public class InputManager
     {
-        private const float ClearTime = 0.1f;
+        private const float ClearTime = 0.225f;
 
         public readonly PlayerIndex index;
         private readonly InputMethod inputMethod;
