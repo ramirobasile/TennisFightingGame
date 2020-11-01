@@ -57,7 +57,10 @@ namespace TennisFightingGame
 
             foreach (BufferedInput input in buffer)
             {
-            	if (InputHeld(input.action))
+            	// Is held and is the last occurance of a given action
+            	// Which allows double tapping and holding
+            	if (InputHeld(input.action) &&
+            		buffer.Last(i => i.action == input.action) == input)
             	{
             		input.heldTime += TennisFightingGame.DeltaTime;
             		held = true;
@@ -254,16 +257,21 @@ namespace TennisFightingGame
 
         private bool InputDoublePressed(Actions action)
         {
-        	// HACK This looks like it shouldn't work since we're not
-        	// actually checking wether action is the last or the one
-        	// before inputs in the buffer
-            if (InputHeld(action) && buffer.Count() > 1 &&
-            	buffer[buffer.Count() - 1].action == buffer[buffer.Count() - 2].action)
-            {
-                return true;
-            }
+        	bool adyacent = false;
 
-            return false;
+			// Look for occurance double pressing inside buffer
+			// We make sure first input of the double press was pressed
+			// and not held  by checking its heldTime
+			for(int i = 1; i < buffer.Count() && !adyacent; i++)
+        	{
+        		if (buffer[i].action == action && buffer[i - 1].action == action
+        			&& buffer[i - 1].heldTime <= ClearTime)
+        		{
+        			adyacent = true;
+        		}
+        	}
+
+            return InputHeld(action) && adyacent;
         }
 
         private float InputHeldFor(Actions action)
