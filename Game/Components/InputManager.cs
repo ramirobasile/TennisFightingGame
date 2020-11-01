@@ -80,7 +80,6 @@ namespace TennisFightingGame
                     if (controls.Contains((int)key) && InputPressed(action))
                     {
                         buffer.Add(new BufferedInput(action));
-            			Console.WriteLine("Add " + action);
                         timeToClear = ClearTime;
                     }
                 }
@@ -103,7 +102,6 @@ namespace TennisFightingGame
             if (timeToClear < 0)
             {
                 buffer.Clear();
-    			Console.WriteLine("Clear");
             }
 
             // Events
