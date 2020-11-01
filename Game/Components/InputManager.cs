@@ -7,38 +7,34 @@ using Microsoft.Xna.Framework.Input;
 namespace TennisFightingGame
 {
 	/// <summary>
-	/// Handles input for a player.
+	/// TODO
 	/// </summary>
+
     public class InputManager
     {
-        private const float Tap = 0.09f;
-        private const float MotionInputDelayPerInput = 0.33f;
-
-        private readonly int[] controls;
+        private const float ClearTime = 0.1f;
 
         public readonly PlayerIndex index;
         private readonly InputMethod inputMethod;
-        private readonly ClearingMode clearingMode;
+        private readonly int[] controls;
 
         public int forwardDirection;
         private List<BufferedInput> buffer = new List<BufferedInput>();
+        private float timeToClear;
         private GamePadState lastGamePadState;
         private KeyboardState lastKeyboardState;
 
-        public InputManager(PlayerIndex index, ClearingMode clearingMode = ClearingMode.NonHeld,
-            int forwardDirection = 1)
+        public InputManager(PlayerIndex index, int forwardDirection = 1)
         {
             this.index = index;
-            this.clearingMode = clearingMode;
             this.forwardDirection = forwardDirection;
             
-            // Get controls nad input method from .ini
+            // Get controls and input method from .ini
             controls = TennisFightingGame.ConfigFile.configs[string.Format("P{0} Controls", (int)index + 1)].Values
                 .Select(int.Parse)
                 .ToArray();
-            inputMethod = (InputMethod)TennisFightingGame.ConfigFile.Number(string.Format("P{0} Settings", 
-                (int) index + 1), 
-                "InputMethod");
+            inputMethod = (InputMethod)TennisFightingGame.ConfigFile.Number(
+            	string.Format("P{0} Settings", (int) index + 1), "InputMethod");
 
             lastKeyboardState = Keyboard.GetState();
             lastGamePadState = GamePad.GetState(index);
@@ -56,29 +52,25 @@ namespace TennisFightingGame
 
         public void Update()
         {
-            // Count buffered time
-            foreach (BufferedInput bufferedInput in buffer)
+            // Time and heldTime
+            bool held = false;
+
+            foreach (BufferedInput input in buffer)
             {
-                bufferedInput.bufferedTime += TennisFightingGame.DeltaTime;
+            	if (InputHeld(input.action))
+            	{
+            		input.heldTime += TennisFightingGame.DeltaTime;
+            		held = true;
+            	}
             }
 
-            // Count held time
-            foreach (BufferedInput bufferedInput in buffer)
+            if (!held)
             {
-                if (InputHeld(bufferedInput.action))
-                {
-                    bufferedInput.heldTime += TennisFightingGame.DeltaTime;
-                }
-
-                // TODO Explain
-                if (bufferedInput.bufferedTime > bufferedInput.clearTime && 
-                    InputHeld(bufferedInput.action))
-                {
-                    bufferedInput.bufferedTime = bufferedInput.clearTime - TennisFightingGame.DeltaTime * 2;
-                }
+            	timeToClear -= TennisFightingGame.DeltaTime;
             }
 
-            // Add inputs to buffer and remove thingies
+
+            // Add inputs to buffer
             if (inputMethod == InputMethod.Keyboard)
             {
                 foreach (Keys key in Keyboard.GetState().GetPressedKeys())
@@ -88,6 +80,8 @@ namespace TennisFightingGame
                     if (controls.Contains((int)key) && InputPressed(action))
                     {
                         buffer.Add(new BufferedInput(action));
+            			Console.WriteLine("Add " + action);
+                        timeToClear = ClearTime;
                     }
                 }
             }
@@ -100,30 +94,16 @@ namespace TennisFightingGame
                     if (controls.Contains((int)button) && InputPressed(action))
                     {
                         buffer.Add(new BufferedInput(action));
-
-                        // TODO Explain
-                        if (clearingMode == ClearingMode.NonHeld)
-                        {
-                            buffer.RemoveAll(b => b.action != action && !InputHeld(b.action));
-                        }
-                        // TODO Explain
-                        else if (clearingMode == ClearingMode.NonRepeated)
-                        {
-                            buffer.RemoveAll(b => b.action != action);
-                        }
+                        timeToClear = ClearTime;
                     }
                 }
             }
 
-            // Remove buffered inputs after clearTime
-            for (int i = buffer.Count - 1; i >= 0; i--) //reverse for remove items while iterating
+			// Clear
+            if (timeToClear < 0)
             {
-                BufferedInput bufferedInput = buffer[i];
-                if (bufferedInput.bufferedTime >= bufferedInput.clearTime &&
-                    !InputHeld(bufferedInput.action))
-                {
-                    buffer.Remove(bufferedInput);
-                }
+                buffer.Clear();
+    			Console.WriteLine("Clear");
             }
 
             // Events
@@ -153,7 +133,7 @@ namespace TennisFightingGame
                     }
                 }
 
-                if (InputTwiceBuffered(action))
+                if (InputDoublePressed(action))
                 {
                     if (DoublePressed != null)
                     {
@@ -188,33 +168,35 @@ namespace TennisFightingGame
                 return false;
             }
 
-            float totalTime = 0;
-            float timeSpan = MotionInputDelayPerInput * actions.Length;
+			float totalTime = 0;
 
             for (int i = 0; i < actions.Length; i++)
             {
-                // TODO Describe direction-aware thingy
+                BufferedInput input = buffer[buffer.Count() - actions.Length + i];
+                Actions action = actions[i];
 
-                BufferedInput bufferedInput = buffer[buffer.Count() - actions.Length + i];
-                Actions directionAwareAction = actions[i];
-
+				// Correct forward and backward diraction
                 if (forwardDirection == -1)
                 {
-                    if (directionAwareAction == Actions.Right)
+                    if (action == Actions.Right)
                     {
-                        directionAwareAction = Actions.Left;
+                        action = Actions.Left;
                     }
-                    else if (directionAwareAction == Actions.Left)
+                    else if (action == Actions.Left)
                     {
-                        directionAwareAction = Actions.Right;
+                        action = Actions.Right;
                     }
                 }
 
-                totalTime += bufferedInput.bufferedTime - bufferedInput.heldTime;
-                bool charged = i != 0 || bufferedInput.heldTime >= chargeTime;
+                bool charged = i != 0 || input.heldTime >= chargeTime;
 
-                if (bufferedInput.action != directionAwareAction ||
-                    totalTime > timeSpan ||
+                // Add up heldTime of inputs except for the first one
+                if (i != 0)
+                {
+                	totalTime += input.heldTime;
+                }
+
+                if (input.action != action ||
                     !charged)
                 {
                     return false;
@@ -272,9 +254,18 @@ namespace TennisFightingGame
             return false;
         }
 
-        private bool InputTwiceBuffered(Actions action)
+        private bool InputDoublePressed(Actions action)
         {
-            return buffer.Count(i => i.action == action) > 1;
+        	// HACK This looks like it shouldn't work since we're not
+        	// actually checking wether action is the last or the one
+        	// before inputs in the buffer
+            if (InputHeld(action) && buffer.Count() > 1 &&
+            	buffer[buffer.Count() - 1].action == buffer[buffer.Count() - 2].action)
+            {
+                return true;
+            }
+
+            return false;
         }
 
         private float InputHeldFor(Actions action)
@@ -307,33 +298,14 @@ namespace TennisFightingGame
 
 	internal class BufferedInput
 	{
-        private const float DefaultClearTime = 0.25f;
-
-		public float bufferedTime;
-		public float clearTime;
 		public float heldTime;
 		public Actions action;
 
-		public BufferedInput(Actions action, float clearTime = DefaultClearTime)
+		public BufferedInput(Actions action)
 		{
 			this.action = action;
-			this.clearTime = clearTime;
-			bufferedTime = 0;
 			heldTime = 0;
 		}
-	}
-
-	/// <summary>
-    /// Decides when buffered inputs past their clearTime are disposed of.
-	/// </summary>
-	public enum ClearingMode
-	{
-        // All buffered inputs past their clearTime except held ones
-        NonHeld, 
-        
-        // All buffered inputs past their clearTime except ones equivalent to
-        // the last input
-		NonRepeated
 	}
 
 	enum InputMethod
