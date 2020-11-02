@@ -1,6 +1,7 @@
 HACKING on TennisFightingGame
 =============================
 
+
 Style
 -----
 
@@ -11,3 +12,12 @@ Style
 * Stick to 100 characters per line if possible. Don't go over 120.
 
 * Stupid OOP is not allowed
+
+
+Content
+-------
+
+Esto solo va para mis bros. Si quiren buildear el juego, van a nacesitar el
+content: texturas, sonidos, etc. Y como no técnicamente no puedo distribuirlos,
+como dice en el README.txt, claramente jámas se los mandaria por mail si me lo
+pidieran ;)
