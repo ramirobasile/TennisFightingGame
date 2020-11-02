@@ -7,7 +7,8 @@ namespace TennisFightingGame
 {
     public static class ExtensionMethods
     {
-		// TODO This is very dirty, make something more useful
+		// HACK This is very dirt
+		// TODO Make something more useful
 		public static float NextFloat(this Random random, float min, float max)
 		{
 			return (float)random.Next(
@@ -98,7 +99,7 @@ namespace TennisFightingGame
 			Collision collision = collider.Collision(collidee, pastCollidee);
 		
 			// We always attempt to resolve by correcting the smallest overlap
-			if (collision.Overlap.X < collision.Overlap.Y)
+			if (Math.Abs(collision.Overlap.X) < Math.Abs(collision.Overlap.Y))
 			{
 				if (collision.Right)
 				{
