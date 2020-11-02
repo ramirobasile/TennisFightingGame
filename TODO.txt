@@ -10,8 +10,8 @@ Known bugs to be fixed (by priority)
    at its right, no matter from which direction the rectangle is jumped on top
    from
 
-2. There are now animations for attacks since they were reworked to not be
-   index based. The solution is probably to attack animations to attacks
+2. Regression: There are no animations for attacks since they were reworked to
+   not be index based. The solution is probably to attach animations to attacks
 
 3. For some inexplicable reason, the lagFillRectangle is totally incorrect in
    training mode... despite nothing of note being different in how training
@@ -34,6 +34,14 @@ Possibly fixed but unchecked
   game point, camera for next serve gets a bit confused
 
 * Games don't end
+
+
+v0.2 milestone
+--------------
+
+* Check whether games end
+
+* Bug no. 2
 
 
 TODO
