@@ -51,6 +51,7 @@ namespace TennisFightingGame
 				aerialState: AerialStates.Standing,
 				startup: 0.09f, recovery: 0.04f,
 				staminaCost: 8,
+				animation: new Animation(row: 19, frames: 4, fps: 1),
 				hitboxes: new Hitbox[]
 				{
 					new Hitbox(
@@ -70,6 +71,7 @@ namespace TennisFightingGame
 				aerialState: AerialStates.Standing,
 				startup: 0.285f, recovery: 0.2125f,
 				staminaCost: 20,
+				animation: new Animation(row: 19, frames: 4, fps: 1),
 				onStartupSounds: new SoundEffect[][] { loudGrunts },
 				hitboxes: new Hitbox[]
 				{
@@ -104,6 +106,7 @@ namespace TennisFightingGame
 				chargeTime: 1,
 				startup: 0.15f, recovery: 0.5f,
 				staminaCost: 30,
+				animation: new Animation(row: 19, frames: 4, fps: 1),
 				onStartupSounds: new SoundEffect[][] { loudGrunts },
 				hitboxes: new Hitbox[]
 				{
@@ -130,6 +133,7 @@ namespace TennisFightingGame
 				aerialState: AerialStates.Standing,
 				startup: 0.3f, recovery: 0.3f,
 				staminaCost: 25,
+				animation: new Animation(row: 19, frames: 4, fps: 1),
 				onStartupSounds: new SoundEffect[][] { loudGrunts },
 				hitboxes: new Hitbox[]
 				{
@@ -155,6 +159,7 @@ namespace TennisFightingGame
 				chargeTime: 1,
 				startup: 0.2f, recovery: 1,
 				staminaCost: 35,
+				animation: new Animation(row: 19, frames: 4, fps: 1),
 				hitboxes: new Hitbox[]
 				{
 	                new Hitbox(
@@ -172,6 +177,7 @@ namespace TennisFightingGame
 				serve: true,
 				startup: 0, recovery: 0.2f,
 				staminaCost: 10,
+				animation: new Animation(row: 19, frames: 4, fps: 1),
                 onStartupSounds: new SoundEffect[][] { grunts },
 				multiHit: true,
 				hitboxes: new Hitbox[]
@@ -195,6 +201,7 @@ namespace TennisFightingGame
 				serve: true,
 				startup: 0, recovery: 0.45f,
 				staminaCost: 40,
+				animation: new Animation(row: 19, frames: 4, fps: 1),
                 onStartupSounds: new SoundEffect[][] { grunts },
 				multiHit: true,
 				hitboxes: new Hitbox[]

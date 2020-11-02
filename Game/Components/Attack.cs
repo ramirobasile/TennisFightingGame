@@ -18,6 +18,7 @@ namespace TennisFightingGame
 		public float chargeTime;
 		public bool serve;
 		public bool exhaused;
+		public Animation animation;
 
 		public Hitbox[] hitboxes;
 		[NonSerialized] public SoundEffect[][] onStartupSounds;
@@ -36,7 +37,7 @@ namespace TennisFightingGame
 
 		public Attack(Actions action = Actions.Light, AerialStates aerialState = AerialStates.Grounded, 
 			Actions[] motionInput = null, float chargeTime = 0, bool serve = false, bool exhausted = false,
-			Hitbox[] hitboxes = null,  SoundEffect[][] onStartupSounds = null,
+			Hitbox[] hitboxes = null,  SoundEffect[][] onStartupSounds = null, Animation animation = null,
 			float startup = 0,  float recovery = 0, bool hardLandCancel = false,
 			bool softLandCancel = false, bool hardHitCancel = false, bool softHitCancel = false,
 			bool multiHit = false, float staminaCost = 0)
@@ -46,6 +47,7 @@ namespace TennisFightingGame
 			this.motionInput = motionInput;
 			this.chargeTime = chargeTime;
 			this.serve = serve;
+			this.animation = animation;
 			this.exhaused = exhausted;
 			this.hitboxes = hitboxes;
 			this.onStartupSounds = onStartupSounds;
@@ -68,6 +70,7 @@ namespace TennisFightingGame
 			chargeTime = copying.chargeTime;
 			serve = copying.serve;
 			exhaused = copying.exhaused;
+			animation = copying.animation;
 			hitboxes = copying.hitboxes;
 			onStartupSounds = copying.onStartupSounds;
 			startup = copying.startup;

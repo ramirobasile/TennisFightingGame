@@ -60,9 +60,7 @@ namespace TennisFightingGame
 		{
 			if (player.state.Attacking)
 			{
-				// TODO Give each attack an animation maybe? Seems like the only
-				// not insane solution
-				//currentAnimation = player.moveset.currentAttack.animation;
+				currentAnimation = player.moveset.currentAttack.animation;
 			}
 			else
 			{
