@@ -99,11 +99,11 @@ namespace TennisFightingGame
 			Attack airborneMedium = new Attack(standingMedium);
 			airborneMedium.aerialState = AerialStates.Airborne;
 
-			Attack specialStandingMedium = new Attack(
+			Attack specialAirborneMedium = new Attack(
 				action: Actions.Medium,
-				aerialState: AerialStates.Standing,
+				aerialState: AerialStates.Airborne,
 				motionInput: new Actions[] { Actions.Down, Actions.Up, Actions.Medium },
-				chargeTime: 1,
+				chargeTime: 0.66f,
 				startup: 0.15f, recovery: 0.5f,
 				staminaCost: 30,
 				animation: new Animation(row: 19, frames: 4, fps: 1),
@@ -111,22 +111,19 @@ namespace TennisFightingGame
 				hitboxes: new Hitbox[]
 				{
 					new Hitbox(
-						rectangle: new Rectangle(60, -40, 90, 140),
+						rectangle: new Rectangle(60, 0, 90, 140),
 						start: 0, duration: 0.2f,
-						force: new Vector2(2600, -550),
+						force: new Vector2(2750, -300),
 						hitStun: 0.6f, hitLag: 0.6f, shakeMagnitude: 10,
 						onHitSounds: StrongHitSounds,
 						onAddedSounds: new SoundEffect[][] { SwingSounds }),
 					new Hitbox(
-						rectangle: new Rectangle(60, -130, 90, 90),
+						rectangle: new Rectangle(60, -90, 90, 90),
 						start: 0.2f, duration: 0.1f,
-						force: new Vector2(2600, -550),
+						force: new Vector2(2750, -300),
 						hitStun: 0.6f, hitLag: 0.6f, shakeMagnitude: 10,
 						onHitSounds: StrongHitSounds),
 				});
-
-			Attack specialAirborneMedium = new Attack(specialStandingMedium);
-			specialAirborneMedium.aerialState = AerialStates.Airborne;
 
 			Attack standingHeavy = new Attack(
 				action: Actions.Heavy,
@@ -156,7 +153,7 @@ namespace TennisFightingGame
 				action: Actions.Heavy,
 				aerialState: AerialStates.Standing,
 				motionInput: new Actions[] { Actions.Left, Actions.Right, Actions.Heavy },
-				chargeTime: 1,
+				chargeTime: 0.66f,
 				startup: 0.2f, recovery: 1,
 				staminaCost: 35,
 				animation: new Animation(row: 19, frames: 4, fps: 1),
@@ -223,7 +220,6 @@ namespace TennisFightingGame
             {
             	standingLight,
             	airborneLight,
-            	specialStandingMedium,
             	specialAirborneMedium,
 				standingMedium,
 				airborneMedium,
