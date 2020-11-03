@@ -27,7 +27,7 @@ namespace TennisFightingGame
 			for (int i = 1; i < Assets.Courts.Length + 1; i++)
 			{
 				buttons[i] = new UI.Button(Assets.Courts[i - 1].name,
-					new Point(0, 110 + Assets.RegularFont.Height() * i),
+					new Point(0, 110 + Assets.RegularFont.Height() * (i - 1)),
 					Assets.RegularFont, center: true);
 
 				buttons[i].Clicked += SelectCourt;
