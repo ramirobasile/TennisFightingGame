@@ -251,7 +251,7 @@ namespace TennisFightingGame
 					new Hitbox(
 						rectangle: new Rectangle(100, 10, 160, 80),
 						start: 0, duration: 0.2f,
-						force: new Vector2(2750, -575),
+						force: new Vector2(2900, -575),
 						hitLag: 0.6f, hitStun: 0.6f, shakeMagnitude: 10,
 						onAddedSounds: new SoundEffect[][] { SwingSounds },
 						onHitSounds: StrongHitSounds)
