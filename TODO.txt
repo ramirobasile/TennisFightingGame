@@ -5,26 +5,23 @@ TennisFightingGame TODO List
 Known bugs to be fixed (by priority)
 ------------------------------------
 
-1. The UI bar for stamina on training mode doesn't behave correctly.
+1. Games don't end
+
+2. The UI bar for stamina on training mode doesn't behave correctly.
 
    For some inexplicable reason, the lagFillRectangle is totally incorrect in
    training mode... despite nothing of note being different in how training
    handles bars as opposed to singles
 
-2. Landing point of the ball isn't calculated correctly when it bounces off of a
+3. Landing point of the ball isn't calculated correctly when it bounces off of a
    wall
 
-   While this is not intded to ever come in to play, it'd be nice to haveit work
-   correctly
-
-3. Games don't end
+   While this is not intended to ever come in to play, it'd be nice to have
+   it work correctly
 
 
-Possibly fixed but unchecked
-----------------------------
-
-* The ball can sometimes go through geometry. Apparently only small geometry
-  thickness-wise and at high velocity though
+Unconfirmed bugs
+----------------
 
 * If the ball somehow manages to cross the net after point ends, AND it's the
   game point, camera for next serve gets a bit confused
@@ -33,11 +30,9 @@ Possibly fixed but unchecked
 v0.2 "Tejecasa" release milestone
 --------------------------------
 
-* Bug no. 3
+* Bug no. 1
 
-* Windows testing
-
-* General testing
+* QA
 
 
 TODO
@@ -45,17 +40,26 @@ TODO
 
 * Update spritesheet to have correct order of animations
 
-* Inputs viewer in training mode and general training overhaul
-
 * Make game's resolution scalable
 
-* Doubles (blocked: bug no. 1)
-
-* Add temporary best-of selection menu
+* Doubles
 
 * Step and bounce sound (per court)
 
-* UI overhaul:
+* ConfigFile
+
+  * Handle adding, removing, restoring config file
+
+  * Automatically reload on change and allow manual reloading
+
+* UI
+
+  * Add options kind of button that cycles through options and invokes an event
+    per
+
+  * Display buffer in training mode
+
+  * Add temporary best-of selection menu
 
   * Give buttons optional texture
 
