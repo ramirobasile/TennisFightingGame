@@ -98,7 +98,7 @@ namespace TennisFightingGame
 		{
 			Collision collision = collider.Collision(collidee, pastCollidee);
 		
-			// We always attempt to resolve by correcting the smallest overlap
+			// Always attempt to resolve by correcting the smallest overlap
 			if (Math.Abs(collision.Overlap.X) < Math.Abs(collision.Overlap.Y))
 			{
 				if (collision.Right)

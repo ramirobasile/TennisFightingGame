@@ -101,42 +101,36 @@ namespace TennisFightingGame
 				exhausted = false;
 			}
 
-			// FIXME If floor isn't the first item in PlayerGeometry, shit doesn't work
-			// HACK Jumping on top of things doesn't work all that well with the current setup
-			// Handle AerialState and Landed
-			foreach (Wall wall in player.match.court.PlayerGeometry)
+			// Check if there's a bottom collision and decide aerialState based on that
+			Wall[] walls = player.match.court.PlayerGeometry;
+			bool bottom = false;
+
+			for (int i = 0; i < walls.Length && !bottom; i++)
 			{
 				Rectangle check = new Rectangle(player.rectangle.X, player.rectangle.Y + Player.CheckDistance,
 					player.rectangle.Width, player.rectangle.Height);
 
-				if (aerialState != AerialStates.JumpSquat && 
-					wall.rectangle.Collision(check, player.lastRectangle).Bottom)
+				bottom = walls[i].rectangle.Collision(check, player.lastRectangle).Bottom;
+			}
+
+			// Bottom collision and airborne means player just landed
+			if (bottom && aerialState == AerialStates.Airborne)
+			{
+				if (Landed != null)
 				{
-					if (aerialState == AerialStates.Airborne)
-					{
-						if (Landed != null)
-						{
-							Landed.Invoke();
-						}
-
-						fastFell = false;
-
-						/* HACK Randomly changing the movementState like this is kind of ugly, 
-						 * I know, thing is, you can end up with  the falling state instead of idle
-						 * if you don't do any inputs while falling... */
-						movementState = MovementStates.Idle;
-					}
-
-					aerialState = AerialStates.Standing;
-					return;
+					Landed.Invoke();
 				}
 
-				if (!wall.rectangle.Collision(check, player.lastRectangle).Bottom && 
-					jumpSquatTime <= 0)
-				{
-					aerialState = AerialStates.Airborne;
-					return;
-				}
+				fastFell = false;
+
+				movementState = MovementStates.Idle; // There's a reason for this
+				aerialState = AerialStates.Standing;
+			}
+
+			// No bottom collision and jump squat is over means now airborne
+			if (!bottom && jumpSquatTime <= 0)
+			{
+				aerialState = AerialStates.Airborne;
 			}
 		}
 
