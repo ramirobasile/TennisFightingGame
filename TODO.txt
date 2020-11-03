@@ -5,17 +5,19 @@ TennisFightingGame TODO List
 Known bugs to be fixed (by priority)
 ------------------------------------
 
-1. Bottom collision correction is not calculated or applied correctly, resulting
-   in players/ball sliding off the top of rectangles and then immediatly placed
-   at its right, no matter from which direction the rectangle is jumped on top
-   from
+1. The UI bar for stamina on training mode doesn't behave correctly.
 
-2. For some inexplicable reason, the lagFillRectangle is totally incorrect in
+   For some inexplicable reason, the lagFillRectangle is totally incorrect in
    training mode... despite nothing of note being different in how training
    handles bars as opposed to singles
 
-3. Landing point isn't calculated correctly when bounce off of wall. While this
-   is not intded to ever come in to play, it'd be nice to have it work correctly
+2. Landing point of the ball isn't calculated correctly when it bounces off of a
+   wall
+
+   While this is not intded to ever come in to play, it'd be nice to haveit work
+   correctly
+
+3. Games don't end
 
 
 Possibly fixed but unchecked
@@ -24,19 +26,16 @@ Possibly fixed but unchecked
 * The ball can sometimes go through geometry. Apparently only small geometry
   thickness-wise and at high velocity though
 
-* Jumping on top of things doesn't work very well... But it's not like you're
-  supposed to do that anyway... For now anyways
-
 * If the ball somehow manages to cross the net after point ends, AND it's the
   game point, camera for next serve gets a bit confused
 
-* Games don't end
 
+v0.2 "Tejecasa" release milestone
+--------------------------------
 
-v0.2 milestone
---------------
+* Bug no. 3
 
-* Check whether games end
+* Windows testing
 
 * General testing
 
@@ -75,6 +74,8 @@ Things to do on a quiet (or lazy) day
 
 Later
 -----
+
+* Refactor .ini debug to ShowX, ShowY
 
 * Crowd SFX
 
