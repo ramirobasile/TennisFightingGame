@@ -67,23 +67,8 @@ namespace TennisFightingGame
 				middle, 
 				startingPositions,
 				content.Load<Texture2D>("Courts/Sky"), content.Load<Texture2D>("Courts/Carpet"));
-
-			Court collisionTest = new Court(
-				"Collision Test",
-				new Wall(left, new Vector2(0.825f, 0.825f)),
-				new Wall(right, new Vector2(0.825f, 0.825f)),
-				new Wall(floor, new Vector2(0.825f, 0.825f)),
-				new Wall(new Rectangle(2000, -100, 400, 100), new Vector2(1, 1)),
-				new Rectangle(0, 0, 0, 0),
-				startingPositions,
-				content.Load<Texture2D>("Courts/Sky"), content.Load<Texture2D>("Courts/Carpet"));
 			
 			Courts = new Court[] { hard, clay, grass, carpet };
-
-			if (TennisFightingGame.ConfigFile.Boolean("Debug", "DebugCourts"))
-			{
-				Courts = new Court[] { hard, clay, grass, carpet, collisionTest };
-			}
 		}
 	}
 }
