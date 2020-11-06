@@ -22,7 +22,7 @@ namespace TennisFightingGame
 			Rectangle left = new Rectangle(0, -stageHeight, wallWidth, stageHeight);
 			Rectangle right = new Rectangle(stageWidth - wallWidth, -stageHeight, wallWidth, stageHeight);
 			Rectangle net = new Rectangle(stageWidth / 2 - netWidth / 2, -netHeight, netWidth, netHeight);
-			Rectangle middle = new Rectangle(stageWidth / 2 - netWidth / 2, -stageHeight, netWidth, stageHeight);
+			Rectangle middle = new Rectangle(stageWidth / 2 - netWidth * 2, -stageHeight, netWidth * 4, stageHeight);
 
 			// Bouncy and fast with solid concrete walls
 			Court hard = new Court(
