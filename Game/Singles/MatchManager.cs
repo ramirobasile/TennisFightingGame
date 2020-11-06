@@ -35,6 +35,7 @@ namespace TennisFightingGame.Singles
             PointEnded += EndPoint;
             GameEnded += EndGame;
             SetEnded += EndSet;
+            MatchEnded += EndMatch;
             match.ball.Bounced += Bounce;
             match.ball.Hitted += Hit;
             foreach (Player player in match.players)
@@ -275,7 +276,6 @@ namespace TennisFightingGame.Singles
 
             // Service exchange every game
             server = match.Opponent(server);
-            
         }
 
         private void EndSet(Player scorer, Player scored)
