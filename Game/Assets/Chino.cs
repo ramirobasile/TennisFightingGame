@@ -69,14 +69,14 @@ namespace TennisFightingGame
 			Attack standingMedium = new Attack(
 				action: Actions.Medium,
 				aerialState: AerialStates.Standing,
-				startup: 0.285f, recovery: 0.2125f,
+				startup: 0.3f, recovery: 0.2125f,
 				staminaCost: 20,
 				animation: new Animation(row: 19, frames: 4, fps: 1),
 				onStartupSounds: new SoundEffect[][] { loudGrunts },
 				hitboxes: new Hitbox[]
 				{
 					new Hitbox(
-						rectangle: new Rectangle(-30, -120, 100, 100),
+						rectangle: new Rectangle(-30, -100, 100, 100),
 						start: 0, duration: 0.066f,
 						force: new Vector2(1600, -750),
 						hitStun: 0.4f, hitLag: 0.4f, shakeMagnitude: 5,
@@ -89,7 +89,7 @@ namespace TennisFightingGame
 						hitStun: 0.6f, hitLag: 0.6f, shakeMagnitude: 10,
 						onHitSounds: StrongHitSounds),
 					new Hitbox(
-						rectangle: new Rectangle(100, 0, 90, 110),
+						rectangle: new Rectangle(100, 10, 90, 110),
 						start: 0.165f, duration: 0.125f,
 						force: new Vector2(2250, -550),
 						hitStun: 0.6f, hitLag: 0.6f, shakeMagnitude: 10,
@@ -162,7 +162,7 @@ namespace TennisFightingGame
 	                new Hitbox(
 	                	rectangle: new Rectangle(60, 0, 150, 45),
 		                start: 0, duration: 0.15f,
-		                force: new Vector2(3250, -375),
+		                force: new Vector2(3300, -400),
 		                hitStun: 0.6f, hitLag: 0.6f, shakeMagnitude: 10,
 						onHitSounds: StrongHitSounds,
 						onAddedSounds: new SoundEffect[][] { SwingSounds, loudGrunts }),
@@ -186,7 +186,7 @@ namespace TennisFightingGame
 	                new Hitbox(
 	                	rectangle: new Rectangle(0, -50, 100, 100),
 		                start: 0.8f, duration: 0.5f,
-		                force: new Vector2(1600, -825),
+		                force: new Vector2(1600, -800),
 						hitStun: 0.125f, hitLag: 0.125f, shakeMagnitude: 5,
 						onHitSounds: NormalHitSounds,
 						onAddedSounds: new SoundEffect[][] { SwingSounds, grunts })
@@ -209,7 +209,7 @@ namespace TennisFightingGame
 		                force: new Vector2(0, -2000)),
 	                new Hitbox(
 	                	rectangle: new Rectangle(30, 0, 150, 45),
-		                start: 1.5f, duration: .2f,
+		                start: 1.65f, duration: 0.2f,
 		                force: new Vector2(3250, -375),
 		                hitStun: 0.6f, hitLag: 0.6f, shakeMagnitude: 10,
 						onHitSounds: StrongHitSounds,

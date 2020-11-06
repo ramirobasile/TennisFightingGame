@@ -159,15 +159,15 @@ namespace TennisFightingGame
 					new Hitbox(
 						rectangle: new Rectangle(30, 5, 65, 65),
 						start: 0, duration: 0.11f,
-						force: new Vector2(1800, -900),
-						hitStun: 0.2f, hitLag: 0.2f,
+						force: new Vector2(1900, -875),
+						hitStun: 0.2f, hitLag: 0.2f, shakeMagnitude: 5,
 						onHitSounds: NormalHitSounds,
 						onAddedSounds: new SoundEffect[][] { SwingSounds }),
 					new Hitbox(
 						rectangle: new Rectangle(90, 15, 55, 55),
 						start: 0.11f, duration: 0.11f,
-						force: new Vector2(1800, -900),
-						hitStun: 0.2f, hitLag: 0.2f,
+						force: new Vector2(1900, -875),
+						hitStun: 0.2f, hitLag: 0.2f, shakeMagnitude: 5,
 						onHitSounds: NormalHitSounds)
 				});
 
@@ -195,7 +195,7 @@ namespace TennisFightingGame
 			Attack standingHeavy = new Attack(
 				action: Actions.Heavy,
 				aerialState: AerialStates.Standing,
-				startup: 0.15f, recovery: 0.2f,
+				startup: 0.166f, recovery: 0.2f,
 				softHitCancel: true,
 				staminaCost: 8,
 				animation: new Animation(row: 19, frames: 4, fps: 1),
@@ -212,7 +212,7 @@ namespace TennisFightingGame
 					new Hitbox(
 						rectangle: new Rectangle(90, -5, 75, 75),
 						start: 0.075f, duration: 0.175f,
-						force: new Vector2(2600, -625),
+						force: new Vector2(2650, -625),
 						hitLag: 0.4f, hitStun: 0.4f, shakeMagnitude: 6,
 						onHitSounds: NormalHitSounds)
 				});
@@ -243,7 +243,7 @@ namespace TennisFightingGame
 				aerialState: AerialStates.Standing,
 				motionInput: Assets.DPHeavy,
 				onStartupSounds: new SoundEffect[][] { loudGrunts },
-				startup: 0.2f, recovery: 0.425f,
+				startup: 0.225f, recovery: 0.425f,
 				staminaCost: 18,
 				animation: new Animation(row: 19, frames: 4, fps: 1),
 				hitboxes: new Hitbox[]
@@ -251,7 +251,7 @@ namespace TennisFightingGame
 					new Hitbox(
 						rectangle: new Rectangle(100, 10, 160, 80),
 						start: 0, duration: 0.2f,
-						force: new Vector2(2900, -575),
+						force: new Vector2(3100, -550),
 						hitLag: 0.6f, hitStun: 0.6f, shakeMagnitude: 10,
 						onAddedSounds: new SoundEffect[][] { SwingSounds },
 						onHitSounds: StrongHitSounds)
@@ -276,7 +276,7 @@ namespace TennisFightingGame
 						rectangle: new Rectangle(0, -50, 100, 100),
 						start: 0.95f, duration: 0.5f,
 						force: new Vector2(1350, -800),
-						hitStun: 0.1f, hitLag: 0.1f,
+						hitStun: 0.1f, hitLag: 0.1f, shakeMagnitude: 2,
 						onHitSounds: WeakHitSounds,
 						onAddedSounds: new SoundEffect[][] { SwingSounds, grunts })
 				});
@@ -300,7 +300,7 @@ namespace TennisFightingGame
 						rectangle: new Rectangle(0, -50, 100, 100),
 						start: 0.8f, duration: 0.5f,
 						force: new Vector2(1750, -750),
-						hitStun: 0.15f, hitLag: 0.15f,
+						hitStun: 0.15f, hitLag: 0.15f, shakeMagnitude: 4,
 						onHitSounds: NormalHitSounds,
 						onAddedSounds: new SoundEffect[][] { SwingSounds, grunts })
 				});
