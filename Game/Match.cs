@@ -20,7 +20,7 @@
 		/// <summary>
 		/// Allows derived classes to invoke MatchEnded event.
 		/// </summary>
-		protected virtual void End()
+		protected virtual void End(Player winner)
         {
             if (Ended != null)
             {

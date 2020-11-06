@@ -149,9 +149,9 @@ namespace TennisFightingGame.Singles
             }
 		}
 
-		public void End()
+		public new void End(Player winner)
 		{
-			base.End();
+			base.End(winner);
 		}
     }
 }
