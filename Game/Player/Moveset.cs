@@ -69,7 +69,7 @@ namespace TennisFightingGame
 		/// Set new attack and do its sounds.
 		/// </summary>
 		public void Throw(Attack attack)
-	{
+	    {
 			currentAttack = attack;
 			player.AddStamina(-attack.staminaCost);
 

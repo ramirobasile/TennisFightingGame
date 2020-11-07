@@ -148,9 +148,15 @@ namespace TennisFightingGame
             // Hit ball
 			foreach (Hitbox hitbox in activeHitboxes)
 			{
-				if ((!hits.Any() || (multiHit && !hits.Contains(hitbox))) && 
-				    RelativeRectangle(hitbox, player.rectangle, player.direction)
-						.Intersects(player.match.ball.rectangle))
+			    bool intersects = RelativeRectangle(hitbox, player.rectangle, player.direction)
+				    .Intersects(player.match.ball.rectangle);
+				bool correctSide = 
+					(player.courtSide == -1 && player.match.ball.Position.X < player.match.court.net.rectangle.Left) ||
+					(player.courtSide == 1 && player.match.ball.Position.X > player.match.court.net.rectangle.Right);
+
+				if ((!hits.Any() || (multiHit && !hits.Contains(hitbox))) &&
+				    intersects &&
+				    correctSide)
 				{				
 					hits.Add(hitbox);
 
