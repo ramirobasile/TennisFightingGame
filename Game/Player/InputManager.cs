@@ -52,26 +52,7 @@ namespace TennisFightingGame
 
         public void Update()
         {
-            // Time and heldTime
-            bool held = false;
-
-            foreach (BufferedInput input in buffer)
-            {
-            	// Is held and is the last occurance of a given action
-            	// Which allows double tapping and holding
-            	if (InputHeld(input.action) &&
-            		buffer.Last(i => i.action == input.action) == input)
-            	{
-            		input.heldTime += TennisFightingGame.DeltaTime;
-            		held = true;
-            	}
-            }
-
-            if (!held)
-            {
-            	timeToClear -= TennisFightingGame.DeltaTime;
-            }
-
+            timeToClear -= TennisFightingGame.DeltaTime;
 
             // Add inputs to buffer
             if (inputMethod == InputMethod.Keyboard)
@@ -101,10 +82,16 @@ namespace TennisFightingGame
                 }
             }
 
-			// Clear
+			// Clear non-held
             if (timeToClear < 0)
             {
-                buffer.Clear();
+                for (int i = 0; i < buffer.Count; i++)
+                {
+                    if (!InputHeld(buffer[i].action) || buffer[i].action != buffer.Last().action)
+                    {
+                        buffer.RemoveAt(i);
+                    }
+                }
             }
 
             // Events
@@ -197,8 +184,7 @@ namespace TennisFightingGame
                 	totalTime += input.heldTime;
                 }
 
-                if (input.action != action ||
-                    !charged)
+                if (input.action != action || !charged)
                 {
                     return false;
                 }
