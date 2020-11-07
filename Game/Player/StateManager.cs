@@ -214,7 +214,7 @@ namespace TennisFightingGame
 				case Actions.Left:
 					{
 						if ((aerialState == AerialStates.Standing || aerialState == AerialStates.JumpSquat) &&
-							(player.velocity.X < 0 || Math.Abs(player.velocity.X) < Player.FrictionRound))
+							player.velocity.X == 0)
 						{
 							if (exhausted)
 							{
@@ -237,7 +237,7 @@ namespace TennisFightingGame
 				case Actions.Right:
 					{
 						if ((aerialState == AerialStates.Standing || aerialState == AerialStates.JumpSquat) &&
-							(player.velocity.X > 0 || Math.Abs(player.velocity.X) < Player.FrictionRound))
+							player.velocity.X == 0)
 						{
 							if (exhausted)
 							{
