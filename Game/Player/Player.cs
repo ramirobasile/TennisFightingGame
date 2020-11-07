@@ -11,7 +11,6 @@ namespace TennisFightingGame
 	/// </summary>
 	public class Player
     {
-		public const int FrictionRound = 10; // Velocity under this will be rounded off
         public const int CheckDistance = 1; // Distance below hurtbox to check for standing
         public const int MaxStamina = 100;
         public const int MaxEndurance = 100;
@@ -87,6 +86,7 @@ namespace TennisFightingGame
 
 		public void Update()
         {
+			Console.WriteLine(velocity);
             // Don't update during hitlag
             if (hitLag > 0)
             {
@@ -117,10 +117,15 @@ namespace TennisFightingGame
 	                        velocity.X = 0; // constant x speed while not sprinting
 	                    }
 						
-						if (Math.Abs(velocity.X) > FrictionRound)
+						float frictionValue = stats.friction * TennisFightingGame.DeltaTime * Math.Sign(velocity.X);
+						if (Math.Sign(velocity.X) == Math.Sign(velocity.X - frictionValue))
                     	{
-							velocity.X -= stats.friction * TennisFightingGame.DeltaTime * Math.Sign(velocity.X);
+							velocity.X -= frictionValue;
                     	}
+						else
+						{
+							velocity.X = 0;
+						}
 
 	                    break;
                 	}
