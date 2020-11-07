@@ -1,20 +1,43 @@
-v0.1 (2020-09-14)
-=================
+v0.1 pre-release (2020-09-14)
+=============================
 
 First pre-release.
 
 
-v0.2 (due 2020-11-07)
-=====================
+v0.2 pre-release (2020-11-07)
+=============================
 
 
 Bugfixes
 --------
 
-* Placeholder
+* Fixed collision bugs
+
+* Fixed attack animations not working
+
+* Fixed scoring bugs and related camera bugs
+
+* Did a lot of refactoring and reimplementing many cumbersome systems
+
+* Fixed attacks registering hits from beyond the net into the opponent's
+  court
+  
+* Fixed games not ending
 
 
-Game changes
-------------
+Gameplay changes
+----------------
 
-* Placeholder
+* Removed unfinished debug characters Monkey and Wizard
+
+* Added charge motion inputs
+
+* Implemented particle systems and added running particles that base
+  their texture off of the ground the player is stepping on
+  
+* Added endurance, a resource that drains as games drag and reduces
+  stamina recovered per point and per game. Fully replenishes every set
+
+* Added jump squat
+
+* Reworked input system to be more intuitive
