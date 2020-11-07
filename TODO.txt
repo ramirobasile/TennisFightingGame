@@ -27,16 +27,10 @@ Unconfirmed bugs
   game point, camera for next serve gets a bit confused
 
 
-v0.2 "Tejecasa" release milestone
---------------------------------
-
-* QC
-
-
 TODO
 ----
 
-* Prevent attacks from hitting when over net
+* Real changeovers
 
 * Update spritesheet to have correct order of animations
 
