@@ -28,7 +28,7 @@ namespace TennisFightingGame.Training
 
             players = new[]
             {
-                new Player(character, this, PlayerIndex.One, 1, court.spawnPoints[0])
+                new Player(character, this, PlayerIndex.One, -1, court.spawnPoints[0])
             };
 
             pause = new Pause();
