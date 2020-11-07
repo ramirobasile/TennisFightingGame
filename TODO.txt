@@ -5,19 +5,19 @@ TennisFightingGame TODO List
 Known bugs to be fixed (by priority)
 ------------------------------------
 
-1. Games don't end
-
-2. The UI bar for stamina on training mode doesn't behave correctly.
+1. The UI bar for stamina on training mode doesn't behave correctly
 
    For some inexplicable reason, the lagFillRectangle is totally incorrect in
    training mode... despite nothing of note being different in how training
-   handles bars as opposed to singles
+   handles bars as opposed to singles.
 
-3. Landing point of the ball isn't calculated correctly when it bounces off of a
+2. Landing point of the ball isn't calculated correctly when it bounces off of a
    wall
 
    While this is not intended to ever come in to play, it'd be nice to have
-   it work correctly
+   it work correctly.
+
+3. Sound panning not working very well
 
 
 Unconfirmed bugs
@@ -30,13 +30,13 @@ Unconfirmed bugs
 v0.2 "Tejecasa" release milestone
 --------------------------------
 
-* Bug no. 1
-
-* QA
+* QC
 
 
 TODO
 ----
+
+* Prevent attacks from hitting when over net
 
 * Update spritesheet to have correct order of animations
 
